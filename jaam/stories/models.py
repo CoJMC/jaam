@@ -1,9 +1,9 @@
 from django.db import models
 from jaam.projects.models import Project
-from jaam.jaam.models import Journalist
+from jaam.journalism.models import Journalist, BaseModel
 
 # Create your models here.
-class Story(models.Model):
+class Story(BaseModel):
     project = models.ForeignKey(Project)
     author = models.ForeignKey(Journalist)
     headline = models.CharField(max_length=200)

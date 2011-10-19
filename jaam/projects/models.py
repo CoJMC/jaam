@@ -1,7 +1,6 @@
 from django.db import models
-from jaam.jaam.models import BaseModel
 
-class Project(BaseModel):
+class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=2000)
     

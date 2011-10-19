@@ -1,7 +1,8 @@
 from django.contrib import admin
 from jaam.videos.models import Video, VideoGallery
+from jaam.journalism.admin import BaseAdmin
 
-class VideoAdmin(admin.ModelAdmin):
+class VideoAdmin(BaseAdmin):
     pass
 
 class VideoGalleryAdmin(admin.ModelAdmin):

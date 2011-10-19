@@ -1,10 +1,11 @@
 from django.contrib import admin
 from jaam.blog.models import BlogPost, Blog
+from jaam.journalism.admin import BaseAdmin
 
-class BlogPostAdmin(admin.ModelAdmin):
+class BlogPostAdmin(BaseAdmin):
     pass
 
-class BlogAdmin(admin.ModelAdmin):
+class BlogAdmin(BaseAdmin):
     pass
 
 admin.site.register(BlogPost, BlogPostAdmin)

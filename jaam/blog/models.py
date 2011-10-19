@@ -1,5 +1,5 @@
 from django.db import models
-from jaam.jaam.models import BaseModel
+from jaam.journalism.models import BaseModel
 
 class BlogPost(BaseModel):
     blog
@@ -9,7 +9,7 @@ class BlogPost(BaseModel):
     author
     pass
 
-class Blog(models.Model):
+class Blog(BaseModel):
     project
     title
     subtitle
