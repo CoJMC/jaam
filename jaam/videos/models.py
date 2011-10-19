@@ -1,5 +1,5 @@
 from django.db import models
-from jaam.jaam.models import BaseModel, Journalist
+from jaam.journalism.models import BaseModel, Journalist
 from jaam.projects.models import Project
 
 class Video(BaseModel):

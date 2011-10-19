@@ -1,17 +1,17 @@
 from django.db import models
-from jaam.jaam.models import BaseModel
+from jaam.journalism.models import BaseModel
 
 class BlogPost(BaseModel):
-    blog
-    headline
-    description
-    body
-    author
+#    blog
+#    headline
+#    description
+#    body
+#    author
     pass
 
 class Blog(models.Model):
-    project
-    title
-    subtitle
-    description
+#    project
+#    title
+#    subtitle
+#    description
     pass

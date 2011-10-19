@@ -1,5 +1,5 @@
 from django.db import models
-from jaam.jaam.models import BaseModel
+from jaam.journalism.models import BaseModel
 
 class Project(BaseModel):
     title = models.CharField(max_length=200)

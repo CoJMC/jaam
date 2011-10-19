@@ -1,6 +1,6 @@
 from django.db import models
 from jaam.projects.models import Project
-from jaam.jaam.models import Journalist
+from jaam.journalism.models import Journalist
 
 # Create your models here.
 class Story(models.Model):
