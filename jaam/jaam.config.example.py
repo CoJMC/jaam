@@ -1,9 +1,0 @@
-SECRET_KEY = 'xxx'
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'xxx'
-AWS_SECRET_ACCESS_KEY = 'xxx'
-AWS_STORAGE_BUCKET_NAME = 'jaam'
-
-DOCUMENTCLOUD_USERNAME = 'xxx@example.com'
-DOCUMENTCLOUD_PASSWORD = 'xxx'
