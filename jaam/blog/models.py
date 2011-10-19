@@ -1,17 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 from jaam.journalism.models import BaseModel
-
-class BlogPost(BaseModel):
-#    blog
-#    headline
-#    description
-#    body
-#    author
-    pass
+from jaam.projects.models import Project
 
 class Blog(models.Model):
-#    project
-#    title
-#    subtitle
-#    description
-    pass
+    project = models.ForeignKey(Project)
+    title = models.CharField(max_length=255)
+    subtitle = models.CharField(max_length=255)
+    description = models.TextField()
+
+class BlogPost(BaseModel):
+    blog = models.ForeignKey(Blog)
+    headline = models.CharField(max_length=255)
+    description = models.TextField()
+    body = models.TextField()
+    author = models.OneToOneField(User)
