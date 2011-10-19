@@ -124,7 +124,7 @@ INSTALLED_APPS = (
     'jaam.blog',
     'jaam.comments',
     'jaam.document',
-    'jaam.jaam',
+    'jaam.journalism',
     'jaam.photos',
     'jaam.projects',
     'jaam.stories',
