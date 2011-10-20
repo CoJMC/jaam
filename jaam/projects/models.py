@@ -8,4 +8,3 @@ class Project(models.Model):
 class ProjectLocation(models.Model):
     location = models.CharField(max_length=1000)
     project = models.ForeignKey(Project)
-    pass
