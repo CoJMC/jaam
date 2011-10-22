@@ -3,6 +3,18 @@ from jaam.journalism.models import BaseModel, Journalist
 from jaam.projects.models import Project
     
 class PhotoExifData(models.Model):
+    camera_manufacturer = models.CharField(max_length=100)
+    camera_model = models.CharField(max_length=100)
+    date = models.DateTimeField('date photographed')
+    shutter_speed = models.CharField(max_length=50)
+    aperture = models.CharField(max_length=50)
+    focal_length = models.CharField(max_length=50)
+    flash_used = models.BooleanField()
+    height_dimension = models.CharField(max_length=50)
+    width_dimension = models.CharField(max_length=50)
+    gps_latitude = models.CharField(max_length=50)
+    gps_longitude = models.CharField(max_length=50)
+    altitude = models.CharField(max_length=50)
     pass
 
 class Photo(BaseModel):

@@ -6,4 +6,8 @@ class BaseModel(models.Model):
     pass
 
 class Journalist(User):
-    pass
+    bio = models.TextField()
+    major = models.CharField(max_length=255)
+    avatar = models.ImageField(upload_to='/')
+    facebookID = models.IntegerField()
+    twitterID = models.CharField(max_length=255)
