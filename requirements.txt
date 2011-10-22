@@ -8,3 +8,5 @@ boto==2.0
 django-extensions==0.7.1
 python-documentcloud
 -e git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud
+
+django-social-auth

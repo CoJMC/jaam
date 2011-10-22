@@ -112,7 +112,6 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
@@ -128,8 +127,27 @@ INSTALLED_APPS = (
     'jaam.photos',
     'jaam.projects',
     'jaam.stories',
-    'jaam.videos'
+    'jaam.videos',
+    
+    'social_auth',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleBackend',
+    'social_auth.backends.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_IMPORT_BACKENDS = (
+    'twitter', 'facebook', 'google', 'openid', 
+)
+
+SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
+FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'touch'}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -1,7 +1,7 @@
 from django.db import models
 from jaam.journalism.models import BaseModel
 
-class Project(models.Model):
+class Project(BaseModel):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=2000)
     
