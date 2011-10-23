@@ -3,3 +3,4 @@ from jaam.journalism.models import BaseModel
 
 class BaseAdmin(admin.ModelAdmin):
     pass
+

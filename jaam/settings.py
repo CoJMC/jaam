@@ -140,14 +140,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_IMPORT_BACKENDS = (
-    'twitter', 'facebook', 'google', 'openid', 
-)
-
 SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
-
-FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'touch'}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
