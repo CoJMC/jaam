@@ -4,3 +4,5 @@ database.db
 *.pyc
 .project
 .pydevproject
+
+*.swp
