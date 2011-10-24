@@ -2,6 +2,9 @@
 site_key = 7QADP40P2Y4
 vcs = git
 
+[files]
+include = jaam/jaamconfig.py
+
 [app]
 ; This path is relative to your project root (the directory .gondor is in)
 requirements_file = requirements.txt
