@@ -9,3 +9,9 @@ class Story(BaseModel):
     headline = models.CharField(max_length=200)
     body = models.CharField(max_length=5000)
     blurb = models.CharField(max_length=1000)
+    class Meta:
+        verbose_name = "story"
+        verbose_name_plural = "stories"
+
+    def __unicode__(self):
+        return self.headline

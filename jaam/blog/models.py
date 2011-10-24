@@ -9,9 +9,15 @@ class Blog(models.Model):
     subtitle = models.CharField(max_length=255)
     description = models.TextField()
 
+    def __unicode__(self):
+        return self.title
+
 class BlogPost(BaseModel):
     blog = models.ForeignKey(Blog)
     headline = models.CharField(max_length=255)
     description = models.TextField()
     body = models.TextField()
     author = models.OneToOneField(User)
+
+    def __unicode__(self):
+        return self.headline

@@ -36,4 +36,9 @@ class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)
     introduction = models.CharField(max_length=5000)
     project = models.ForeignKey(Project)
-    pass
+    class Meta:
+        verbose_name = "photo gallery"
+        verbose_name_plural = "photo galleries"
+
+    def __unicode__(self):
+        return self.title

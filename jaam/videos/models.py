@@ -16,4 +16,9 @@ class VideoGallery(BaseModel):
     title = models.CharField(max_length=100)
     introduction = models.CharField(max_length=5000)
     project = models.ForeignKey(Project)
-    pass
+    class Meta:
+        verbose_name = "video gallery"
+        verbose_name_plural = "video galleries"
+
+    def __unicode__(self):
+        return self.title
