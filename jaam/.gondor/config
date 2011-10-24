@@ -8,7 +8,6 @@ include = jaam/jaamconfig.py
 [app]
 ; This path is relative to your project root (the directory .gondor is in)
 requirements_file = requirements.txt
-staticfiles = on
 
 ; The wsgi entry point of your application in two parts separated by a colon.
 ; wsgi:deploy where wsgi is the Python module which should be importable and
@@ -19,7 +18,7 @@ wsgi_entry_point = wsgi:application
 migrations = none
 
 ; Whether or not to run collectstatic during deployment
-staticfiles = off
+staticfiles = on
 
 ; Path to map frontend servers to for your site media (includes both STATIC_URL
 ; and MEDIA_URL; you must ensure they are under the same path)
