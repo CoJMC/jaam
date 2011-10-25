@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
+from jaam import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,4 +17,12 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # enable the social auth login urls
     url(r'', include('social_auth.urls')),
+    # enable ckeditor path
+    (r'^ckeditor/', include('ckeditor.urls')),
 )
+
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': settings.MEDIA_ROOT }))

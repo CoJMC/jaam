@@ -1,4 +1,5 @@
 # Django settings for jaam project.
+import os, logging
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -43,20 +44,22 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "media" + os.path.sep)
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/'
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -102,8 +105,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'jaam.urls'
 
-import os.path
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, "templates"),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -133,6 +134,8 @@ INSTALLED_APPS = (
     'jaam.videos',
     
     'social_auth',
+    
+    'ckeditor',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -142,9 +145,6 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.OpenIDBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-
-SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
-SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
