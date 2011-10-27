@@ -122,7 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.comments',
-    
+
     'jaam.act',
     'jaam.blog',
     'jaam.comments',
@@ -132,10 +132,11 @@ INSTALLED_APPS = (
     'jaam.projects',
     'jaam.stories',
     'jaam.videos',
-    
+
     'social_auth',
-    
+
     'ckeditor',
+    'doccloud'
 )
 
 AUTHENTICATION_BACKENDS = (
