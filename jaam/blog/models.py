@@ -7,8 +7,8 @@ from ckeditor.fields import RichTextField
 class Blog(models.Model):
     project = models.ForeignKey(Project)
     title = models.CharField(max_length=255)
-    subtitle = models.CharField(max_length=255)
-    description = models.TextField()
+    subtitle = models.CharField(max_length=255, null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.title
@@ -16,9 +16,9 @@ class Blog(models.Model):
 class BlogPost(BaseModel):
     blog = models.ForeignKey(Blog)
     headline = models.CharField(max_length=255)
-    description = models.TextField()
+    description = RichTextField(null=True, blank=True)
     body = RichTextField()
-    author = models.OneToOneField(User)
+    author = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.headline
