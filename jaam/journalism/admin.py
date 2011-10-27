@@ -1,5 +1,4 @@
 from django.contrib import admin
-from jaam.journalism.models import BaseModel
 from jaam.journalism.models import Journalist
 
 

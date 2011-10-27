@@ -170,7 +170,7 @@ LOGGING = {
 }
 
 # setting for the site-specific user profile
-#AUTH_PROFILE_MODULE = 'jaam.profiles'
+AUTH_PROFILE_MODULE = 'journalism.journalist'
 
 # for personal config - doccloud/aws/etc
 try:

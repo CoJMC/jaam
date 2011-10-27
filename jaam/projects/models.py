@@ -1,5 +1,6 @@
 from django.db import models
 from jaam.journalism.models import BaseModel
+from ckeditor.fields import RichTextField
 
 class ProjectLocation(models.Model):
     location = models.CharField(max_length=1000)
@@ -9,7 +10,7 @@ class ProjectLocation(models.Model):
 
 class Project(BaseModel):
     title = models.CharField(max_length=200)
-    description = models.CharField(max_length=2000)
+    description = RichTextField(null=True, blank=True)
     locations = models.ManyToManyField(ProjectLocation)
 
     def __unicode__(self):
