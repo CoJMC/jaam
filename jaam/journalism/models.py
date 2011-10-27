@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
 
 # Create your models here.
 class BaseModel(models.Model):
@@ -11,3 +13,10 @@ class Journalist(User):
     avatar = models.ImageField(upload_to='/')
     facebookID = models.IntegerField()
     twitterID = models.CharField(max_length=255)
+    
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created==True:
+        print "this works!"
+    else:
+        print "this also works!"
