@@ -18,7 +18,7 @@ class BlogPost(BaseModel):
     headline = models.CharField(max_length=255)
     description = RichTextField(null=True, blank=True)
     body = RichTextField()
-    author = models.OneToOneField(User)
+    author = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.headline

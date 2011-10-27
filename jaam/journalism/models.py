@@ -5,8 +5,21 @@ from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 
 # Create your models here.
+class Tag(models.Model):
+    title = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.title
+
 class BaseModel(models.Model):
-    pass
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+    published = models.BooleanField(default=False)
+    slug = models.SlugField(unique=True)
+    tags = models.ManyToManyField(Tag, blank=True)
+
+    class Meta:
+        abstract = True
 
 class Journalist(models.Model):
     user = models.OneToOneField(User, primary_key=True)
