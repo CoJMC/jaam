@@ -26,7 +26,7 @@ class Photo(BaseModel):
                                 upload_to='uploads/photos',
                                 max_length=200)   
     title = models.CharField(max_length=100)
-    caption = models.CharField(max_length=5000)
+    caption = models.TextField(null=True, blank=True)
     exif_data = models.ForeignKey(PhotoExifData)
     
     def __unicode__(self):
@@ -34,7 +34,7 @@ class Photo(BaseModel):
 
 class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)
-    introduction = models.CharField(max_length=5000)
+    introduction = models.TextField(null=True, blank=True)
     project = models.ForeignKey(Project)
     class Meta:
         verbose_name = "photo gallery"

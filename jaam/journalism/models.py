@@ -13,3 +13,6 @@ class Journalist(models.Model):
     avatar = models.ImageField(upload_to='/', null = True, blank=True)
     facebookID = models.IntegerField(null=True, blank=True)
     twitterID = models.CharField(max_length=255, null=True, blank=True)
+    
+    def __unicode__(self):
+        return self.user.username
