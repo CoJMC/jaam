@@ -122,7 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.comments',
-    
+
     'jaam.act',
     'jaam.blog',
     'jaam.comments',
@@ -132,11 +132,12 @@ INSTALLED_APPS = (
     'jaam.projects',
     'jaam.stories',
     'jaam.videos',
-    
+
     'social_auth',
-    
+
     'ckeditor',
     'easy_thumbnails'
+    'doccloud'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -191,7 +192,11 @@ CKEDITOR_CONFIGS = {
 }
 
 # setting for the site-specific user profile
-AUTH_PROFILE_MODULE = 'jaam.journalism.journalist'
+# AUTH_PROFILE_MODULE = 'jaam.journalism.journalist'
+
+# Does this value work vvvvvvvvvvvvvvvvvvvvv ?
+AUTH_PROFILE_MODULE = 'journalism.journalist'
+#                      ^^^^^^^^^^^^^^^^^^^^^ ?
 
 # END APP CONFIGS
 
