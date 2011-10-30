@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'social_auth',
     
     'ckeditor',
+    'easy_thumbnails'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -168,6 +169,31 @@ LOGGING = {
         },
     }
 }
+
+# START APP CONFIGS
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
+
+SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
+CKEDITOR_MEDIA_PREFIX = "/media/ckeditor/"  
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_UPLOAD_PATH = ""
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 300,
+    },
+}
+
+# setting for the site-specific user profile
+AUTH_PROFILE_MODULE = 'jaam.journalism.journalist'
+
+# END APP CONFIGS
 
 # for personal config - doccloud/aws/etc
 try:

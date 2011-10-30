@@ -7,4 +7,5 @@ python-documentcloud==0.151
 django-social-auth==0.5.13
 djangorestframework==0.2.3
 django-ckeditor==0.0.9
+easy_thumbnails==1.0-alpha-18
 -e git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud
