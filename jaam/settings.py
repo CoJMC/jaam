@@ -136,7 +136,7 @@ INSTALLED_APPS = (
     'social_auth',
 
     'ckeditor',
-    'easy_thumbnails'
+    'easy_thumbnails',
     'doccloud'
 )
 
@@ -171,8 +171,6 @@ LOGGING = {
     }
 }
 
-# START APP CONFIGS
-
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
 
@@ -192,13 +190,7 @@ CKEDITOR_CONFIGS = {
 }
 
 # setting for the site-specific user profile
-# AUTH_PROFILE_MODULE = 'jaam.journalism.journalist'
-
-# Does this value work vvvvvvvvvvvvvvvvvvvvv ?
 AUTH_PROFILE_MODULE = 'journalism.journalist'
-#                      ^^^^^^^^^^^^^^^^^^^^^ ?
-
-# END APP CONFIGS
 
 # for personal config - doccloud/aws/etc
 try:

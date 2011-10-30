@@ -35,6 +35,3 @@ def create_profile(sender, instance, created, **kwargs):
         j = Journalist()
         j.user = instance
         j.save()
-        print "this works!"
-    else:
-        print "this also works!"
