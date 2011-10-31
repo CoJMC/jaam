@@ -29,12 +29,14 @@ class Journalist(models.Model):
     facebookID = models.IntegerField(null=True, blank=True)
     twitterID = models.CharField(max_length=255, null=True, blank=True)
     
-    @receiver(post_save, sender=User)
-    def create_profile(sender, instance, created, **kwargs):
-    if created==True:
-        j = Journalist()
-        j.user = instance
-        j.save()
-    
     def __unicode__(self):
         return self.user.username
+    
+    @receiver(post_save, sender=User)
+    def create_profile(sender, instance, created, **kwargs):
+        if created==True:
+            j = Journalist()
+            j.user = instance
+            j.save()
+    
+    
