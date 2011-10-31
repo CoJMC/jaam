@@ -7,10 +7,40 @@ class Video(BaseModel):
     project = models.ForeignKey(Project)
     title = models.CharField(max_length=100)
     caption = models.TextField(null=True, blank=True)
-    videoUrl = models.CharField(max_length=20,)
+    videoUrl = models.CharField(max_length=200,)
+    videoId = models.CharField(max_length = 200 ,editable=False)
     
     def __unicode__(self):
         return self.title
+    
+    def scrapeVideoId(self):
+        stringUrl = self.videoUrl.__str__()
+        
+        #check to see which link type
+        split_location = stringUrl.find('v=')
+        
+        if split_location != -1:
+            first_split = split_location +2
+            foundId = self.videoUrl[first_split:]
+            if foundId.find('&') != -1:
+                return foundId[0:foundId.find('&')]
+            else:
+                return foundId
+        
+        else:
+            first_split = stringUrl.find('be/') + 3
+            return self.videoUrl[first_split:]    
+        
+    
+    def save(self, *args, **kwargs):
+        #code to execute pre-save
+        print 'test'
+        self.videoId = self.scrapeVideoId()
+        
+        #parent's save function
+        super(Video, self).save(*args, **kwargs)
+        
+        #code to execute post-save
 
 class VideoGallery(BaseModel):
     title = models.CharField(max_length=100)
