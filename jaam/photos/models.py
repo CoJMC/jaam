@@ -1,6 +1,7 @@
 from django.db import models
 from jaam.journalism.models import BaseModel, Journalist
 from jaam.projects.models import Project
+from easy_thumbnails.fields import ThumbnailerImageField
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from PIL import Image
@@ -29,7 +30,7 @@ class PhotoExifData(models.Model):
 class Photo(BaseModel):
     journalist = models.ForeignKey(Journalist)
     project = models.ForeignKey(Project)
-    image = models.ImageField(('Image'),
+    image = models.ThumbnailerImageField(('Image'),
                                 height_field='',
                                 width_field='',
                                 upload_to='uploads/photos',
@@ -51,6 +52,13 @@ class PhotoGallery(BaseModel):
 
     def __unicode__(self):
         return self.title
+
+@receiver(post_save, sender=Photo)
+def pregenerate_thumbnails(sender, **kwargs):
+    # generate thumbnails here, if desired.
+    # still has to be offloaded to celery if we don't want to block rendering
+    # we can probably get away with rendering them as needed and not bothering with the extra complexity involved
+    pass
 
 @receiver(pre_save, sender=Photo)
 def create_exif(sender, instance, **kwargs):
@@ -91,4 +99,3 @@ def parse_datetime(dt):
 
 def parse_flash(value):
     return False if (value == 0|16|24|32) else True
-

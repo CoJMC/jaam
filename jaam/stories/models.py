@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from jaam.projects.models import Project
 from jaam.journalism.models import Journalist, BaseModel
 from ckeditor.fields import RichTextField
@@ -6,7 +7,7 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class Story(BaseModel):
     project = models.ForeignKey(Project)
-    author = models.ForeignKey(Journalist)
+    author = models.ForeignKey(User)
     headline = models.CharField(max_length=200)
     body = RichTextField()
     blurb = models.CharField(max_length=1000)
