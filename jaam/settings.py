@@ -122,7 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.comments',
-    
+
     'jaam.act',
     'jaam.blog',
     'jaam.comments',
@@ -132,10 +132,12 @@ INSTALLED_APPS = (
     'jaam.projects',
     'jaam.stories',
     'jaam.videos',
-    
+
     'social_auth',
-    
+
     'ckeditor',
+    'easy_thumbnails',
+    'doccloud'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -168,6 +170,27 @@ LOGGING = {
         },
     }
 }
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
+
+SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
+SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
+CKEDITOR_MEDIA_PREFIX = "/media/ckeditor/"  
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_UPLOAD_PATH = ""
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 300,
+    },
+}
+
+# setting for the site-specific user profile
+AUTH_PROFILE_MODULE = 'journalism.journalist'
 
 # for personal config - doccloud/aws/etc
 try:
