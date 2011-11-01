@@ -125,7 +125,7 @@ INSTALLED_APPS = (
 
     'jaam.act',
     'jaam.blog',
-    'jaam.comments',
+    'jaam.document',
     'jaam.journalism',
     'jaam.photos',
     'jaam.projects',
@@ -189,7 +189,7 @@ CKEDITOR_CONFIGS = {
 }
 
 # setting for the site-specific user profile
-AUTH_PROFILE_MODULE = 'journalism.journalist'
+AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
 # for personal config - doccloud/aws/etc
 try:

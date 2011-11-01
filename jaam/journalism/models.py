@@ -21,22 +21,26 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-class Journalist(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True)
-    bio = RichTextField(null=True, blank=True)
-    major = models.CharField(max_length=255, null=True, blank=True)
     avatar = models.ImageField(upload_to='/', null = True, blank=True)
     facebookID = models.IntegerField(null=True, blank=True)
     twitterID = models.CharField(max_length=255, null=True, blank=True)
-    
+
     def __unicode__(self):
         return self.user.username
-    
+
     @receiver(post_save, sender=User)
     def create_profile(sender, instance, created, **kwargs):
         if created==True:
-            j = Journalist()
-            j.user = instance
-            j.save()
+            user_profile = UserProfile()
+            user_profile.user = instance
+            user_profile.save()
+
+class Journalist(models.Model):
+    user_profile = models.OneToOneField(UserProfile)
+    bio = RichTextField(null=True, blank=True)
+    major = models.CharField(max_length=255, null=True, blank=True)
     
-    
+    def __unicode__(self):
+        return self.user_profile.user.username
