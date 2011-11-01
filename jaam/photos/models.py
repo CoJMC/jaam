@@ -30,7 +30,7 @@ class PhotoExifData(models.Model):
 class Photo(BaseModel):
     journalist = models.ForeignKey(Journalist)
     project = models.ForeignKey(Project)
-    image = models.ThumbnailerImageField(('Image'),
+    image = ThumbnailerImageField(('Image'),
                                 height_field='',
                                 width_field='',
                                 upload_to='uploads/photos',
