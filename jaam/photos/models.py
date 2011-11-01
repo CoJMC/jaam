@@ -25,7 +25,7 @@ class PhotoExifData(models.Model):
     altitude = models.CharField(max_length=15, null=True)
     
     def __unicode__(self):
-        return ' '.join({self.camera_manufacturer, self.camera_model, self.date.__str__()})
+        return ' '.join({self.photo_set.project.title, self.photo_set.title})
 
 class Photo(BaseModel):
     journalist = models.ForeignKey(Journalist)
