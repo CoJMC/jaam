@@ -41,7 +41,11 @@ class Photo(BaseModel):
     
     def __unicode__(self):
         return self.title
-    
+
+class PhotoGalleryItem(BaseModel):
+    photo = models.ForeignKey(Photo)
+    gallery = models.ForeignKey(PhotoGallery)
+
 class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)
     introduction = models.CharField(max_length=5000)

@@ -42,6 +42,10 @@ class Video(BaseModel):
         
         #code to execute post-save
 
+class VideoGalleryItem(BaseModel):
+    video = models.ForeignKey(Video)
+    gallery = models.ForeignKey(VideoGallery)
+
 class VideoGallery(BaseModel):
     title = models.CharField(max_length=100)
     introduction = models.TextField(null=True, blank=True)
