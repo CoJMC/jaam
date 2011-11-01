@@ -72,8 +72,13 @@ def read_exif(sender, instance, **kwargs):
     img_file = urllib.urlopen(instance.image.url)
     im = StringIO(img_file.read())
     image = Image.open(im)
-
-    data = dict((TAGS[k], v) for (k,v) in image._getexif().items() if (k in TAGS))
+    
+    photo_exif = image._getexif()
+    if photo_exif is None:
+        return
+    
+    data = dict((TAGS[k], v) for (k,v) in photo_exif.items() if (k in TAGS))
+    
     exif = instance.exif_data
     exif.camera_manufacturer = data['Make'] if ('Make' in data) else None
     exif.camera_model = data['Model'] if ('Model' in data) else None
@@ -85,7 +90,8 @@ def read_exif(sender, instance, **kwargs):
     exif.height_dimension = data['ExifImageHeight'] if ('ExifImageHeight' in data) else None
     exif.width_dimension = data['ExifImageWidth'] if ('ExifImageWidth' in data) else None
     
-    gps_data = dict((GPSTAGS[k], v) for (k, v) in data['GPSInfo']) if ('GPSInfo' in data) else {}
+    gps_data = dict((GPSTAGS[k], v) for (k, v) in data['GPSInfo'].items() if (k in GPSTAGS)) if ('GPSInfo' in data) else {}
+    
     exif.gps_latitude = gps_data['GPSLatitude'] if ('GPSLatitude' in gps_data) else None
     exif.gps_longitude = gps_data['GPSLongitude'] if ('GPSLongitude' in gps_data) else None
     exif.altitude = gps_data['GPSAltitude'] if ('GPSAltitude' in gps_data) else None
@@ -93,7 +99,7 @@ def read_exif(sender, instance, **kwargs):
     exif.save()
 
 def parse_datetime(dt):
-    #somehow detect other formats?
+    # is this format standard in all exif data?
     dt_format = "%Y:%m:%d %H:%M:%S"
     return datetime.datetime.strptime(dt, dt_format)
 
