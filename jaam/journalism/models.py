@@ -30,6 +30,12 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jaam.journalism.views.user_profile', (), {
+            'username': self.user.username
+        })
+
     @receiver(post_save, sender=User)
     def create_profile(sender, instance, created, **kwargs):
         if created==True:

@@ -17,3 +17,10 @@ class Story(BaseModel):
 
     def __unicode__(self):
         return self.headline
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jaam.stories.views.details', (), {
+            'project_slug': self.project.slug,
+            'story_slug': self.slug,
+        })

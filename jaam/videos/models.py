@@ -12,6 +12,13 @@ class Video(BaseModel):
     
     def __unicode__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jaam.videos.views.details', (), {
+            'project_slug': self.project.slug,
+            'video_id': self.id,
+        })
     
     def scrapeVideoId(self):
         stringUrl = self.videoUrl.__str__()
@@ -52,6 +59,13 @@ class VideoGallery(BaseModel):
 
     def __unicode__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jaam.videos.views.gallery_details', (), {
+            'project_slug': self.project.slug,
+            'gallery_slug': self.slug,
+        })
 
 class VideoGalleryItem(BaseModel):
     video = models.ForeignKey(Video)

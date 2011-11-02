@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
 
-urlpatterns = patterns('stories.views',
+urlpatterns = patterns('jaam.stories.views',
+    url(r'^(?P<story_slug>[^\\]+)/$', 'details'),
 )

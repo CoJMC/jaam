@@ -42,6 +42,13 @@ class Photo(BaseModel):
     def __unicode__(self):
         return self.title
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jaam.photos.views.details', (), {
+            'project_slug': self.project.slug,
+            'photo_id': self.id,
+        })
+
 class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)
     introduction = models.CharField(max_length=5000)
@@ -52,6 +59,13 @@ class PhotoGallery(BaseModel):
 
     def __unicode__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('jaam.photos.views.gallery_details', (), {
+            'project_slug': self.project.slug,
+            'gallery_slug': self.slug,
+        })
 
 class PhotoGalleryItem(BaseModel):
     photo = models.ForeignKey(Photo)
