@@ -19,6 +19,14 @@ urlpatterns = patterns('',
     url(r'', include('social_auth.urls')),
     # enable ckeditor path
     (r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^act/', include('jaam.act.urls')),
+    url(r'^blog/', include('jaam.blog.urls')),
+    url(r'^document/', include('jaam.document.urls')),
+    url(r'^journalism', include('jaam.journalism.urls')),
+    url(r'^photos/', include('jaam.photos.urls')),
+    url(r'^projects/', include('jaam.projects.urls')),
+    url(r'^stories/', include('jaam.stories.urls')),
+    url(r'^videos/', include('jaam.videos.urls')),
 )
 
 
