@@ -1,0 +1,6 @@
+<h1>Projects</h1>
+<ul>
+{% for project in projects %}
+    <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
+{% endfor %}
+</ul>

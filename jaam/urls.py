@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^journalism', include('jaam.journalism.urls')),
     url(r'^projects/', include('jaam.projects.urls')),
     url(r'^users/(?P<username>[^\\]+)/', 'jaam.journalism.views.user_profile'),
+    url(r'^$', 'jaam.projects.views.index'),
 )
 
 

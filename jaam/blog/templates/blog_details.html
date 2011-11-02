@@ -1,1 +1,6 @@
 Blog title: {{blog.title}}
+<ul>
+{% for post in blog.blogpost_set.all %}
+    <li><a href="{{post.get_absolute_url}}">{{post.headline}}</a></li>
+{% endfor %}
+</ul>

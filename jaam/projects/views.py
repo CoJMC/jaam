@@ -5,7 +5,10 @@ from django.core.urlresolvers import reverse
 
 from jaam.projects.models import Project
 
+def index(request):
+    projects = Project.objects.all()
+    return render_to_response('index.html', { 'projects': projects }, context_instance=RequestContext(request))
+
 def details(request, project_slug):
-    print project_slug
     project = get_object_or_404(Project, slug=project_slug)
-    return HttpResponse(str(project))
+    return render_to_response('project_details.html', { 'project': project }, context_instance=RequestContext(request))
