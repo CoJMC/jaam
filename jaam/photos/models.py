@@ -91,8 +91,9 @@ def read_exif(sender, instance, **kwargs):
     im = StringIO(img_file.read())
     image = Image.open(im)
     
-    photo_exif = image._getexif()
-    if photo_exif is None:
+    try:
+        photo_exif = image._getexif()
+    except AttributeError:
         return
     
     data = dict((TAGS[k], v) for (k,v) in photo_exif.items() if (k in TAGS))
