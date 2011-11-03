@@ -181,13 +181,28 @@ CKEDITOR_MEDIA_PREFIX = "/media/ckeditor/"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_UPLOAD_PATH = ""
 
+#CKEDITOR_MEDIA_URL = 'http://your/path/to/your/ckeditor/media/here/'
+
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Full',
-        'height': 300,
-        'width': 600,
-    },
+        'toolbar': [
+            [      'Undo', 'Redo',
+              '-', 'Bold', 'Italic', 'Underline',
+              '-', 'Link', 'Unlink',
+              '-', 'Maximize',
+            ],
+            [
+              '-', 'Cut','Copy','Paste','PasteText','PasteFromWord',
+              '-', 'Source',
+            ]
+        ],
+        'width': 700,
+        'height': 400,
+        'toolbarCanCollapse': False,
+    }
 }
+
+
 
 # setting for the site-specific user profile
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
