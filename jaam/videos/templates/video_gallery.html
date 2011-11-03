@@ -1,1 +1,6 @@
 Vido gallery {{gallery.title}}
+<ul>
+{% for gallery_item in gallery.videogalleryitem_set.all %}
+    <li><a href="{{gallery_item.video.get_absolute_url}}">{{gallery_item.video.title}}</a></li>
+{% endfor %}
+</ul>

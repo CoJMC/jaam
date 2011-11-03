@@ -1,1 +1,6 @@
 Photo gallery: {{gallery.title}}
+<ul>
+{% for gallery_item in gallery.photogalleryitem_set.all %}
+    <li><a href="{{gallery_item.photo.get_absolute_url}}">{{gallery_item.photo.title}}</a></li>
+{% endfor %}
+</ul>
