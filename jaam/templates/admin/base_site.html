@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n %}
+{% load i18n %} 
 
 {% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
 
@@ -7,4 +7,10 @@
 <h1 id="site-name">{% trans 'Get Your Jaam On!' %}</h1>
 {% endblock %}
 
-{% block nav-global %}{% endblock %}
+
+
+{% block nav-global %}
+<p style="text-indent: 30px;">
+	<h3><a href="http://bit.ly/jaamfeedback">  Give us Feedback! </a></h3>
+</p>
+{% endblock %}
