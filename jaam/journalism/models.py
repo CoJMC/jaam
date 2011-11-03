@@ -37,7 +37,7 @@ class UserProfile(models.Model):
         })
 
     @receiver(post_save, sender=User)
-    def create_profile(sender, instance, created, **kwargs):
+    def create_profile(self, sender, instance, created, **kwargs):
         if created==True:
             user_profile = UserProfile()
             user_profile.user = instance

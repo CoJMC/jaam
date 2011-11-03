@@ -1,4 +1,11 @@
-<h1>Project: {{project.title}}<h1>
+<!doctype html>
+<html>
+<head>
+<title>Photo Form</title>
+</head>
+<body>
+
+<h1>Project: {{project.title}}</h1>
 
 <h2>Blogs</h2>
 <ul>
@@ -23,3 +30,19 @@
     <li><a href="{{story.get_absolute_url}}">{{story.headline}}</a></li>
 {% endfor %}
 </ul>
+<h2>Photos</h2>
+<ul>
+{% for photo in project.photo_set.all %}
+    <li><a href="{{photo.get_absolute_url}}">{{photo.title}}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Videos</h2>
+<ul>
+{% for video in project.video_set.all %}
+    <li><a href="{{video.get_absolute_url}}">{{video.title}}</a></li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
