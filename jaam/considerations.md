@@ -1,0 +1,3 @@
+- consider changing django-ckeditor to https://github.com/dwaiter/django-ckeditor
+- dwaiter's version allows for staticfiles processing and initial config should be easier
+- - although there's still some nonsense about media and symlinking
