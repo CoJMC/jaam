@@ -36,12 +36,12 @@ class UserProfile(models.Model):
             'username': self.user.username
         })
 
-    @receiver(post_save, sender=User)
-    def create_profile(self, sender, instance, created, **kwargs):
-        if created==True:
-            user_profile = UserProfile()
-            user_profile.user = instance
-            user_profile.save()
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created==True:
+        user_profile = UserProfile()
+        user_profile.user = instance
+        user_profile.save()
 
 class Journalist(models.Model):
     user_profile = models.OneToOneField(UserProfile)
