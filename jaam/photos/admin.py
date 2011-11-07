@@ -19,7 +19,20 @@ class PhotoAdmin(BaseAdmin):
         return super(PhotoAdmin, self).get_form(request, obj, **kwargs)
 
 class PhotoGalleryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('project', '__unicode__', 'introduction')
+   # list_filter = ('video gallery')
+    prepopulated_fields = {'slug': ('title',)}
+    fieldsets = (
+                 (None, { 'fields': ('project', 'title', 'slug', 'introduction', 'tags',) },),
+                 ('Admin', { 'fields': ('published',) },),
+                )
+
+    def get_form(self, request, obj=None, **kwargs):
+        self.exclude = []
+        if not request.user.is_superuser:
+            self.exclude.append('published')
+            self.exclude.append('author')
+        return super(PhotoGalleryAdmin, self).get_form(request, obj, **kwargs)
 
 class PhotoExifDataAdmin(admin.ModelAdmin):
     pass
