@@ -71,11 +71,9 @@ STATIC_URL = '/s/static/'
 ADMIN_MEDIA_PREFIX = os.path.join(STATIC_URL, "admin" + os.path.sep)
 
 # Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, "static_media")
+]
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -177,7 +175,7 @@ THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
 SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 
-CKEDITOR_MEDIA_PREFIX = '/s/media/ckeditor/'
+CKEDITOR_MEDIA_PREFIX = '/s/static/ckeditor/'
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_UPLOAD_PATH = ''
 
@@ -197,6 +195,7 @@ CKEDITOR_CONFIGS = {
         'width': 700,
         'height': 400,
         'toolbarCanCollapse': False,
+        'skin': 'kama'
     }
 }
 
