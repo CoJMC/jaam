@@ -183,10 +183,21 @@ CKEDITOR_UPLOAD_PATH = ''
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Full',
-        'height': 300,
-        'width': 600,
-    },
+        'toolbar': [
+            [      'Undo', 'Redo',
+              '-', 'Bold', 'Italic', 'Underline',
+              '-', 'Link', 'Unlink',
+              '-', 'Maximize',
+            ],
+            [
+              '-', 'Cut','Copy','Paste','PasteText','PasteFromWord',
+              '-', 'Source',
+            ]
+        ],
+        'width': 700,
+        'height': 400,
+        'toolbarCanCollapse': False,
+    }
 }
 
 # setting for the site-specific user profile
