@@ -1,6 +1,21 @@
-Blog title: {{blog.title}}
+<!doctype html>
+<html>
+<head>
+<title>Blog Details</title>
+</head>
+<body>
+
+<h1>Blog title: {{blog.title}} </h1>
+<h4>From Project: {{blog.project}} </h4>
+<h4>Subtitle: {{blog.subtitle}} </h4>
+<h4>Description: {{blog.description}} </h4>
+
+<h3>Posts: </h3>
 <ul>
 {% for post in blog.blogpost_set.all %}
-    <li><a href="{{post.get_absolute_url}}">{{post.headline}}</a></li>
+    <h3><a href="{{post.get_absolute_url}}">{{post.headline}}</a></h3>
 {% endfor %}
 </ul>
+
+</body>
+</html>
