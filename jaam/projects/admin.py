@@ -14,6 +14,7 @@ class ProjectAdmin(admin.ModelAdmin):
     exclude = [ 'locations', ]
     inlines = [ LocationInline, ]
     list_filter = ( 'locations', )
+    filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
                  (None, { 'fields': ('title', 'slug', 'description', 'tags',) },),

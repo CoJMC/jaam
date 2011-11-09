@@ -5,6 +5,7 @@ from jaam.journalism.admin import BaseAdmin
 class StoryAdmin(BaseAdmin):
     list_display = ('__unicode__', 'blurb', 'author',)
     list_filter = ('author',)
+    filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('headline',)}
 
     fieldsets = (

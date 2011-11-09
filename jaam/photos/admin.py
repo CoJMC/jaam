@@ -7,6 +7,7 @@ class PhotoAdmin(BaseAdmin):
     list_display = ('__unicode__', 'caption', 'journalist',)
     list_filter = ( 'project', )
     prepopulated_fields = { 'slug': ('title',)}
+    filter_horizontal = ('tags',)
     fieldsets = (
                  (None, { 'fields': ('project', 'journalist', 'title', 'slug', 'image', 'caption',) },),
                  ('Admin', { 'fields': ('published',) },),
