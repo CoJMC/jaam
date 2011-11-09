@@ -10,7 +10,7 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
+  <title>jaam | {% block title %}home{% endblock %}</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -36,13 +36,13 @@
 
   <div id="container">
     <header>
-
+        Login: <a href="/login/facebook">via Facebook</a>, <a href="/login/twitter">via Twitter</a>, <a href="/login/google">via Google</a>, <a href="/login/openid">via OpenId</a>.
     </header>
     <div id="main" role="main">
-
+        {% block content %}content{% endblock %}
     </div>
     <footer>
-
+        Footer here
     </footer>
   </div> <!--! end of #container -->
 
