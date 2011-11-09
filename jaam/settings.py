@@ -1,7 +1,7 @@
 # Django settings for jaam project.
 import os, logging
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
