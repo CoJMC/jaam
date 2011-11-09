@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # enable the social auth login urls
     url(r'', include('social_auth.urls')),
-    url(r'^account/profile', 'jaam.journalism.views.login_dump'),
+    url(r'^accounts/profile', 'jaam.journalism.views.login_dump'),
     # enable ckeditor path
     (r'^ckeditor/', include('ckeditor.urls')),
     url(r'^act/', include('jaam.act.urls')),
