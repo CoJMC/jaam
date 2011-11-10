@@ -25,7 +25,7 @@ class PhotoExifData(models.Model):
     altitude = models.CharField(max_length=15, null=True)
     
     def __unicode__(self):
-        return ' '.join({self.photo_set.project.title, self.photo_set.title})
+        return ' '.join({self.photo.project.title, self.photo.title})
 
 class Photo(BaseModel):
     journalist = models.ForeignKey(Journalist)
@@ -93,10 +93,9 @@ def read_exif(sender, instance, **kwargs):
     
     try:
         photo_exif = image._getexif()
+        data = dict((TAGS[k], v) for (k,v) in photo_exif.items() if (k in TAGS))
     except AttributeError:
         return
-    
-    data = dict((TAGS[k], v) for (k,v) in photo_exif.items() if (k in TAGS))
     
     exif = instance.exif_data
     exif.camera_manufacturer = data['Make'] if ('Make' in data) else None
