@@ -1,9 +1,9 @@
-<!doctype html>
-<html>
-<head>
-<title>Photo Form</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+Project Details
+{% endblock %}
+
+{% block content %}
 
 <h1>Project: {{project.title}}</h1>
 
@@ -44,5 +44,4 @@
 {% endfor %}
 </ul>
 
-</body>
-</html>
+{% endblock %}
