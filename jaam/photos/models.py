@@ -101,9 +101,9 @@ def read_exif(sender, instance, **kwargs):
     exif.camera_manufacturer = data['Make'] if ('Make' in data) else None
     exif.camera_model = data['Model'] if ('Model' in data) else None
     exif.date = parse_datetime(data['DateTime']) if ('DateTime' in data) else None
-    exif.shutter_speed = data['ExposureTime'] if ('ExposureTime' in data) else (data['ShutterSpeedValue'] if (['ShutterSpeedValue'] in data) else None)
-    exif.fnumber = data['FNumber'] if ('FNumber' in data) else None
-    exif.focal_length = data['FocalLength'] if ('FocalLength' in data) else None
+    exif.shutter_speed = parse_shutterspeed(data['ExposureTime']) if ('ExposureTime' in data) else (data['ShutterSpeedValue'] if (['ShutterSpeedValue'] in data) else None)
+    exif.fnumber = parse_fnumber(data['FNumber']) if ('FNumber' in data) else None
+    exif.focal_length = parse_focallength(data['FocalLength']) if ('FocalLength' in data) else None
     exif.flash_used = parse_flash(data['Flash']) if ('Flash' in data) else None
     exif.height_dimension = data['ExifImageHeight'] if ('ExifImageHeight' in data) else None
     exif.width_dimension = data['ExifImageWidth'] if ('ExifImageWidth' in data) else None
@@ -120,6 +120,15 @@ def parse_datetime(dt):
     # is this format standard in all exif data?
     dt_format = "%Y:%m:%d %H:%M:%S"
     return datetime.datetime.strptime(dt, dt_format)
+
+def parse_shutterspeed(value):
+    return str(value[0]) + "/" + str(value[1])
+
+def parse_fnumber(value):
+    return float(value[0]) / float(value[1])
+
+def parse_focallength(value):
+    return str(float(value[0]) / float(value[1])) + " mm"
 
 def parse_flash(value):
     return False if (value == 0|16|24|32) else True
