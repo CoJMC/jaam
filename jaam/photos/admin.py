@@ -1,5 +1,5 @@
 from django.contrib import admin
-from jaam.photos.models import Photo, PhotoGallery, PhotoExifData
+from jaam.photos.models import Photo, PhotoGallery, PhotoExifData, PhotoGalleryItem
 from jaam.journalism.admin import BaseAdmin
 
 class PhotoAdmin(BaseAdmin):
@@ -19,7 +19,11 @@ class PhotoAdmin(BaseAdmin):
             self.exclude.append('published')
         return super(PhotoAdmin, self).get_form(request, obj, **kwargs)
 
+class PhotoGalleryInline(admin.TabularInline):
+   model = PhotoGalleryItem
+
 class PhotoGalleryAdmin(admin.ModelAdmin):
+    inlines = [ PhotoGalleryInline ]
     list_display = ('project', '__unicode__', 'introduction')
    # list_filter = ('video gallery')
     prepopulated_fields = {'slug': ('title',)}

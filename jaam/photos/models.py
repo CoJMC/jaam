@@ -67,7 +67,7 @@ class PhotoGallery(BaseModel):
             'gallery_slug': self.slug,
         })
 
-class PhotoGalleryItem(BaseModel):
+class PhotoGalleryItem(models.Model):
     photo = models.ForeignKey(Photo)
     gallery = models.ForeignKey(PhotoGallery)
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from jaam.videos.models import Video, VideoGallery
+from jaam.videos.models import Video, VideoGallery, VideoGalleryItem
 from jaam.journalism.admin import BaseAdmin
 
 class VideoAdmin(BaseAdmin):
@@ -19,7 +19,11 @@ class VideoAdmin(BaseAdmin):
             self.exclude.append('published')
         return super(VideoAdmin, self).get_form(request, obj, **kwargs)
 
+class VideoGalleryItemInline(admin.TabularInline):
+    model = VideoGalleryItem
+
 class VideoGalleryAdmin(admin.ModelAdmin):
+    inlines = [VideoGalleryItemInline]
     list_display = ('project', '__unicode__', 'introduction')
    # list_filter = ('video gallery')
     prepopulated_fields = {'slug': ('title',)}

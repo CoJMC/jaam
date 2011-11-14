@@ -67,6 +67,6 @@ class VideoGallery(BaseModel):
             'gallery_slug': self.slug,
         })
 
-class VideoGalleryItem(BaseModel):
+class VideoGalleryItem(models.Model):
     video = models.ForeignKey(Video)
     gallery = models.ForeignKey(VideoGallery)
