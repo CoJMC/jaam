@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from jaam.journalism.models import BaseModel, Journalist
 from jaam.projects.models import Project
 from easy_thumbnails.fields import ThumbnailerImageField
@@ -28,7 +29,7 @@ class PhotoExifData(models.Model):
         return ' '.join({self.photo.project.title, self.photo.title})
 
 class Photo(BaseModel):
-    journalist = models.ForeignKey(Journalist)
+    journalist = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
     project = models.ForeignKey(Project)
     image = ThumbnailerImageField(('Image'),
                                 height_field='',

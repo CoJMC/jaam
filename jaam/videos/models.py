@@ -1,9 +1,10 @@
 from django.db import models
 from jaam.journalism.models import BaseModel, Journalist
 from jaam.projects.models import Project
+from django.contrib.auth.models import User
 
 class Video(BaseModel):
-    journalist = models.ForeignKey(Journalist)
+    journalist = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
     project = models.ForeignKey(Project)
     title = models.CharField(max_length=100)
     caption = models.TextField(null=True, blank=True)
