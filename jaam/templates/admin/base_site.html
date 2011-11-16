@@ -3,6 +3,14 @@
 
 {% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
 
+{% block extrastyle %}
+<style type="text/css">
+.cke_skin_kama {
+    float: left;
+}
+</style>
+{% endblock %}
+
 {% block branding %}
 <h1 id="site-name">{% trans 'Get Your Jaam On!' %}</h1>
 {% endblock %}
