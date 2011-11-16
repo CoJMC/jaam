@@ -1,5 +1,5 @@
 from django.contrib import admin
-from jaam.videos.models import Video, VideoGallery
+from jaam.videos.models import Video, VideoGallery, VideoGalleryItem
 from jaam.journalism.admin import BaseAdmin
 
 class VideoAdmin(BaseAdmin):
@@ -9,17 +9,27 @@ class VideoAdmin(BaseAdmin):
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
-                 (None, { 'fields': ('project', 'journalist', 'title', 'slug', 'videoUrl', 'caption',) },),
-                 ('Admin', { 'fields': ('published',) },),
+                 (None, { 'fields': ('project', 'title', 'slug', 'videoUrl', 'caption',) },),
+                 ('Admin', { 'fields': ('journalist', 'published',) },),
                 )
 
     def get_form(self, request, obj=None, **kwargs):
         self.exclude = []
         if not request.user.is_superuser:
             self.exclude.append('published')
+            self.exclude.append('journalist')
         return super(VideoAdmin, self).get_form(request, obj, **kwargs)
 
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.journalist = request.user
+        obj.save()
+
+class VideoGalleryItemInline(admin.TabularInline):
+    model = VideoGalleryItem
+
 class VideoGalleryAdmin(admin.ModelAdmin):
+    inlines = [VideoGalleryItemInline]
     list_display = ('project', '__unicode__', 'introduction')
    # list_filter = ('video gallery')
     prepopulated_fields = {'slug': ('title',)}
