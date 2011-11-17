@@ -11,3 +11,4 @@ def user_profile(request, username):
 
 def login_dump(request):
     return render_to_response('success.html')
+

@@ -20,7 +20,22 @@ Post Details
 {% render_comment_list for post %}
 
 {% if user.is_authenticated %}
-{% render_comment_form for post %}
+{% with post.get_absolute_url as next %}
+{% get_comment_form for post as form %}
+<form action="{% comment_form_target %}" method="POST">
+{% csrf_token %}
+{{ form.comment }}
+<p>This is the honeypot field. Don't enter anything, we will hide it later with CSS. </p>
+{{ form.honeypot }}
+{{ form.content_type }}
+{{ form.object_pk }}
+{{ form.timestamp }}
+{{ form.security_hash }}
+<br />
+<input name="next" type="hidden" value="{{ next }}" />
+<input type ="submit" value="Add Comment" id="id_submit" />
+</form>
+{% endwith %}
 
 {% else %}
     <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
