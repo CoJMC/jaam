@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class Story(BaseModel):
     project = models.ForeignKey(Project)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
     headline = models.CharField(max_length=200)
     body = RichTextField()
     blurb = models.CharField(max_length=1000)

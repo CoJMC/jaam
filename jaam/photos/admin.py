@@ -9,15 +9,21 @@ class PhotoAdmin(BaseAdmin):
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
-                 (None, { 'fields': ('project', 'journalist', 'title', 'slug', 'image', 'caption',) },),
-                 ('Admin', { 'fields': ('published',) },),
+                 (None, { 'fields': ('project', 'title', 'slug', 'image', 'caption',) },),
+                 ('Admin', { 'fields': ('journalist', 'published',) },),
                 )
 
     def get_form(self, request, obj=None, **kwargs):
         self.exclude = []
         if not request.user.is_superuser:
             self.exclude.append('published')
+            self.exclude.append('journalist')
         return super(PhotoAdmin, self).get_form(request, obj, **kwargs)
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.journalist = request.user
+        obj.save()
 
 class PhotoGalleryInline(admin.TabularInline):
    model = PhotoGalleryItem

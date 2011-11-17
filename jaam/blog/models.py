@@ -25,7 +25,7 @@ class BlogPost(BaseModel):
     headline = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     body = RichTextField()
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
 
     def __unicode__(self):
         return self.headline
