@@ -1,1 +1,15 @@
+{% load comments %}
 video: {{video.title}}
+
+<h1> Comments </h1>
+{% get_comment_count for video as comment_count %}
+<p>{{ comment_count }} comments have been posted. </p>
+
+{% render_comment_list for video %}
+
+{% if user.is_authenticated %}
+{% render_comment_form for video %}
+
+{% else %}
+    <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
+{% endif %}

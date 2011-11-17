@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load comments %}
+
 {% block title %}
 Post Details
 {% endblock %}
@@ -10,4 +12,20 @@ Post Details
 <h3>Description: {{post.description}} </h3>
 <br/>
 <h3>Body: <br /> {{post.body}} </h3>
+
+<h1> Comments </h1>
+{% get_comment_count for post as comment_count %}
+<p>{{ comment_count }} comments have been posted. </p>
+
+{% render_comment_list for post %}
+
+{% if user.is_authenticated %}
+{% render_comment_form for post %}
+
+{% else %}
+    <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
+{% endif %}
+
 {% endblock %}
+
+

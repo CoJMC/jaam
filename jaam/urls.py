@@ -10,7 +10,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'jaam.views.home', name='home'),
     # url(r'^jaam/', include('jaam.foo.urls')),
-
+    #enable comments
+    (r'^comments/', include('django.contrib.comments.urls')),
     # enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     #enable the admin:

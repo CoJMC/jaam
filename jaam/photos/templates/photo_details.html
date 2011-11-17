@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load comments %}
 {% block title %}
 Photo Details
 {% endblock %}
@@ -32,5 +33,17 @@ Photo Details
     <h6> GPS long: {{photo.exif_data.gps_longitude}}</h6>
     <h6> Altitude: {{photo.exif_data.altitude}}</h6>
 
+<h1> Comments </h1>
+{% get_comment_count for photo as comment_count %}
+<p>{{ comment_count }} comments have been posted. </p>
+
+{% render_comment_list for photo %}
+
+{% if user.is_authenticated %}
+{% render_comment_form for photo %}
+
+{% else %}
+    <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
+{% endif %}
 {% endblock %}
 
