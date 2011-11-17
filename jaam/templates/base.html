@@ -36,7 +36,11 @@
 
   <div id="container">
     <header>
+		{% if user.is_authenticated %}
+			<a href="{% url auth_logout %}"> Log Out </a>
+		{% else %}
         Login: <a href="/login/facebook">via Facebook</a>, <a href="/login/twitter">via Twitter</a>, <a href="/login/google">via Google</a>, <a href="/login/openid">via OpenId</a>.
+		{% endif %}
         <h3><a href="http://bit.ly/jaamfeedback" target="_blank">  Give us Feedback! </a></h3>
     </header>
     <div id="main" role="main">

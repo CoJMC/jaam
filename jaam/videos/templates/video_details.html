@@ -1,6 +1,10 @@
+{% extends "base.html" %}
 {% load comments %}
+{% block title %}
 video: {{video.title}}
+{% endblock %}
 
+{% block content %}
 <h1> Comments </h1>
 {% get_comment_count for video as comment_count %}
 <p>{{ comment_count }} comments have been posted. </p>
@@ -28,3 +32,4 @@ video: {{video.title}}
 {% else %}
     <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
 {% endif %}
+{% endblock %}

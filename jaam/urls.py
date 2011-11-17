@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^projects/', include('jaam.projects.urls')),
     url(r'^users/(?P<username>[^\\]+)/', 'jaam.journalism.views.user_profile'),
     url(r'^$', 'jaam.projects.views.index'),
+    #allow users to log out
+    url(r'^logout/$', 'django.contrib.auth.views.logout', name="auth_logout"),
 )
 
 
