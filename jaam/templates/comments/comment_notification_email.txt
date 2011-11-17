@@ -1,0 +1,13 @@
+New comment from: {{ comment.userinfo.name }}
+
+{% if comment.is_public %}** This comment passed Spam protection and is PUBLIC **
+{% else %}** This comment FAILED Spam protection and is marked non-public **
+{% endif %}
+
+Email: {{ comment.userinfo.email }}
+URL: {{ comment.userinfo.url }}
+IP: {{ comment.ip_address }}
+
+Comment was:
+
+{{ comment }}
