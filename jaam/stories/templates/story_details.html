@@ -1,6 +1,10 @@
+{% extends "base.html" %}
 {% load comments %}
+{% block title %}
 Story: {{story.headline}}
+{% endblock %}
 
+{% block content %}
 <h1> Comments </h1>
 {% get_comment_count for story as comment_count %}
 <p>{{ comment_count }} comments have been posted. </p>
@@ -29,3 +33,4 @@ Story: {{story.headline}}
     <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
 {% endif %}
 
+{% endblock %}
