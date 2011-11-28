@@ -97,6 +97,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -174,6 +175,7 @@ THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
 
 SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 CKEDITOR_MEDIA_PREFIX = '/s/static/ckeditor/'
 CKEDITOR_RESTRICT_BY_USER = True
