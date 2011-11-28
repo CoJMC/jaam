@@ -1,7 +1,7 @@
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from jaam.shortcuts import render_to_response, RequestContext
 
 from jaam.projects.models import Project
 from jaam.photos.models import Photo, PhotoGallery

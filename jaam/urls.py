@@ -10,8 +10,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'jaam.views.home', name='home'),
     # url(r'^jaam/', include('jaam.foo.urls')),
-    #enable comments
-    (r'^comments/', include('django.contrib.comments.urls')),
+
     # enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     #enable the admin:
@@ -25,8 +24,8 @@ urlpatterns = patterns('',
     url(r'^journalism', include('jaam.journalism.urls')),
     url(r'^projects/', include('jaam.projects.urls')),
     url(r'^users/(?P<username>[^\\]+)/', 'jaam.journalism.views.user_profile'),
+    url(r'^activate_layout/(?P<layout_name>[^\\]+)/', 'jaam.journalism.views.activate_layout'),
     url(r'^$', 'jaam.projects.views.index'),
-    #allow users to log out
     url(r'^logout/$', 'django.contrib.auth.views.logout', name="auth_logout"),
 )
 
