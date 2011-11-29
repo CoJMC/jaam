@@ -23,9 +23,8 @@ class BaseModel(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True)
+    # TODO: make the avatar a thumbnail field
     avatar = models.ImageField(upload_to='/', null = True, blank=True)
-    facebookID = models.IntegerField(null=True, blank=True)
-    twitterID = models.CharField(max_length=255, null=True, blank=True)
 
     def __unicode__(self):
         return self.user.username
@@ -37,7 +36,7 @@ class UserProfile(models.Model):
         })
 
 @receiver(post_save, sender=User)
-def create_profile( sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
         if created==True:
             user_profile = UserProfile()
             user_profile.user = instance
