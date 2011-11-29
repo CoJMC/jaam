@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Projects{% endblock %}
+{% block content %}
+<h4>Go Diego Go!</h4>
+<h1>Projects</h1>
+<ul>
+{% for project in projects %}
+    <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
