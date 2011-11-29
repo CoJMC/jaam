@@ -177,6 +177,9 @@ SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
+from django.template.defaultfilters import slugify
+SOCIAL_AUTH_USERNAME_FIXER = lambda u: slugify(u)
+
 CKEDITOR_MEDIA_PREFIX = '/s/static/ckeditor/'
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_UPLOAD_PATH = ''
