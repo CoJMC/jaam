@@ -13,7 +13,9 @@ from jaam.shortcuts import render_to_response, RequestContext
 def activate_layout(request, layout_name):
     if layout_name in ['dora', 'tico']:
         request.session['layout'] = layout_name
-        return redirect('/')
+        if('HTTP_REFERER' in request.META):
+            return redirect(request.META['HTTP_REFERER'])
+        else: return redirect("/")
     else:
         return HttpResponse("Invalid layout")
 
