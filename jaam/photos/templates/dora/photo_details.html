@@ -1,19 +1,149 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
 <head>
-<title>Zepto.js</title>
-<script>
-// stick all JS stuff in here
-</script>
+<script type="text/javascript" src="jquery.js"></script>
+
 </head>
-<body>
-<p>
-Blah
-</p>
-<p>
-Blub
-</p>
-<script>
-$('p').html('test').css('color:red');
-</script>
+
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+<meta charset="utf-8">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="../1.3.0/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      /* Override some defaults */
+      html, body {
+        background-color: #000;
+      }
+      body {
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+      }
+      .container > footer p {
+        text-align: center; /* center align it with the container */
+      }
+      .container {
+        width: 80%; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+      }
+
+      /* The white background content wrapper */
+      .content {
+        background-color: #fff;
+        padding: 20px;
+        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+        -webkit-border-radius: 0 0 6px 6px;
+           -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+
+      /* Page header tweaks */
+      .page-header {
+        background-color: #f5f5f5;
+        padding: 10px 10px 5px;
+        margin: -20px -20px 20px;
+      }
+
+      /* Styles for the content div */
+      .content .span13,
+      .content .span1 {
+        min-height: 500px;
+        display:table-cell;
+      }
+      /* Give a quick and non-cross-browser friendly divider */
+      .content .span1 {
+        margin-left: 0;
+        padding-left: 19px;
+        border-left: 1px solid #eee;
+      }
+
+      .topbar .btn {
+        border: 0;
+      }
+      
+      .dynamic-img {
+      width: expression(document.body.clientWidth <= 800? "auto" : "700px");
+      max-width: 700px; //For normal browsers
+      border: 6px solid white;
+      -webkit-box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      -moz-box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  	  }
+  	  body { 
+  	  margin:0px; 
+  	  padding:0px; 
+  	  background:#000;
+  	  }
+  	  #bg {
+  	  position:fixed; 
+  	  z-index:1; 
+  	  overflow:hidden;
+  	  }
+    </style>
+
+  <body>
+  	<div style="padding-top: 40px; padding-bottom: 20px">
+	<a href="/activate_layout/dora/">Activate Dora</a> | <a href="/activate_layout/tico/">Activate Tico</a>
+	</div>
+	
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="/projects/{{photo.project.slug}}">{{photo.project.title}}</a>
+
+          <ul class="nav">
+            <li class="active"><a href="/">Main</a></li>
+            <li><a href="#about">Take Action</a></li>
+          </ul>
+          <div class="pull-right">
+			<h5 style="color: white">Login: <a href="/login/facebook"> Facebook | </a><a href="/login/twitter">Twitter | </a><a href="/login/google">Google | </a><a href="/login/openid">OpenId</a></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+	<div>
+  	<a href="javascript:toggle()"><div id="togglePhoto"> Toggle </div></a>
+  
+  
+    <div  id="displayPhoto" class="container">
+
+      <div class="content">
+        <div class="page-header">
+          <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2>
+        </div>
+        
+        <div class="row">
+          <div id="mydiv1" class="span13">
+            <img border="0" class="dynamic-img" src="{{photo.image.url}}" alt="{{photo.title}}"/>
+          </div>
+
+         <div id="div_details" class="row">
+          <h4>{{photo.caption}}</h4>  
+         <small> Tags: {{photo.tags.all|join:','}} </small>
+            <p>Exif Data </p>
+		    <p> Camera Manufacturer: {{photo.exif_data.camera_manufacturer}}</p>
+			<p> Model: {{photo.exif_data.camera_model}}</p>
+		    <p> Date Taken: {{photo.exif_data.date}}</p>
+		    <p> Shutter Speed: {{photo.exif_data.camera_manufacturer}}</p>
+		    <p> Fnumber:{{photo.exif_data.camera_manufacturer}}</p>
+		    <p> Focal Length: {{photo.exif_data.focal_length}}</p>
+		    <p> Flash: {{photo.exif_data.flash_used}}</p>
+		    <p> Height: {{photo.exif_data.height_dimension}}</p>
+		    <p> Width: {{photo.exif_data.width_dimension}}</p>
+		    <p> GPS lat: {{photo.exif_data.gps_latitude}}</p>
+		    <p> GPS long: {{photo.exif_data.gps_longitude}}</p>
+		    <p> Altitude: {{photo.exif_data.altitude}}</p>
+         </div>
+         
+        </div> 
+        </div>
+
 </body>
+
