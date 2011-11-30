@@ -1,10 +1,38 @@
-{% extends "base.html" %}
-{% block title %}Projects{% endblock %}
-{% block content %}
-<h1>Projects</h1>
-<ul>
-{% for project in projects %}
-    <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
-{% endfor %}
-</ul>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<link href="./s/static/dora/styles/style.css" rel="stylesheet" type="text/css" />
+<!--<script src="./zepto-0.8/dist/zepto.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="./s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
+<script src="./s/static/dora/scripts/jquery.ui.ipad.js"></script>
+<script src="./s/static/dora/scripts/jquery.mobile.carousel.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+    (function($) {
+       $('#gallery').carousel();
+       $('#content').children().first().css('overflow', 'visible !important');
+       $('#content').children().first().css('left', $('body').innerWidth()/2 - $('.project').width()/2);
+    })(jQuery);
+});
+</script>
+<title>jaam</title>
+</head>
+
+<body>
+<div id="header"></div>
+<hr />
+<div id="content">
+    <ul id="gallery" class="gallery" style="display:none">
+        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
+        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
+        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
+        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
+        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
+    </ul>
+</div>
+
+</body>
+<html>
