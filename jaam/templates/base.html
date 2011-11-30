@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -23,6 +24,7 @@
   <!-- CSS: implied media=all -->
   <!-- CSS concatenated and minified via ant build script-->
   <link rel="stylesheet" href="/s/static/css/style.css">
+  <link rel="stylesheet" href="/s/static/css/comments.css">
   <!-- end CSS-->
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -37,7 +39,11 @@
 
   <div id="container">
     <header>
+  		{% if user.is_authenticated %}
+			<a href="{% url auth_logout %}"> Log Out </a>
+		{% else %}
         Login: <a href="/login/facebook">via Facebook</a>, <a href="/login/twitter">via Twitter</a>, <a href="/login/google">via Google</a>, <a href="/login/openid">via OpenId</a>.
+		{% endif %}
         <h3><a href="http://bit.ly/jaamfeedback" target="_blank">  Give us Feedback! </a></h3>
         <a href="/activate_layout/dora/">Activate Dora</a>
         <a href="/activate_layout/tico/">Activate Tico</a>
@@ -63,7 +69,7 @@
   <script defer src="/s/static/js/script.js"></script>
   <!-- end scripts-->
 
-    
+
   <!-- Change UA-XXXXX-X to be your site's ID -->
   <script>
     window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
@@ -79,6 +85,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
   <![endif]-->
-  
+
 </body>
 </html>

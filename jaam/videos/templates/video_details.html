@@ -17,8 +17,9 @@ video: {{video.title}}
 <form action="{% comment_form_target %}" method="POST">
 {% csrf_token %}
 {{ form.comment }}
-<p>This is the honeypot field. Don't enter anything, we will hide it later with CSS. </p>
+<div id="honeypotField">
 {{ form.honeypot }}
+</div>
 {{ form.content_type }}
 {{ form.object_pk }}
 {{ form.timestamp }}
