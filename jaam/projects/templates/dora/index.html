@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -26,11 +25,14 @@ $(window).load(function(){
 <hr />
 <div id="content">
     <ul id="gallery" class="gallery" style="display:none">
-        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
-        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
-        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
-        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
-        <li><div class="project"><img class="project-thumb" /><span class="project-title">Project Title</span></div></li>
+        {% for project in projects %}
+        <li><div class="project">
+            <a href="{{project.get_absolute_url}}">
+                <img class="project-thumb" src="{{project.photo_set.first.get_absolute_url}}"/>
+            </a>
+            <span class="project-title">{{project.title}}</span>
+        </div></li>
+        {% endfor %}
     </ul>
 </div>
 
