@@ -4,6 +4,22 @@
 <head>
 <script type="text/javascript" src="jquery.js"></script>
 
+<script type="text/javascript">
+$(function(){
+  $('#photo_view').click(function(){
+     $('#photo_view').toggle();
+     $('#details_view').toggle(); 
+  });
+});
+$(function(){
+  $('#details_view').click(function(){
+     $('#details_view').toggle();
+     $('#photo_view').toggle(); 
+  });
+});
+</script>
+
+
 </head>
 
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
@@ -52,6 +68,7 @@
       }
 
       /* Styles for the content div */
+      .content .span14,
       .content .span13,
       .content .span1 {
         min-height: 500px;
@@ -108,11 +125,14 @@
         </div>
       </div>
     </div>
-	<div>
-  	<a href="javascript:toggle()"><div id="togglePhoto"> Toggle </div></a>
+    
+	<div id="photo_view" class="container">
+	<div align="center">
+  	<a href="javascript:void()"><img border="0" width="100%" height="100%" align="middle" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+	</div>
+	</div>  
   
-  
-    <div  id="displayPhoto" class="container">
+    <div  id="details_view" style="display:none;" class="container">
 
       <div class="content">
         <div class="page-header">
@@ -120,8 +140,8 @@
         </div>
         
         <div class="row">
-          <div id="mydiv1" class="span13">
-            <img border="0" class="dynamic-img" src="{{photo.image.url}}" alt="{{photo.title}}"/>
+          <div class="span13">
+            <a href="javascript:void()"><img border="0" class="dynamic-img" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
           </div>
 
          <div id="div_details" class="row">
