@@ -13,7 +13,7 @@ $(window).load(function(){
     (function($) {
        $('#gallery').carousel();
        $('#gallery_footer').children().first().css('overflow', 'visible !important');
-       $('#gallery_footer').children().first().css('left', $('body').innerWidth()/2 - $('.project').width()/2);
+       $('#gallery_footer').children().first().css('left', $('body').innerWidth()/2 - $('.project_small').width()/2);
     })(jQuery);
 });
 </script>
@@ -174,11 +174,11 @@ $(function(){
         </div> <!--  end details div -->
         
         <div id="gallery_footer" style="padding-top:20px">
-    	<ul id="gallery" class="gallery" style="display:none">
+    	<ul id="gallery" class="photo_gallery" style="display:none">
 	        {% for photo in photo.project.photo_set.all %}
-	        <li><div class="project">
+	        <li><div class="project_small">
 	            <a href="{{photo.get_absolute_url}}">
-	                <img class="project-thumb" src="{{ photo.image.url}}"/>
+	                <img class="project-thumb-photo" src="{{ photo.image.url}}"/>
 	            </a>
 	        </div></li>
 	        {% endfor %}
