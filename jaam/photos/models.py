@@ -102,7 +102,7 @@ def read_exif(sender, instance, **kwargs):
     exif.camera_manufacturer = data['Make'] if ('Make' in data) else None
     exif.camera_model = data['Model'] if ('Model' in data) else None
     exif.date = parse_datetime(data['DateTime']) if ('DateTime' in data) else None
-    exif.shutter_speed = parse_shutterspeed(data['ExposureTime']) if ('ExposureTime' in data) else (data['ShutterSpeedValue'] if (['ShutterSpeedValue'] in data) else None)
+    exif.shutter_speed = parse_shutterspeed(data['ExposureTime']) if ('ExposureTime' in data) else (data['ShutterSpeedValue'] if ('ShutterSpeedValue' in data) else None)
     exif.fnumber = parse_fnumber(data['FNumber']) if ('FNumber' in data) else None
     exif.focal_length = parse_focallength(data['FocalLength']) if ('FocalLength' in data) else None
     exif.flash_used = parse_flash(data['Flash']) if ('Flash' in data) else None

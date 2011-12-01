@@ -25,7 +25,7 @@ hr {
     height: 1pt;
 }
 
-#content {
+#content, #gallery_footer {
     height: 500pt;
     width: 450pt;
 }
