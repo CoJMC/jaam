@@ -16,30 +16,19 @@ $(window).load(function(){
 
 <div id="header"> <h1>{{project.title}}</h1> </div>
 
-<h2>Blogs</h2>
-<ul>
-{% for blog in project.blog_set.all %}
-    <li><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></li>
-{% endfor %}
+<div id="blog_content" class="items">
+     <ul id="blog_content" class="gallery" style="display:none">
+    	{% for blog in project.blog_set.all %}
+        <li><div class="project">
+            <a href="{{blog.get_absolute_url}}"> {{blog.title}}
+	         </a>
+        </div></li>
+        {% endfor %}
+    </ul>
 </ul>
-<h2>Galleries</h2>
-<ul>
-{% for photogallery in project.photogallery_set.all %}
-    <li><a href="{{photogallery.get_absolute_url}}">{{photogallery.title}}</a></li>
-{% endfor %}
-</ul>
-<ul>
-{% for videogallery in project.videogallery_set.all %}
-    <li><a href="{{videogallery.get_absolute_url}}">{{videogallery.title}}</a></li>
-{% endfor %}
-</ul>
-<h2>Stories</h2>
-<ul>
+</div>
 
-</ul>
-<hr />
 <div id="photo_content" class="items">
-Photos
     <ul id="photo_gallery" class="gallery" style="display:none">
     	{% for photo in project.photo_set.all %}
         <li><div class="project">
@@ -51,14 +40,16 @@ Photos
     </ul>
 </div>
 
-
-<h2>Videos</h2>
 <ul>
-{% for video in project.video_set.all %}
-    <li><a href="{{video.get_absolute_url}}">{{video.title}}</a></li>
-{% endfor %}
+    <ul id="video_content" class="gallery" style="display:none">
+    	{% for video in project.video_set.all %}
+        <li><div class="project">
+            <a href="{{video.get_absolute_url}}">
+	        	<img class="project-thumb-photo" src="{{video.video.url}}"/>
+	         </a>
+        </div></li>
+        {% endfor %}
+    </ul>
 </ul>
 
 {% endblock %}
-
-
