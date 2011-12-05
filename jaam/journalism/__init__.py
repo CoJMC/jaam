@@ -4,15 +4,26 @@ from django.dispatch import receiver
 from django.contrib.auth.models import Group, Permission, User
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+import pdb
 
 @receiver(m2m_changed, sender=User.groups.through)
 def make_journalist_staff(sender, instance, action, reverse, model, pk_set, **kwargs):
-    if action=='post_add':
-        if instance.groups.filter(name='Journalists').count() == 1:
-            instance.is_staff = True
-    if action=='post_clear':
+    print action
+    journalist_group_pk = Group.objects.get(name='Journalists').pk
+    if action=='pre_add':
+        pdb.set_trace()
         if instance.groups.filter(name='Journalists').count() == 0:
-            instance.is_staff = False
+            if journalist_group_pk in pk_set:
+                instance.is_staff = True
+# this code is close to being right
+# pending this upstream django bug:
+# https://code.djangoproject.com/ticket/16073
+#
+#    if action=='pre_remove':
+#        pdb.set_trace()
+#        if instance.groups.filter(name='Journalists').count() == 1:
+#            if pk_set is not None and journalist_group_pk not in pk_set:
+#                instance.is_staff = False
     instance.save()
 
 class NewUserAdmin(UserAdmin):

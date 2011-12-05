@@ -136,7 +136,8 @@ INSTALLED_APPS = (
 
     'ckeditor',
     'easy_thumbnails',
-    'doccloud'
+    'doccloud',
+    'django_compressor',
 )
 
 AUTHENTICATION_BACKENDS = (
