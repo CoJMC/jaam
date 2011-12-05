@@ -1,0 +1,108 @@
+body {
+    margin: 0px;
+	background: #7D7D7D;
+	position: relative;
+    overflow-x: hidden;
+}
+
+img, hr {
+    border: none;
+}
+
+#header, #content {
+    width: 100%;
+    margin: 0px;
+}
+
+#header {
+    height: 36pt;
+}
+
+hr {
+    width: 95%;
+    margin: 10px auto;
+    background: #5E5E5E;
+    height: 1pt;
+}
+
+#content {
+    height: 500pt;
+    width: 450pt;
+}
+
+#gallery_footer {
+	height: 200px;
+	width: 300px;
+}
+
+.photo_gallery {
+	white-space: nowrap;
+	float: left;
+    height: 150pt;
+    position: relative;
+}
+
+.gallery {
+    white-space: nowrap;
+    float: left;
+    height: 500pt;
+    position: relative;
+}
+
+ul.gallery, ul.photo_gallery {
+    list-style-type: none;
+}
+
+.gallery li {
+    height: 500px;
+    width: 450px;
+    float: left;
+}
+
+.photo_gallery li {
+    height: 150px;
+    width: 500px;
+    float: left;
+}
+
+.project {
+    height: 350pt;
+    width: 400pt;
+    float: left;
+    margin: 38pt 20pt;
+}
+
+.project_small {
+    height: 150pt;
+    width: 200pt;
+    float: left;
+    margin: 38pt 20pt;
+}
+
+.project.focus {
+    height: 300pt;
+    width: 400pt;
+    margin: 0pt;
+    background: white;
+    color: black;
+}
+
+.project-thumb {
+    width: 400pt;
+    height: 300pt;
+    background: black;
+}
+
+.project-thumb-photo {
+    width: 200pt;
+    height: auto;
+    background: black;
+}
+
+.project-title {
+    display: block;
+    width: 400pt;
+    text-align: center;
+    font-size: 22pt;
+    color: white;
+}

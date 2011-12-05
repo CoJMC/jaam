@@ -1,10 +1,30 @@
 {% extends "dora/base.html" %}
-{% block title %}Projects{% endblock %}
-{% block content %}
-<h1>Projects</h1>
-<ul>
-{% for project in projects %}
-    <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
-{% endfor %}
-</ul>
+
+{% block title %}projects{% endblock %}
+
+{% block body %}
+	<script type="text/javascript">
+	$(window).load(function(){
+	    (function($) {
+	       $('#gallery').carousel();
+	       $('#content').children().first().css('overflow', 'visible !important');
+	       $('#content').children().first().css('left', $('body').innerWidth()/2 - $('.project').width()/2);
+	    })(jQuery);
+	});
+	</script>
+
+	<div id="content">
+	    <ul id="gallery" class="gallery" style="display:none">
+	        {% for project in projects %}
+	        <li><div class="project">
+	            <a href="{{project.get_absolute_url}}">
+	            {% with project.photo_set.all|first as photo %}
+	                <img class="project-thumb" src="{{ photo.image.url}}"/>
+	            {% endwith %}
+	            </a>
+	            <span class="project-title">{{project.title}}</span>
+	        </div></li>
+	        {% endfor %}
+	    </ul>
+	</div>
 {% endblock %}

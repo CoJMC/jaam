@@ -1,47 +1,49 @@
-{% extends "base.html" %}
-{% block title %}
-Project Details
-{% endblock %}
+{% extends "dora/base.html" %}
 
-{% block content %}
-<h4> Swiper, No Swiping! </h4>
-<h1>Project: {{project.title}}</h1>
+{% block title %}project details{% endblock %}
 
-<h2>Blogs</h2>
-<ul>
-{% for blog in project.blog_set.all %}
-    <li><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></li>
-{% endfor %}
-</ul>
-<h2>Galleries</h2>
-<ul>
-{% for photogallery in project.photogallery_set.all %}
-    <li><a href="{{photogallery.get_absolute_url}}">{{photogallery.title}}</a></li>
-{% endfor %}
-</ul>
-<ul>
-{% for videogallery in project.videogallery_set.all %}
-    <li><a href="{{videogallery.get_absolute_url}}">{{videogallery.title}}</a></li>
-{% endfor %}
-</ul>
-<h2>Stories</h2>
-<ul>
-{% for story in project.story_set.all %}
-    <li><a href="{{story.get_absolute_url}}">{{story.headline}}</a></li>
-{% endfor %}
-</ul>
-<h2>Photos</h2>
-<ul>
-{% for photo in project.photo_set.all %}
-    <li><a href="{{photo.get_absolute_url}}">{{photo.title}}</a></li>
-{% endfor %}
-</ul>
-
-<h2>Videos</h2>
-<ul>
-{% for video in project.video_set.all %}
-    <li><a href="{{video.get_absolute_url}}">{{video.title}}</a></li>
-{% endfor %}
-</ul>
-
+{% block body %}
+	<h4>Swiper, No Swiping!</h4>
+	<h1>Project: {{project.title}}</h1>
+	
+	<h2>Blogs</h2>
+	<ul>
+	{% for blog in project.blog_set.all %}
+	    <li><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></li>
+	{% endfor %}
+	</ul>
+	
+	<h2>Galleries</h2>
+	<ul>
+	{% for photogallery in project.photogallery_set.all %}
+	    <li><a href="{{photogallery.get_absolute_url}}">{{photogallery.title}}</a></li>
+	{% endfor %}
+	</ul>
+	
+	<ul>
+	{% for videogallery in project.videogallery_set.all %}
+	    <li><a href="{{videogallery.get_absolute_url}}">{{videogallery.title}}</a></li>
+	{% endfor %}
+	</ul>
+	
+	<h2>Stories</h2>
+	<ul>
+	{% for story in project.story_set.all %}
+        <li><a href="{{story.get_absolute_url}}">{{story.title}}</a></li>
+    {% endfor %}
+	</ul>
+	
+	<h2>Photos</h2>
+	<ul>
+	{% for photo in project.photo_set.all %}
+	    <li><a href="{{photo.get_absolute_url}}">{{photo.title}}</a></li>
+	{% endfor %}
+	</ul>
+	
+	<h2>Videos</h2>
+	<ul>
+	{% for video in project.video_set.all %}
+	    <li><a href="{{video.get_absolute_url}}">{{video.title}}</a></li>
+	{% endfor %}
+	</ul>
 {% endblock %}

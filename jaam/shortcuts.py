@@ -4,8 +4,8 @@ import random
 
 class RequestContext(RContext):
     def __init__(self, request):
-       self.request = request
-       super(RContext, self).__init__(request)
+        self.request = request
+        super(RContext, self).__init__(request)
 
 def render_to_response(template_name, dictionary, context_instance):
     if context_instance.request.session.has_key('layout') == False:
