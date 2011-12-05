@@ -13,10 +13,11 @@ def index(request):
 
 def details(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
-    photos = project.photo_set.all()[0:5]
-    video = project.video_set.all()[0]
-    story = project.story_set.all()[0]
-    blog_post = BlogPost.objects.filter(blog__project__slug=project_slug)[0]
+    #in your template, filter out. We need the whole list.
+    photos = project.photo_set.all()
+    video = project.video_set.all()
+    story = project.story_set.all()
+    blog_post = BlogPost.objects.filter(blog__project__slug=project_slug)
     contributors = User.objects.filter(photo__project__slug=project_slug).distinct()
     return render_to_response('project_details.html', {
         'project': project,

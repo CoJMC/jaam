@@ -8,12 +8,11 @@
 	    (function($) {
 	       $('#gallery').carousel();
 	       $('#content').children().first().css('overflow', 'visible !important');
-	       $('#content').children().first().css('left', $('body').innerWidth()/2 - $('.project').width()/2);
 	    })(jQuery);
 	});
 	</script>
 
-	<div id="content">
+	<div id="content" style="padding-top: 100px">
 	    <ul id="gallery" class="gallery" style="display:none">
 	        {% for project in projects %}
 	        <li><div class="project">
