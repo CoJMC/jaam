@@ -1,47 +1,39 @@
-{% extends "base.html" %}
-{% block title %}
-Project Details
-{% endblock %}
-
-{% block content %}
-<h4>Go Diego Go! </h4>
-<h1>Project: {{project.title}}</h1>
-
-<h2>Blogs</h2>
-<ul>
-{% for blog in project.blog_set.all %}
-    <li><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></li>
-{% endfor %}
-</ul>
-<h2>Galleries</h2>
-<ul>
-{% for photogallery in project.photogallery_set.all %}
-    <li><a href="{{photogallery.get_absolute_url}}">{{photogallery.title}}</a></li>
-{% endfor %}
-</ul>
-<ul>
-{% for videogallery in project.videogallery_set.all %}
-    <li><a href="{{videogallery.get_absolute_url}}">{{videogallery.title}}</a></li>
-{% endfor %}
-</ul>
-<h2>Stories</h2>
-<ul>
-{% for story in project.story_set.all %}
-    <li><a href="{{story.get_absolute_url}}">{{story.headline}}</a></li>
-{% endfor %}
-</ul>
-<h2>Photos</h2>
-<ul>
-{% for photo in project.photo_set.all %}
-    <li><a href="{{photo.get_absolute_url}}">{{photo.title}}</a></li>
-{% endfor %}
-</ul>
-
-<h2>Videos</h2>
-<ul>
-{% for video in project.video_set.all %}
-    <li><a href="{{video.get_absolute_url}}">{{video.title}}</a></li>
-{% endfor %}
-</ul>
-
-{% endblock %}
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+<div class="row">
+    <div class="span6">
+        <h1>{{project.title}}</h1>
+        <div style="margin: 10px; background-color: gray; width: 200px; height: 200px;"></div>
+        <span>
+            {{project.description|safe}}
+        </span>
+        <h2>Contributors</h2>
+        <ul>
+        {% for contributor in contributors %}
+            <li>{{contributor.username}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="span10">
+    <h2>Stories</h2>
+    {{project.story_set.all.count}} Stories
+    <span>{{story.body|safe}}</span>
+    <h2>Photos</h2>
+    {% for photo in photos %}
+        <a href="{{photo.get_absolute_url}}">
+            <img style="float: left; margin: 10px; width: 150px; height: 150px; border: 1px solid gray" src="{{photo.image.url}}">
+        </a>
+    {% endfor %}
+    <div class="row">
+        <div class="span5">
+        <h2>Video</h2>
+        <h3>{{video.title}}</h3>
+        <div style="margin: 10px; background-color: gray; width: 200px; height: 200px;"></div>
+        </div>
+        <div class="span5">
+        <h2>Blog</h2>
+        <h3>{{blog_post.headline}}</h3>
+        {{blog_post.description|safe}}
+        </div>
+    </div>
+    </div>
+</div>
