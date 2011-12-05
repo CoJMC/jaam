@@ -1,6 +1,15 @@
 {% load comments %}
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 
+<div class="topbar">
+    <div class="fill">
+        <div class="container">
+            <h2 style="color: white;">jaam &gt;&gt; {{photo.project.title}} &gt;&gt; {{photo.title}}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 3em">
 <div class="row">
     <div class="span10">
     <h2>{{photo.title}}</h2>
@@ -59,4 +68,5 @@
             <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
         {% endif %}
     </span>
+</div>
 </div>
