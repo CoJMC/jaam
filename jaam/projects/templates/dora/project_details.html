@@ -3,45 +3,54 @@
 {% block title %}project details{% endblock %}
 
 {% block body %}
-	<h4>Swiper, No Swiping!</h4>
-	<h1>Project: {{project.title}}</h1>
-	
-	<h2>Blogs</h2>
-	<ul>
-	{% for blog in project.blog_set.all %}
-	    <li><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></li>
-	{% endfor %}
-	</ul>
-	
-	<h2>Galleries</h2>
-	<ul>
-	{% for photogallery in project.photogallery_set.all %}
-	    <li><a href="{{photogallery.get_absolute_url}}">{{photogallery.title}}</a></li>
-	{% endfor %}
-	</ul>
-	
-	<ul>
-	{% for videogallery in project.videogallery_set.all %}
-	    <li><a href="{{videogallery.get_absolute_url}}">{{videogallery.title}}</a></li>
-	{% endfor %}
-	</ul>
-	
-	<h2>Stories</h2>
-	<ul>
-	   <li>Something</li>
-	</ul>
-	
-	<h2>Photos</h2>
-	<ul>
-	{% for photo in project.photo_set.all %}
-	    <li><a href="{{photo.get_absolute_url}}">{{photo.title}}</a></li>
-	{% endfor %}
-	</ul>
-	
-	<h2>Videos</h2>
-	<ul>
-	{% for video in project.video_set.all %}
-	    <li><a href="{{video.get_absolute_url}}">{{video.title}}</a></li>
-	{% endfor %}
-	</ul>
+
+
+<script type="text/javascript">
+$(window).load(function(){
+    (function($) {
+       $('.gallery').carousel();
+       $('.items').children().first().css('overflow', 'visible !important');
+    })(jQuery);
+});
+
+</script>
+
+<div id="header"> <h1>{{project.title}}</h1> </div>
+
+<div id="blog_content" class="items">
+     <ul id="blog_content" class="gallery" style="display:none">
+    	{% for blog in project.blog_set.all %}
+        <li><div class="project">
+            <a href="{{blog.get_absolute_url}}"> {{blog.title}}
+	         </a>
+        </div></li>
+        {% endfor %}
+    </ul>
+</ul>
+</div>
+
+<div id="photo_content" class="items">
+    <ul id="photo_gallery" class="gallery" style="display:none">
+    	{% for photo in project.photo_set.all %}
+        <li><div class="project">
+            <a href="{{photo.get_absolute_url}}">
+	        	<img class="project-thumb-photo" src="{{ photo.image.url}}"/>
+	         </a>
+        </div></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<ul>
+    <ul id="video_content" class="gallery" style="display:none">
+    	{% for video in project.video_set.all %}
+        <li><div class="project">
+            <a href="{{video.get_absolute_url}}">
+	        	<img class="project-thumb-photo" src="{{video.video.url}}"/>
+	         </a>
+        </div></li>
+        {% endfor %}
+    </ul>
+</ul>
+
 {% endblock %}
