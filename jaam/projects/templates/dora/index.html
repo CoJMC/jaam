@@ -28,7 +28,9 @@ $(window).load(function(){
         {% for project in projects %}
         <li><div class="project">
             <a href="{{project.get_absolute_url}}">
-                <img class="project-thumb" src="{{project.photo_set.first.get_absolute_url}}"/>
+            {% with project.photo_set.all|first as photo %}
+                <img class="project-thumb" src="{{ photo.image.url}}"/>
+            {% endwith %}
             </a>
             <span class="project-title">{{project.title}}</span>
         </div></li>
