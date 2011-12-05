@@ -3,10 +3,27 @@
 {% block title}photo details{% endblock %}
 
 {% block body %}
+	<script>
+	$(document).ready(function(){
+	    (function($) {
+	        $('#gallery').carousel();
+	        $('#gallery_footer').children().first().css('overflow', 'visible !important');
+	    })(jQuery);
+	    $('#photo_view').click(function(){
+	        $('#photo_view').toggle();
+	        $('#details_view').toggle(); 
+	    });
+	    $('#details_view').click(function(){
+	        $('#details_view').toggle();
+	        $('#photo_view').toggle();
+	    });
+	});
+	</script>
+	
 	<div id="photo_view" class="container">
-	<div align="center">
-	 	<a href="javascript:void()"><img border="0" width="100%" height="100%" align="middle" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
-	</div>
+		<div align="center">
+		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" onLoad="resizeImage()" border="0" align="middle" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+		</div>
 	</div>  
 	 
     <div id="details_view" style="display:none;" class="container">
@@ -16,28 +33,28 @@
         </div>
         <div class="row">
             <div class="span13">
-                <a href="javascript:void()"><img border="0" class="dynamic-img" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+                <a href="javascript:void()"><img border="0" class="dynamic-img" style="width: 700px; height: auto" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
             </div>
-            <div class="row">
-                <h4>{{photo.caption}}</h4>  
-                <small> Tags: {{photo.tags.all|join:','}} </small>
-                <p>Exif Data </p>
-                <p> Camera Manufacturer: {{photo.exif_data.camera_manufacturer}}</p>
-                <p> Model: {{photo.exif_data.camera_model}}</p>
-                <p> Date Taken: {{photo.exif_data.date}}</p>
-                <p> Shutter Speed: {{photo.exif_data.shutter_speed}}</p>
-                <p> Fnumber:{{photo.exif_data.fnumber}}</p>
-                <p> Focal Length: {{photo.exif_data.focal_length}}</p>
-                <p> Flash: {{photo.exif_data.flash_used}}</p>
-                <p> Height: {{photo.exif_data.height_dimension}}</p>
-                <p> Width: {{photo.exif_data.width_dimension}}</p>
-                <p> GPS lat: {{photo.exif_data.gps_latitude}}</p>
-                <p> GPS long: {{photo.exif_data.gps_longitude}}</p>
-                <p> Altitude: {{photo.exif_data.altitude}}</p>
-            </div>
+	        <div class="row">
+	            <h4>{{photo.caption}}</h4>  
+	            <small> Tags: {{photo.tags.all|join:','}} </small>
+	            <p>Exif Data </p>
+			    <p> Camera Manufacturer: {{photo.exif_data.camera_manufacturer}}</p>
+				<p> Model: {{photo.exif_data.camera_model}}</p>
+			    <p> Date Taken: {{photo.exif_data.date}}</p>
+			    <p> Shutter Speed: {{photo.exif_data.shutter_speed}}</p>
+			    <p> Fnumber:{{photo.exif_data.fnumber}}</p>
+			    <p> Focal Length: {{photo.exif_data.focal_length}}</p>
+			    <p> Flash: {{photo.exif_data.flash_used}}</p>
+			    <p> Height: {{photo.exif_data.height_dimension}}</p>
+			    <p> Width: {{photo.exif_data.width_dimension}}</p>
+			    <p> GPS lat: {{photo.exif_data.gps_latitude}}</p>
+			    <p> GPS long: {{photo.exif_data.gps_longitude}}</p>
+			    <p> Altitude: {{photo.exif_data.altitude}}</p>
+	        </div>
         </div> <!--  end content div -->
-	</div> <!--  end details div -->
-	
+    </div> <!--  end details div -->
+        
     <div id="gallery_footer" style="padding-top:20px">
         <ul id="gallery" class="photo_gallery" style="display:none">
             {% for photo in photo.project.photo_set.all %}
@@ -48,5 +65,6 @@
                 </div></li>
             {% endfor %}
         </ul>
-	</div>
+    </div>
+
 {% endblock %}
