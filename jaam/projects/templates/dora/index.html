@@ -1,42 +1,30 @@
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<link href="./s/static/dora/styles/style.css" rel="stylesheet" type="text/css" />
-<!--<script src="./zepto-0.8/dist/zepto.min.js"></script>-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script src="./s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
-<script src="./s/static/dora/scripts/jquery.ui.ipad.js"></script>
-<script src="./s/static/dora/scripts/jquery.mobile.carousel.js"></script>
-<script type="text/javascript">
-$(window).load(function(){
-    (function($) {
-       $('#gallery').carousel();
-       $('#content').children().first().css('overflow', 'visible !important');
-       $('#content').children().first().css('left', $('body').innerWidth()/2 - $('.project').width()/2);
-    })(jQuery);
-});
-</script>
-<title>jaam</title>
-</head>
+{% extends "dora/base.html" %}
 
-<body>
-<div id="header"></div>
-<hr />
-<div id="content">
-    <ul id="gallery" class="gallery" style="display:none">
-        {% for project in projects %}
-        <li><div class="project">
-            <a href="{{project.get_absolute_url}}">
-            {% with project.photo_set.all|first as photo %}
-                <img class="project-thumb" src="{{ photo.image.url}}"/>
-            {% endwith %}
-            </a>
-            <span class="project-title">{{project.title}}</span>
-        </div></li>
-        {% endfor %}
-    </ul>
-</div>
+{% block title %}projects{% endblock %}
 
-</body>
-<html>
+{% block body %}
+	<script type="text/javascript">
+	$(window).load(function(){
+	    (function($) {
+	       $('#gallery').carousel();
+	       $('#content').children().first().css('overflow', 'visible !important');
+	       $('#content').children().first().css('left', $('body').innerWidth()/2 - $('.project').width()/2);
+	    })(jQuery);
+	});
+	</script>
+
+	<div id="content">
+	    <ul id="gallery" class="gallery" style="display:none">
+	        {% for project in projects %}
+	        <li><div class="project">
+	            <a href="{{project.get_absolute_url}}">
+	            {% with project.photo_set.all|first as photo %}
+	                <img class="project-thumb" src="{{ photo.image.url}}"/>
+	            {% endwith %}
+	            </a>
+	            <span class="project-title">{{project.title}}</span>
+	        </div></li>
+	        {% endfor %}
+	    </ul>
+	</div>
+{% endblock %}
