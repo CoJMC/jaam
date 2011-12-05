@@ -1,11 +1,20 @@
-{% extends "base.html" %}
-{% block title %}Projects{% endblock %}
-{% block content %}
-<h4>Go Diego Go!</h4>
-<h1>Projects</h1>
-<ul>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="/s/static/tico/styles/mapStyle.css">
+<script type="text/javascript"
+    src="http://maps.googleapis.com/maps/api/js?sensor=false">
+</script>
+<script defer src="/s/static/tico/scripts/map.js">
+</script>
+</head>
+<body onload="initialize()">
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+<div id="project_sidebar">
 {% for project in projects %}
     <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
 {% endfor %}
-</ul>
-{% endblock %}
+</div>
+</body>
+</html>
