@@ -31,10 +31,15 @@ function initialize() {
   		} ];
     var myOptions = {
       zoom: 2,
+      minZoom: 2,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       styles: styleArray
     };    
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         myOptions);
+    var marker = new google.maps.Marker({
+	  position: new google.maps.LatLng(56.8848, 14.7730),
+	  map: map
+	});
 }
