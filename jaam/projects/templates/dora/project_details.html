@@ -4,20 +4,17 @@
 
 {% block body %}
 
-
 <script type="text/javascript">
 $(window).load(function(){
     (function($) {
        $('.gallery').carousel();
-       $('.items').children().first().css('overflow', 'visible !important');
     })(jQuery);
 });
 
 </script>
 
-<div id="header"> <h1>{{project.title}}</h1> </div>
-
-<div id="blog_content" class="items">
+<h1 style="color: white; padding-top: 75px">{{project.title}}</h1>
+<h2 style="color: white">Blogs</h2>
      <ul id="blog_content" class="gallery" style="display:none">
     	{% for blog in project.blog_set.all %}
         <li><div class="project">
@@ -26,31 +23,24 @@ $(window).load(function(){
         </div></li>
         {% endfor %}
     </ul>
-</ul>
-</div>
-
-<div id="photo_content" class="items">
+<h2 style="color: white">Photos</h2>
     <ul id="photo_gallery" class="gallery" style="display:none">
     	{% for photo in project.photo_set.all %}
-        <li><div class="project">
+        <div class="project">
             <a href="{{photo.get_absolute_url}}">
 	        	<img class="project-thumb-photo" src="{{ photo.image.url}}"/>
 	         </a>
-        </div></li>
+        </div>
         {% endfor %}
     </ul>
-</div>
-
-<ul>
-    <ul id="video_content" class="gallery" style="display:none">
+<h2 style="color: white">Videos</h2>
+    <ul id="video_gallery" class="gallery" style="display:none">
     	{% for video in project.video_set.all %}
         <li><div class="project">
             <a href="{{video.get_absolute_url}}">
-	        	<img class="project-thumb-photo" src="{{video.video.url}}"/>
+	        	{{video.caption}}
 	         </a>
         </div></li>
         {% endfor %}
     </ul>
-</ul>
-
 {% endblock %}
