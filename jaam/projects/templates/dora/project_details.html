@@ -16,13 +16,13 @@ $(window).load(function(){
 
 <h1 style="color: white; padding-top: 75px">{{project.title}}</h1>
 
-<div style="height: 100pt">
+<div style="height: 100pt; width: 210pt">
 <h2 style="color: white">Blogs</h2>
      <ul id="blog_content" class="gallery" style="display:none">
     	{% for blog in project.blog_set.all %}
         <li><div class="project">
-            <a href="{{blog.get_absolute_url}}"> {{blog.title}}
-	         </a>
+           <h3> <a href="{{blog.get_absolute_url}}"> {{blog.title}}
+	         </a> </h3>
         </div></li>
         {% endfor %}
     </ul>
@@ -42,14 +42,14 @@ $(window).load(function(){
 </div>
 
 
-<div>
+<div style="width: 210pt">
 <h2 style="color: white">Videos</h2>
     <ul id="video_gallery" class="gallery" style="display:none">
     	{% for video in project.video_set.all %}
         <li><div class="project">
-            <a href="{{video.get_absolute_url}}">
+            <h3><a href="{{video.get_absolute_url}}">
 	        	{{video.caption}}
-	         </a>
+	         </a></h3>
         </div></li>
         {% endfor %}
     </ul>
