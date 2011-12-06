@@ -7,7 +7,6 @@
 	$(document).ready(function(){
 	    (function($) {
 	        $('#gallery').carousel();
-	        $('#gallery_footer').children().first().css('overflow', 'visible !important');
 	    })(jQuery);
 	    $('#photo_view').click(function(){
 	        $('#photo_view').toggle();
@@ -20,23 +19,23 @@
 	});
 	</script>
 	
-	<div id="photo_view" class="container">
+	<div id="photo_view" class="container" style="padding-top:50px">
 		<div align="center">
 		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" onLoad="resizeImage()" border="0" align="middle" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
 		</div>
 	</div>  
 	 
-    <div id="details_view" style="display:none;" class="container">
+    <div id="details_view" style="display:none; padding-top:50px" class="container">
     <div class="content">
         <div class="page-header">
             <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2>
         </div>
         <div class="row">
             <div class="span13">
-                <a href="javascript:void()"><img border="0" class="dynamic-img" style="width: 700px; height: auto" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+                <a href="javascript:void()"><img border="0" class="dynamic-img" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
             </div>
 	        <div class="row">
-	            <h4>{{photo.caption}}</h4>  
+	            <h5>{{photo.caption}}</h5>  
 	            <small> Tags: {{photo.tags.all|join:','}} </small>
 	            <p>Exif Data </p>
 			    <p> Camera Manufacturer: {{photo.exif_data.camera_manufacturer}}</p>

@@ -53,7 +53,7 @@ ul.gallery, ul.photo_gallery {
 }
 
 .gallery li {
-    height: 500px;
+    height: 200px;
     width: 450px;
     float: left;
 }
@@ -104,4 +104,5 @@ ul.gallery, ul.photo_gallery {
     text-align: center;
     font-size: 22pt;
     color: white;
+    padding-top: 20pt;
 }
