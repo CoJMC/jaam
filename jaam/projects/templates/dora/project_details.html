@@ -1,4 +1,5 @@
 {% extends "dora/base.html" %}
+{% load thumbnail %}
 
 {% block title %}project details{% endblock %}
 
@@ -34,7 +35,7 @@ $(window).load(function(){
     	{% for photo in project.photo_set.all %}
         <div class="project">
             <a href="{{photo.get_absolute_url}}">
-	        	<img class="project-thumb-photo" src="{{ photo.image.url}}"/>
+	        	<img class="project-thumb-photo" src="{% thumbnail photo.image 400x300 %}"/>
 	         </a>
         </div>
         {% endfor %}
