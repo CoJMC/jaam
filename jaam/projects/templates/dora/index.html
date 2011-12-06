@@ -1,4 +1,5 @@
 {% extends "dora/base.html" %}
+{% load thumbnail %}
 
 {% block title %}projects{% endblock %}
 
@@ -9,7 +10,7 @@
 	        <li><div class="project">
 	            <a href="{{project.get_absolute_url}}">
 	            {% with project.photo_set.all|first as photo %}
-	                <img class="project-thumb" src="{{ photo.image.url}}"/>
+	                <img class="project-thumb" src="{% thumbnail photo.image 600x450 %}"/>
 	            {% endwith %}
 	            </a>
 	            <span class="project-title">{{project.title}}</span>
