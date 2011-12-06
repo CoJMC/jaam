@@ -32,7 +32,7 @@
             var height = originalList.parent().height();
 
             //Css
-            var containerCss = {position: "relative", overflow: "hidden", width: width, height: height};
+            var containerCss = {position: "relative", overflow: "visible", width: width, height: height};
             var listCss = {position: "relative", padding: "0", margin: "0", listStyle: "none", width: pages.length * width};
             var listItemCss = {width: width, height: height};
 

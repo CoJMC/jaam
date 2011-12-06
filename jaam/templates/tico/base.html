@@ -26,7 +26,7 @@
         {% endcompress %}
         
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         {% compress js %}
         <script src="/s/static/dora/scripts/pages.js"></script>
         <script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
@@ -44,30 +44,7 @@
     </head>
 
     <body>
-        <div class="topbar">
-            <div class="fill">
-                <div class="container">
-                    <a class="brand" href="/projects/{{photo.project.slug}}">{{photo.project.title}}</a>
-                    <ul class="nav">
-                        <li class="active"><a href="/">Main</a></li>
-                        <li><a href="#about">Take Action</a></li>
-                    </ul>
-                    <div class="pull-right">
-                        {% if user.is_authenticated %}
-                        
-                        {% else %}
-                            <h5 style="color: white">
-                            Login: 
-                            <a href="/login/facebook">Facebook</a> | 
-                            <a href="/login/twitter">Twitter</a> | 
-                            <a href="/login/google">Google</a> | 
-                            <a href="/login/openid">OpenId</a></h5>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+                
         {% block body %}
         {% endblock %}
 
