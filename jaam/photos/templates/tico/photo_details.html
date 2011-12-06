@@ -1,5 +1,8 @@
 {% load comments %}
+<meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 
 <div class="topbar">
     <div class="fill">
@@ -19,7 +22,16 @@
     <h3>Tags: {{photo.tags.all|join:','}} </h3>
 
 
-    <ul><img height="25%" width="25%" src="{{photo.image.url}}" alt="{{photo.image}}"/></ul>
+    <ul><img id="the_photo" height="300px" width="300px" src="{{photo.image.url}}" alt="{{photo.image}}"/></ul>
+    <script>
+     jQuery('#the_photo').bind("swipeleft", function() {
+        window.location = "{{ photo.get_next_by_created_at.get_absolute_url}}"
+     });
+
+     jQuery('#the_photo').bind("swiperight", function() {
+        window.location = "{{ photo.get_previous_by_created_at.get_absolute_url}}"
+     });
+    </script>
 
         <a onclick="document.getElementById('exif_data').style.display = 'block'; this.innerHTML = 'Hide exif data'">Show exif data</a>
         <div id="exif_data" style="display: none">
