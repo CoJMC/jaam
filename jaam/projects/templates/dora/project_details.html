@@ -19,7 +19,7 @@ $(window).load(function(){
 <div style="height: 100pt; width: 210pt">
 <h2 style="color: white">Blogs</h2>
      <ul id="blog_content" class="gallery" style="display:none">
-    	{% for blog in project.blog_set.all %}
+        {% for blog in project.blog_set.all %}
         <li><div class="project">
            <h3> <a href="{{blog.get_absolute_url}}"> {{blog.title}}
 	         </a> </h3>

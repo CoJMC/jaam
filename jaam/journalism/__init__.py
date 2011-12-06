@@ -11,7 +11,6 @@ def make_journalist_staff(sender, instance, action, reverse, model, pk_set, **kw
     print action
     journalist_group_pk = Group.objects.get(name='Journalists').pk
     if action=='pre_add':
-        pdb.set_trace()
         if instance.groups.filter(name='Journalists').count() == 0:
             if journalist_group_pk in pk_set:
                 instance.is_staff = True
