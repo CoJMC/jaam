@@ -9,6 +9,6 @@ class RequestContext(RContext):
 
 def render_to_response(template_name, dictionary, context_instance):
     if context_instance.request.session.has_key('layout') == False:
-        context_instance.request.session['layout'] = random.choice(['dora', 'tico'])
+        context_instance.request.session['layout'] = 'dora'
     return rtr(context_instance.request.session['layout'] + '/' + template_name, dictionary, context_instance)
 
