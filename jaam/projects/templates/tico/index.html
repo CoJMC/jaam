@@ -4,6 +4,7 @@
 <head>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" href="/s/static/tico/styles/mapStyle.css">
+	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 	<script type="text/javascript"
 	    src="http://maps.googleapis.com/maps/api/js?sensor=false">
 	</script>
@@ -11,16 +12,22 @@
 	</script>
 </head>
 <body onload="initialize()">
-	<div id="map_canvas" style="width:80%; height:100%; float:left;"></div>
-	<div id="main" role="main">
-	    <a href="/activate_layout/dora/">Activate Dora</a>
-	    <a href="/activate_layout/tico/">Activate Tico</a>
+	<div class="topbar">
+	    <div class="fill">
+	        <div class="container">
+	            <h2 style="color: white;">jaam &gt;&gt; {{project.title}}</h2>
+	        </div>
+	    </div>
 	</div>
-	<div id="project_sidebar" style="width:20%; height:100%; float:right;">
-		<div id="project_list">
+	<div id="map_canvas" style="width:85%; height:97%; float:left; margin-top: 3%"></div>	
+	<div id="project_sidebar" style="width:15%; height:97%; margin-top: 3%; float:right">	
+		<h2 style="color:black; margin-left:5px">Projects</h2>	
+		<div id="project_list" style="">
+		<ul>
 		{% for project in projects %}
-		    <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
+		    <li style="color: #000000"><h4><a href="{{project.get_absolute_url}}">{{project.title}}</a></h4></li>
 		{% endfor %}
+		</ul>
 		</div>
 	</div>
 </body>
