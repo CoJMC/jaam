@@ -1,20 +1,27 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="/s/static/tico/styles/mapStyle.css">
-<script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?sensor=false">
-</script>
-<script defer src="/s/static/tico/scripts/map.js">
-</script>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="/s/static/tico/styles/mapStyle.css">
+	<script type="text/javascript"
+	    src="http://maps.googleapis.com/maps/api/js?sensor=false">
+	</script>
+	<script defer src="/s/static/tico/scripts/map.js">
+	</script>
 </head>
 <body onload="initialize()">
-  <div id="map_canvas" style="width:100%; height:100%"></div>
-<div id="project_sidebar">
-{% for project in projects %}
-    <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
-{% endfor %}
-</div>
+	<div id="map_canvas" style="width:80%; height:100%; float:left;"></div>
+	<div id="main" role="main">
+	    <a href="/activate_layout/dora/">Activate Dora</a>
+	    <a href="/activate_layout/tico/">Activate Tico</a>
+	</div>
+	<div id="project_sidebar" style="width:20%; height:100%; float:right;">
+		<div id="project_list">
+		{% for project in projects %}
+		    <li><a href="{{project.get_absolute_url}}">{{project.title}}</a></li>
+		{% endfor %}
+		</div>
+	</div>
 </body>
 </html>
