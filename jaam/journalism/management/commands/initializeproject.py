@@ -1,10 +1,13 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import Group, Permission, User
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 class Command(BaseCommand):
     help = 'Creates Journalist group and assigns default permissions'
 
     def handle(self, *args, **options):
+    
         journalist_group, created = Group.objects.get_or_create(name='Journalists')
         if created:
             journalist_group.permissions.add(
