@@ -52,7 +52,7 @@ ul.gallery, ul.photo_gallery {
 }
 
 .gallery li {
-    height: 500px;
+    height: 200px;
     width: 450px;
     float: left;
 }
