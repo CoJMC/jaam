@@ -19,10 +19,10 @@ $(window).load(function(){
 
 <div id="blog_content" class="items">
      <ul id="blog_content" class="gallery" style="display:none">
-    	{% for blog in project.blog_set.all %}
+        {% for blog in project.blog_set.all %}
         <li><div class="project">
             <a href="{{blog.get_absolute_url}}"> {{blog.title}}
-	         </a>
+             </a>
         </div></li>
         {% endfor %}
     </ul>
@@ -31,11 +31,11 @@ $(window).load(function(){
 
 <div id="photo_content" class="items">
     <ul id="photo_gallery" class="gallery" style="display:none">
-    	{% for photo in project.photo_set.all %}
+        {% for photo in project.photo_set.all %}
         <li><div class="project">
             <a href="{{photo.get_absolute_url}}">
-	        	<img class="project-thumb-photo" src="{{ photo.image.url}}"/>
-	         </a>
+                <img class="project-thumb-photo" src="{{ photo.image.url}}"/>
+             </a>
         </div></li>
         {% endfor %}
     </ul>
@@ -43,11 +43,11 @@ $(window).load(function(){
 
 <ul>
     <ul id="video_content" class="gallery" style="display:none">
-    	{% for video in project.video_set.all %}
+        {% for video in project.video_set.all %}
         <li><div class="project">
             <a href="{{video.get_absolute_url}}">
-	        	<img class="project-thumb-photo" src="{{video.video.url}}"/>
-	         </a>
+                <img class="project-thumb-photo" src="{{video.video.url}}"/>
+             </a>
         </div></li>
         {% endfor %}
     </ul>

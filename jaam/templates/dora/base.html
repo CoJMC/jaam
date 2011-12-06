@@ -53,16 +53,22 @@
                         <li><a href="#about">Take Action</a></li>
                     </ul>
                     <div class="pull-right">
+                        <!-- TODO:  
+                        using h5 below to align this properly feels wrong
+                        surely Twitter Bootstrap allows for right alignment in the
+                        top bar without using H5 or alignment hacks
+                        -->
+                        <h5 style="color:white">
                         {% if user.is_authenticated %}
-                        
+                            <a href="/logout">Logout</a>
                         {% else %}
-                            <h5 style="color: white">
                             Login: 
                             <a href="/login/facebook">Facebook</a> | 
                             <a href="/login/twitter">Twitter</a> | 
                             <a href="/login/google">Google</a> | 
-                            <a href="/login/openid">OpenId</a></h5>
+                            <a href="/login/openid">OpenId</a>
                         {% endif %}
+                        </h5>
                     </div>
                 </div>
             </div>

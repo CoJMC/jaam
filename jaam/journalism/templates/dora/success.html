@@ -1,10 +1,11 @@
-{% extends "base.html" %}
+{% extends "dora/base.html" %}
+
 {% block title %}
 Post Details
 {% endblock %}
 
-{% block content %}
-<h1> Login Successful! </h1>
+{% block body %}
+<h1>Login Successful!</h1>
 <h2>Please complete the information below: </h2>
 <h3> <form action="confirm" method="post"> {% csrf_token %}
   	{{ profile_form.as_p }}
@@ -12,5 +13,5 @@ Post Details
   	<input type="submit" value="Submit"/>
   	</form>
 </h3>
-Go <a href="/"> Home </a> or Go to <a href="/admin"> Admin </a>
+Go <a href="/"> Home </a> or Go to <a href="/admin">Admin</a>
 {% endblock %}
