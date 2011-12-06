@@ -1,4 +1,5 @@
 {% extends "dora/base.html" %}
+{% load thumbnail %}
 
 {% block title %}photo details{% endblock %}
 
@@ -32,7 +33,7 @@
         </div>
         <div class="row">
             <div class="span13">
-                <a href="javascript:void()"><img border="0" class="dynamic-img" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+                <a href="javascript:void()"><img border="0" class="dynamic-img" src="{% thumbnail photo.image 1000x750 %}" alt="{{photo.title}}"/></a>
             </div>
 	        <div class="row">
 	            <h5>{{photo.caption}}</h5>  
@@ -59,7 +60,7 @@
             {% for photo in photo.project.photo_set.all %}
                 <li><div class="project_small">
                     <a href="{{photo.get_absolute_url}}">
-                        <img class="project-thumb-photo" src="{{ photo.image.url}}"/>
+                        <img class="project-thumb-photo" src="{% thumbnail photo.image 400x300 %}"/>
                     </a>
                 </div></li>
             {% endfor %}
