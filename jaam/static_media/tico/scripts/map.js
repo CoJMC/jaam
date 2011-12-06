@@ -42,4 +42,8 @@ function initialize() {
 	  position: new google.maps.LatLng(56.8848, 14.7730),
 	  map: map
 	});
+	var marker = new google.maps.Marker({
+	  position: new google.maps.LatLng(40.815, -96.705),
+	  map: map
+	});
 }
