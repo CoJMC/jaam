@@ -1,6 +1,7 @@
 body {
     margin: 0px;
 	background: #7D7D7D;
+    overflow-x: hidden;
 }
 
 img, hr {
