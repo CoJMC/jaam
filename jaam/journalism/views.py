@@ -5,8 +5,6 @@ from forms import UserProfileForm, JournalistForm
 from django.views.decorators.csrf import csrf_protect
 from jaam.journalism.models import Journalist
 
-
-# Create your views here.
 from django.contrib.auth.models import User
 from jaam.shortcuts import render_to_response, RequestContext
 
@@ -24,7 +22,7 @@ def user_profile(request, username):
     return render_to_response('user_profile.html', { 'user': user }, context_instance=RequestContext(request))
 
 @csrf_protect
-def profile_set(request):   
+def profile_set(request):
     user = request.user
     profile = user.userprofile
     is_journalist = False
