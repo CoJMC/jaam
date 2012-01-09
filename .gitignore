@@ -6,5 +6,9 @@ database.db
 .pydevproject
 
 *.swp
+.DS_Store
 
 jaam/static
+
+*.sublime-project
+*.sublime-workspace

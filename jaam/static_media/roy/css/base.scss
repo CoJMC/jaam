@@ -1,0 +1,8 @@
+/*
+ * less has inconsistent selector inheritence (nested inherits in mixins, regular doesn't [and can't seem to be manually mixed in [ex/ :hover]])
+ * scss has no control over scoping, which is annoying, but probably the less of two evils
+ *  scss's default choice in regards to scope means that order matters
+ *  refactoring scss could cause problems and change the rendering of a page
+ */
+
+ 

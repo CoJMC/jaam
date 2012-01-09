@@ -46,7 +46,7 @@ def create_profile(sender, instance, created, **kwargs):
             user_profile.save()
             
 @receiver(pre_update)
-def create_full_name ( sender, user, response, details, **kwargs):
+def create_full_name(sender, user, response, details, **kwargs):
     user.email = response.get('email', '')
     user.userprofile.full_name = user.get_full_name()
     user.userprofile.save()
