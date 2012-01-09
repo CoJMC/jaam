@@ -137,6 +137,7 @@ INSTALLED_APPS = (
 
     'ckeditor',
     'easy_thumbnails',
+    'south',
     'doccloud',
     'compressor',
 )
