@@ -20,22 +20,29 @@
 	});
 	</script>
 	
+	<!-- Load photo larger if window, smaller if mobile -->
 	<div id="photo_view" class="container" style="padding-top:50px">
-		<div align="center">
-		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" onLoad="resizeImage()" border="0" align="middle" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+	<!-- 
+		<div class="r-img" style="background:url({{photo.image.url}}); width: 100%; height:100%;">
+    		<img src="{{photo.image.url}}" alt="" /> <!--  THIS IS WHERE WE'D USE THE SIZE FOR MOBILE PHONES 
 		</div>
+		-->
+		<div align="center">
+		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" border="0" align="middle" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+		</div> 	
 	</div>  
 	 
     <div id="details_view" style="display:none; padding-top:50px" class="container">
     <div class="content">
         <div class="page-header">
-            <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2>
+            <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2><!-- TODO: LINK TO JOURNALISTS PROFILE PAGE -->
         </div>
         <div class="row">
-            <div class="span13">
+            <div class="span11">
                 <a href="javascript:void()"><img border="0" class="dynamic-img" src="{% thumbnail photo.image 1000x750 %}" alt="{{photo.title}}"/></a>
             </div>
-	        <div class="row">
+            <!--  NEED TO MAKE A DIV CLASS, FOR RESPONSIVE MARGINS DUE TO SCREEN SIZE -->
+	        <div class="row" style="margin-left:80%">
 	            <h5>{{photo.caption}}</h5>  
 	            <small> Tags: {{photo.tags.all|join:','}} </small>
 	            <p>Exif Data </p>
@@ -66,5 +73,11 @@
             {% endfor %}
         </ul>
     </div>
+   
+    <!--  preload images--probably want to do this after the page loads -->
+    {% for photo in photo.project.photo_set.all %}
+    	preloadImage({{photo.image}})
+    {% endfor %}
+    
 
 {% endblock %}

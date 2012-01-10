@@ -4,6 +4,10 @@ body {
     overflow-x: hidden;
 }
 
+h5 {
+	font-size: 10pt;
+}
+
 img, hr {
     border: none;
 }
