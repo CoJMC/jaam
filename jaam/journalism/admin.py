@@ -19,6 +19,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Tag, TagAdmin)
 
+# Uh yeah, this isn't supported until django-1.4
 #class IsJournalistFilter(SimpleListFilter):
 #    title = _('is journalist')
 #    parameter_name = 'is_journalist'
@@ -41,7 +42,10 @@ admin.site.register(Tag, TagAdmin)
 
 class NewUserAdmin(UserAdmin):
     actions = ['promote_to_journalist', 'demote_from_journalist']
-#    list_filter = UserAdmin.list_filter + (IsJournalistFilter,)
+    #list_filter = UserAdmin.list_filter + (IsJournalistFilter,)
+    list_display = UserAdmin.list_display + ('userprofile__is_journalist',)
+    # not sure how to do this...
+    list_filter = UserAdmin.list_filter + ('groups__name',)
     
     def promote_to_journalist(self, request, queryset):
         for user in queryset.all():

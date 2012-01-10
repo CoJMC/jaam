@@ -32,6 +32,9 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
+    def is_journalist(self):
+        return True
+
     @models.permalink
     def get_absolute_url(self):
         return ('jaam.journalism.views.user_profile', (), {
