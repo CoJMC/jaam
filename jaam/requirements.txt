@@ -10,4 +10,7 @@ djangorestframework==0.2.3
 django-ckeditor==0.0.9
 easy_thumbnails==1.0-alpha-18
 django_compressor==1.1.1
--e git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud
+django-tastypie==0.9.11
+django-haystack==1.2.6
+
+git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud
