@@ -112,18 +112,18 @@ ul.gallery, ul.photo_gallery {
 }
 
 .gallery-banner {
-background-image: linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
-background-image: -o-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
-background-image: -moz-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
-background-image: -webkit-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
-background-image: -ms-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
+background-image: linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -o-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -moz-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -webkit-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -ms-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
 
 background-image: -webkit-gradient(
 	linear,
 	left bottom,
 	left top,
 	color-stop(0.41, rgb(166,111,0)),
-	color-stop(0.71, rgb(191,150,48)),
+	color-stop(1, rgb(128,92,7)),
 	color-stop(0.86, rgb(166,111,0))
 );
 

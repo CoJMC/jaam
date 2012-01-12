@@ -12,7 +12,7 @@ $(window).load(function(){
        
         {% for photo in project.photo_set.all %}
     		    var img = new Image();
-    		    img.src = "{{photo.get_absolute_url}}";
+    		    img.src = "{{photo.image.url}}";
 
     	{% endfor %}
     })(jQuery);
