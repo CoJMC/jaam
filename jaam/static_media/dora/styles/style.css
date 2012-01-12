@@ -112,14 +112,20 @@ ul.gallery, ul.photo_gallery {
 }
 
 .gallery-banner {
-background: rgb(191,210,85);
-background: -moz-linear-gradient(top,  rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(191,210,85,1)), color-stop(50%,rgba(142,185,42,1)), color-stop(51%,rgba(114,170,0,1)), color-stop(100%,rgba(158,203,45,1)));
-background: -webkit-linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
-background: -o-linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
-background: -ms-linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
-background: linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=0 );
+background-image: linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
+background-image: -o-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
+background-image: -moz-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
+background-image: -webkit-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
+background-image: -ms-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(191,150,48) 71%, rgb(166,111,0) 86%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.41, rgb(166,111,0)),
+	color-stop(0.71, rgb(191,150,48)),
+	color-stop(0.86, rgb(166,111,0))
+);
 
 height: 100px;
 }

@@ -71,7 +71,7 @@
     <div id="gallery_footer">
         <ul id="gallery" class="photo_gallery" style="display:none;">
             {% for photo in photo.project.photo_set.all %}
-                <li><div class="project_small">
+                <li><div class="project_small" style="    position:relative; top:-40px;">
                     <a href="{{photo.get_absolute_url}}">
                         <img class="project-thumb-photo" src="{% thumbnail photo.image 200x150 %}"/>
                     </a>
