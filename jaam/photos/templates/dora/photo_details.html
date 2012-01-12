@@ -33,51 +33,54 @@
 	</div>  
 	 
     <div id="details_view" style="display:none; padding-top:50px" class="container">
+    
     <div class="content">
+    
         <div class="page-header">
             <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2><!-- TODO: LINK TO JOURNALISTS PROFILE PAGE -->
         </div>
+        
         <div class="row">
-            <div class="span11">
+        <!--  do an @media query for the div span class? -->
+            <div id="photoDiv" class="span11">
                 <a href="javascript:void()"><img border="0" class="dynamic-img" src="{% thumbnail photo.image 1000x750 %}" alt="{{photo.title}}"/></a>
             </div>
             <!--  NEED TO MAKE A DIV CLASS, FOR RESPONSIVE MARGINS DUE TO SCREEN SIZE -->
-	        <div class="row" style="margin-left:80%">
-	            <h5>{{photo.caption}}</h5>  
-	            <small> Tags: {{photo.tags.all|join:','}} </small>
-	            <p>Exif Data </p>
-			    <p> Camera Manufacturer: {{photo.exif_data.camera_manufacturer}}</p>
-				<p> Model: {{photo.exif_data.camera_model}}</p>
-			    <p> Date Taken: {{photo.exif_data.date}}</p>
-			    <p> Shutter Speed: {{photo.exif_data.shutter_speed}}</p>
-			    <p> Fnumber:{{photo.exif_data.fnumber}}</p>
-			    <p> Focal Length: {{photo.exif_data.focal_length}}</p>
-			    <p> Flash: {{photo.exif_data.flash_used}}</p>
-			    <p> Height: {{photo.exif_data.height_dimension}}</p>
-			    <p> Width: {{photo.exif_data.width_dimension}}</p>
-			    <p> GPS lat: {{photo.exif_data.gps_latitude}}</p>
-			    <p> GPS long: {{photo.exif_data.gps_longitude}}</p>
-			    <p> Altitude: {{photo.exif_data.altitude}}</p>
-	        </div>
-        </div> <!--  end content div -->
-    </div> <!--  end details div -->
-        
-    <div id="gallery_footer" style="padding-top:20px">
-        <ul id="gallery" class="photo_gallery" style="display:none">
+		  
+		  <div  class="photo-details">
+	        <h5>{{photo.caption}}</h5>  
+	        <small> Tags: {{photo.tags.all|join:','}} </small>
+		    <p> Camera Manufacturer: {{photo.exif_data.camera_manufacturer}}</p>
+			<p> Model: {{photo.exif_data.camera_model}}</p>
+		    <p> Date Taken: {{photo.exif_data.date}}</p>
+		    <p> Shutter Speed: {{photo.exif_data.shutter_speed}}</p>
+		    <p> Fnumber:{{photo.exif_data.fnumber}}</p>
+		    <p> Focal Length: {{photo.exif_data.focal_length}}</p>
+		    <p> Flash: {{photo.exif_data.flash_used}}</p>
+		    <p> Height: {{photo.exif_data.height_dimension}}</p>
+		    <p> Width: {{photo.exif_data.width_dimension}}</p>
+		    <p> GPS lat: {{photo.exif_data.gps_latitude}}</p>
+		    <p> GPS long: {{photo.exif_data.gps_longitude}}</p>
+		    <p> Altitude: {{photo.exif_data.altitude}}</p>
+	    </div>
+	   </div> <!--  end row -->
+	    
+    </div> <!--  end content div -->
+	
+	<div class="gallery-banner"> 
+    <div id="gallery_footer">
+        <ul id="gallery" class="photo_gallery" style="display:none;">
             {% for photo in photo.project.photo_set.all %}
                 <li><div class="project_small">
                     <a href="{{photo.get_absolute_url}}">
-                        <img class="project-thumb-photo" src="{% thumbnail photo.image 400x300 %}"/>
+                        <img class="project-thumb-photo" src="{% thumbnail photo.image 200x150 %}"/>
                     </a>
                 </div></li>
             {% endfor %}
         </ul>
+    </div> 
     </div>
-   
-    <!--  preload images--probably want to do this after the page loads -->
-    {% for photo in photo.project.photo_set.all %}
-    	preloadImage({{photo.image}})
-    {% endfor %}
-    
+        
+    </div> <!--  end details container div -->
 
 {% endblock %}

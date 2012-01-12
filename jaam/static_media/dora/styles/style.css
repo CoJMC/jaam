@@ -34,8 +34,8 @@ hr {
 }
 
 #gallery_footer {
-	height: 200px;
-	width: 300px;
+	height: 100px;
+	width: 100px;
 }
 
 .photo_gallery {
@@ -97,7 +97,7 @@ ul.gallery, ul.photo_gallery {
 }
 
 .project-thumb-photo {
-    width: 200pt;
+    width: 75pt;
     height: auto;
     background: black;
 }
@@ -109,4 +109,17 @@ ul.gallery, ul.photo_gallery {
     font-size: 22pt;
     color: white;
     padding-top: 20pt;
+}
+
+.gallery-banner {
+background: rgb(191,210,85);
+background: -moz-linear-gradient(top,  rgba(191,210,85,1) 0%, rgba(142,185,42,1) 50%, rgba(114,170,0,1) 51%, rgba(158,203,45,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(191,210,85,1)), color-stop(50%,rgba(142,185,42,1)), color-stop(51%,rgba(114,170,0,1)), color-stop(100%,rgba(158,203,45,1)));
+background: -webkit-linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
+background: -o-linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
+background: -ms-linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
+background: linear-gradient(top,  rgba(191,210,85,1) 0%,rgba(142,185,42,1) 50%,rgba(114,170,0,1) 51%,rgba(158,203,45,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=0 );
+
+height: 100px;
 }

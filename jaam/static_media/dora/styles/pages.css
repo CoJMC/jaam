@@ -69,6 +69,20 @@
   	  z-index:1; 
   	  overflow:hidden;
   	  }
+  	  
+  	  /*Default to iPad */
+  	  .photo-details {
+  	  margin-left: 80%;
+  	  }
+  	  
+  	  /* Screens larger than iPad */
+  	  @media (min-width: 1025px){
+	  
+	  .photo-details {
+  	  margin-left: 65%;
+  	  }
+	  
+	  }
   	    	  
   	  
   	  /* Simple try for responsive image sizes */

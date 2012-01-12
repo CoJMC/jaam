@@ -9,7 +9,15 @@
 $(window).load(function(){
     (function($) {
        $('.gallery').carousel();
+       
+        {% for photo in project.photo_set.all %}
+    		    var img = new Image();
+    		    img.src = "{{photo.image}}";
+
+    	{% endfor %}
     })(jQuery);
+    
+
 });
 
 </script>
@@ -35,7 +43,7 @@ $(window).load(function(){
     	{% for photo in project.photo_set.all %}
         <div class="project">
             <a href="{{photo.get_absolute_url}}">
-	        	<img class="project-thumb-photo" src="{% thumbnail photo.image 400x300 %}"/>
+	        	<img class="project-thumb-photo" src="{% thumbnail photo.image 400x300 %}" alt="Project Photo"/>
 	         </a>
         </div>
         {% endfor %}
@@ -56,5 +64,6 @@ $(window).load(function(){
     </ul>
  </div>
  
- </div>
+ </div>  
+     
 {% endblock %}
