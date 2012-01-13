@@ -1,4 +1,4 @@
-from tastypie.resources import ModelResource
+from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from jaam.projects.models import Project
 from jaam.photos.models import Photo, PhotoGallery
 from jaam.videos.models import Video, VideoGallery
@@ -19,6 +19,11 @@ class PhotoResource(ModelResource):
 	class Meta:
 		quersyset = Photo.objects.all()
 		allowed_methods = ['get']
+		filtering = {
+			'slug': ALL,
+			'project': ALL_WITH_RELATIONS,
+			'journalist': ALL,
+		}
 
 class VideoGalleryResource(ModelResource):
 	class Meta:

@@ -43,16 +43,15 @@ admin.site.register(Tag, TagAdmin)
 class NewUserAdmin(UserAdmin):
     actions = ['promote_to_journalist', 'demote_from_journalist']
     #list_filter = UserAdmin.list_filter + (IsJournalistFilter,)
-    list_display = UserAdmin.list_display + ('userprofile__is_journalist',)
     # not sure how to do this...
     list_filter = UserAdmin.list_filter + ('groups__name',)
-    
+
     def promote_to_journalist(self, request, queryset):
         for user in queryset.all():
             user.groups.add(Group.objects.get(name="Journalists"))
             user.is_staff = True
             user.save()
-    
+
     def demote_from_journalist(self, request, queryset):
         for user in queryset.all():
             user.groups.remove(Group.objects.get(name="Journalists"))
