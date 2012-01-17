@@ -50,8 +50,6 @@
       }
       
       .dynamic-img {
-      /* width: 700px; 
-      height: auto; */
       max-width: 100%;
       max-height: 100%; 
       border: 6px solid white;
@@ -63,6 +61,7 @@
   	  margin:0px; 
   	  padding:0px; 
   	  background:#000;
+  	  height: 100%;
   	  }
   	  #bg {
   	  position:fixed; 
@@ -83,27 +82,5 @@
   	  }
 	  
 	  }
-  	    	  
-  	  
-  	  /* Simple try for responsive image sizes */
-  	  .r-img img{
-      /* Hide image off-screen on larger devices, but leave it accessible to screen-readers */
-      position:absolute;
-	  left:-9999px;
-	  }
-	  
-	  /*--- RESPONSIVE IMAGE ---*/
-	  @media(max-width:480px){
-	  .r-img{
-	    /* Remove styling from the div */
-	    background:none!important;
-	    width:auto!important;
-	    height:auto!important;
-	  }
-	  .r-img img{
-	    /* Bring smaller image back into view */
-	    position:static;
-	    max-width:100%;
-	  }
-	  }
+
   	  

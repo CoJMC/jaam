@@ -2,6 +2,7 @@ body {
     margin: 0px;
 	background: #7D7D7D;
     overflow-x: hidden;
+    height: 100%;
 }
 
 h5 {
@@ -102,6 +103,13 @@ ul.gallery, ul.photo_gallery {
     background: black;
 }
 
+.portrait {
+	
+    width: auto;
+    height: 56.5pt;
+    background: black;
+}
+
 .project-title {
     display: block;
     width: 400pt;
@@ -112,20 +120,16 @@ ul.gallery, ul.photo_gallery {
 }
 
 .gallery-banner {
-background-image: linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
-background-image: -o-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
-background-image: -moz-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
-background-image: -webkit-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
-background-image: -ms-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+	background-color: #f5f5f5;
+	height: 100px;
+	position: relative;
+	top: -20px;
+	margin: 0 -20px;
 
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.41, rgb(166,111,0)),
-	color-stop(1, rgb(128,92,7)),
-	color-stop(0.86, rgb(166,111,0))
-);
-
-height: 100px;
+    -webkit-border-radius: 0 0 6px 6px;
+       -moz-border-radius: 0 0 6px 6px;
+            border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }

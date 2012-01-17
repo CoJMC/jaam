@@ -21,28 +21,23 @@
 	</script>
 	
 	<!-- Load photo larger if window, smaller if mobile -->
-	<div id="photo_view" class="container" style="padding-top:50px">
-	<!-- 
-		<div class="r-img" style="background:url({{photo.image.url}}); width: 100%; height:100%;">
-    		<img src="{{photo.image.url}}" alt="" /> <!--  THIS IS WHERE WE'D USE THE SIZE FOR MOBILE PHONES 
-		</div>
-		-->
+	<div id="photo_view" class="container" align="middle" style="padding-top:50px; height:100%; width:100%">
 		<div align="center">
-		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" border="0" align="middle" src="{{photo.image.url}}" alt="{{photo.title}}"/></a>
+		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" border="0" align="middle" src="{% thumbnail photo.image 1024x768 %}" alt="{{photo.title}}"/></a>
 		</div> 	
 	</div>  
 	 
     <div id="details_view" style="display:none; padding-top:50px" class="container">
     
-    <div class="content">
-    
+    <div class="content" style="height:100%">
+    	
         <div class="page-header">
             <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2><!-- TODO: LINK TO JOURNALISTS PROFILE PAGE -->
         </div>
         
         <div class="row">
         <!--  do an @media query for the div span class? -->
-            <div id="photoDiv" class="span11">
+            <div id="photoDiv" class="span11"  style="height:100%; width:60%">
                 <a href="javascript:void()"><img border="0" class="dynamic-img" src="{% thumbnail photo.image 1000x750 %}" alt="{{photo.title}}"/></a>
             </div>
             <!--  NEED TO MAKE A DIV CLASS, FOR RESPONSIVE MARGINS DUE TO SCREEN SIZE -->
@@ -71,10 +66,16 @@
     <div id="gallery_footer">
         <ul id="gallery" class="photo_gallery" style="display:none;">
             {% for photo in photo.project.photo_set.all %}
-                <li><div class="project_small" style="    position:relative; top:-40px;">
+                <li><div class="project_small" style="position:relative; top:-40px;">
+                	{% if photo.image.height < photo.image.width %}
                     <a href="{{photo.get_absolute_url}}">
-                        <img class="project-thumb-photo" src="{% thumbnail photo.image 200x150 %}"/>
+                        <img class="project-thumb-photo" src="{% thumbnail photo.image 200x150 %}" alt="Project-Photo"/>
                     </a>
+                    {% else %}
+                    <a href="{{photo.get_absolute_url}}">
+                        <img class="portrait" src="{% thumbnail photo.image 200x150 %}" alt="Project-Photo"/>
+                    </a>
+                    {% endif %}
                 </div></li>
             {% endfor %}
         </ul>
