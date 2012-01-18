@@ -11,6 +11,8 @@ class ProjectLocation(models.Model):
 class Project(BaseModel):
     title = models.CharField(max_length=200)
     description = RichTextField(null=True, blank=True)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
     locations = models.ManyToManyField(ProjectLocation)
 
     def __unicode__(self):
