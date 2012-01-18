@@ -5,6 +5,9 @@ from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 from social_auth.signals import pre_update
 
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
+
 
 # Create your models here.
 class Tag(models.Model):
@@ -31,6 +34,9 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.user.username
+
+    def is_journalist(self):
+        return True
 
     @models.permalink
     def get_absolute_url(self):

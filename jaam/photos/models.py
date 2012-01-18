@@ -68,6 +68,8 @@ class PhotoGallery(BaseModel):
             'gallery_slug': self.slug,
         })
 
+# This is for ordering photos inside of photo galleries which can't be done with 
+# a regular m2m relationship
 class PhotoGalleryItem(models.Model):
     photo = models.ForeignKey(Photo)
     gallery = models.ForeignKey(PhotoGallery)

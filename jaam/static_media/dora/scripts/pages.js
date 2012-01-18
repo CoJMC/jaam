@@ -18,3 +18,9 @@ function resizeImage()
 		photo.style.height = "auto"
 	}
 }
+
+function preloadImage(photo)
+{
+	var img = new Image(); 
+    img.src = photo;
+}

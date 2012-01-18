@@ -1,15 +1,17 @@
 django==1.3.1
+South==0.7.3
 pil==1.1.7
-django-storages==1.1.3
-boto==2.1.0
+django-storages==1.1.4
+boto==2.1.1
 django-extensions==0.7.1
 python-documentcloud==0.151
 django-social-auth==0.5.13
 djangorestframework==0.2.3
 django-ckeditor==0.0.9
-easy_thumbnails==1.0-alpha-18
+easy_thumbnails==1.0-alpha-20
 django_compressor==1.1.1
 django-tastypie==0.9.11
 django-haystack==1.2.6
+django-celery==2.4.2
 
-git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud
+-e git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud

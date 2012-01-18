@@ -4,6 +4,10 @@ body {
     overflow-x: hidden;
 }
 
+h5 {
+	font-size: 10pt;
+}
+
 img, hr {
     border: none;
 }
@@ -30,8 +34,8 @@ hr {
 }
 
 #gallery_footer {
-	height: 200px;
-	width: 300px;
+	height: 100px;
+	width: 100px;
 }
 
 .photo_gallery {
@@ -93,7 +97,7 @@ ul.gallery, ul.photo_gallery {
 }
 
 .project-thumb-photo {
-    width: 200pt;
+    width: 75pt;
     height: auto;
     background: black;
 }
@@ -105,4 +109,23 @@ ul.gallery, ul.photo_gallery {
     font-size: 22pt;
     color: white;
     padding-top: 20pt;
+}
+
+.gallery-banner {
+background-image: linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -o-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -moz-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -webkit-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+background-image: -ms-linear-gradient(bottom, rgb(166,111,0) 41%, rgb(128,92,7) 100%, rgb(166,111,0) 86%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.41, rgb(166,111,0)),
+	color-stop(1, rgb(128,92,7)),
+	color-stop(0.86, rgb(166,111,0))
+);
+
+height: 100px;
 }

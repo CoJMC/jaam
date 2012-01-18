@@ -138,9 +138,11 @@ INSTALLED_APPS = (
 
     'ckeditor',
     'easy_thumbnails',
+    'south',
     'doccloud',
     'compressor',
     'tastypie',
+    'djcelery'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -210,6 +212,8 @@ CKEDITOR_CONFIGS = {
 
 # setting for the site-specific user profile
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
+
+COMPRESS_ENABLED = True
 
 # for personal config - doccloud/aws/etc
 try:
