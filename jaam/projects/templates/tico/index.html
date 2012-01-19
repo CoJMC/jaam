@@ -19,13 +19,14 @@
 	        </div>
 	    </div>
 	</div>
-	<div id="map_canvas" style="width:85%; height:97%; float:left; margin-top: 3%"></div>	
-	<div id="project_sidebar" style="width:15%; height:97%; margin-top: 3%; float:right">	
+	<div id="map_canvas" style="width:85%; height:95%; float:left; margin-top: 3%"></div>	
+	<div id="project_sidebar" style="width:15%; height:95%; margin-top: 3%; float:right">	
 		<h2 style="color:black; margin-left:5px">Projects</h2>	
 		<div id="project_list" style="">
-		<ul>
+		<ul id="list">
 		{% for project in projects %}
-		    <li style="color: #000000"><h4><a href="{{project.get_absolute_url}}">{{project.title}}</a></h4></li>
+		    <li style="color: #000000"><h4><a href="{{project.get_absolute_url}}">{{project.title}}</a>
+		    <div type="hidden" name="{{project.title}}" lat="{{project.latitude}}" long="{{project.longitude}}"></div></h4></li>
 		{% endfor %}
 		</ul>
 		</div>
