@@ -17,7 +17,7 @@ class PhotoGalleryResource(ModelResource):
 
 class PhotoResource(ModelResource):
 	class Meta:
-		quersyset = Photo.objects.all()
+		queryset = Photo.objects.all()
 		allowed_methods = ['get']
 		filtering = {
 			'slug': ALL,
@@ -27,27 +27,27 @@ class PhotoResource(ModelResource):
 
 class VideoGalleryResource(ModelResource):
 	class Meta:
-		quersyset = VideoGallery.objects.all()
+		queryset = VideoGallery.objects.all()
 		allowed_methods = ['get']
 
 class VideoResource(ModelResource):
 	class Meta:
-		quersyset = Video.objects.all()
+		queryset = Video.objects.all()
 		allowed_methods = ['get']
 
 class StoryResource(ModelResource):
 	class Meta:
-		quersyset = Story.objects.all()
+		queryset = Story.objects.all()
 		allowed_methods = ['get']
 
 class BlogResource(ModelResource):
 	class Meta:
-		quersyset = Blog.objects.all()
+		queryset = Blog.objects.all()
 		allowed_methods = ['get']
 
 class BlogPostResource(ModelResource):
 	class Meta:
-		quersyset = BlogPost.objects.all()
+		queryset = BlogPost.objects.all()
 		allowed_methods = ['get']
 
 class DocumentResource(ModelResource):
