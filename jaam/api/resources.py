@@ -4,6 +4,8 @@ from jaam.photos.models import Photo, PhotoGallery
 from jaam.videos.models import Video, VideoGallery
 from jaam.stories.models import Story
 from jaam.blog.models import Blog, BlogPost
+from easy_thumbnails.files import get_thumbnailer
+import ast
 
 class ProjectResource(ModelResource):
     class Meta:
@@ -24,6 +26,20 @@ class PhotoResource(ModelResource):
             'project': ALL_WITH_RELATIONS,
             'journalist': ALL,
         }
+    def dehydrate_image(self, bundle):
+        if 'size' in bundle.request.GET:
+            # TODO:
+            # use id to filter instead of slug? implement id filtering above
+            # add a crop option {'crop': True}
+            try:
+                size = ast.literal_eval(bundle.request.GET['size'])
+            except SyntaxError:
+                return bundle.data['image']
+            thumbnailer = self.obj_get(slug=bundle.data['slug']).image
+            thumbnail_options = {'size': size}
+            return thumbnailer.get_thumbnail(thumbnail_options).url
+        else:
+            return bundle.data['image']
 
 class VideoGalleryResource(ModelResource):
     class Meta:
