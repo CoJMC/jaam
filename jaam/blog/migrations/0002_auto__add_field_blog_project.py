@@ -5,44 +5,42 @@ from south.v2 import SchemaMigration
 from django.db import models
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("projects", "0001_initial"),
+    )
 
     def forwards(self, orm):
         
-        # Adding model 'Blog'
-        db.create_table('blog_blog', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('modified_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-            ('published', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50, db_index=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('subtitle', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
-            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-        ))
-        db.send_create_signal('blog', ['Blog'])
+        # Adding field 'Blog.project'
+        db.add_column('blog_blog', 'project', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['projects.Project']), keep_default=False)
 
-        # Adding model 'BlogPost'
-        db.create_table('blog_blogpost', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('modified_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-            ('published', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50, db_index=True)),
-            ('blog', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['blog.Blog'])),
-            ('headline', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('body', self.gf('ckeditor.fields.RichTextField')()),
-            ('author', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+        # Adding M2M table for field tags on 'Blog'
+        db.create_table('blog_blog_tags', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('blog', models.ForeignKey(orm['blog.blog'], null=False)),
+            ('tag', models.ForeignKey(orm['journalism.tag'], null=False))
         ))
-        db.send_create_signal('blog', ['BlogPost'])
+        db.create_unique('blog_blog_tags', ['blog_id', 'tag_id'])
+
+        # Adding M2M table for field tags on 'BlogPost'
+        db.create_table('blog_blogpost_tags', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('blogpost', models.ForeignKey(orm['blog.blogpost'], null=False)),
+            ('tag', models.ForeignKey(orm['journalism.tag'], null=False))
+        ))
+        db.create_unique('blog_blogpost_tags', ['blogpost_id', 'tag_id'])
+
 
     def backwards(self, orm):
         
-        # Deleting model 'Blog'
-        db.delete_table('blog_blog')
+        # Deleting field 'Blog.project'
+        db.delete_column('blog_blog', 'project_id')
 
-        # Deleting model 'BlogPost'
-        db.delete_table('blog_blogpost')
+        # Removing M2M table for field tags on 'Blog'
+        db.delete_table('blog_blog_tags')
+
+        # Removing M2M table for field tags on 'BlogPost'
+        db.delete_table('blog_blogpost_tags')
 
 
     models = {
@@ -81,9 +79,11 @@ class Migration(SchemaMigration):
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['projects.Project']"}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
             'subtitle': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
         'blog.blogpost': {
@@ -98,6 +98,7 @@ class Migration(SchemaMigration):
             'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'})
         },
         'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
@@ -116,9 +117,13 @@ class Migration(SchemaMigration):
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'description': ('ckeditor.fields.RichTextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'latitude': ('django.db.models.fields.FloatField', [], {}),
+            'locations': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['projects.ProjectLocation']", 'symmetrical': 'False'}),
+            'longitude': ('django.db.models.fields.FloatField', [], {}),
             'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
         'projects.projectlocation': {
