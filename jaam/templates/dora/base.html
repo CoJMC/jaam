@@ -51,29 +51,25 @@
                     <ul class="nav">
                         <li><a href="/">Main</a></li>
                         <li><a href="#about">Take Action</a></li>
-                    </ul>
-                    <ul class="nav pull-right">
+
                         <!-- TODO:  
                         using h5 below to align this properly feels wrong
                         surely Twitter Bootstrap allows for right alignment in the
                         top bar without using H5 or alignment hacks
                         -->
-				
-                        <li><a href="/activate_layout/dora">Activate Dora</a> </li>| 
-                        <li><a href="/activate_layout/tico">Activate Tico</a> &nbsp;&nbsp;&nbsp;&nbsp;</li>
-                        <li>
+                        <li><a href="/activate_layout/dora">Activate Dora</a> </li>
+                        <li><a href="/activate_layout/tico">Activate Tico</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
                         {% if user.is_authenticated %}
-                            <a href="/logout">Logout</a>
+                            <li><a href="/logout">Logout</a></li>
                         {% else %}
-                            Login: 
-                            <a href="/login/facebook">Facebook</a> | 
-                            <a href="/login/twitter">Twitter</a> | 
-                            <a href="/login/google">Google</a> | 
-                            <a href="/login/openid">OpenId</a>
+                            <li> <a> Login: </a></li>
+                            <li><a href="/login/facebook">Facebook | </a></li>
+                            <li><a href="/login/twitter">Twitter | </a></li>
+                            <li><a href="/login/google">Google | </a></li>
+                            <li><a href="/login/openid">OpenId</a></li>
                         {% endif %}
-                        </li>
-
-
                     </ul>
                 </div>
             </div>
