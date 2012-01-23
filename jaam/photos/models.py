@@ -39,7 +39,6 @@ class Photo(BaseModel):
     title = models.CharField(max_length=100)
     caption = models.CharField(max_length=5000)
     exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False)
-    description = models.CharField(max_length=1000, null=True)
     
     def __unicode__(self):
         return self.title
