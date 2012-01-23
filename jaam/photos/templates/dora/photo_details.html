@@ -36,11 +36,9 @@
         </div>
         
         <div class="row">
-        <!--  do an @media query for the div span class? -->
-            <div id="photoDiv" class="span11"  style="height:100%; width:60%">
+            <div id="photoDiv" class="span11"  style="height:100%; width:60%;">
                 <a href="javascript:void()"><img border="0" class="dynamic-img" src="{% thumbnail photo.image 1000x750 %}" alt="{{photo.title}}"/></a>
             </div>
-            <!--  NEED TO MAKE A DIV CLASS, FOR RESPONSIVE MARGINS DUE TO SCREEN SIZE -->
 		  
 		  <div  class="photo-details">
 	        <h5>{{photo.caption}}</h5>  

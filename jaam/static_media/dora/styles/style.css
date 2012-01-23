@@ -70,8 +70,7 @@ ul.gallery, ul.photo_gallery {
 }
 
 .project {
-    height: 350pt;
-    width: 400pt;
+
     float: left;
     margin: 38pt 20pt;
 }

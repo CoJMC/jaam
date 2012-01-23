@@ -20,7 +20,7 @@
         
         {% compress css %}
         <link rel="stylesheet" href="/s/static/common/css/style.css">
-        <link rel="stylesheet" href="/s/static/common/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="/s/static/dora/styles/style.css">
         <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
         {% endcompress %}
@@ -44,23 +44,24 @@
     </head>
 
     <body style="height:100%">
-        <div class="topbar">
-            <div class="fill">
+        <div class="navbar">
+            <div class="navbar-inner">
                 <div class="container">
                     <a class="brand" href="/projects/{{photo.project.slug}}">{{photo.project.title}}</a>
                     <ul class="nav">
                         <li><a href="/">Main</a></li>
                         <li><a href="#about">Take Action</a></li>
                     </ul>
-                    <div class="pull-right">
+                    <ul class="nav pull-right">
                         <!-- TODO:  
                         using h5 below to align this properly feels wrong
                         surely Twitter Bootstrap allows for right alignment in the
                         top bar without using H5 or alignment hacks
                         -->
-                        <h5 style="color:white">
-                        <a href="/activate_layout/dora">Activate Dora</a> | 
-                        <a href="/activate_layout/tico">Activate Tico</a> &nbsp;&nbsp;&nbsp;&nbsp;
+				
+                        <li><a href="/activate_layout/dora">Activate Dora</a> </li>| 
+                        <li><a href="/activate_layout/tico">Activate Tico</a> &nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li>
                         {% if user.is_authenticated %}
                             <a href="/logout">Logout</a>
                         {% else %}
@@ -70,8 +71,10 @@
                             <a href="/login/google">Google</a> | 
                             <a href="/login/openid">OpenId</a>
                         {% endif %}
-                        </h5>
-                    </div>
+                        </li>
+
+
+                    </ul>
                 </div>
             </div>
         </div>
