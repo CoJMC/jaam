@@ -9,8 +9,8 @@
 {% for project in projects %}
 <li><div class="project"> <!--  this needs to be fixed -->
 {% with photo=project.photo_set %}
-	<div class="span12">
-	<div class="container-fluid" align="middle">
+	<div class="span12" style="position: relative; margin:-1px">
+	<div class="container-fluid">
 		<a href="{{project.get_absolute_url}}">
 		<div class="row">
 		{% for photo in project.photo_set.all %}
