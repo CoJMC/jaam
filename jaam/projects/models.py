@@ -12,7 +12,7 @@ class Project(BaseModel):
     title = models.CharField(max_length=200)
     description = RichTextField(null=True, blank=True)
     locations = models.ManyToManyField(ProjectLocation)
-    coverGallery = models.ForeignKey('photos.PhotoGallery', related_name='+')
+    coverGallery = models.ForeignKey('photos.PhotoGallery', null=True, related_name='+')
 
     def __unicode__(self):
         return self.title
