@@ -11,9 +11,8 @@ class ProjectLocation(models.Model):
 class Project(BaseModel):
     title = models.CharField(max_length=200)
     description = RichTextField(null=True, blank=True)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
     locations = models.ManyToManyField(ProjectLocation)
+    coverGallery = models.ForeignKey('photos.PhotoGallery', related_name='+')
 
     def __unicode__(self):
         return self.title
