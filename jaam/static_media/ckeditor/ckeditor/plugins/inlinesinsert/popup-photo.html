@@ -188,7 +188,9 @@
           $("#gallerySelector").val("null");
           app.instances.collections.photogallerys.url = "/api/v1/photogallery/";
           var project_id = $("#projectSelector").val();
-          app.instances.collections.photogallerys.url += "?projectId=" + project_id;
+          if(project_id != "null") {
+            app.instances.collections.photogallerys.url += "?project__id=" + project_id;
+          }
           app.instances.collections.photogallerys.reset();
           app.instances.collections.photogallerys.fetch();
           this.changeGallery();
@@ -200,9 +202,9 @@
           //console.log(project_id);
           //console.log(gallery_id);
           if(gallery_id != "null") {
-            app.instances.collections.photos.url += "?galleryId=" + gallery_id;
+            app.instances.collections.photos.url += "?gallery__id=" + gallery_id;
           } else if(project_id != "null") {
-            app.instances.collections.photos.url += "?projectId=" + project_id;
+            app.instances.collections.photos.url += "?project__id=" + project_id;
           }
           app.instances.collections.photos.reset();
           app.instances.collections.photos.fetch();

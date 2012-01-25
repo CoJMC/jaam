@@ -26,6 +26,19 @@ $(window).load(function(){
 <h1 style="color: white; padding-top: 75px">{{project.title}}</h1>
 
 <div style="height: 100pt; width: 210pt">
+<h2 style="color: white">Stories</h2>
+     <ul id="story" class="gallery" style="display:none">
+        {% for story in project.story_set.all %}
+        <li>
+            <a href="{{story.get_absolute_url}}">
+                {{story.headline}}            
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div style="height: 100pt; width: 210pt">
 <h2 style="color: white">Blogs</h2>
      <ul id="blog_content" class="gallery" style="display:none">
         {% for blog in project.blog_set.all %}

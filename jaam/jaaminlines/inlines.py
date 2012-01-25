@@ -1,6 +1,6 @@
-from django_inlines import inlines
-
 # The below is unneccessary.
+# from django_inlines import inlines
+
 # Only thing I can imagine is if you ever need to pass more to
 # the template in the context.
 #
@@ -18,5 +18,6 @@ from django_inlines import inlines
 # inlines.registry.register('photo', PhotoInline)
 # inlines.registry.register('video', VideoInline)
 
-inlines.registry.register('photo', inlines.inline_for_model(jaam.photos.models.Photo));
-inlines.registry.register('video', inlines.inline_for_model(jaam.photos.models.Video));
+from django_inlines import inlines
+inlines.registry.register('photo', inlines.inline_for_model(Photo));
+inlines.registry.register('video', inlines.inline_for_model(Video));

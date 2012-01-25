@@ -143,7 +143,7 @@ INSTALLED_APPS = (
     'compressor',
     'tastypie',
     'djcelery',
-    'inlines'
+    'django_inlines',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -220,6 +220,8 @@ COMPRESS_ENABLED = True
 
 # Tastypie default page size
 API_LIMIT_PER_PAGE = 0
+
+INLINE_DEBUG = True
 
 # for personal config - doccloud/aws/etc
 try:

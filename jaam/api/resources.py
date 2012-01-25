@@ -1,3 +1,4 @@
+from tastypie import fields
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from jaam.projects.models import Project
 from jaam.photos.models import Photo, PhotoGallery, PhotoGalleryItem
@@ -11,20 +12,31 @@ class ProjectResource(ModelResource):
     class Meta:
         queryset = Project.objects.all()
         allowed_methods = ['get']
+        filtering = {
+            'pk': ALL,
+            'id': ALL,
+            'slug': ALL,
+        }
 
 class PhotoGalleryResource(ModelResource):
+    project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
         queryset = PhotoGallery.objects.all()
         allowed_methods = ['get']
+        filtering = {
+            'id': ALL,
+            'project': ALL_WITH_RELATIONS,
+        }
 
 class PhotoResource(ModelResource):
+    project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
         queryset = Photo.objects.all()
         allowed_methods = ['get']
         filtering = {
             'slug': ALL,
             'project': ALL_WITH_RELATIONS,
-            'journalist': ALL,
+            'title': ALL,
         }
     def dehydrate_image(self, bundle):
         if 'size' in bundle.request.GET:
@@ -40,20 +52,34 @@ class PhotoResource(ModelResource):
             return thumbnailer.get_thumbnail(thumbnail_options).url
         else:
             return bundle.data['image']
+    def build_filters(self, filters=None):
+        # TODO Comment this
+        if filters is None:
+            filters = {}
 
-class PhotoGalleryItemResource(ModelResource):
-    class Meta:
-        queryset = PhotoGalleryItem.objects.all()
-        allow_methods = ['get']
-        filtering = {
-            'photo' : ALL_WITH_RELATIONS,
-            'gallery': ALL_WITH_RELATIONS,
-        }
+        orm_filters = super(PhotoResource, self).build_filters(filters)
+
+        if "gallery__id" in filters:
+            pgi_items = PhotoGalleryItem.objects.filter(gallery__pk=filters['gallery__id'])
+            print pgi_items
+            print filters['gallery__id']
+            orm_filters["pk__in"] = [i.pk for i in pgi_items]
+
+        return orm_filters
+
+# class PhotoGalleryItemResource(ModelResource):
+#     gallery = fields.ForeignKey(PhotoGalleryResource, 'gallery')
+#     class Meta:
+#         queryset = PhotoGalleryItem.objects.all()
+#         allow_methods = ['get']
+#         filtering = {
+#             'gallery': ALL_WITH_RELATIONS,
+#         }
+
 
 class VideoGalleryResource(ModelResource):
     class Meta:
         quersyset = VideoGallery.objects.all()
-    
 
 class VideoGalleryResource(ModelResource):
     class Meta:
