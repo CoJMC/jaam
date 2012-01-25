@@ -20,13 +20,13 @@
         
         {% compress css %}
         <link rel="stylesheet" href="/s/static/common/css/style.css">
-        <link rel="stylesheet" href="/s/static/common/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="/s/static/dora/styles/style.css">
         <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
         {% endcompress %}
         
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         {% compress js %}
         <script src="/s/static/dora/scripts/pages.js"></script>
         <script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
@@ -43,35 +43,34 @@
         <![endif]-->
     </head>
 
-    <body>
-        <div class="topbar">
-            <div class="fill">
+    <body style="height:100%">
+        <div class="navbar">
+            <div class="navbar-inner">
                 <div class="container">
                     <a class="brand" href="/projects/{{photo.project.slug}}">{{photo.project.title}}</a>
                     <ul class="nav">
                         <li><a href="/">Main</a></li>
                         <li><a href="#about">Take Action</a></li>
-                    </ul>
-                    <div class="pull-right">
+
                         <!-- TODO:  
                         using h5 below to align this properly feels wrong
                         surely Twitter Bootstrap allows for right alignment in the
                         top bar without using H5 or alignment hacks
                         -->
-                        <h5 style="color:white">
-                        <a href="/activate_layout/dora">Activate Dora</a> | 
-                        <a href="/activate_layout/tico">Activate Tico</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <li><a href="/activate_layout/dora">Activate Dora</a> </li>
+                        <li><a href="/activate_layout/tico">Activate Tico</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
                         {% if user.is_authenticated %}
-                            <a href="/logout">Logout</a>
+                            <li><a href="/logout">Logout</a></li>
                         {% else %}
-                            Login: 
-                            <a href="/login/facebook">Facebook</a> | 
-                            <a href="/login/twitter">Twitter</a> | 
-                            <a href="/login/google">Google</a> | 
-                            <a href="/login/openid">OpenId</a>
+                            <li> <a> Login: </a></li>
+                            <li><a href="/login/facebook">Facebook | </a></li>
+                            <li><a href="/login/twitter">Twitter | </a></li>
+                            <li><a href="/login/google">Google | </a></li>
+                            <li><a href="/login/openid">OpenId</a></li>
                         {% endif %}
-                        </h5>
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>

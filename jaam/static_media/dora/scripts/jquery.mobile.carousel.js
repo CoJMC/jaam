@@ -15,6 +15,7 @@
             duration: 300,
             direction: "horizontal",
             minimumDrag: 20,
+            overflow: "visible",
             beforeStart: function(){},
             afterStart: function(){},
             beforeStop: function(){},
@@ -32,7 +33,7 @@
             var height = originalList.parent().height();
 
             //Css
-            var containerCss = {position: "relative", overflow: "visible", width: width, height: height};
+            var containerCss = {position: "relative", overflow: settings.overflow, width: width, height: height};
             var listCss = {position: "relative", padding: "0", margin: "0", listStyle: "none", width: pages.length * width};
             var listItemCss = {width: width, height: height};
 
@@ -54,7 +55,7 @@
                     start: function(event) {
                         settings.beforeStart.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         start = {
                             coords: [ data.pageX, data.pageY ]
                         };
@@ -64,7 +65,7 @@
                     stop: function(event) {
                         settings.beforeStop.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         stop = {
                             coords: [ data.pageX, data.pageY ]
                         };
@@ -115,7 +116,7 @@
                     start: function(event) {
                         settings.beforeStart.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         start = {
                             coords: [ data.pageX, data.pageY ]
                         };
@@ -125,7 +126,7 @@
                     stop: function(event) {
                         settings.beforeStop.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         stop = {
                             coords: [ data.pageX, data.pageY ]
                         };

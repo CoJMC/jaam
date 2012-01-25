@@ -17,7 +17,7 @@ class ProjectAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
-                 (None, { 'fields': ('title', 'slug', 'description', 'tags',) },),
+                 (None, { 'fields': ('title', 'slug','description', 'coverGallery', 'tags',) },),
                  ('Admin', { 'fields': ('published',) },),
                 )
 
