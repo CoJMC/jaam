@@ -7,20 +7,21 @@
     <script src="/s/static/roy/js/lib/backbone.js"></script>
     <script src="/s/static/roy/js/lib/backbone.layoutmanager.js"></script>
 
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    
     <style type="text/css">
-      .photoborder {
+      .xxxphotoborder {
         width: 200px;
         height: 200px;
-        overflow: hidden;
         float: left;
         border: 1px solid #ccc;
         padding: 10px;
+        margin-right: 5px;
+        margin-top: 5px;
       }
-      .photo {
+      .thumbnail {
         width: 200px;
         height: auto;
-        padding: 0px;
-        margin: 0px;
       }
       li {
         list-style-type: none;
@@ -28,13 +29,14 @@
     </style>
 
     <script type="text/template" id="photo-template">
-      <div class="photoborder">
-        <img class="photo" src="<%= url %>" data-photo-id="<%= id %>" /><br/>
-      </div>
+      <a href="#">
+        <img class="thumbnail" src="<%= url %>" data-photo-id="<%= id %>" /><br/>
+      </a>
     </script>
 
     <script type="text/template" id="select-template">
-      <select id="<%= id %>">
+      <label class="span2" for="<%= id %>"><%= label %></label>
+      <select name="<%= id %>" id="<%= id %>" id="<%= id %>" class="span3">
         <option value="null">[any]</option>
         <% _.each(options, function(option){ %>
             <option value="<%= option.id %>"><%= option.value %></option>
@@ -99,7 +101,7 @@
         tagName: "li",
         template: _.template($("#photo-template").html()),
         events: {
-          "click .photoborder": "insertImage",
+          "click a": "insertImage",
         },
         insertImage: function(e) {
           var htmlToInsert = "<img src='{src}' data-photo-id='{id}' class='inlines_extractme' />";
@@ -148,13 +150,13 @@
         },
         addOne: function(photo) {
           var view = new app.views.PhotoView({model: photo});
-          this.$("#photoList").append(view.render().el);
+          $("#photoList").append(view.render().el);
         },
         addAll: function(photos) {
           //console.log("reset");
           //console.log(app.instances.collections.photos);
           //console.log("/reset");
-          this.$("#photoList").html("");
+          $("#photoList").html("");
           photos.each(this.addOne);
         },
         renderPG: function(e) {
@@ -166,7 +168,7 @@
               value: gallery.attributes.title
             }
           });
-          $("#gallerySelectorContainer").html(app.utils.selectTemplate({ id: 'gallerySelector', options: galleryOptions }));
+          $("#gallerySelectorContainer").html(app.utils.selectTemplate({ id: 'gallerySelector', options: galleryOptions, label: 'Gallery:' }));
           // end gallery select
         },
         renderP: function() {
@@ -178,7 +180,7 @@
               value: project.attributes.title
             }
           });
-          $("#projectSelectorContainer").html(app.utils.selectTemplate({ id: 'projectSelector', options: projectOptions }));
+          $("#projectSelectorContainer").html(app.utils.selectTemplate({ id: 'projectSelector', options: projectOptions, label: 'Project:' }));
           // end initial project load
           return this.el;
         },
@@ -217,12 +219,18 @@
     </script>
   </head>
   <body>
-    <div id="photoSelector" />
-      <span id="projectSelectorContainer">
-      </span>
-      <span id="gallerySelectorContainer">
-      </span>
-      <div id="photoList">
+    <div class="container" id="photoSelector">
+      <h1>Select Photo</h1>
+      <div class="row"/>
+        <div id="projectSelectorContainer" class="span5">
+        </div>
+        <div id="gallerySelectorContainer" class="span5">
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <ul class="media-grid" id="photoList">
+        </ul>
       </div>
     </div>
 </html>
