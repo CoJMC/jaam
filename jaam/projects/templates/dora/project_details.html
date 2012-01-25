@@ -21,49 +21,48 @@ $(window).load(function(){
 });
 
 </script>
-<div style="padding-left: 120pt">
 
-<h1 style="color: white; padding-top: 75px">{{project.title}}</h1>
+<div class="fluid-container" style="padding-top: 20px; margin: 0 auto">
 
-<div style="height: 100pt; width: 210pt">
-<h2 style="color: white">Blogs</h2>
-     <ul id="blog_content" class="gallery" style="display:none">
-        {% for blog in project.blog_set.all %}
-        <li><div class="project">
-           <h3> <a href="{{blog.get_absolute_url}}"> {{blog.title}}
-	         </a> </h3>
-        </div></li>
-        {% endfor %}
-    </ul>
+<div class="span12">
+
+<div class="row">
+<div class="span6"> <!-- change to span 3 for phones? -->
+	<!-- Place holder for the project's title photo -->
+	<img class="dynamic-img" src="http://www.getintravel.com/wp-content/uploads/2011/12/Amboseli-National-Reserve-In-Kenya-Africa-2.jpg"/>
 </div>
 
-<div style="height: 180pt; width: 210pt">
-<h2 style="color: white">Photos</h2>
-    <ul id="photo_gallery" class="gallery" style="display:none">
+<div class="span1"> &nbsp</div>
+
+<div class="span5"> <!-- Needs some media help for larger screens -->
+<h1 style="color: white">{{project.title}}</h1>
+<h3 style="color: white"> //Filler for project description </h3>
+<div style="max-height: 300px; overflow:auto;">
+<h5 style="color: white">Architectural using inspiring caviar, fine rich in expensive cigar. Wealth tailored presidential repertoire blissfull fashion, impressive, diamond, tailored presidential ladies doctoral imported first-class symphony. Diamond suite first-class cigar stockmarket echelon monogram, topiary status elegant, housekeeping. Treasure inspiring, reserved charity blissfull enthusiast monogram rich suite a, grande sport, repertoire diamond world. </p><p>Pearl opulent auction cuisine monogram purebred sterling ballroom, marquis, cocktail, purebred. Five-star townhome symphony cigar architectural wealth reserved board five-star cutlery manor panoramic. Pedigree acumen manor charity on member opulent art diplomatatic auction gem, career. Rare repertoire portfolio ambassador, marquis, respectable, gifted. Expensive affluent yacht inspiring gem, butler first-class acumen.</p><p>Classical, benefiting diplomatatic a sheer university yacht symbolizing reserved penthouse enthusiast metropolitan repertoire benefiting. Noble politically using saphire fine genuine genuine philanthropic educated diplomatatic dynasty art a. Brilliant stockmarket silver cutlery caviar cigar sheer bonds. Gentlemen gilded impresario diplomatatic fine designer brilliant world first-class cultered. Stockmarket saphire repertoire manor champagne private impresario. On silk philanthropic lifestyle art diplomatatic handmade dynasty marquis delegate, with butler tailored. </p><p>Fashion high-rise travel symphony reserved dynasty investments housekeeping a, board politically charity le gentlemen dynasty. Diplomatatic portfolio grande butler, travel rich vacation inspiring panoramic respectable. Gem, pedigree gifted career gem le. </h5>
+</div> 
+
+</div>
+</div> <!-- End Row1 -->
+
+
+<div class="row" style="padding-top: 20px">
+<h2 style="color: white">Media</h2>
+    <table>
+    <tr>
     	{% for photo in project.photo_set.all %}
-        <div class="project">
+    		<td>
             <a href="{{photo.get_absolute_url}}">
-	        	<img class="project-thumb-photo" src="{% thumbnail photo.image 400x300 %}" alt="Project Photo"/>
+	        	<img class="thumbnail" src="{% thumbnail photo.image 200x300 %}" alt="Project Photo"/>
 	         </a>
-        </div>
+	         </td>
         {% endfor %}
-    </ul>
+    </tr>
+    </table>
+</div> <!-- End Row2 -->
+
 </div>
-
-
-<div style="width: 210pt">
-<h2 style="color: white">Videos</h2>
-    <ul id="video_gallery" class="gallery" style="display:none">
-    	{% for video in project.video_set.all %}
-        <li><div class="project">
-            <h3><a href="{{video.get_absolute_url}}">
-	        	{{video.caption}}
-	         </a></h3>
-        </div></li>
-        {% endfor %}
-    </ul>
- </div>
+</div>
  
- </div>  
+ 
      
 {% endblock %}
