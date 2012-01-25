@@ -55,7 +55,7 @@
                     start: function(event) {
                         settings.beforeStart.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         start = {
                             coords: [ data.pageX, data.pageY ]
                         };
@@ -65,7 +65,7 @@
                     stop: function(event) {
                         settings.beforeStop.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         stop = {
                             coords: [ data.pageX, data.pageY ]
                         };
@@ -116,7 +116,7 @@
                     start: function(event) {
                         settings.beforeStart.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         start = {
                             coords: [ data.pageX, data.pageY ]
                         };
@@ -126,7 +126,7 @@
                     stop: function(event) {
                         settings.beforeStop.apply(list, arguments);
 
-                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event;
+                        var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         stop = {
                             coords: [ data.pageX, data.pageY ]
                         };

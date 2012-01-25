@@ -142,7 +142,8 @@ INSTALLED_APPS = (
     'doccloud',
     'compressor',
     'tastypie',
-    'djcelery'
+    'djcelery',
+    'django_inlines',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -192,6 +193,7 @@ CKEDITOR_UPLOAD_PATH = ''
 
 CKEDITOR_CONFIGS = {
     'default': {
+        'extraPlugins': 'inlinesinsert',
         'toolbar': [
             [      'Undo', 'Redo',
               '-', 'Bold', 'Italic', 'Underline',
@@ -201,12 +203,13 @@ CKEDITOR_CONFIGS = {
             [
               '-', 'Cut','Copy','Paste','PasteText','PasteFromWord',
               '-', 'Source',
-            ]
+            ],
+            [ '-', 'inlinesinsert-photo', 'inlinesinsert-video', ]
         ],
         'width': 700,
         'height': 400,
         'toolbarCanCollapse': False,
-        'skin': 'kama'
+        'skin': 'kama',
     }
 }
 
@@ -214,6 +217,11 @@ CKEDITOR_CONFIGS = {
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
 COMPRESS_ENABLED = True
+
+# Tastypie default page size
+API_LIMIT_PER_PAGE = 0
+
+INLINE_DEBUG = True
 
 # for personal config - doccloud/aws/etc
 try:

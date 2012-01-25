@@ -1,0 +1,19 @@
+{% extends "dora/base.html" %}
+{% load thumbnail %}
+{% load inlines %}
+
+{% block title %}story details{% endblock %}
+
+{% block body %}
+
+<div style="padding-left: 120pt">
+
+<h1 style="color: white; padding-top: 75px">{{ story.headline }}</h1>
+<div id="storybody">
+    <p>
+    {% process_inlines story.body %}
+    </p>s
+</div>
+
+</div>
+{% endblock %}

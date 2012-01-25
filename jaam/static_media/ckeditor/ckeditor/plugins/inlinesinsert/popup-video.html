@@ -1,0 +1,13 @@
+<html>
+<script type="text/javascript">
+
+function insertImage(image) {
+	var htmlToInsert = "<img src='{src}' data-photo-id='{id}' class='inlines_extractme' />";
+	htmlToInsert = htmlToInsert.replace("{src}", image.src);
+	htmlToInsert = htmlToInsert.replace("{id}", image.id);
+	window.opener.ckeditor_inlinesinsert.insertHtml(htmlToInsert);
+}
+
+insertImage({ "src": "http://google.com", "id": 1 })
+</script>
+</html>
