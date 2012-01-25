@@ -14,7 +14,7 @@
 		<a href="{{project.get_absolute_url}}">
 		<div class="row">
 		{% for photo in project.photo_set.all %}
-			<div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 275x175 %}"/></div>
+			<div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 300x200 %}"/></div>
 			{%endfor %}
 		</div>
 		</a>
