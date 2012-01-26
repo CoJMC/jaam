@@ -5,64 +5,56 @@
 
 {% block body %}
 
-<script type="text/javascript">
-$(window).load(function(){
-    (function($) {
-       $('.gallery').carousel();
-       
-        {% for photo in project.photo_set.all %}
-    		    var img = new Image();
-    		    img.src = "{{photo.image.url|safe}}";
-
-    	{% endfor %}
-    })(jQuery);
-    
-
-});
-
-</script>
-
-<div class="fluid-container" style="padding-top: 20px; margin: 0 auto">
-
-<div class="span12">
-
-<div class="row">
-<div class="span6"> <!-- change to span 3 for phones? -->
-	<!-- Place holder for the project's title photo -->
-	<img class="dynamic-img" src="http://www.getintravel.com/wp-content/uploads/2011/12/Amboseli-National-Reserve-In-Kenya-Africa-2.jpg"/>
+<div class="navbar" style="position: fixed; width: 100%">
+    <div class="navbar-inner">
+		<div class="project-header">{{project.title}}</div>
+    </div>
 </div>
 
-<div class="span1"> &nbsp</div>
+<div class="container" style="padding-top: 60px;">
 
-<div class="span5"> <!-- Needs some media help for larger screens -->
-<h1 style="color: white">{{project.title}}</h1>
-<h3 style="color: white"> //Filler for project description </h3>
-<div style="max-height: 300px; overflow:auto;">
-<h5 style="color: white">Architectural using inspiring caviar, fine rich in expensive cigar. Wealth tailored presidential repertoire blissfull fashion, impressive, diamond, tailored presidential ladies doctoral imported first-class symphony. Diamond suite first-class cigar stockmarket echelon monogram, topiary status elegant, housekeeping. Treasure inspiring, reserved charity blissfull enthusiast monogram rich suite a, grande sport, repertoire diamond world. </p><p>Pearl opulent auction cuisine monogram purebred sterling ballroom, marquis, cocktail, purebred. Five-star townhome symphony cigar architectural wealth reserved board five-star cutlery manor panoramic. Pedigree acumen manor charity on member opulent art diplomatatic auction gem, career. Rare repertoire portfolio ambassador, marquis, respectable, gifted. Expensive affluent yacht inspiring gem, butler first-class acumen.</p><p>Classical, benefiting diplomatatic a sheer university yacht symbolizing reserved penthouse enthusiast metropolitan repertoire benefiting. Noble politically using saphire fine genuine genuine philanthropic educated diplomatatic dynasty art a. Brilliant stockmarket silver cutlery caviar cigar sheer bonds. Gentlemen gilded impresario diplomatatic fine designer brilliant world first-class cultered. Stockmarket saphire repertoire manor champagne private impresario. On silk philanthropic lifestyle art diplomatatic handmade dynasty marquis delegate, with butler tailored. </p><p>Fashion high-rise travel symphony reserved dynasty investments housekeeping a, board politically charity le gentlemen dynasty. Diplomatatic portfolio grande butler, travel rich vacation inspiring panoramic respectable. Gem, pedigree gifted career gem le. </h5>
-</div> 
+<div class="span3" style="position: fixed">
+<!-- @TODO: Always make this resort to a presized thumbnail image (instead of max-width:100%") -->
+	<img class="thumbnail" src="https://godsplace.webconnex.com/uploads/wysiwyg/4122/images/Kenya%20Boy.JPG" alt="Country Photo"/>
+	<div class="row">
+		<div class="project-nav">
+			<a href="/" style="color: white">About</a>
+		</div><div></div>
+		<div class="project-nav">
+			<a href="/" style="color: white">Photos</a>
+		</div>
+		<div class="project-nav">
+			<a href="/" style="color: white">Videos</a>
+		</div>
+		<div class="project-nav">
+			<a href="/" style="color: white">Blogs</a>
+		</div>
+		<div class="project-nav">
+			<a href="/" style="color: white">Stories</a>
+		</div>
+		<div class="project-nav">
+			<a href="/" style="color: white">Act Now</a>
+		</div>
+		<div class="project-nav">
+			<a href="/" style="color: white">Students</a>
+		</div>
+	</div>
+</div> <!-- End Sidebar -->
 
-</div>
-</div> <!-- End Row1 -->
+<div class="span9" style="margin-left: 260px;">
+	<!-- @TODO: for screen sizes > 980, increase the span of this div to 12 -->
+	
+	<div class="span5">
+			<img class="thumbnail" src="http://www.getintravel.com/wp-content/uploads/2011/12/Amboseli-National-Reserve-In-Kenya-Africa-2.jpg"/>
+			<h4 style="color: white"> {{project.description|safe}} </h4>
+	</div>
+	<div class="span3">
+		<h4 style="color: white"> On August 17th we visited another EWB group out of Montana State University which had a project in a city near Kisumu, Luanda. It was one of the most thought provoking days of the trip because the similarities in experiences and differences in structure of our EWB were so clear. To keep it short, EWB-MSU partnered with the local school district which included 58 schools. They chose just a few to implement projects and worked closely with the leaders of the school. They had implemented one Biogas latrine, Compost latrine, and a borehole. They were in the process of implementing a second compost latrine and a large pipe system to deliver water from the previously mentioned borehole to three other schools nearby. To implement most of these projects EWB-MSU went through similar political finagling and was able to work through it and have a 50-50 EWB community funding for their pipeline project. But there were also a lot of differences:  </h4>
+		<img class="thumbnail" src="http://www.getintravel.com/wp-content/uploads/2011/12/Amboseli-National-Reserve-In-Kenya-Africa-2.jpg"/>
+	</div>
 
+</div> <!-- End Content Span -->
 
-<div class="row" style="padding-top: 20px">
-<h2 style="color: white">Media</h2>
-    <table>
-    <tr>
-    	{% for photo in project.photo_set.all %}
-    		<td>
-            <a href="{{photo.get_absolute_url}}">
-	        	<img class="thumbnail" src="{% thumbnail photo.image 200x300 %}" alt="Project Photo"/>
-	         </a>
-	         </td>
-        {% endfor %}
-    </tr>
-    </table>
-</div> <!-- End Row2 -->
-
-</div>
-</div>
- 
- 
+</div> <!-- End Page Container -->
      
 {% endblock %}
