@@ -2,6 +2,7 @@ from django.contrib import admin
 from jaam.photos.models import Photo, PhotoGallery, PhotoExifData, PhotoGalleryItem
 from jaam.journalism.admin import BaseAdmin
 
+
 class PhotoAdmin(BaseAdmin):
     search_fields = ('title', 'caption',)
     list_display = ('__unicode__', 'caption', 'journalist',)
@@ -26,7 +27,10 @@ class PhotoAdmin(BaseAdmin):
         obj.save()
 
 class PhotoGalleryInline(admin.TabularInline):
-   model = PhotoGalleryItem
+    template = 'admin/edit_inline/photo_gallery.html'
+    model = PhotoGalleryItem
+    ordering = ['order']
+    extra = 0
 
 class PhotoGalleryAdmin(admin.ModelAdmin):
     inlines = [ PhotoGalleryInline ]

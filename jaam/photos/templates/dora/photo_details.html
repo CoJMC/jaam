@@ -21,13 +21,13 @@
 	</script>
 	
 	<!-- Load photo larger if window, smaller if mobile -->
-	<div id="photo_view" class="container" align="middle" style="padding-top:50px; height:100%; width:100%">
+	<div id="photo_view" class="fluid-container" align="middle" style="height:100%; width:100%">
 		<div align="center">
 		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" border="0" align="middle" src="{% thumbnail photo.image 1024x768 %}" alt="{{photo.title}}"/></a>
 		</div> 	
 	</div>  
 	 
-    <div id="details_view" style="display:none; padding-top:50px" class="container">
+    <div id="details_view" style="display:none" class="container">
     
     <div class="content" style="height:100%">
     	

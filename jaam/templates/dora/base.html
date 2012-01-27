@@ -42,16 +42,15 @@
             <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
         <![endif]-->
     </head>
-
+	
     <body style="height:100%">
-        <div class="navbar">
+      <!--   <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="brand" href="/projects/{{photo.project.slug}}">{{photo.project.title}}</a>
                     <ul class="nav">
                         <li><a href="/">Main</a></li>
                         <li><a href="#about">Take Action</a></li>
-
                         <!-- TODO:  
                         using h5 below to align this properly feels wrong
                         surely Twitter Bootstrap allows for right alignment in the
@@ -65,18 +64,27 @@
                             <li><a href="/logout">Logout</a></li>
                         {% else %}
                             <li> <a> Login: </a></li>
-                            <li><a href="/login/facebook">Facebook | </a></li>
-                            <li><a href="/login/twitter">Twitter | </a></li>
-                            <li><a href="/login/google">Google | </a></li>
+                            <li><a href="/login/facebook">Facebook</a></li>
+                            <li><a href="/login/twitter">Twitter</a></li>
+                            <li><a href="/login/google">Google</a></li>
                             <li><a href="/login/openid">OpenId</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
         </div>
-        
+        --> 
         {% block body %}
         {% endblock %}
+        
+         <div id="footer" class="bottombar">
+                    <ul>  
+                        <li class="span4" style="text-align: center"><a href="/">About Us</a></li>
+                        <li class="span4" style="text-align: center"><a href="/">Take Action</a></li>
+                        <li class="span4" style="text-align: center"><a href="/">Contributors</a></li>
+                     </ul>
+        </div>
+        
 
         <!-- Change UA-XXXXX-X to be your site's ID -->
 		<script>

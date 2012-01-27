@@ -4,17 +4,17 @@
 {% block title %}projects{% endblock %}
 
 {% block body %}
-<div id="content" class="container-fluid">
+<div id="content" class="fluid-container">
 <ul id="gallery" class="gallery" style="display:none;">
 {% for project in projects %}
-<li><div class="project"> <!--  this needs to be fixed -->
+<li><div class="project">
 {% with photo=project.photo_set %}
 	<div class="span12">
-	<div class="container-fluid" align="middle">
+	<div class="fluid-container">
 		<a href="{{project.get_absolute_url}}">
 		<div class="row">
 		{% for photo in project.photo_set.all %}
-			<div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 275x175 %}"/></div>
+			<div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 300x200 %}"/></div>
 			{%endfor %}
 		</div>
 		</a>

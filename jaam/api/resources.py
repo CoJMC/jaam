@@ -49,6 +49,8 @@ class PhotoResource(ModelResource):
                 return bundle.data['image']
             thumbnailer = self.obj_get(slug=bundle.data['slug']).image
             thumbnail_options = {'size': size}
+            if 'crop' in bundle.request.GET and bundle.request.GET['crop'].lower() == 'true':
+                thumbnail_options.update({'crop': True})
             return thumbnailer.get_thumbnail(thumbnail_options).url
         else:
             return bundle.data['image']

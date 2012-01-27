@@ -72,6 +72,7 @@ class PhotoGallery(BaseModel):
 # a regular m2m relationship
 class PhotoGalleryItem(models.Model):
     photo = models.ForeignKey(Photo)
+    order = models.IntegerField(null=True)
     gallery = models.ForeignKey(PhotoGallery)
 
 @receiver(post_save, sender=Photo)
