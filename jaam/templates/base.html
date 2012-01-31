@@ -1,10 +1,97 @@
-<div id="main" role="main">
-    <a href="/activate_layout/dora/">Activate Dora</a>
-    <a href="/activate_layout/tico/">Activate Tico</a>
-</div>
+{% load compress %}
 
-{% block content %}
-{% endblock %}
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+    {% load i18n %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        
+        <title>jaam | {% block title %}home{% endblock %}</title>
+        
+        {% compress css %}
+        <link rel="stylesheet" href="/s/static/common/css/style.css">
+        <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/s/static/dora/styles/style.css">
+        <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
+        {% endcompress %}
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        {% compress js %}
+        <script src="/s/static/dora/scripts/pages.js"></script>
+        <script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
+            
+        <script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
+        <script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
+        <script src="/s/static/dora/scripts/jquery.mobile.carousel.js"></script>
+            
+        <script src="/s/static/common/js/plugins.js"></script>
+        {% endcompress %}		
+        <!--[if lt IE 7 ]>
+            <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+            <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+    </head>
+	
+    <body style="height:100%">
+      <!--   <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/projects/{{photo.project.slug}}">{{photo.project.title}}</a>
+                    <ul class="nav">
+                        <li><a href="/">Main</a></li>
+                        <li><a href="#about">Take Action</a></li>
+                        <!-- TODO:  
+                        using h5 below to align this properly feels wrong
+                        surely Twitter Bootstrap allows for right alignment in the
+                        top bar without using H5 or alignment hacks
+                        -->
+                        <li><a href="/activate_layout/dora">Activate Dora</a> </li>
+                        <li><a href="/activate_layout/tico">Activate Tico</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                        {% if user.is_authenticated %}
+                            <li><a href="/logout">Logout</a></li>
+                        {% else %}
+                            <li> <a> Login: </a></li>
+                            <li><a href="/login/facebook">Facebook</a></li>
+                            <li><a href="/login/twitter">Twitter</a></li>
+                            <li><a href="/login/google">Google</a></li>
+                            <li><a href="/login/openid">OpenId</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        --> 
+        {% block body %}
+        {% endblock %}
+        
+         <div id="footer" class="bottombar">
+                    <ul>  
+                        <li class="span4" style="text-align: center"><a href="/">About Us</a></li>
+                        <li class="span4" style="text-align: center"><a href="/">Take Action</a></li>
+                        <li class="span4" style="text-align: center"><a href="/">Contributors</a></li>
+                     </ul>
+        </div>
+        
 
-{% block body %}
-{% endblock %}
+        <!-- Change UA-XXXXX-X to be your site's ID -->
+		<script>
+		  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+		  Modernizr.load({
+		    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+		  });
+		</script>  
+    </body>
+</html>

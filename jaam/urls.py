@@ -32,7 +32,6 @@ urlpatterns = patterns('',
     url(r'^act/', include('jaam.act.urls')),
     url(r'^journalism/', include('jaam.journalism.urls')),
     url(r'^projects/', include('jaam.projects.urls')),
-    url(r'^activate_layout/(?P<layout_name>[^\\]+)/', 'jaam.journalism.views.activate_layout'),
     url(r'^$', 'jaam.projects.views.index'), # TODO ????
 
     # USER / AUTH

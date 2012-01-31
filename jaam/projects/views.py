@@ -1,4 +1,5 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from jaam.shortcuts import render_to_response, RequestContext
@@ -9,7 +10,7 @@ from django.contrib.auth.models import User
 
 def index(request):
     projects = Project.objects.all()
-    return render_to_response('index.html', { 'projects': projects }, context_instance=RequestContext(request))
+    return render_to_response('projects/index.html', { 'projects': projects }, context_instance=RequestContext(request))
 
 def details(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
@@ -19,7 +20,7 @@ def details(request, project_slug):
     story = project.story_set.all()
     blog_post = BlogPost.objects.filter(blog__project__slug=project_slug)
     contributors = User.objects.filter(photo__project__slug=project_slug).distinct()
-    return render_to_response('project_details.html', {
+    return render_to_response('projects/project_details.html', {
         'project': project,
         'photos': photos,
         'video': video,
