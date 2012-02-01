@@ -17,3 +17,7 @@ def details(request, project_slug, video_id):
     video = get_object_or_404(Video, pk=video_id)
     return render_to_response('video_details.html', { 'video': video }, context_instance=RequestContext(request))
 
+def index(request, project_slug):
+    project = get_object_or_404(Project, slug=project_slug)
+    return render_to_response('index.html', {'project': project } ,context_instance=RequestContext(request))
+

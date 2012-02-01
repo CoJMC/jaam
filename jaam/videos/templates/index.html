@@ -1,0 +1,34 @@
+{% extends "dora/base.html" %}
+{% load thumbnail %}
+
+{% block title %}projects{% endblock %}
+
+{% block body %}
+<div id="content" class="fluid-container">
+<ul id="gallery" class="gallery" style="display:none;">
+{% for project in projects %}
+<li><div class="project">
+{% with photo=project.photo_set %}
+	<div class="span12">
+	<div class="fluid-container">
+		<a href="{{project.get_absolute_url}}">
+		<div class="row">
+		{% for video in project.video_set.all %}
+			<div class="span3"> <img class="dynamic-img" src="img.youtube.com/vi/{% video.videoId %}/0.jpg"/></div>
+			{%endfor %}
+		</div>
+		</a>
+	</div> <!-- end span 12 -->
+	</div> <!-- end container -->
+{% endwith %}
+</div></li>
+{% endfor %}
+</ul>
+</div>
+   
+    <script type="text/javascript">
+	    (function($) {
+	       $('#gallery').carousel();
+	    })(jQuery);
+	</script>
+{% endblock %}
