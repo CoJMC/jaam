@@ -1,4 +1,4 @@
-{% extends "dora/base.html" %}
+{% extends 'base.html' %}
 {% load thumbnail %}
 
 {% block title %}projects{% endblock %}
@@ -6,29 +6,26 @@
 {% block body %}
 <div id="content" class="fluid-container">
 <ul id="gallery" class="gallery" style="display:none;">
-{% for project in projects %}
+
 <li><div class="project">
-{% with photo=project.photo_set %}
 	<div class="span12">
 	<div class="fluid-container">
-		<a href="{{project.get_absolute_url}}">
 		<div class="row">
-		{% for video in project.video_set.all %}
-			<div class="span3"> <img class="dynamic-img" src="img.youtube.com/vi/{% video.videoId %}/0.jpg"/></div>
-			{%endfor %}
+		<div class="span3"> <img class="dynamic-img" src="http://img.youtube.com/vi/0Bmhjf0rKe8/0.jpg"/></div>
 		</div>
-		</a>
+		
+	{% for video in video.project.video_set.all %}
+        <li><div class="project_small" style="position:relative; top:-40px;">
+        	<img class="portrait" src="http://img.youtube.com/vi/0Bmhjf0rKe8/1.jpg" alt="Project-Photo"/>
+        </div></li>
+    {% endfor %}
 	</div> <!-- end span 12 -->
 	</div> <!-- end container -->
-{% endwith %}
+
+</div>
 </div></li>
-{% endfor %}
+
 </ul>
 </div>
-   
-    <script type="text/javascript">
-	    (function($) {
-	       $('#gallery').carousel();
-	    })(jQuery);
-	</script>
+
 {% endblock %}
