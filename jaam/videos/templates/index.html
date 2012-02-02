@@ -4,28 +4,11 @@
 {% block title %}projects{% endblock %}
 
 {% block body %}
-<div id="content" class="fluid-container">
-<ul id="gallery" class="gallery" style="display:none;">
 
-<li><div class="project">
-	<div class="span12">
-	<div class="fluid-container">
-		<div class="row">
-		<div class="span3"> <img class="dynamic-img" src="http://img.youtube.com/vi/0Bmhjf0rKe8/0.jpg"/></div>
-		</div>
-		
-	{% for video in video.project.video_set.all %}
-        <li><div class="project_small" style="position:relative; top:-40px;">
-        	<img class="portrait" src="http://img.youtube.com/vi/0Bmhjf0rKe8/1.jpg" alt="Project-Photo"/>
-        </div></li>
-    {% endfor %}
-	</div> <!-- end span 12 -->
-	</div> <!-- end container -->
 
-</div>
-</div></li>
-
-</ul>
-</div>
+{% for video in project.video_set.all %}
+<h1> {{video.title}} </h1>
+<img class="portrait" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg" alt="Project-Photo"/>
+{% endfor %}
 
 {% endblock %}
