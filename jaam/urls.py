@@ -25,6 +25,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     
+    #comment
+    (r'^comments/', include('django.contrib.comments.urls')),
+    
     # CKEDITOR
     (r'^ckeditor/', include('ckeditor.urls')), # TODO: Is this necessary
 
