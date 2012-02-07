@@ -2,7 +2,6 @@
 {% load thumbnail %}
 {% load comments %}
 
-
 {% block title %}photo gallery{% endblock %}
 
 {% block body %}
@@ -11,14 +10,18 @@
 
 	<!-- Banner-->
 	<div class="row-fluid" style="padding-left: 40px; padding-top: 10px;">
-		<div class="gallery_banner">&nbsp</div>
+		<div class="gallery_banner"> <p class="banner_text">Country</p></div>
 	</div>
 	
 	<!-- Side Bar -->
 	<div class="row-fluid">
 		<div class="span12">
-		<div class="span1" style="background-color: #D11919; height:400px; width:28px;">
-			<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Infobox_info_icon.svg/160px-Infobox_info_icon.svg.png" width="50%" height="50%"/>
+		<div class="span1" style="background-color: #A60303; height:400px; width:30px; margin-left: 22px;">
+			<img src="/s/static/info_icon.png"/ style="padding-top: 10px;">
+			<img src="/s/static/photo_icon.png"/>
+			<img src="/s/static/video_icon.png"/>
+			<img src="/s/static/stories_icon.png"/>
+			<img src="/s/static/back_icon.png"/>
 		</div>
 		
 		<!--  Gallery Content -->
@@ -64,7 +67,7 @@
 
 	<!-- Breadcrumbs --> 
 	<div class="row-fluid" style="padding-left: 40px">
-	<img src="/s/static/Breadcrumbs.png" width="40%"/>
+	<img src="/s/static/Breadcrumbs.png" width="440px"/>
 	</div>
 	
 
