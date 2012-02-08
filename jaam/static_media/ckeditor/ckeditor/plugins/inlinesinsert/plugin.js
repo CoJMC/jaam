@@ -30,10 +30,10 @@ CKEDITOR.plugins.add('inlinesinsert',
 			icon: this.path + 'images/inlinesinsert-photo.png'
 		})
 
-		editor.ui.addButton('inlinesinsert-video', {
+		/*editor.ui.addButton('inlinesinsert-video', {
 			label: 'Insert Video',
 			command: 'inlinesinsert-video',
 			icon: this.path + 'images/inlinesinsert-video.png'
-		})
+		})*/
 	}
 } );

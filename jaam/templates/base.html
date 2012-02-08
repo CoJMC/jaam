@@ -21,7 +21,6 @@
         {% compress css %}
         <link rel="stylesheet" href="/s/static/common/css/style.css">
         <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/s/static/dora/styles/style.css">
         <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
         {% endcompress %}
         
@@ -43,49 +42,21 @@
         <![endif]-->
     </head>
 	
-    <body style="height:100%">
-      <!--   <div class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="/projects/{{photo.project.slug}}">{{photo.project.title}}</a>
-                    <ul class="nav">
-                        <li><a href="/">Main</a></li>
-                        <li><a href="#about">Take Action</a></li>
-                        <!-- TODO:  
-                        using h5 below to align this properly feels wrong
-                        surely Twitter Bootstrap allows for right alignment in the
-                        top bar without using H5 or alignment hacks
-                        -->
-                        <li><a href="/activate_layout/dora">Activate Dora</a> </li>
-                        <li><a href="/activate_layout/tico">Activate Tico</a></li>
-                        </ul>
-                        <ul class="nav pull-right">
-                        {% if user.is_authenticated %}
-                            <li><a href="/logout">Logout</a></li>
-                        {% else %}
-                            <li> <a> Login: </a></li>
-                            <li><a href="/login/facebook">Facebook</a></li>
-                            <li><a href="/login/twitter">Twitter</a></li>
-                            <li><a href="/login/google">Google</a></li>
-                            <li><a href="/login/openid">OpenId</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        --> 
+    <body style="height:100%; width:100%; background-color: #262626; padding-top: 10px;">
         {% block body %}
-        {% endblock %}
-        
-         <div id="footer" class="bottombar">
-                    <ul>  
-                        <li class="span4" style="text-align: center"><a href="/">About Us</a></li>
-                        <li class="span4" style="text-align: center"><a href="/">Take Action</a></li>
-                        <li class="span4" style="text-align: center"><a href="/">Contributors</a></li>
-                     </ul>
-        </div>
-        
-
+        {% endblock %}       
+			<div id="footer">
+			<div id="nav">
+			    <div id="logo"></div>
+			    <div class="nav_item">PROJECTS</div>
+			    <div class="nav_item">ABOUT</div>
+			    <div class="nav_item">ACT</div>
+			    <div id="social">
+			        <img src="/s/static/twitter_blue.png"/>
+			        <img src="/s/static/facebook.png"/>
+			    </div>
+			</div>
+			</div>
         <!-- Change UA-XXXXX-X to be your site's ID -->
 		<script>
 		  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];

@@ -8,7 +8,7 @@ from jaam.blog.models import BlogPost
 from django.contrib.auth.models import User
 
 def index(request):
-    projects = Project.objects.all()
+    projects = Project.published_objects.all()
     return render_to_response('projects/index.html', { 'projects': projects }, context_instance=RequestContext(request))
 
 def details(request, project_slug):

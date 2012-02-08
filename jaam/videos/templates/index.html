@@ -8,12 +8,12 @@
 
 
 	{% for gallery in project.videogallery_set.all %}
-	<div> {{ gallery.title }} </div>
+	<h1 style="color:red"> {{ gallery.title }} </h1>
 	{% for gItem in gallery.videogalleryitem_set.all %}
 	
 	<div>
-	<h1> {{gItem.video.title}} </h1>
-	<img class="portrait" src="http://img.youtube.com/vi/{{gItem.video.videoId}}/0.jpg" alt="Project-Photo"/>
+	<h3 style="color:white"> {{gItem.video.title}} </h3>
+	<img class="portrait" src="http://img.youtube.com/vi/{{gItem.video.videoId}}/1.jpg" alt="Project-Photo"/>
 	</div>
 	
 	{% endfor %}

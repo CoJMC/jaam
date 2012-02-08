@@ -19,7 +19,6 @@ class Command(BaseCommand):
                 # jaam.journalism
                 Permission.objects.get(codename='add_tag'), Permission.objects.get(codename='change_tag'), Permission.objects.get(codename='delete_tag'),
                 Permission.objects.get(codename='add_userprofile'), Permission.objects.get(codename='change_userprofile'), Permission.objects.get(codename='delete_userprofile'),
-                Permission.objects.get(codename='add_journalist'), Permission.objects.get(codename='change_journalist'), Permission.objects.get(codename='delete_journalist'),
                 # jaam.photos
                 Permission.objects.get(codename='add_photo'), Permission.objects.get(codename='change_photo'), Permission.objects.get(codename='delete_photo'),
                 Permission.objects.get(codename='add_photogallery'), Permission.objects.get(codename='change_photogallery'), Permission.objects.get(codename='delete_photogallery'),

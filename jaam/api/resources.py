@@ -65,7 +65,7 @@ class PhotoResource(ModelResource):
             pgi_items = PhotoGalleryItem.objects.filter(gallery__pk=filters['gallery__id'])
             print pgi_items
             print filters['gallery__id']
-            orm_filters["pk__in"] = [i.pk for i in pgi_items]
+            orm_filters["pk__in"] = [i.photo.pk for i in pgi_items]
 
         return orm_filters
 

@@ -101,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'jaam.journalism.middleware.PublishFlexMiddleware'
 )
 
 ROOT_URLCONF = 'jaam.urls'
@@ -216,7 +217,7 @@ CKEDITOR_CONFIGS = {
 # setting for the site-specific user profile
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
-COMPRESS_ENABLED = True
+# COMPRESS_ENABLED = True
 
 # Tastypie default page size
 API_LIMIT_PER_PAGE = 0

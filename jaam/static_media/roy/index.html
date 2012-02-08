@@ -11,19 +11,53 @@
   <meta name="author" content="University of Nebraska-Lincoln College of Journalism and Mass Communications">
 
   {% compress css %}
-  <link rel="stylesheet" href="{{STATIC_URL}}roy/css/base.scss"></link>
+  <link rel="stylesheet" href="/s/static/roy/lib/bootstrap/docs/assets/css/bootstrap.css" />
+  <link rel="stylesheet" href="/s/static/roy/lib/bootstrap/docs/assets/css/bootstrap-responsive.css" />
+  <link rel="stylesheet" href="/s/static/roy/css/base.less" />
   {% endcompress %}
+
+  <script type="x-dust-template" id="coverphoto-template">
+    project_title: {project.title}
+    <br/>
+    photos:
+    <ul>
+    {#photos}
+      <li><img src="{image}"/></li>
+    {/photos}
+    </ul>
+  </script>
   
   {% compress js %}
-  <script src="{{STATIC_URL}}roy/js/lib/jquery-1.7.1.js"></script>
-  <script src="{{STATIC_URL}}roy/js/lib/underscore.js"></script>
-  <script src="{{STATIC_URL}}roy/js/lib/backbone.js"></script>
-  <script src="{{STATIC_URL}}roy/js/lib/backbone.layoutmanager.js"></script>
+  <script src="/s/static/roy/lib/jquery-1.7.1.js"></script>
+  <script src="/s/static/roy/lib/underscore.js"></script>
+  <script src="/s/static/roy/lib/dust-full-0.3.0.js"></script>
+  <script src="/s/static/roy/lib/backbone.js"></script>
+  <script src="/s/static/roy/lib/backbone.layoutmanager.js"></script>
   
-  <script src="{{STATIC_URL}}roy/js/app/app.js"></script>
-  <script src="{{STATIC_URL}}roy/js/app/setup.js"></script>
+  <script src="/s/static/roy/js/app/app.js"></script>
+
+  <script src="/s/static/roy/js/app/models/blog.js"></script>
+  <script src="/s/static/roy/js/app/models/blogpost.js"></script>
+  <script src="/s/static/roy/js/app/models/photo.js"></script>
+  <script src="/s/static/roy/js/app/models/photogallery.js"></script>
+  <script src="/s/static/roy/js/app/models/project.js"></script>
+  <script src="/s/static/roy/js/app/models/story.js"></script>
+  <script src="/s/static/roy/js/app/models/video.js"></script>
+  <script src="/s/static/roy/js/app/models/videogallery.js"></script>
+
+  <script src="/s/static/roy/js/app/views/IndexView.js"></script>
   {% endcompress %}
 </head>
     <body>
+      <div id="container" class="fluid-container">
+        <div id="content" class="fluid-content">
+          
+        </div>
+        <div id="footer">
+          <ul>
+            <li><a href="project/1">project1</a></li>
+          </ul>
+        </div>
+      </div>
     </body>
 </html>

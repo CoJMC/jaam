@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.comments.moderation import CommentModerator, moderator
 import datetime
 from jaam.projects.models import Project
-from jaam.journalism.models import Journalist, BaseModel
+from jaam.journalism.models import BaseModel
 from ckeditor.fields import RichTextField
 
 # Create your models here.
