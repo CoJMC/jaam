@@ -1,5 +1,5 @@
 from django.contrib import admin
-from jaam.journalism.models import UserProfile, Journalist, Tag
+from jaam.journalism.models import UserProfile, Tag
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import UserAdmin
 #from django.contrib.admin import SimpleListFilter
@@ -10,14 +10,14 @@ class TagAdmin(admin.ModelAdmin):
 class BaseAdmin(admin.ModelAdmin):
     pass
 
-class JournalistInline(admin.StackedInline):
-    model = Journalist
+#class UserProfileInline(admin.TabularInline):
+#    model = UserProfile
 
 class UserProfileAdmin(admin.ModelAdmin):
-    inlines = [JournalistInline,]
+    pass
 
-admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Tag, TagAdmin)
+admin.site.register(UserProfile, UserProfileAdmin)
 
 # Uh yeah, this isn't supported until django-1.4
 #class IsJournalistFilter(SimpleListFilter):
@@ -45,6 +45,7 @@ class NewUserAdmin(UserAdmin):
     #list_filter = UserAdmin.list_filter + (IsJournalistFilter,)
     # not sure how to do this...
     list_filter = UserAdmin.list_filter + ('groups__name',)
+    #inlines = UserAdmin.inlines + [UserProfileInline]
 
     def promote_to_journalist(self, request, queryset):
         for user in queryset.all():

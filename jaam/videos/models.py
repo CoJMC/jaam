@@ -1,5 +1,5 @@
 from django.db import models
-from jaam.journalism.models import BaseModel, Journalist
+from jaam.journalism.models import BaseModel
 from jaam.projects.models import Project
 from django.contrib.auth.models import User
 

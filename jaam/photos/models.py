@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from jaam.journalism.models import BaseModel, Journalist
+from jaam.journalism.models import BaseModel
 from jaam.projects.models import Project
 from easy_thumbnails.fields import ThumbnailerImageField
 from django.db.models.signals import pre_save, post_save
@@ -54,6 +54,8 @@ class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)
     introduction = models.CharField(max_length=5000)
     project = models.ForeignKey(Project)
+    photos = models.ManyToManyField(Photo, through="PhotoGalleryItem")
+    
     class Meta:
         verbose_name = "photo gallery"
         verbose_name_plural = "photo galleries"

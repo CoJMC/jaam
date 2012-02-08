@@ -4,10 +4,19 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 from social_auth.signals import pre_update
+from jaam.journalism.middleware import _show_unpublished
 
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
 
+class PublishedObjectsManager(models.Manager):
+    def get_query_set(self):
+        if _show_unpublished():
+            print "SHOWING ALL"
+            return super(PublishedObjectsManager, self).get_query_set()
+        else:
+            print "SHOWING ONLY PUBLISHED"
+            return super(PublishedObjectsManager, self).get_query_set().filter(published=True)
 
 # Create your models here.
 class Tag(models.Model):
@@ -23,6 +32,9 @@ class BaseModel(models.Model):
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag, blank=True)
 
+    objects = models.Manager() # little bugger, didn't know I explicitly needed this
+    published_objects = PublishedObjectsManager()
+
     class Meta:
         abstract = True
 
@@ -32,11 +44,18 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to='/', null = True, blank=True)
     full_name = models.CharField(max_length=255, blank=True)
 
+    # Only for journalists
+    bio = RichTextField(null=True, blank=True)
+    major = models.CharField(max_length=255, null=True, blank=True)
+    
     def __unicode__(self):
         return self.user.username
 
     def is_journalist(self):
-        return True
+        return self.user.groups.filter(name='Journalists').count() > 0
+    
+    def __unicode__(self):
+        return self.full_name
 
     @models.permalink
     def get_absolute_url(self):
@@ -58,12 +77,3 @@ def create_full_name(sender, user, response, details, **kwargs):
     user.userprofile.save()
     user.save()
     return True
-
-
-class Journalist(models.Model):
-    user_profile = models.OneToOneField(UserProfile)
-    bio = RichTextField(null=True, blank=True)
-    major = models.CharField(max_length=255, null=True, blank=True)
-    
-    def __unicode__(self):
-        return self.user_profile.full_name

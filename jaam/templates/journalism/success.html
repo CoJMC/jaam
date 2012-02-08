@@ -9,7 +9,6 @@ Post Details
 <h2>Please complete the information below: </h2>
 <h3> <form action="confirm" method="post"> {% csrf_token %}
   	{{ profile_form.as_p }}
-  	{{ journalist_form.as_p }}
   	<input type="submit" value="Submit"/>
   	</form>
 </h3>
