@@ -555,21 +555,23 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .gallery_image{display:block; width: 240px; height:160px;}
 .gallery_image .caption{padding:9px;}
 .gallery_spacer { width: 30px; float:left;}
-.gallery_link, .gallery_title, .gallery_blip {padding-left: 20px; text-align: center; font-family:sans-serif; color: white;}
+.gallery_link, .gallery_title, .gallery_blip {padding-left: 20px; text-align: center; font-family: Gotham, Helvetica, Arial, sans-serif; color: white;}
 .gallery_link{font-size: 12pt;}
 .gallery_title{font-size: 16pt; font-variant: small-caps; font-weight: bold; padding-top: 15px; padding-bottom: 5px;}
 .gallery_blip{font-size: 11pt; text-align: left; padding-top: 20px; font-style: italic}
 
-.banner_text {text-align: center; padding-top: 22px; color: white;  font-size: 24pt; font-family: sans-serif; text-transform: uppercase; font-weight: bold;}
+.banner_text {text-align: center; padding-top: 22px; color: white;  font-size: 24pt; font-family: Gotham, Helvetica, Arial, sans-serif; text-transform: uppercase; font-weight: bold;}
 
 /*@TODO: fix this to be versatile for the screen */
 .span3-opener {padding-left: 20px; float:left;}
 
+.nav_image {background-image:url('/s/static/icon_slider.png'); background-repeat: no-repeat; background-size: 160px;}
+
 .gallery_banner {background-image:url('/s/static/gallery_banner.png'); width: 388px; height: 59px; background-repeat: no-repeat; background-color:#D11919;}
 #footer { width:100%; position:fixed; left:0px; bottom:0px; background-color:#262626;}
-#nav {height:120px; width:900px; margin:0px auto;}
-#logo {background-image:url('/s/static/logo_simple.png'); background-size:160px; background-repeat:no-repeat; width:260px; height:100px; float:left; margin-right:20px;}
-#social {float:right;}
-#social img {height:48px; width:auto; margin-top: 25px;}
-.nav_item { color:white;float:left;padding:12px 20px;margin-top: 25px;font-size:24pt; font-family:sans-serif; font-weight:bold;}
+#nav {height:100px; width:900px; margin:0px auto;}
+#logo {background-image:url('/s/static/logo_simple.png'); background-size:160px; background-repeat:no-repeat; width:200px; height:100px; float:left; margin-left: 20px;}
+#social {float:left;}
+#social img {height:48px; width:auto; margin-top: 12px; margin-left: 20px;}
+.nav_item { color:white;float:left;padding:12px 20px;margin-top: 12px;font-size:22pt; font-family: Gotham, Helvetica, Arial, sans-serif;}
 

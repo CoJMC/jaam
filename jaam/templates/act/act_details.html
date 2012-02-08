@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load comments %}
+
+{% block title %}act{% endblock %}
+
+{%block banner%} {{act.project.title}} {%endblock%}
+
+{% block body %}
+		<div align="middle">
+		<h2 style="color: white"> Contact your senator! </h2>
+		{{ act.act_code|safe}}
+		</div>
+		
+{% endblock %}

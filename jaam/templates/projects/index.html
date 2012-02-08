@@ -4,27 +4,69 @@
 {% block title %}projects{% endblock %}
 
 {% block body %}
-<div id="content" class="fluid-container">
+<div id="content" class="container-fluid">
 <ul id="gallery" class="gallery" style="display:none;">
 {% for project in projects %}
 <li><div class="project">
+
+{% with act=project.act_set %}
+	<div class="span9">
+	<div class="container-fluid">
+		<div class="row-fluid">
+		{% for act in project.act_set.all %}
+			<div class="span3"> <h4> <a style="color: white" href="{{act.get_absolute_url}}">{{act.title}}</a> </h4></div>
+			{%endfor %}
+		</div>
+	</div> <!-- end container -->
+	</div> <!-- end span 9 -->
+{% endwith %}
+
+
+{% with gallery=project.photogallery_set %}
+	<div class="span9">
+	<div class="container-fluid">
+		<div class="row-fluid">
+		{% for gallery in project.photogallery_set.all %}
+			<div class="span3"><h3 style="color: white"> <a href="{{gallery.get_absolute_url}}">{{gallery.title}}</a></h3></div>
+			{%endfor %}
+		</div>
+	</div> <!-- end container -->
+	</div> <!-- end span 9 -->
+{% endwith %}
+
+
 {% with photo=project.photo_set %}
-	<div class="span12">
-	<div class="fluid-container">
-		<a href="{{project.get_absolute_url}}">
-		<div class="row">
+	<div class="span9">
+	<div class="container-fluid">
+		<div class="row-fluid">
 		{% for photo in project.photo_set.all %}
 			<div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 300x200 %}"/></div>
+			<div class="span3"><h3 style="color: white"> <a href="{{photo.get_absolute_url}}">Photo</a></h3></div>
+			{%endfor %}
+		</div>
+	</div> <!-- end container -->
+	</div> <!-- end span 9 -->
+{% endwith %}
+	
+{% with video=project.video_set %}
+	<div class="span9">
+	<div class="container-fluid">
+		<a href="{{project.get_absolute_url}}">
+		<div class="row">
+		{% for video in project.video_set.all %}
+			<iframe width="560" height="315" src="{{ video.getEmbedLink}}" frameborder="1" allowfullscreen></iframe>
 			{%endfor %}
 		</div>
 		</a>
-	</div> <!-- end span 12 -->
 	</div> <!-- end container -->
+	</div> <!-- end span 9 -->
 {% endwith %}
-</div></li>
+
 {% endfor %}
-</ul>
-</div>
+	
+</div> <!-- end project -->
+
+</li></ul></div>
    
     <script type="text/javascript">
 	    (function($) {

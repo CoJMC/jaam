@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load thumbnail %}
+{% load comments %}
+
 
 {% block title %}photo details{% endblock %}
 
@@ -20,7 +22,7 @@
 	});
 	</script>
 	
-	<!-- Load photo larger if window, smaller if mobile -->
+<!-- 
 	<div id="photo_view" class="fluid-container" align="middle" style="height:100%; width:100%">
 		<div align="center">
 		 	<a href="javascript:void()"><img id="first_photo" class="dynamic-img" border="0" align="middle" src="{% thumbnail photo.image 1024x768 %}" alt="{{photo.title}}"/></a>
@@ -28,11 +30,11 @@
 	</div>  
 	 
     <div id="details_view" style="display:none" class="container">
-    
-    <div class="content" style="height:100%">
+     smaller if mobile -->
+    <div class="container" style="height:100%; background-color: #FFFFFF">
     	
         <div class="page-header">
-            <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2><!-- TODO: LINK TO JOURNALISTS PROFILE PAGE -->
+            <h2>{{photo.title}} <small>{{photo.journalist}}</small></h2>
         </div>
         
         <div class="row">
@@ -40,7 +42,49 @@
                 <a href="javascript:void()"><img border="0" class="dynamic-img" src="{% thumbnail photo.image 1000x750 %}" alt="{{photo.title}}"/></a>
             </div>
 		  
-		  <div  class="photo-details">
+		  <div  class="photo-details"  style="margin-left: 65%">
+		  {% get_comment_count for photo as comment_count %}
+		  <p> <font size="5">Comments</font> <font size="3"><sup>({{ comment_count }})</sup></font></p>
+
+
+        {% get_comment_list for photo as comment_list %}
+        	{% for comment in comment_list %}
+        	    <p>{{ comment.user_name }} says: {{comment.comment}}</p>
+        	{% endfor %}
+
+		
+        {% if user.is_authenticated %}
+        {% with photo.get_absolute_url as next %}
+        {% get_comment_form for photo as form %}
+        <div class="span3">
+        	<h3> Add to the Chatter </h3>
+        	<form action="{% comment_form_target %} " method="post">
+        	<div class="row">
+        		{% csrf_token %}
+			        {{ form.comment }}
+			        <p style="display:none">
+			        {{ form.honeypot }}
+			        {{form.user }}
+			        {{ form.content_type }}
+			        {{ form.object_pk }}
+			        {{ form.timestamp }}
+			        {{ form.security_hash }}
+			        </p>
+			</div>
+			<div class="row">
+		        <input type="submit" name="submit" value="Post">
+		        <input type="submit" name="preview" value="Preview">		        
+			</div>
+        	</form>
+        </div>
+        
+        {% endwith %}
+        
+        {% else %}
+            <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
+        {% endif %}
+
+		  <!-- 
 	        <h5>{{photo.caption}}</h5>  
 	        <small> Tags: {{photo.tags.all|join:','}} </small>
 		    <p> Camera Manufacturer: {{photo.exif_data.camera_manufacturer}}</p>
@@ -55,10 +99,11 @@
 		    <p> GPS lat: {{photo.exif_data.gps_latitude}}</p>
 		    <p> GPS long: {{photo.exif_data.gps_longitude}}</p>
 		    <p> Altitude: {{photo.exif_data.altitude}}</p>
+		   -->
 	    </div>
 	   </div> <!--  end row -->
 	    
-    </div> <!--  end content div -->
+    </div> <!--  end container div -->
 	
 	<div class="gallery-banner"> 
     <div id="gallery_footer">
