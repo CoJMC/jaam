@@ -101,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'jaam.journalism.middleware.PublishFlexMiddleware'
 )
 
 ROOT_URLCONF = 'jaam.urls'

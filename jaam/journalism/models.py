@@ -4,13 +4,19 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 from social_auth.signals import pre_update
+from jaam.journalism.middleware import _show_unpublished
 
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
 
 class PublishedObjectsManager(models.Manager):
     def get_query_set(self):
-        return super(PublishedObjectsManager, self).get_query_set().filter(published=True)
+        if _show_unpublished():
+            print "SHOWING ALL"
+            return super(PublishedObjectsManager, self).get_query_set()
+        else:
+            print "SHOWING ONLY PUBLISHED"
+            return super(PublishedObjectsManager, self).get_query_set().filter(published=True)
 
 # Create your models here.
 class Tag(models.Model):
