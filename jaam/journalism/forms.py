@@ -1,21 +1,23 @@
 from django import forms
-from jaam.journalism.models import UserProfile, Journalist
+from jaam.journalism.models import UserProfile
 
-class JournalistForm(forms.ModelForm):
-    class Meta:
-        model = Journalist
-        exclude = ('user_profile') 
+# class JournalistForm(forms.ModelForm):
+#     class Meta:
+#         model = Journalist
+#         exclude = ('user_profile') 
         
-    def getBio(self):
-        return self.cleaned_data["bio"]
-    def getMajor(self):
-        return self.cleaned_data["major"]
+#     def getBio(self):
+#         return self.cleaned_data["bio"]
+#     def getMajor(self):
+#         return self.cleaned_data["major"]        
         
 class UserProfileForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     class Meta:
         model = UserProfile
-        exclude = ('user') 
+        exclude = ('user')
+        if model.is_journalist == False:
+        	exclude = exclude + ('bio', 'major')
         
     def getFull_Name(self):
         return self.cleaned_data["full_name"]
