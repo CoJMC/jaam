@@ -4,11 +4,20 @@
 {% block title %}projects{% endblock %}
 
 {% block body %}
+<div>
 
 
-{% for video in project.video_set.all %}
-<h1> {{video.title}} </h1>
-<img class="portrait" src="http://img.youtube.com/vi/{{video.videoId}}/0.jpg" alt="Project-Photo"/>
-{% endfor %}
+	{% for gallery in project.videogallery_set.all %}
+	<h1 style="color:red"> {{ gallery.title }} </h1>
+	{% for gItem in gallery.videogalleryitem_set.all %}
+	
+	<div>
+	<h3 style="color:white"> {{gItem.video.title}} </h3>
+	<img class="portrait" src="http://img.youtube.com/vi/{{gItem.video.videoId}}/1.jpg" alt="Project-Photo"/>
+	</div>
+	
+	{% endfor %}
+	{% endfor %}
+	</div>
 
 {% endblock %}
