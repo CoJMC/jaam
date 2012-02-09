@@ -43,20 +43,50 @@
     </head>
 	
     <body style="height:100%; width:100%; background-color: #262626; padding-top: 10px;">
+         
+		<div class="row-fluid" style="padding-left: 40px; padding-top: 10px;">
+		<div class="gallery_banner"> <p class="banner_text"> {%block banner%} {%endblock%}</p></div>
+		</div>
+
+		
+		<div class="container-fluid">
+		<!-- Side Bar -->
+		<div class="row-fluid">
+		<div class="span12">
+		<div class="span1" style="background-color: #A60303; height:430px; width:30px; margin-left: 22px;">
+			<img class="nav_image" src="/s/static/info_icon.png"/ style="padding-top: 10px;">
+			<img class="nav_image" src="/s/static/photo_icon.png"/>
+			<img src="/s/static/video_icon.png"/>
+			<img src="/s/static/stories_icon.png"/>
+			<img src="/s/static/back_icon.png"/>
+		</div>
+		
+		<!-- Inside content -->
+		<div class="span11" style="padding-top: 30px; height: 400px">
         {% block body %}
-        {% endblock %}       
-			<div id="footer">
-			<div id="nav">
-			    <div id="logo"></div>
-			    <div class="nav_item">PROJECTS</div>
-			    <div class="nav_item">ABOUT</div>
-			    <div class="nav_item">ACT</div>
-			    <div id="social">
-			        <img src="/s/static/twitter_blue.png"/>
-			        <img src="/s/static/facebook.png"/>
-			    </div>
-			</div>
-			</div>
+           
+        {% endblock %}
+        </div>
+        
+        <!-- Breadcrumbs --> 
+		<div class="row-fluid" style="margin-left: 20px">
+		<img src="/s/static/Breadcrumbs.png" width="440px"/>
+		</div>
+		</div>
+		
+		<!-- Footer -->
+		<div id="footer">
+		<div id="nav">
+		    <div id="logo"></div>
+		    <div class="nav_item">PROJECTS</div>
+		    <div class="nav_item">ABOUT</div>
+		    <div class="nav_item">ACT</div>
+		    <div id="social">
+		        <img src="/s/static/twitter_icon.png"/>
+		        <img src="/s/static/facebook.png"/>
+		    </div>
+		</div>
+		</div>
         <!-- Change UA-XXXXX-X to be your site's ID -->
 		<script>
 		  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];

@@ -37,7 +37,12 @@ class Video(BaseModel):
         
         else:
             first_split = stringUrl.find('be/') + 3
-            return self.videoUrl[first_split:]    
+            return self.videoUrl[first_split:]
+        
+    def getEmbedLink(self):
+        video_id = self.scrapeVideoId()
+        link = "http://www.youtube.com/embed/" + video_id  
+        return link     
         
     
     def save(self, *args, **kwargs):
