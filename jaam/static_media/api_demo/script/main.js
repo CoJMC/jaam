@@ -5,7 +5,8 @@
  * is fired upon creation of each project. When the last project 
  * is created, the focus event triggers the carousel to be created.
  */
-var BASE_URL = "//nickgraef.com:8000";
+//var BASE_URL = "//nickgraef.com:8000";
+var BASE_URL = "";
 var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
 var COLORS = ['crimson', 'gold', 'green'];
 var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
