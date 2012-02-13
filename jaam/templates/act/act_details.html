@@ -7,9 +7,20 @@
 {%block banner%} {{act.project.title}} {%endblock%}
 
 {% block body %}
-		<div align="middle">
-		<h2 style="color: white"> Contact your senator! </h2>
-		{{ act.act_code|safe}}
-		</div>
-		
+	<!-- @TODO:  UPDATE OUR ACT MODEL? -->
+	<div class="span3">
+		<p class="act_image"> <img src="http://topnews.ae/images/unicef-logo_0.jpg" class="act_logo"/></p>
+		<h5 style="color: white"> UNICEF Office in the Kyrgyz Republic was set up to improve the situation of children in 1994, when the new Kyrgyz Republic signed the Convention on the Rights of the Child. It has now worked for nearly 20 years to assist the Kyrgyz government and civil society organisations to fulfil their obligations under this Convention and to empower children to fully claim their rights.</h5>
+	</div>
+
+	<div class="span3" style="padding-left: 20px; padding-right: 20px">
+		<p class="act_image"> <img src="http://www.lightcrest.com/site_media/images/adb_logo.jpg"  class="act_logo"/></p>
+		<h5 style="color: white"> ADB has been active in Central Asia since 1995. It has engaged particularly in education and early childhood development, agriculture and rural small-scale finance, water and land management, drinking water and sanitation schemes, and transport and energy programs in the region. ADB houses the secretariat of the CAREC Institute, which offers grants to local researchers and institutes.</h5>
+	</div>
+	
+	<div class="span3">
+		<p class="act_image"> <img src="http://www.infomongolia.com/images/stories/news/news/2011/default_pics01/logo/koica_korea_international_cooperation_agency.jpg"  class="act_logo"/></p>
+		<h5 style="color: white"> KOICA has a unique development program in Central Asia, since nearly half of its aid is allocated to the information and communication technology sector. Korea is among the top donors to Kazakhstan and Uzbekistan.</h5>
+	</div>
+	
 {% endblock %}
