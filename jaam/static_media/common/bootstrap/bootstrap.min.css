@@ -570,9 +570,9 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .gallery_banner {background-image:url('/s/static/gallery_banner.png'); width: 388px; height: 59px; background-repeat: no-repeat; background-color:#D11919;}
 #footer { width:100%; position:fixed; left:0px; bottom:0px; background-color:#262626;}
 #nav {height:100px; width:900px; margin:0px auto;}
-#logo {background-image:url('/s/static/logo_simple.png'); background-size:140px; background-repeat:no-repeat; width:200px; height:100px; float:left; margin-right:10px;}
+#logo {background-image:url('/s/static/logo_simple-white.png'); background-size:140px; background-repeat:no-repeat; width:200px; height:100px; float:left; margin-right:10px;}
 #social {float:right;}
-#social img {height:48px; width:auto; margin-top: 10px; margin-right: 40px;}
+#social img {height:48px; width:auto; margin-top: 8px; margin-right: 30px;}
 .nav_item { color:white;float:left;padding:12px 20px;margin-top: 10px;font-size:24pt; font-family:sans-serif; font-weight:bold;}
 
 
