@@ -74,7 +74,7 @@ function updatePhotoImage() {
     var id = Number(jQuery(this).val())
     var image_place = jQuery(this).parentsUntil('tbody', 'tr').children('.image_placeholder')
     if (id > 0) {
-        jQuery.getJSON('/api/v1/photo/'+id+'/?format=json', function(data) {
+        jQuery.getJSON('/api/v1/photo/'+id+'/?format=json&size=(220,150)', function(data) {
             image_place.html('<img src="'+data.image+'">')
         });
     } else {
