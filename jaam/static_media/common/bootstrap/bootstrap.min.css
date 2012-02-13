@@ -576,6 +576,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .nav_item { color:white;float:left;padding:12px 20px;margin-top: 10px;font-size:24pt; font-family:sans-serif; font-weight:bold;}
 
 .act_image{padding: 10px; text-align: center;}
+ .inside_page{text-align: center;}
 .act_logo{height: 150px; width: 150px;}
 
 

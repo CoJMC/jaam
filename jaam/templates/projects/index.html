@@ -53,8 +53,8 @@
 		<a href="{{project.get_absolute_url}}">
 		<div class="row">
 		{% for video in project.video_set.all %}
-			<iframe width="560" height="315" src="{{ video.getEmbedLink}}" frameborder="1" allowfullscreen></iframe>
-			{%endfor %}
+			<div class="span3"><h3 style="color: white"> <a href="{{video.get_absolute_url}}">{{video.title}}</a></h3></div>
+		{%endfor %}
 		</div>
 		</a>
 	</div> <!-- end container -->

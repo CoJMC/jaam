@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load comments %}
+
+{% block title %}video{% endblock %}
+
+{%block banner%} {{video.project.title}} {%endblock%}
+
+{% block body %}
+			<p class="inside_page"><iframe width="800" height="400" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
+			</p>	
+{% endblock %}
