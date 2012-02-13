@@ -35,8 +35,8 @@ urlpatterns = patterns('',
     url(r'^act/', include('jaam.act.urls')),
     url(r'^journalism/', include('jaam.journalism.urls')),
     url(r'^projects/', include('jaam.projects.urls')),
-    #url(r'^$', 'jaam.projects.views.index'), # TODO ????
-    (r'^$', direct_to_template, {'template': 'projects/index.html'}),
+    url(r'^$', 'jaam.projects.views.index'), # TODO ????
+    #(r'^$', direct_to_template, {'template': 'projects/index.html'}),
 
     # USER / AUTH
     url(r'^logout/$', 'django.contrib.auth.views.logout', name="auth_logout"),
