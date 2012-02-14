@@ -12,7 +12,7 @@
 	<div class="span9">
 	<div class="container-fluid">
 		<div class="row-fluid">
-		{% for act in project.act_set.all %}
+		{% for act in project__act_set.all %}
 			<div class="span3"> <h4> <a style="color: white" href="{{act.get_absolute_url}}">{{act.title}}</a> </h4></div>
 			{%endfor %}
 		</div>

@@ -9,6 +9,7 @@ from easy_thumbnails.files import get_thumbnailer
 import ast
 
 class ProjectResource(ModelResource):
+    covergallery = fields.ForeignKey('jaam.api.resources.PhotoGalleryResource', 'coverGallery', null=True)
     class Meta:
         queryset = Project.objects.all()
         allowed_methods = ['get']
@@ -16,6 +17,7 @@ class ProjectResource(ModelResource):
             'pk': ALL,
             'id': ALL,
             'slug': ALL,
+            'covergallery': ('isnull'),
         }
 
 class PhotoGalleryResource(ModelResource):
@@ -42,7 +44,6 @@ class PhotoResource(ModelResource):
         if 'size' in bundle.request.GET:
             # TODO:
             # use id to filter instead of slug? implement id filtering above
-            # add a crop option {'crop': True}
             try:
                 size = ast.literal_eval(bundle.request.GET['size'])
             except SyntaxError:
@@ -78,10 +79,6 @@ class PhotoResource(ModelResource):
 #             'gallery': ALL_WITH_RELATIONS,
 #         }
 
-
-class VideoGalleryResource(ModelResource):
-    class Meta:
-        quersyset = VideoGallery.objects.all()
 
 class VideoGalleryResource(ModelResource):
     class Meta:
