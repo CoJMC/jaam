@@ -11,6 +11,9 @@ def user_profile(request, username):
     user = get_object_or_404(User, username=username)
     return render_to_response('journalism/user_profile.html', { 'user': user }, context_instance=RequestContext(request))
 
+def about(request):
+    return render_to_response('journalism/about_us.html', context_instance=RequestContext(request))
+
 @csrf_protect
 def profile_set(request):
     user = request.user

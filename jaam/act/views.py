@@ -10,3 +10,6 @@ def details(request, project_slug, act_slug):
     project = get_object_or_404(Project, slug=project_slug)
     act = get_object_or_404(Act, slug=act_slug)
     return render_to_response('act/act_details.html', { 'act': act }, context_instance=RequestContext(request))
+
+def information(request):
+    return render_to_response('act/act_information.html', context_instance=RequestContext(request))

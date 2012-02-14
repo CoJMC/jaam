@@ -11,6 +11,12 @@ def index(request):
     projects = Project.published_objects.all()
     return render_to_response('projects/index.html', { 'projects': projects }, context_instance=RequestContext(request))
 
+
+def contributors(request, project_slug):
+    project = get_object_or_404(Project, slug=project_slug)
+    return render_to_response('projects/project_contributors.html', { 'project': project }, context_instance=RequestContext(request))
+
+
 def details(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
     #in your template, filter out. We need the whole list.

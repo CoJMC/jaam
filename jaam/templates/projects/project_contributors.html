@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load comments %}
+
+{% block title %} {{project.title}} contributors{% endblock %}
+
+{%block banner%} {{project.title}} {%endblock%}
+
+{% block body %}
+	<div class="span3">
+		<p class="info_page"> Output pretty pics here. </p>
+	</div>
+
+	<div class="span3" style="padding-left: 20px; padding-right: 20px">
+	</div>
+	
+	<div class="span3">
+	</div>
+	
+{% endblock %}
