@@ -17,6 +17,7 @@ class ProjectResource(ModelResource):
             'pk': ALL,
             'id': ALL,
             'slug': ALL,
+            'covergallery': ('isnull'),
         }
 
 class PhotoGalleryResource(ModelResource):
