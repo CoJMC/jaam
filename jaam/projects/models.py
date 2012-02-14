@@ -1,5 +1,5 @@
 from django.db import models
-from jaam.journalism.models import BaseModel
+from jaam.journalism.models import BaseModel, User
 from ckeditor.fields import RichTextField
 
 class ProjectLocation(models.Model):
@@ -22,3 +22,9 @@ class Project(BaseModel):
         return ('jaam.projects.views.details', (), {
             'project_slug': self.slug,
         })
+        
+    @property
+    def journalists(self):
+        return User.objects.filter(
+            pk__in=self.photo_set.all().values_list('journalist', flat=True).query
+        )
