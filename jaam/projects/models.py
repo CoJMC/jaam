@@ -9,7 +9,8 @@ class ProjectLocation(models.Model):
         return self.location
 
 class Project(BaseModel):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=50)
+    tagline = models.CharField(max_length=250)
     description = RichTextField(null=True, blank=True)
     locations = models.ManyToManyField(ProjectLocation)
     coverGallery = models.ForeignKey('photos.PhotoGallery', null=True, blank=True, related_name='+')
