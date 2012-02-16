@@ -9,7 +9,10 @@ from django.contrib.auth.models import User
 
 def index(request):
     projects = Project.published_objects.all()
-    return render_to_response('projects/index.html', { 'projects': projects }, context_instance=RequestContext(request))
+    return render_to_response('projects/index.html', {
+        'projects': projects,
+        'title': "THIS IS ANOTHER HAWT TITLE",
+    }, context_instance=RequestContext(request))
 
 
 def contributors(request, project_slug):
@@ -32,4 +35,5 @@ def details(request, project_slug):
         'story': story,
         'blog_post': blog_post,
         'contributors': contributors,
+        'title': "THIS IS A TITLE, HAWT",
     }, context_instance=RequestContext(request))
