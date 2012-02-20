@@ -47,15 +47,15 @@ class UserProfile(models.Model):
     # Only for journalists
     bio = RichTextField(null=True, blank=True)
     major = models.CharField(max_length=255, null=True, blank=True)
-    
+
     def __unicode__(self):
-        return self.user.username
+        if self.full_name == "":
+            return self.user.username
+        else:
+            return self.full_name
 
     def is_journalist(self):
         return self.user.groups.filter(name='Journalists').count() > 0
-    
-    def __unicode__(self):
-        return self.full_name
 
     @models.permalink
     def get_absolute_url(self):

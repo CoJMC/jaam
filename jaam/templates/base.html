@@ -7,93 +7,70 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
-    {% load i18n %}
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        
-        <title>jaam | {% block title %}home{% endblock %}</title>
-        
-        {% compress css %}
-        <link rel="stylesheet" href="/s/static/common/css/style.css">
-        <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
-        {% endcompress %}
-        
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        {% compress js %}
-        <script src="/s/static/dora/scripts/pages.js"></script>
-        <script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
-            
-        <script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
-        <script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
-        <script src="/s/static/dora/scripts/jquery.mobile.carousel.js"></script>
-            
-        <script src="/s/static/common/js/plugins.js"></script>
-        {% endcompress %}		
-        <!--[if lt IE 7 ]>
-            <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-            <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-        <![endif]-->
-    </head>
+	{% load i18n %}
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<title>jaam | {{ title }}</title>
+		{% compress css %}
+		<link rel="stylesheet" href="/s/static/common/css/style.css">
+		<link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="/s/static/dora/styles/pages.css">
+		{% endcompress %}
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		{% compress js %}
+		<script src="/s/static/dora/scripts/pages.js"></script>
+		<script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
+		
+		<script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
+		<script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
+		<script src="/s/static/dora/scripts/jquery.mobile.carousel.js"></script>
+		
+		<script src="/s/static/common/js/plugins.js"></script>
+		{% endcompress %}		
+		<!--[if lt IE 7 ]>
+			<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+			<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+		<![endif]-->
+	</head>
 	
-    <body style="height:100%; width:100%; background-color: #262626; padding-top: 10px;">
-    
-		<div class="row-fluid" style="padding-left: 40px; padding-top: 5px;">
-		<div class="gallery_banner"> <p class="banner_text"> {%block banner%} {%endblock%}</p></div>
-		</div>
-
-		
+	<body style="height:100%; width:100%; background-color: #262626; padding-top: 10px;">
 		<div class="container-fluid">
-		<!-- Side Bar -->
-		<div class="row-fluid">
-		<div class="span12">
-		<div class="span1" style="background-color: #A60303; height:450px; width:30px; margin-left: 22px;">
-			<img class="nav_image" src="/s/static/info_icon.png"/ style="padding-top: 10px;">
-			<img class="nav_image" src="/s/static/photo_icon.png"/>
-			<img src="/s/static/video_icon.png"/>
-			<img src="/s/static/stories_icon.png"/>
-			<img src="/s/static/back_icon.png"/>
-		</div>
-		
-		<!-- Inside content -->
-			<!-- @TODO: VERTICALLY CENTER THE INSIDE CONTENT -->
-		<div class="span11" style="padding-top: 20px; height: 430px">
-        {% block body %}
-           
-        {% endblock %}
-        </div>
-        
-        <!-- Breadcrumbs --> 
-		<div class="row-fluid" style="margin-left: 20px">
-		<img src="/s/static/Breadcrumbs.png" width="440px"/>
-		</div>
+		{% block body %}
+
+		{% endblock %}
 		</div>
 		
 		<!-- Footer -->
 		<div id="footer">
-		<div id="nav">
-		    <div id="logo"></div>
-		    <div class="nav_item"> <a href="/">PROJECTS</a> </div>
-		    <div class="nav_item"> <a href="/about_us">ABOUT</a></div>
-		    <div class="nav_item"> <a href="/act_information">ACT</a> </div>
-		    <div id="social">
-		        <img src="/s/static/twitter_icon.png"/>
-		        <img src="/s/static/facebook-white.png"/>
-		    </div>
+			<div id="nav">
+				<div id="logo"></div>
+				<div class="nav_item"><a href="/projects">PROJECTS</a></div>
+				<div class="nav_item"><a href="/about">ABOUT</a></div>
+				<div class="nav_item"><a href="/act">ACT</a<</div>
+				<div id="social">
+					<a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}">
+						<img src="/s/static/twitter_icon.png"/>
+					</a>
+					<a href="https://twitter.com/share?url={{ request.get_full_path }}">
+						<img src="/s/static/api_demo/img/facebook-white.png"/>
+					</a>
+				</div>
+			</div>
 		</div>
-		</div>
-        <!-- Change UA-XXXXX-X to be your site's ID -->
+		<!-- Change UA-XXXXX-X to be your site's ID -->
 		<script>
-		  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-		  Modernizr.load({
-		    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-		  });
+			window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+			Modernizr.load({
+				load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+			});
 		</script>  
-    </body>
+	</body>
 </html>
