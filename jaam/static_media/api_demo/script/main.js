@@ -9,7 +9,6 @@
 var BASE_URL = "";
 var PROJECT_OPTIONS = {'covergallery__isnull': 'false'};
 var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
-var COLORS = ['crimson', 'gold', 'green', 'violet'];
 var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
 
 function carousel(){
@@ -53,7 +52,7 @@ $(document).ready(function (){
                             var div = $("<div>").addClass("pic").appendTo(project_li);
                             $("<img/>").attr("src", item.image).appendTo(div);
                         });
-                        var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", COLORS[proj.id-1]);
+                        var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", proj.primaryColor);
                         var title = $("<span>").addClass("title").text(proj.title);
                         title.appendTo(title_box);
                         title_box.insertAfter(project_li.children()[3] || project_li.children().last());
