@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.contrib.sites.models import Site
 from jaam.journalism.models import BaseModel, User
 from ckeditor.fields import RichTextField
 
@@ -28,6 +29,14 @@ class Project(BaseModel):
         return ('jaam.projects.views.details', (), {
             'project_slug': self.slug,
         })
+    def rss_urls(self):
+        from jaam.feeds import LatestPhotosFeed, LatestStoriesFeed, LatestBlogsFeed
+        domain = Site.objects.get_current().domain
+        photos = "<a href='%s'>Photos</a><br>" % LatestPhotosFeed().link(self)
+        stories = "<a href='%s'>Stories</a><br>" % LatestStoriesFeed().link(self)
+        blog_posts = "<a href='%s'>Blog Posts</a>" % LatestBlogsFeed().link(self)
+        return photos + stories + blog_posts
+    rss_urls.allow_tags = True
 
     @property
     def journalists(self):
