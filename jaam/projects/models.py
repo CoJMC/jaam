@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.contrib.sites.models import Site
 from jaam.journalism.models import BaseModel, User
 from ckeditor.fields import RichTextField
+import re
 
 class ProjectLocation(models.Model):
     location = models.CharField(max_length=1000)
@@ -45,8 +46,14 @@ class Project(BaseModel):
         )
 
 @receiver(pre_save, sender=Project)
-def add_pound(instance, **kwargs):
-    if len(instance.primaryColor) < 7:
+def format_colors(instance, **kwargs):
+    p_length = len(instance.primaryColor)
+    a_length = len(instance.accentColor)
+    if (p_length is 3 or p_length is 6) and is_hex(instance.primaryColor):
         instance.primaryColor = "#" + instance.primaryColor.upper()
-    if len(instance.accentColor) < 7:
+    if (a_length is 3 or a_length is 6) and is_hex(instance.accentColor):
         instance.accentColor = "#" + instance.accentColor.upper()
+
+def is_hex(value):
+    search = re.compile(r'[^0-9a-fA-F]').search
+    return not bool(search(value))
