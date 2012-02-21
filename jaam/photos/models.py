@@ -24,7 +24,7 @@ class PhotoExifData(models.Model):
     gps_latitude = models.CharField(max_length=15, null=True)
     gps_longitude = models.CharField(max_length=15, null=True)
     altitude = models.CharField(max_length=15, null=True)
-    
+
     def __unicode__(self):
         return ' '.join({self.photo.project.title, self.photo.title})
 
@@ -39,7 +39,7 @@ class Photo(BaseModel):
     title = models.CharField(max_length=100)
     caption = models.CharField(max_length=5000)
     exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False)
-    
+
     def __unicode__(self):
         return self.title
 
@@ -55,7 +55,7 @@ class PhotoGallery(BaseModel):
     introduction = models.CharField(max_length=5000)
     project = models.ForeignKey(Project)
     photos = models.ManyToManyField(Photo, through="PhotoGalleryItem")
-    
+
     class Meta:
         verbose_name = "photo gallery"
         verbose_name_plural = "photo galleries"
@@ -70,7 +70,10 @@ class PhotoGallery(BaseModel):
             'gallery_slug': self.slug,
         })
 
-# This is for ordering photos inside of photo galleries which can't be done with 
+    @property
+    def cover_photo(self):
+        return self.photogalleryitem_set.order_by('order')[0].photo
+# This is for ordering photos inside of photo galleries which can't be done with
 # a regular m2m relationship
 class PhotoGalleryItem(models.Model):
     photo = models.ForeignKey(Photo)
@@ -96,13 +99,13 @@ def read_exif(sender, instance, **kwargs):
     img_file = urllib.urlopen(instance.image.url)
     im = StringIO(img_file.read())
     image = Image.open(im)
-    
+
     try:
         photo_exif = image._getexif()
         data = dict((TAGS[k], v) for (k,v) in photo_exif.items() if (k in TAGS))
     except AttributeError:
         return
-    
+
     exif = instance.exif_data
     exif.camera_manufacturer = data['Make'] if ('Make' in data) else None
     exif.camera_model = data['Model'] if ('Model' in data) else None
@@ -113,13 +116,13 @@ def read_exif(sender, instance, **kwargs):
     exif.flash_used = parse_flash(data['Flash']) if ('Flash' in data) else None
     exif.height_dimension = data['ExifImageHeight'] if ('ExifImageHeight' in data) else None
     exif.width_dimension = data['ExifImageWidth'] if ('ExifImageWidth' in data) else None
-    
+
     gps_data = dict((GPSTAGS[k], v) for (k, v) in data['GPSInfo'].items() if (k in GPSTAGS)) if ('GPSInfo' in data) else {}
-    
+
     exif.gps_latitude = gps_data['GPSLatitude'] if ('GPSLatitude' in gps_data) else None
     exif.gps_longitude = gps_data['GPSLongitude'] if ('GPSLongitude' in gps_data) else None
     exif.altitude = gps_data['GPSAltitude'] if ('GPSAltitude' in gps_data) else None
-    
+
     exif.save()
 
 def parse_datetime(dt):

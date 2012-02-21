@@ -1,43 +1,14 @@
-{% extends "base.html" %}
+{% extends "banner_base.html" %}
 {% load thumbnail %}
-{% load comments %}
 
-{% block title %}photo gallery{% endblock %}
+{% block title %} {{gallery.title}} {% endblock %}
 
-{%block banner%} {{gallery.project.title}} {%endblock%}
-
-{% block body %}
-			<div class="span3-opener">
-				<img class="gallery_image" src="http://www.theohsnapproject.com/ohsnap_blog/wp-content/uploads/2010/01/3573673902_a940fa0d68_b-600x400.jpg"/>
-				<p class="gallery_title">Buildings</p>
-				<p class="gallery_link"><a style="color: white">INFO | </a> <a style="color: white">PHOTOGRAPHERS</a>
-				</p>
-				<p class="gallery_blip">
-					Buildings are so cool here. You should really look at them. Pretty please, they're supa preeeeeety.
-				</p>
-			</div>
-			<div class="gallery_spacer">
-			&nbsp
-			</div>
-			<div class="span3">
-				<img class="gallery_image" src="http://upload.wikimedia.org/wikipedia/commons/5/5b/India_Gate_600x400.jpg"/>
-				<p class="gallery_title">Weather</p>
-				<p class="gallery_link"><a style="color: white">INFO | </a> <a style="color: white">PHOTOGRAPHERS</a>
-				</p>
-				<p class="gallery_blip">
-					Let's talk about the weather. It's fun, right? Everyone loves to chat about it. Yay weather.
-				</p>
-			</div>
-			<div class="gallery_spacer">
-			&nbsp
-			</div>
-			<div class="span3">
-				<img class="gallery_image" src="http://www.islandvibe.org/wedding/files/2011/09/celebrations-070310-0859-600-x-400.jpg"/>
-				<p class="gallery_title">Culture</p>
-				<p class="gallery_link"><a style="color: white">INFO | </a> <a style="color: white">PHOTOGRAPHERS</a>
-				<p class="gallery_blip">
-					Culture opens our eyes. Culture teaches us about ourselves. Dive in. ...ALSO, WHATS THE BLIP LIMIT?
-				</p>
-				</p>
-			</div>
+{% block banner_body %}
+{% for photo in photos %}
+	<div class="span3">
+		
+		<a href="{{photo.get_absolute_url}}"> <img class="gallery_image" src="{% thumbnail photo.image 200x200 %}"/> </a>
+	
+	</div>
+{% endfor %}
 {% endblock %}
