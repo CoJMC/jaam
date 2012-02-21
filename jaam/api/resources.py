@@ -55,30 +55,11 @@ class PhotoResource(ModelResource):
             return thumbnailer.get_thumbnail(thumbnail_options).url
         else:
             return bundle.data['image']
-    def build_filters(self, filters=None):
-        # TODO Comment this
-        if filters is None:
-            filters = {}
-
-        orm_filters = super(PhotoResource, self).build_filters(filters)
-
-        if "gallery__id" in filters:
-            pgi_items = PhotoGalleryItem.objects.filter(gallery__pk=filters['gallery__id'])
-            print pgi_items
-            print filters['gallery__id']
-            orm_filters["pk__in"] = [i.photo.pk for i in pgi_items]
-
-        return orm_filters
-
-# class PhotoGalleryItemResource(ModelResource):
-#     gallery = fields.ForeignKey(PhotoGalleryResource, 'gallery')
-#     class Meta:
-#         queryset = PhotoGalleryItem.objects.all()
-#         allow_methods = ['get']
-#         filtering = {
-#             'gallery': ALL_WITH_RELATIONS,
-#         }
-
+    def get_object_list(self, request):
+        if hasattr(request, 'GET') and 'gallery__id' in request.GET:
+            return Photo.objects.filter(photogallery=request.GET['gallery__id']).order_by('photogalleryitem__order')
+        else:
+            return super(PhotoResource, self).get_object_list(request)
 
 class VideoGalleryResource(ModelResource):
     class Meta:

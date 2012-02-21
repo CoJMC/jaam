@@ -39,7 +39,7 @@ $(document).ready(function (){
         $.each(proj_data.objects, function(i, proj) {
             if (proj.covergallery != null) {
                 $.getJSON(BASE_URL+proj.covergallery+"?format=jsonp&callback=?", function (cover_data) {
-                    var options = $.extend(PHOTO_OPTIONS, {'project': proj.id, 'gallery__id': cover_data.id});
+                    var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
                     $.getJSON(BASE_URL+"/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
                         var project_li = $("<li>").addClass("project").attr("id", "proj_"+proj.id).appendTo("#projects");
                         project_li.click(function (){
