@@ -1,5 +1,3 @@
-
-
 {% extends "base.html" %}
 {% load thumbnail %}
 
@@ -14,8 +12,20 @@
 	<div class="span9">
 	<div class="container-fluid">
 		<div class="row-fluid">
-		{% for act in project__act_set.all %}
+		{% for act in project.act_set.all %}
 			<div class="span3"> <h4> <a style="color: white" href="{{act.get_absolute_url}}">{{act.title}}</a> </h4></div>
+			{%endfor %}
+		</div>
+	</div> <!-- end container -->
+	</div> <!-- end span 9 -->
+{% endwith %}
+
+{% with story=project.story_set %}
+	<div class="span9">
+	<div class="container-fluid">
+		<div class="row-fluid">
+		{% for story in project.story_set.all %}
+			<div class="span3"> <h4> <a style="color: white" href="{{story.get_absolute_url}}">{{story.headline}}</a> </h4></div>
 			{%endfor %}
 		</div>
 	</div> <!-- end container -->
@@ -41,7 +51,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		{% for photo in project.photo_set.all %}
-			<div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 300x200 %}"/></div>
+			<!-- <div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 300x200 %}"/></div> -->
 			<div class="span3"><h3 style="color: white"> <a href="{{photo.get_absolute_url}}">Photo</a></h3></div>
 			{%endfor %}
 		</div>

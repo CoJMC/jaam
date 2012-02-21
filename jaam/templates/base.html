@@ -16,7 +16,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		
-		<title>jaam | {{ title }}</title>
+		<title>jaam | {% block title %}{% endblock %}</title>
 		{% compress css %}
 		<link rel="stylesheet" href="/s/static/common/css/style.css">
 		<link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
@@ -32,7 +32,7 @@
 		<script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
 		<script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
 		<script src="/s/static/dora/scripts/jquery.mobile.carousel.js"></script>
-		
+		<script src="/s/static/common/js/popup.js"></script>
 		<script src="/s/static/common/js/plugins.js"></script>
 		{% endcompress %}		
 		<!--[if lt IE 7 ]>
@@ -54,12 +54,12 @@
 				<div id="logo"></div>
 				<div class="nav_item"><a href="/projects">PROJECTS</a></div>
 				<div class="nav_item"><a href="/about">ABOUT</a></div>
-				<div class="nav_item"><a href="/act">ACT</a<</div>
+				<div class="nav_item"><a href="/act">ACT</a></div>
 				<div id="social">
-					<a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}">
+					<a href="https://twitter.com/share?url={{ request.get_full_path }}">
 						<img src="/s/static/twitter_icon.png"/>
 					</a>
-					<a href="https://twitter.com/share?url={{ request.get_full_path }}">
+					<a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}">
 						<img src="/s/static/api_demo/img/facebook-white.png"/>
 					</a>
 				</div>
