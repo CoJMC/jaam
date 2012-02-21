@@ -13,8 +13,8 @@ class ProjectLocation(models.Model):
 class Project(BaseModel):
     title = models.CharField(max_length=50)
     tagline = models.CharField(max_length=250)
-    primaryColor = models.CharField(max_length=7)
-    accentColor = models.CharField(max_length=7)
+    primaryColor = models.CharField(max_length=7,default="FF0000")
+    accentColor = models.CharField(max_length=7, default="FFFFFF")
     title = models.CharField(max_length=200)
     description = RichTextField(null=True, blank=True)
     locations = models.ManyToManyField(ProjectLocation)
