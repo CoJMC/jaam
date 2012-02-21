@@ -17,8 +17,8 @@ def about(request):
 @csrf_protect
 def profile_set(request):
     user = request.user
-    profile = user.userprofile
-    is_journalist = user.is_journalist
+    profile = user.get_profile()
+    is_journalist = profile.is_journalist
 
     if request.method == 'POST': # If the form has been submitted...
         profile_form = UserProfileForm(request.POST, request.FILES)
@@ -37,7 +37,6 @@ def profile_set(request):
         return HttpResponseRedirect('/') # Redirect after POST
     else:      
         profile_form = UserProfileForm(initial={'full_name': profile.full_name, 'email': user.email}) # An unbound form
-        if is_journalist is False:
-            return render_to_response('journalism/success.html', {
-               'profile_form': profile_form, 
-            },  context_instance=RequestContext(request))
+        return render_to_response('journalism/success.html', {
+           'profile_form': profile_form, 
+        },  context_instance=RequestContext(request))

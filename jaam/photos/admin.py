@@ -20,7 +20,7 @@ class PhotoAdmin(BaseAdmin):
             self.exclude.append('published')
             self.exclude.append('journalist')
         return super(PhotoAdmin, self).get_form(request, obj, **kwargs)
-
+    
     def save_model(self, request, obj, form, change):
         if not change:
             obj.journalist = request.user

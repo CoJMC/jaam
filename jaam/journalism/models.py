@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ckeditor.fields import RichTextField
+from easy_thumbnails.fields import ThumbnailerImageField
 from social_auth.signals import pre_update
 from jaam.journalism.middleware import _show_unpublished
 
@@ -40,22 +41,27 @@ class BaseModel(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True)
-    # TODO: make the avatar a thumbnail field
-    avatar = models.ImageField(upload_to='/', null = True, blank=True)
+    avatar = ThumbnailerImageField(('Personal Photo'),
+                                height_field='',
+                                width_field='',
+                                upload_to='/',
+                                max_length=200,
+                                null = True,
+                                blank = True)
     full_name = models.CharField(max_length=255, blank=True)
 
     # Only for journalists
     bio = RichTextField(null=True, blank=True)
     major = models.CharField(max_length=255, null=True, blank=True)
-    
+
     def __unicode__(self):
-        return self.user.username
+        if self.full_name == "":
+            return self.user.username
+        else:
+            return self.full_name
 
     def is_journalist(self):
         return self.user.groups.filter(name='Journalists').count() > 0
-    
-    def __unicode__(self):
-        return self.full_name
 
     @models.permalink
     def get_absolute_url(self):

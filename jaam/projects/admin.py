@@ -10,14 +10,15 @@ class LocationInline(admin.TabularInline):
 
 class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description',)
-    list_display = ('__unicode__', 'description',)
+    list_display = ('__unicode__', 'description','rss_urls')
     exclude = [ 'locations', ]
     inlines = [ LocationInline, ]
     list_filter = ( 'locations', )
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
-                 (None, { 'fields': ('title', 'slug','description', 'coverGallery', 'tags',) },),
+                 (None, { 'fields': ('title', 'slug', 'description', 'coverGallery', 'tags',) },),
+                 ('ProjectColors', {'fields': ('primaryColor', 'accentColor',)},),
                  ('Admin', { 'fields': ('published',) },),
                 )
 

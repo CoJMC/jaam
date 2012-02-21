@@ -42,7 +42,12 @@ class Video(BaseModel):
     def getEmbedLink(self):
         video_id = self.scrapeVideoId()
         link = "http://www.youtube.com/embed/" + video_id + "?HD=1;rel=0;showinfo=0;controls=0"
-        return link     
+        return link  
+    
+    def getEmbedImage(self):
+        video_id = self.scrapeVideoId()
+        link = "http://img.youtube.com/vi/" + video_id + "/hqdefault.jpg"
+        return link
         
     
     def save(self, *args, **kwargs):
