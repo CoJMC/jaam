@@ -69,7 +69,9 @@
                     },
                     stop: function(event) {
                         settings.beforeStop.apply(list, arguments);
-
+                        
+                        list.css({width: get_width() * pages.length});
+                        
                         var data = event.originalEvent.touches ? event.originalEvent.touches[0] : event.originalEvent;
                         stop = {
                             coords: [ data.pageX, data.pageY ]
@@ -79,7 +81,6 @@
 
                         function moveLeft() {
                             if (currentPage === pages.length) {
-                                //list.animate({ left: -listCss.width + get_width() + settings.leftOffset + settings.separation/2}, settings.duration);
                                 list.animate({ left: -get_list_width() + get_width() + settings.leftOffset + settings.separation/2}, settings.duration);
                                 return;
                             } else if (dragDelta() < settings.minimumDrag) {
