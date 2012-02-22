@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "banner_base.html" %}
 {% load thumbnail %}
 {% load comments %}
 
@@ -6,7 +6,7 @@
 
 {%block banner%} {{act.project.title}} {%endblock%}
 
-{% block body %}
+{% block banner_body %}
 	<!-- @TODO:  UPDATE OUR ACT MODEL? -->
 	<div class="span3">
 		<p class="act_image"> <img src="http://topnews.ae/images/unicef-logo_0.jpg" class="act_logo"/></p>
