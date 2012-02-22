@@ -8,7 +8,7 @@
 {% block banner_body %}
 	{% for gallery in galleries %}
 	{% if gallery.photogalleryitem_set.count %}
-	{% if forloop.counter|divisibleby:"3" %}
+	{% if forloop.counter|divisibleby:"3" or forloop.counter == 0%}
 	<div class="panel">
 	{% endif %}
 	<div class="span3">
