@@ -7,13 +7,22 @@
 
 {% block banner_body %}
 	{% for gallery in galleries %}
+	{% if gallery.photogalleryitem_set.count %}
+	{% if forloop.counter|divisibleby:"3" %}
+	<div class="panel">
+	{% endif %}
 	<div class="span3">
 		<a href="{{gallery.get_absolute_url}}"> <img class="gallery_image" src="{% thumbnail gallery.cover_photo.image 200x200 %}"/> </a>
 		<p class="gallery_title"> {{ gallery.title }} </p>
 		<p class="gallery_blip"> {{ gallery.introduction }} </p>
 	</div>
+
 	<div class="gallery_spacer">
 			&nbsp
 			</div>
+	{% if forloop.counter|divisibleby:"3" %}
+	</div> <!-- end panel -->
+	{% endif %}
+	{% endif %}
 	{% endfor %}
 {% endblock %}
