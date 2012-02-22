@@ -13,7 +13,7 @@ class LatestBlogsFeed(Feed):
     def link(self, obj):
         domain = Site.objects.get_current().domain
         project_slug = obj.slug
-        return "http://%s/feeds/%s/blog_posts.rss" % (domain, project_slug)
+        return "/feeds/%s/blog_posts.rss" % (project_slug)
 
     def description(self, obj):
         return obj.title + ' Blog Posts'
@@ -41,7 +41,7 @@ class LatestStoriesFeed(Feed):
     def link(self, obj):
         domain = Site.objects.get_current().domain
         project_slug = obj.slug
-        return "http://%s/feeds/%s/stories.rss" % (domain, project_slug)
+        return "/feeds/%s/stories.rss" % (project_slug)
 
     def description(self, obj):
         return obj.title + ' Stories'
@@ -69,7 +69,7 @@ class LatestPhotosFeed(Feed):
     def link(self, obj):
         domain = Site.objects.get_current().domain
         project_slug = obj.slug
-        return "http://%s/feeds/%s/photos.rss" % (domain, project_slug)
+        return "/feeds/%s/photos.rss" % (project_slug)
         
     def description(self, obj):
         return obj.title + ' Photos'
