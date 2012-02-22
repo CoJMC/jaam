@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="row-fluid" style="padding-left: 40px; padding-top: 5px;">
-	<div class="gallery_banner">
+	<div class="gallery_banner" style="background-color: {{ project.primaryColor }}">
 		<p class="banner_text">
 		{% block banner %}
 		{% endblock %}
@@ -13,7 +13,7 @@
 <!-- Side Bar -->
 <div class="row-fluid">
 	<div class="span12">
-		<div class="span1" style="background-color: #A60303; height:450px; width:30px; margin-left: 22px;">
+		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px;">
 			<img class="nav_image" src="/s/static/info_icon.png"/ style="padding-top: 10px;">
 			<img class="nav_image" src="/s/static/photo_icon.png"/>
 			<img src="/s/static/video_icon.png"/>
