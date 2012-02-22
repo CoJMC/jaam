@@ -2,11 +2,10 @@ from django.contrib import admin
 from jaam.photos.models import Photo, PhotoGallery, PhotoExifData, PhotoGalleryItem
 from jaam.journalism.admin import BaseAdmin
 
-
 class PhotoAdmin(BaseAdmin):
     search_fields = ('title', 'caption',)
-    list_display = ('__unicode__', 'caption', 'journalist',)
-    list_filter = ( 'project', )
+    list_display = ('__unicode__', 'caption', 'journalist', 'published')
+    list_filter = ( 'project', 'published')
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
@@ -32,9 +31,9 @@ class PhotoGalleryInline(admin.TabularInline):
     ordering = ['order']
     extra = 0
 
-class PhotoGalleryAdmin(admin.ModelAdmin):
+class PhotoGalleryAdmin(BaseAdmin):
     inlines = [ PhotoGalleryInline ]
-    list_display = ('project', '__unicode__', 'introduction')
+    list_display = ('__unicode__', 'project', 'introduction', 'published')
    # list_filter = ('video gallery')
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (

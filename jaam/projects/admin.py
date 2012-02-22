@@ -1,5 +1,6 @@
 from django.contrib import admin
 from jaam.projects.models import Project, ProjectLocation
+from jaam.journalism.admin import BaseAdmin
 
 class LocationInline(admin.TabularInline):
     name = "Locations"
@@ -8,12 +9,12 @@ class LocationInline(admin.TabularInline):
     verbose_name = "Location"
     verbose_name_plural = "Locations"
 
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(BaseAdmin):
     search_fields = ('title', 'description',)
-    list_display = ('__unicode__', 'description','rss_urls')
+    list_display = ('__unicode__', 'description', 'rss_urls', 'published')
     exclude = [ 'locations', ]
     inlines = [ LocationInline, ]
-    list_filter = ( 'locations', )
+    list_filter = ( 'locations', 'published')
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (

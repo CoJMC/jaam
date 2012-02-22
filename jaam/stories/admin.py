@@ -3,8 +3,8 @@ from jaam.stories.models import Story
 from jaam.journalism.admin import BaseAdmin
 
 class StoryAdmin(BaseAdmin):
-    list_display = ('__unicode__', 'blurb', 'author',)
-    list_filter = ('author',)
+    list_display = ('__unicode__', 'blurb', 'author', 'published')
+    list_filter = ('author', 'published')
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('headline',)}
 

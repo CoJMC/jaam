@@ -1,0 +1,16 @@
+{% extends "banner_base.html" %}
+{% load thumbnail %}
+
+{% block title %} {{project.title}} | Photos {% endblock %}
+
+{% block banner %} {{project.title}} | Photos {% endblock %}
+
+{% block banner_body %}
+{% for photo in photos %}
+	<div class="span2">
+		
+		<a href="{{photo.get_absolute_url}}"> <img class="gallery_image" src="{% thumbnail photo.image 200x200 %}"/> </a>
+	
+	</div>
+{% endfor %}
+{% endblock %}

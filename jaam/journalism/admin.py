@@ -8,7 +8,15 @@ class TagAdmin(admin.ModelAdmin):
     pass
 
 class BaseAdmin(admin.ModelAdmin):
-    pass
+    actions = ['publish', 'unpublish']
+    def publish(self, request, queryset):
+        for item in queryset.all():
+            item.published = True
+            item.save()
+    def unpublish(self, request, queryset):
+        for item in queryset.all():
+            item.published = False
+            item.save()
 
 #class UserProfileInline(admin.TabularInline):
 #    model = UserProfile

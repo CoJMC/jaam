@@ -9,8 +9,8 @@ class BlogPostInline(admin.StackedInline):
     extra = 1
 
 class BlogPostAdmin(BaseAdmin):
-    list_display = ('__unicode__', 'description', 'author',)
-    list_filter = ('blog','author')
+    list_display = ('__unicode__', 'description', 'author', 'published')
+    list_filter = ('blog', 'author', 'published')
     prepopulated_fields = {'slug': ('headline',)}
     filter_horizontal = ('tags',)
     fieldsets = (
@@ -31,8 +31,8 @@ class BlogPostAdmin(BaseAdmin):
         obj.save()
 
 class BlogAdmin(BaseAdmin):
-    list_display = ('__unicode__', 'subtitle',)
-    list_filter = ('project',)
+    list_display = ('__unicode__', 'subtitle', 'published')
+    list_filter = ('project', 'published')
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (

@@ -1,9 +1,11 @@
-{% extends "base.html" %}
+{% extends "banner_base.html" %}
 {% load thumbnail %}
+
+{% block title %}{{ project.title }} {% endblock %}
 
 {% block banner %}{{ project.title }}{% endblock %}
 
-{% block body %}
+{% block banner_body %}
 	<!-- @TODO: Vertically align the content in this div. -->
 	<div class="span4" style="padding-top: 30px;">
 		<h5 style="color: white;  border-bottom: 1px solid white;"> {{project.description|safe}} </h5>
