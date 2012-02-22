@@ -21,6 +21,7 @@ v1_api.register(BlogResource())
 v1_api.register(BlogPostResource())
 v1_api.register(DocumentResource())
 
+# these urlmatch pattern should have a trailing slash IF AND ONLY IF there is an include('subapp.urls') reference for the routing
 urlpatterns = patterns('',
     # ADMIN
     url(r'^admin/', include(admin.site.urls)),
