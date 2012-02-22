@@ -7,15 +7,13 @@
 
 from threading import local
 _active = local()
+_active._show_unpublished = False
 
 def _show_unpublished():
     return _active._show_unpublished
 
 class PublishFlexMiddleware():
 	def process_request(self, request):
-		b = False
 		if request.user.is_authenticated() and request.user.get_profile().is_journalist and "show_unpublished" in request.GET:
-			b = True
-		
-		_active._show_unpublished = b
+			_active._show_unpublished = b
 		return None
