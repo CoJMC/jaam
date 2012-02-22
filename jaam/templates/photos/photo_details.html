@@ -1,11 +1,13 @@
-{% extends "base.html" %}
+{% extends "banner_base.html" %}
 {% load thumbnail %}
 {% load comments %}
 
 
 {% block title %}photo details{% endblock %}
 
-{% block body %}
+{% block banner %} {{project.title}} {% endblock %}
+
+{% block banner_body %}
 	<script>
 	$(document).ready(function(){
 	    (function($) {
@@ -54,31 +56,29 @@
 
 		
         {% if user.is_authenticated %}
-        {% with photo.get_absolute_url as next %}
         {% get_comment_form for photo as form %}
-        <div class="span3">
-        	<h3> Add to the Chatter </h3>
-        	<form action="{% comment_form_target %} " method="post">
-        	<div class="row">
-        		{% csrf_token %}
-			        {{ form.comment }}
-			        <p style="display:none">
-			        {{ form.honeypot }}
-			        {{form.user }}
-			        {{ form.content_type }}
-			        {{ form.object_pk }}
-			        {{ form.timestamp }}
-			        {{ form.security_hash }}
-			        </p>
+		<div class="span4">
+			<h3> Add to the Chatter </h3>
+			<form action="{% comment_form_target %} " method="post">
+			<div class="row">
+				{% csrf_token %}
+					{{ form.comment }}
+					<p style="display:none">
+					{{ form.honeypot }}
+					{{form.user }}
+					{{ form.content_type }}
+					{{ form.object_pk }}
+					{{ form.timestamp }}
+					{{ form.security_hash }}
+					</p>
 			</div>
 			<div class="row">
-		        <input type="submit" name="submit" value="Post">
-		        <input type="submit" name="preview" value="Preview">		        
+				<input type="submit" name="submit" value="Post">
+				<input type="submit" name="preview" value="Preview">	
+				<input type="hidden" name="next" value="{{photo.get_absolute_url}}" />
 			</div>
         	</form>
         </div>
-        
-        {% endwith %}
         
         {% else %}
             <p> Please <a href="http://127.0.0.1:8000/admin/">login</a> to post a comment. </p>
