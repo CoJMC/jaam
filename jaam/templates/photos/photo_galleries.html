@@ -1,9 +1,9 @@
 {% extends "banner_base.html" %}
 {% load thumbnail %}
 
-{% block title %} {{project.title}} Photo Galleries{% endblock %}
+{% block title %} {{project.title}} | Photo Galleries{% endblock %}
 
-{% block banner %} {{project.title}}  Photo Galleries {% endblock %}
+{% block banner %} Photo Galleries {% endblock %}
 
 {% block banner_body %}
 	{% for gallery in galleries %}
