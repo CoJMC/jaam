@@ -25,7 +25,7 @@
 		 	</div>
 		</div>
 		<p class="popup_link"><a href="#" onclick="popup('popUpDiv')"><img src="/s/static/profile_arrow.png"/>Profile</a></p>
-		<p class="mini_title">{{User.first_name}} {{User.last_name}} <p class="mini_info">{{User.userprofile.major}}</p></p>
+		<p class="mini_title">{{User.first_name}} {{User.last_name}} <p class="mini_info">{{User.get_profile.major}}</p></p>
 	</div>
 	{% if forloop.counter|divisibleby:"3" %}
 		 </div><div class="row" style="padding-top: 10px">

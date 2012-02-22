@@ -7,25 +7,23 @@
 {%block banner%} {{video.project.title}} {%endblock%}
 
 {% block banner_body %}
-			<div class="span11">
-				<div class="span8">
-					<iframe width="620" height="350" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
-					<p class="video_sidebar" style="font-size: 14pt">{{video.title}}:&nbsp;&nbsp;<span class="video_caption">{{video.caption}}</span></p>
-				</div>
-				
-				<!-- @TODO: Write a method to return three videos that are NOT this video -->
-				<div class="span2"> 
-				{% for video in video.project.video_set.all|slice:":3" %}
-					<a href="{{video.get_absolute_url}}">
-					<div class="span2">
-						<img src="{{video.getEmbedImage}}" width="105px"/>
-					</div>
-					<div class="span2">
-					<p class="video_sidebar">{{video.title}}</p>
-					</div>
-					</a>
-				{% endfor %}
-				</div>
+		<div class="span8">
+			<iframe width="620" height="350" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
+			<p class="video_sidebar" style="font-size: 14pt">{{video.title}}:&nbsp;&nbsp;<span class="video_caption">{{video.caption}}</span></p>
+		</div>
+		
+		<!-- @TODO: Write a method to return three videos that are NOT this video -->
+		<div class="span2"> 
+		{% for video in video.project.video_set.all|slice:":3" %}
+			<a href="{{video.get_absolute_url}}">
+			<div class="span2">
+				<img src="{{video.getEmbedImage}}" width="105px"/>
 			</div>
+			<div class="span2">
+			<p class="video_sidebar">{{video.title}}</p>
+			</div>
+			</a>
+		{% endfor %}
+		</div>
 
 {% endblock %}
