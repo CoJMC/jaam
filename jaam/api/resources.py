@@ -11,7 +11,7 @@ import ast
 class ProjectResource(ModelResource):
     covergallery = fields.ForeignKey('jaam.api.resources.PhotoGalleryResource', 'coverGallery', null=True)
     class Meta:
-        queryset = Project.objects.all()
+        queryset = Project.published_objects.all()
         allowed_methods = ['get']
         filtering = {
             'pk': ALL,
@@ -23,7 +23,7 @@ class ProjectResource(ModelResource):
 class PhotoGalleryResource(ModelResource):
     project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
-        queryset = PhotoGallery.objects.all()
+        queryset = PhotoGallery.published_objects.all()
         allowed_methods = ['get']
         filtering = {
             'id': ALL,
@@ -33,7 +33,7 @@ class PhotoGalleryResource(ModelResource):
 class PhotoResource(ModelResource):
     project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
-        queryset = Photo.objects.all()
+        queryset = Photo.published_objects.all()
         allowed_methods = ['get']
         filtering = {
             'slug': ALL,
@@ -57,33 +57,33 @@ class PhotoResource(ModelResource):
             return bundle.data['image']
     def get_object_list(self, request):
         if hasattr(request, 'GET') and 'gallery__id' in request.GET:
-            return Photo.objects.filter(photogallery=request.GET['gallery__id']).order_by('photogalleryitem__order')
+            return Photo.published_objects.filter(photogallery=request.GET['gallery__id']).order_by('photogalleryitem__order')
         else:
             return super(PhotoResource, self).get_object_list(request)
 
 class VideoGalleryResource(ModelResource):
     class Meta:
-        queryset = VideoGallery.objects.all()
+        queryset = VideoGallery.published_objects.all()
         allowed_methods = ['get']
 
 class VideoResource(ModelResource):
     class Meta:
-        queryset = Video.objects.all()
+        queryset = Video.published_objects.all()
         allowed_methods = ['get']
 
 class StoryResource(ModelResource):
     class Meta:
-        queryset = Story.objects.all()
+        queryset = Story.published_objects.all()
         allowed_methods = ['get']
 
 class BlogResource(ModelResource):
     class Meta:
-        queryset = Blog.objects.all()
+        queryset = Blog.published_objects.all()
         allowed_methods = ['get']
 
 class BlogPostResource(ModelResource):
     class Meta:
-        queryset = BlogPost.objects.all()
+        queryset = BlogPost.published_objects.all()
         allowed_methods = ['get']
 
 class DocumentResource(ModelResource):
