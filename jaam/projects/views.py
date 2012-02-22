@@ -11,7 +11,7 @@ def index(request):
     projects = Project.published_objects.all()
     return render_to_response('projects/index.html', {
         'projects': projects,
-        'title': "THIS IS ANOTHER HAWT TITLE",
+        'title': "Project Detail",
     }, context_instance=RequestContext(request))
 
 
@@ -35,5 +35,5 @@ def details(request, project_slug):
         'story': story,
         'blog_post': blog_post,
         'contributors': contributors,
-        'title': "THIS IS A TITLE, HAWT",
+        'title': "Project Details",
     }, context_instance=RequestContext(request))
