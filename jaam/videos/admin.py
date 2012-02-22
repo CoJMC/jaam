@@ -4,8 +4,8 @@ from jaam.journalism.admin import BaseAdmin
 
 class VideoAdmin(BaseAdmin):
     search_fields = ('title', 'caption',)
-    list_display = ('__unicode__', 'caption', 'journalist',)
-    list_filter = ( 'project', )
+    list_display = ('__unicode__', 'caption', 'journalist', 'published')
+    list_filter = ( 'project', 'published')
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
@@ -28,9 +28,9 @@ class VideoAdmin(BaseAdmin):
 class VideoGalleryItemInline(admin.TabularInline):
     model = VideoGalleryItem
 
-class VideoGalleryAdmin(admin.ModelAdmin):
+class VideoGalleryAdmin(BaseAdmin):
     inlines = [VideoGalleryItemInline]
-    list_display = ('project', '__unicode__', 'introduction')
+    list_display = ('project', '__unicode__', 'introduction', 'published')
    # list_filter = ('video gallery')
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
