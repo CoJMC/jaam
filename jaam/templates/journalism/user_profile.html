@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-{% block title %}
-User Profile
-{% endblock %}
 
-{% block content %}
-{{user.username}}'s Profile
+{% block body %}
+{{user.get_profile.full_name}}
+<img src="{{user.get_profile.avatar}}" />
+<h2 style="color:white">{{user.username}}'s Profile</h2>
 {% endblock %}
