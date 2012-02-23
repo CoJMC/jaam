@@ -8,19 +8,29 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Act'
-        db.create_table('act_act', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('modified_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
-            ('published', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50, db_index=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('project', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['projects.Project'])),
-            ('text', self.gf('ckeditor.fields.RichTextField')(default='')),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=200)),
-        ))
-        db.send_create_signal('act', ['Act'])
+        # Deleting field 'Act.act_code'
+        db.delete_column('act_act', 'act_code')
+
+        # Adding field 'Act.created_at'
+        db.add_column('act_act', 'created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=0, blank=True), keep_default=False)
+
+        # Adding field 'Act.modified_at'
+        db.add_column('act_act', 'modified_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime(2012, 2, 23, 16, 44, 56, 543394), blank=True), keep_default=False)
+
+        # Adding field 'Act.published'
+        db.add_column('act_act', 'published', self.gf('django.db.models.fields.BooleanField')(default=False), keep_default=False)
+
+        # Adding field 'Act.slug'
+        db.add_column('act_act', 'slug', self.gf('django.db.models.fields.SlugField')(default='a', unique=True, max_length=50, db_index=True), keep_default=False)
+
+        # Adding field 'Act.project'
+        db.add_column('act_act', 'project', self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['projects.Project']), keep_default=False)
+
+        # Adding field 'Act.text'
+        db.add_column('act_act', 'text', self.gf('ckeditor.fields.RichTextField')(default=''), keep_default=False)
+
+        # Adding field 'Act.image'
+        db.add_column('act_act', 'image', self.gf('django.db.models.fields.files.ImageField')(default=1, max_length=200), keep_default=False)
 
         # Adding M2M table for field tags on 'Act'
         db.create_table('act_act_tags', (
@@ -33,8 +43,29 @@ class Migration(SchemaMigration):
 
     def backwards(self, orm):
         
-        # Deleting model 'Act'
-        db.delete_table('act_act')
+        # Adding field 'Act.act_code'
+        db.add_column('act_act', 'act_code', self.gf('ckeditor.fields.RichTextField')(default=0), keep_default=False)
+
+        # Deleting field 'Act.created_at'
+        db.delete_column('act_act', 'created_at')
+
+        # Deleting field 'Act.modified_at'
+        db.delete_column('act_act', 'modified_at')
+
+        # Deleting field 'Act.published'
+        db.delete_column('act_act', 'published')
+
+        # Deleting field 'Act.slug'
+        db.delete_column('act_act', 'slug')
+
+        # Deleting field 'Act.project'
+        db.delete_column('act_act', 'project_id')
+
+        # Deleting field 'Act.text'
+        db.delete_column('act_act', 'text')
+
+        # Deleting field 'Act.image'
+        db.delete_column('act_act', 'image')
 
         # Removing M2M table for field tags on 'Act'
         db.delete_table('act_act_tags')
