@@ -8,22 +8,28 @@
 
 {% block banner_body %}
 
-    <div class="span12"> 
-    <div class="row">
+    <div class="span12" id="view9"> 
+    <div class="row" >
+    
     {% for story in project.story_set.all %}
-	<div class="span2">
-	   <p class="contrib_page">
-	   <!-- @TODO: UPDATE STORY MODELS TO HAVE COVER PHOTO?? -->
-		<img src="http://www.anonlineindia.com/images/poverty-1.jpg"/>
-		</p>
-	</div>
-	<div class="span2">
-		<p class="popup_link"><img src="/s/static/profile_arrow.png"/>Read Now</p>
-		<p class="mini_title">{{story.headline}} <p class="mini_info">{{story.author.first_name}} {{story.author.last_name}}</p></p>
-	</div>
+		<div class="span2">
+		   <p class="contrib_page">
+			<img src="http://www.anonlineindia.com/images/poverty-1.jpg"/>
+			</p>
+		</div>
+		<div class="span2">
+			<p class="popup_link"><img src="/s/static/profile_arrow.png"/>Read Now</p>
+			<p class="mini_title">{{story.headline}} <p class="mini_info">{{story.author.first_name}} {{story.author.last_name}}</p></p>
+		</div>
 	{% if forloop.counter|divisibleby:"3" %}
 	 </div><div class="row" style="padding-top: 30px">
 	{% endif %}
+	{% if forloop.counter|divisibleby:"9" %}
+		<!--  end the view 9 section for swiping to a new one -->
+		</div></div>
+		<div class="span12" id="view9"><div class="row">
+	{% endif %}
+	
 	{% endfor %}
 	</div>
 	</div>

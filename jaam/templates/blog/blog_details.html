@@ -1,20 +1,49 @@
-{% extends "base.html" %}
+{% extends "banner_base.html" %}
+{% load thumbnail %}
+{% load comments %}
 
-{%block title %}
-Blog Details
-{% endblock %}
+{%block banner%} {{project.title}} {%endblock%}
 
-{% block content %}
-<h1>Blog title: {{blog.title}} </h1>
-<h4>From Project: {{blog.project}} </h4>
-<h4>Subtitle: {{blog.subtitle}} </h4>
-<h4>Description: {{blog.description}} </h4>
+{% block banner_body %}
+<div class="span12">
+		
+	<div class="span4" height="450px">
+		<img src="http://farm3.static.flickr.com/2613/3812220274_d55372953a_o.jpg" height="200px" width="250px">
+		<p class="title"> {{blog.title}}</p>
+		<p class="description"> {{blog.description|safe}}</p>
+	</div>
+		
+	<!-- @TODO: make SWIPEABLE (vertically) -->
+	<div class="span7" style="overflow-y: auto; overflow-x: hidden; max-height: 400px">
+		{% for post in blog.blogpost_set.all %}
+			<div class="row" style="padding-bottom: 10px;">
+			<div class="span2"> 
+				<img src="http://lava360.com/wp-content/uploads/2009/11/blog_icon.jpg" width="130px" height="80px">
+			</div>
+			
+			<div class="span3">
+				<p class="popup_link"><a href="#" onclick="popup('popUpDiv')"><img src="/s/static/profile_arrow.png"/>Read Now</a></p>
+				<p class="side_title">{{post.headline}}</p>
+				<p class="description"> {{post.description|safe}} </p>
+				
+				<div class="span1">
+					<div id="blanket" style="display:none;"></div>
+					<div id="popUpDiv" style="display:none;" class="blog_popUp">
+					
+						<a href="" onclick="popup('popUpDiv'); return false" style="float: right">
+							<img src="http://images.all-free-download.com/images/graphiclarge/red_cross_x_clip_art_7568.jpg" height=20px width=20px />
+						</a>
+						<div class="description">
+					 		<p class="title"> {{post.headline}} </p>
+					 		{{post.body|safe}}
+					 		
+					 	</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		{%endfor %}
+	</div>
 
-<h3>Posts: </h3>
-<ul>
-{% for post in blog.blogpost_set.all %}
-    <h3><a href="{{post.get_absolute_url}}">{{post.headline}}</a></h3>
-{% endfor %}
-</ul>
-
+</div>
 {% endblock %}
