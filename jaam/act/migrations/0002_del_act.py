@@ -11,9 +11,6 @@ class Migration(SchemaMigration):
         # Deleting model 'Act'
         db.delete_table('act_act')
         
-        # Removing M2M table for field tags on 'Act'
-        db.delete_table('act_act_tags')
-        
     def backwards(self, orm):
         
         # Adding model 'Act'
