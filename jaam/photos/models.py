@@ -15,6 +15,7 @@ from django.utils.encoding import smart_str
 import akismet
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.contrib.comments.moderation import CommentModerator, moderator
 
 class PhotoExifData(models.Model):
     camera_manufacturer = models.CharField(max_length=50, null=True)
@@ -44,6 +45,7 @@ class Photo(BaseModel):
     title = models.CharField(max_length=100)
     caption = models.CharField(max_length=5000)
     exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False)
+    enable_comments = models.BooleanField()
 
     def __unicode__(self):
         return self.title
@@ -76,9 +78,18 @@ def moderate_comment(sender, comment, request, **kwargs):
     if ak.comment_check(smart_str(comment.comment), data=data, build_data=True):
         comment.is_public = False
         comment.save()
+        print "SPAM"
+    else:
+        print "JAAM"
 
 comment_was_posted.connect(moderate_comment)
 
+
+class PhotoModerator(CommentModerator):
+    email_notification = False
+    enable_field = 'enable_comments'
+
+moderator.register(Photo, PhotoModerator)
 
 class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)
