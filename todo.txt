@@ -1,2 +1,0 @@
-look at full name stuff
-add support for fb:image

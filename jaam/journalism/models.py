@@ -13,10 +13,10 @@ add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
 class PublishedObjectsManager(models.Manager):
     def get_query_set(self):
         if _show_unpublished():
-            print "SHOWING ALL"
+#           print "SHOWING ALL"
             return super(PublishedObjectsManager, self).get_query_set()
         else:
-            print "SHOWING ONLY PUBLISHED"
+#           print "SHOWING ONLY PUBLISHED"
             return super(PublishedObjectsManager, self).get_query_set().filter(published=True)
 
 # Create your models here.
