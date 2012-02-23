@@ -3,7 +3,6 @@ from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from jaam.projects.models import Project
-
 from jaam.act.models import Act
 
 def details(request, project_slug, act_slug):
