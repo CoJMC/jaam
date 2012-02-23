@@ -5,12 +5,19 @@ Post Details
 {% endblock %}
 
 {% block body %}
-<h1>Login Successful!</h1>
-<h2>Please complete the information below: </h2>
-<h3> <form action="confirm" method="post"> {% csrf_token %}
-  	{{ profile_form.as_p }}
-  	<input type="submit" value="Submit"/>
-  	</form>
-</h3>
-Go <a href="/"> Home </a> or Go to <a href="/admin">Admin</a>
+
+<div class="container" style=" margin-left: 35%; margin-top: 20px;">
+		<h2 style="color: white">Login Successful! </h2>
+		<h3 style="color: white">Please complete your profile information.</h3>
+		<br />
+		<div class="span3" style="background-color: white; padding: 10px;">
+		<h3 style="color: white"> <form action="confirm" method="post"> {% csrf_token %}		
+		  	{{ profile_form.as_p }}
+		  	<input type="submit" value="Submit"/>
+		  	</p>
+		  	</form>
+		</h3>
+		</div>
+
+</div>
 {% endblock %}
