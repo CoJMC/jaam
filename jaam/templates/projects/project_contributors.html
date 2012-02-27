@@ -6,10 +6,10 @@
 
 {%block banner%} {{project.title}} {%endblock%}
 
-
 {% block banner_body %}
-    <div class="span9">
+    <div class="span9" id="view9">
     <div class="row">
+    
     {% for User in project.journalists %}
 	<div class="span1">
 	   <p class="contrib_page">
@@ -29,6 +29,12 @@
 	</div>
 	{% if forloop.counter|divisibleby:"3" %}
 		 </div><div class="row" style="padding-top: 10px">
+	{% endif %}
+	
+	{% if forloop.counter|divisibleby:"9" %}
+		<!--  end the view 9 section for swiping to a new one -->
+		</div></div>
+		<div class="span9" id="view9"><div class="row">
 	{% endif %}
 
 	{% endfor %}

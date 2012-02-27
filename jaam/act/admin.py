@@ -10,7 +10,7 @@ class ActAdmin(BaseAdmin):
 
     fieldsets = (
         (None, { 'fields':
-            ('project', 'title', 'slug', 'act_code', 'tags') }),
+            ('project', 'title', 'slug', 'image', 'text', 'tags') }),
         ('Admin', { 'fields':
             ('published',) }),
     )
