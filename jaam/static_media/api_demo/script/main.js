@@ -19,8 +19,8 @@ function carousel(){
 }
 
 function addFade() {
-    var left = $("<div>").addClass("fade").addClass("left");
-    var right = $("<div>").addClass("fade").addClass("right");
+    var left = $("<div>").addClass("side-fade").addClass("left");
+    var right = $("<div>").addClass("side-fade").addClass("right");
     $("#container").children().first().append(left).append(right);
 }
 
