@@ -34,7 +34,7 @@ def profile_set(request):
             user.save()
             profile.save()
         
-        return HttpResponseRedirect('/') # Redirect after POST
+        return HttpResponseRedirect('/admin') # Redirect after POST
     else:      
         profile_form = UserProfileForm(initial={'full_name': profile.full_name, 'email': user.email}) # An unbound form
         return render_to_response('journalism/success.html', {
