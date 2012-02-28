@@ -4,84 +4,76 @@
 {% block title %}projects{% endblock %}
 
 {% block body %}
-<ul id="gallery" class="gallery" style="display:none">
-{% for project in projects %}
-<li><div class="project">
+<img class="loader" src="/s/static/api_demo/img/loader.gif"/>
+<div id="container">
+    <ul id="projects">
+    {% for project in projects %}
+        
+    {% endfor %}
+    </ul>
+</div>
 
-{% with act=project.act_set %}
-	<div class="span9">
-	<div class="container-fluid">
-		<div class="row-fluid">
-		{% for act in project.act_set.all %}
-			<div class="span3"> <h4> <a style="color: white" href="{{act.get_absolute_url}}">{{act.title}}</a> </h4></div>
-			{%endfor %}
-		</div>
-	</div> <!-- end container -->
-	</div> <!-- end span 9 -->
-{% endwith %}
+<script type="text/javascript">
+var BASE_URL = "";
+var PROJECT_OPTIONS = {'covergallery__isnull': 'false'};
+var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
+var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
 
-{% with story=project.story_set %}
-	<div class="span9">
-	<div class="container-fluid">
-		<div class="row-fluid">
-		{% for story in project.story_set.all %}
-			<div class="span3"> <h4> <a style="color: white" href="{{story.get_absolute_url}}">{{story.headline}}</a> </h4></div>
-			{%endfor %}
-		</div>
-	</div> <!-- end container -->
-	</div> <!-- end span 9 -->
-{% endwith %}
+function carousel(){
+    $("#projects").carousel(CAROUSEL_OPTIONS);
+    addFade();
+    $(".loader").fadeOut("fast");
+    $("#container").delay(200).fadeIn("slow");
+}
 
+function addFade() {
+    var left = $("<div>").addClass("side-fade").addClass("left");
+    var right = $("<div>").addClass("side-fade").addClass("right");
+    $("#container").children().first().append(left).append(right);
+}
 
-{% with gallery=project.photogallery_set %}
-	<div class="span9">
-	<div class="container-fluid">
-		<div class="row-fluid">
-		{% for gallery in project.photogallery_set.all %}
-			<div class="span3"><h3 style="color: white"> <a href="{{gallery.get_absolute_url}}">{{gallery.title}}</a></h3></div>
-			{%endfor %}
-		</div>
-	</div> <!-- end container -->
-	</div> <!-- end span 9 -->
-{% endwith %}
+function bindFocus(num_projects){
+    $("#proj_"+num_projects).live("focusin", function (){
+        carousel();
+    });
+}
 
+$(document).ready(function (){
+    $("#container").hide();
+    $.getJSON(BASE_URL+"/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
+        var num_projects = proj_data.meta.total_count; //number of projects being loaded
+        bindFocus(num_projects);
+        $.each(proj_data.objects, function(i, proj) {
+            if (proj.covergallery != null) {
+                $.getJSON(BASE_URL+proj.covergallery+"?format=jsonp&callback=?", function (cover_data) {
+                    var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
+                    $.getJSON(BASE_URL+"/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
+                        var project_li = $("<li>").addClass("project").attr("id", "proj_"+proj.id).appendTo("#projects");
+                        project_li.click(function (){
+                            if ($(this).hasClass("noclick")){
+                                $(this).removeClass("noclick");
+                            } else {
+                                window.location = "/projects/"+proj.slug;
+                            }
+                        });
+                        $.each(pic_data.objects, function(j, item){
+                            var div = $("<div>").addClass("pic").appendTo(project_li);
+                            $("<img/>").attr("src", item.image).appendTo(div);
+                        });
+                        var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", proj.primaryColor);
+                        var title = $("<span>").addClass("title").text(proj.title);
+                        title.appendTo(title_box);
+                        title_box.insertAfter(project_li.children()[3] || project_li.children().last());
+                        project_li.focus();
+                    });
+                });
+            }
+        });
+    });
+});
 
-{% with photo=project.photo_set %}
-	<div class="span9">
-	<div class="container-fluid">
-		<div class="row-fluid">
-		{% for photo in project.photo_set.all %}
-			<!-- <div class="span3"> <img class="dynamic-img" src="{% thumbnail photo.image 300x200 %}"/></div> -->
-			<div class="span3"><h3 style="color: white"> <a href="{{photo.get_absolute_url}}">Photo</a></h3></div>
-			{%endfor %}
-		</div>
-	</div> <!-- end container -->
-	</div> <!-- end span 9 -->
-{% endwith %}
-	
-{% with video=project.video_set %}
-	<div class="span9">
-	<div class="container-fluid">
-		<a href="{{project.get_absolute_url}}">
-		<div class="row">
-		{% for video in project.video_set.all %}
-			<div class="span3"><h3 style="color: white"> <a href="{{video.get_absolute_url}}">{{video.title}}</a></h3></div>
-		{%endfor %}
-		</div>
-		</a>
-	</div> <!-- end container -->
-	</div> <!-- end span 9 -->
-{% endwith %}
-
-{% endfor %}
-	
-</div> <!-- end project -->
-
-</li></ul>
-   
-    <script type="text/javascript">
-	    (function($) {
-	       $('#gallery').carousel();
-	    })(jQuery);
-	</script>
+$(document).bind('touchmove', function (e) {
+    e.preventDefault();
+});
+</script>
 {% endblock %}
