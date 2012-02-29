@@ -12,7 +12,7 @@ class Migration(SchemaMigration):
         db.delete_column('act_act', 'act_code')
 
         # Adding field 'Act.created_at'
-        db.add_column('act_act', 'created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=0, blank=True), keep_default=False)
+        db.add_column('act_act', 'created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime(2012, 2, 23, 16, 44, 56, 543394), blank=True), keep_default=False)
 
         # Adding field 'Act.modified_at'
         db.add_column('act_act', 'modified_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime(2012, 2, 23, 16, 44, 56, 543394), blank=True), keep_default=False)
