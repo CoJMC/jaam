@@ -62,7 +62,9 @@ $(document).ready(function (){
                         });
                         var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", proj.primaryColor);
                         var title = $("<span>").addClass("title").text(proj.title);
+                        var subtitle = $("<span>").addClass("subtitle").text(proj.tagline);
                         title.appendTo(title_box);
+                        subtitle.appendTo(title_box);
                         title_box.insertAfter(project_li.children()[3] || project_li.children().last());
                         project_li.focus();
                     });
