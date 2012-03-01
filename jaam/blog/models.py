@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from jaam.journalism.models import BaseModel
 from jaam.projects.models import Project
+from jaam.photos.models import Photo
 from ckeditor.fields import RichTextField
 
 class Blog(BaseModel):
@@ -26,6 +27,7 @@ class BlogPost(BaseModel):
     description = models.TextField(null=True, blank=True)
     body = RichTextField()
     author = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
+    cover_photo = models.ForeignKey(Photo)
 
     def __unicode__(self):
         return self.headline
