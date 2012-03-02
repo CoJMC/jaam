@@ -23,12 +23,6 @@ class ProjectAdmin(BaseAdmin):
                  ('Admin', { 'fields': ('published',) },),
                 )
 
-    def get_form(self, request, obj=None, **kwargs):
-        self.exclude = []
-        if not request.user.is_superuser:
-            self.exclude.append('published')
-        return super(ProjectAdmin, self).get_form(request, obj, **kwargs)
-
 class ProjectLocationAdmin(admin.ModelAdmin):
     pass
 
