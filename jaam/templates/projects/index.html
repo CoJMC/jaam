@@ -14,7 +14,6 @@
 </div>
 
 <script type="text/javascript">
-var BASE_URL = "";
 var PROJECT_OPTIONS = {'covergallery__isnull': 'false'};
 var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
 var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
@@ -32,46 +31,54 @@ function addFade() {
     $("#container").children().first().append(left).append(right);
 }
 
-function bindFocus(num_projects){
-    $("#proj_"+num_projects).live("focusin", function (){
-        carousel();
-    });
-}
-
 $(document).ready(function (){
     $("#container").hide();
-    $.getJSON(BASE_URL+"/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
-        var num_projects = proj_data.meta.total_count; //number of projects being loaded
-        bindFocus(num_projects);
+    $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
+        var requests = [];
         $.each(proj_data.objects, function(i, proj) {
             if (proj.covergallery != null) {
-                $.getJSON(BASE_URL+proj.covergallery+"?format=jsonp&callback=?", function (cover_data) {
-                    var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
-                    $.getJSON(BASE_URL+"/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
-                        var project_li = $("<li>").addClass("project").attr("id", "proj_"+(i+1)).appendTo("#projects");
-                        project_li.click(function (){
-                            if ($(this).hasClass("noclick")){
-                                $(this).removeClass("noclick");
-                            } else {
-                                window.location = "/projects/"+proj.slug;
-                            }
-                        });
-                        $.each(pic_data.objects, function(j, item){
-                            var div = $("<div>").addClass("pic").appendTo(project_li);
-                            $("<img/>").attr("src", item.image).appendTo(div);
-                        });
-                        var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", proj.primaryColor);
-                        var title = $("<span>").addClass("title").text(proj.title);
-                        var subtitle = $("<span>").addClass("subtitle").text(proj.tagline);
-                        title.appendTo(title_box);
-                        subtitle.appendTo(title_box);
-                        title_box.insertAfter(project_li.children()[3] || project_li.children().last());
-                        project_li.focus();
-                    });
-                });
+                var request = $.getJSON(proj.covergallery+"?format=jsonp&callback=?");
+                requests.push(request);
             }
         });
+        $.when.apply(null, requests).done(function() {
+            var photo_requests = []
+            for (i = 0; i < arguments.length; i++) {
+                var project = proj_data.objects[i];
+                var cover_data = arguments[i][0];
+                var request = load_project_photos(project, cover_data);
+                photo_requests.push(request);
+            }
+            $.when.apply(null, photo_requests).done(function() {
+                carousel();
+            });
+        });
     });
+
+    var load_project_photos = function (proj, cover_data) {
+        var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
+        return $.getJSON("/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
+            var project_li = $("<li>").addClass("project").attr("id", "proj_"+(i+1)).appendTo("#projects");
+            project_li.click(function (){
+                if ($(this).hasClass("noclick")){
+                    $(this).removeClass("noclick");
+                } else {
+                    window.location = "/projects/"+proj.slug;
+                }
+            });
+            $.each(pic_data.objects, function(j, item){
+                var div = $("<div>").addClass("pic").appendTo(project_li);
+                $("<img/>").attr("src", item.image).appendTo(div);
+            });
+            var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", proj.primaryColor);
+            var title = $("<span>").addClass("title").text(proj.title);
+            var subtitle = $("<span>").addClass("subtitle").text(proj.tagline);
+            title.appendTo(title_box);
+            subtitle.appendTo(title_box);
+            title_box.insertAfter(project_li.children()[3] || project_li.children().last());
+            project_li.focus();
+        });
+    }
 });
 
 $(document).bind('touchmove', function (e) {
