@@ -13,7 +13,6 @@ class StoryAdmin(BaseAdmin):
     fieldsets = (
         (None, { 'fields':
             ('project', 'title', 'slug', 'blurb', 'cover_photo', 'body', 'tags') }),
-
         ('Admin', { 'fields':
             ('published', 'author') }),
     )
