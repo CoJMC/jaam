@@ -31,7 +31,7 @@ class BlogAdmin(BaseAdmin):
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
-                 (None, { 'fields': ('project','title', 'slug', 'subtitle', 'description', 'tags',) },),
+                 (None, { 'fields': ('project','title', 'slug', 'cover_photo', 'subtitle', 'description', 'tags',) },),
                  ('Admin', { 'fields': ('published',) },),
                 )
 

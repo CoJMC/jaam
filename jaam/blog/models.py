@@ -10,6 +10,7 @@ class Blog(BaseModel):
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    cover_photo = models.ForeignKey(Photo)
 
     def __unicode__(self):
         return self.title
