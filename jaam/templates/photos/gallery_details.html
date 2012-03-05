@@ -1,0 +1,32 @@
+{% extends "banner_base.html" %}
+{% load thumbnail %}
+
+{% block title %} {{project.title}} | {{gallery.title}} {% endblock %}
+
+{% block banner %} {{gallery.title}} {% endblock %}
+
+{% block banner_body %}
+
+	<div class="span12" style="margin-top: -20px;">
+
+			<div class="span8">
+			<img src="{% thumbnail first_photo.image 576x864 %}"/>
+			</div>
+			
+		<!-- @TODO: MAKE THIS SWIPABLE -->
+		<div class="span3" style="text-align: center; height: 435px; overflow-y: auto;">
+				
+			<p class="popup_link"> <a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number %}">  Next in gallery </a>
+ 			&nbsp &nbsp &nbsp<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=previous_number %}"> Previous in gallery </a>  </p>
+	
+			{% for photo in photos %}
+				{% if photo.id != first_photo.id %}
+					<!-- @TODO: Determine what the order number for the object is -->
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=2 %}"> <img src="{% thumbnail photo.image 300x300 %}"/> </a>
+				{% endif %}
+			{% endfor %}
+		</div>
+		
+	</div>
+
+{% endblock %}

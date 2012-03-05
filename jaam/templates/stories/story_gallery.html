@@ -11,11 +11,12 @@
     {% for story in project.story_set.all %}
 		<div class="span2">
 		   <p class="contrib_page">
-			<img src="http://www.anonlineindia.com/images/poverty-1.jpg"/>
+			<img src="{% thumbnail story.cover_photo.image  200x200 %}"/>
 			</p>
 		</div>
 		<div class="span2">
-			<p class="popup_link"><img src="/s/static/profile_arrow.png"/>Read Now</p>
+
+			<p class="popup_link"><a href="{{story.get_absolute_url}}"><img src="/s/static/profile_arrow.png"/>Read Now </a></p>
 			<p class="mini_title">{{story.title}} <p class="mini_info">{{story.author.first_name}} {{story.author.last_name}}</p></p>
 		</div>
 	{% if forloop.counter|divisibleby:"3" %}

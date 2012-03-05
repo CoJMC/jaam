@@ -16,17 +16,22 @@
 		<img class="journalist_thumbnail" src="{% thumbnail User.userprofile.avatar 80x100 %}"/>
 		</p>
 	</div>
+	
 	<div class="span2">
+	
 		<div id="blanket" style="display:none;" class="blanket"></div>
-		<div id="popUpDiv" style="display:none;" class="popUp">
-			<a href="" onclick="popup('popUpDiv'); return false">Exit</a>
+		
+		<div id="{{User.get_profile.full_name}}" style="display:none;" class="profile_popUp">
+			<a href="" onclick="popup('{{User.get_profile.full_name}}'); return false">Exit</a>
 			<div class="span4">
 		 		Journalist Info here.
 		 	</div>
 		</div>
-		<p class="popup_link"><a href="#" onclick="popup('popUpDiv')"><img src="/s/static/profile_arrow.png"/>Profile</a></p>
-		<p class="mini_title">{{User.first_name}} {{User.last_name}} <p class="mini_info">{{User.get_profile.major}}</p></p>
+		<p class="popup_link"><a href="#" onclick="popup('{{User.get_profile.full_name}}')"><img src="/s/static/profile_arrow.png"/>Profile</a></p>
+		<p class="mini_title">{{User.get_profile.full_name}} <p class="mini_info">{{User.get_profile.major}}</p></p>
 	</div>
+	
+	
 	{% if forloop.counter|divisibleby:"3" %}
 		 </div><div class="row" style="padding-top: 10px">
 	{% endif %}

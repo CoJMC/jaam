@@ -4,6 +4,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('',
     url(r'^(?P<project_slug>[^\/]+)/blog/', include('jaam.blog.urls')),
     url(r'^(?P<project_slug>[^\/]+)/photos/?', include('jaam.photos.urls')),
+    url(r'^(?P<project_slug>[^\/]+)/photos/galleries/(?P<gallery_slug>[^\\]+)/(?P<start_number>[^\\]+)/$', 'jaam.photos.views.gallery_details', name="start_photo_gallery"),
     url(r'^(?P<project_slug>[^\/]+)/photogalleries', 'jaam.photos.views.galleries'),
     url(r'^(?P<project_slug>[^\/]+)/videos/', include('jaam.videos.urls')),
     url(r'^(?P<project_slug>[^\/]+)/stories/', include('jaam.stories.urls')),
