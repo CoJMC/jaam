@@ -13,10 +13,10 @@ class BlogPostAdmin(BaseAdmin):
     change_form_template = 'admin/blog_post_change.html'
     list_display = ('__unicode__', 'description', 'author', 'published')
     list_filter = ('blog', 'author', 'published')
-    prepopulated_fields = {'slug': ('headline',)}
+    prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
-                 (None, { 'fields': ('blog', 'headline', 'slug', 'cover_photo', 'description', 'body','tags',) },),
+                 (None, { 'fields': ('blog', 'title', 'slug', 'cover_photo', 'description', 'body','tags',) },),
                  ('Admin', { 'fields': ('author', 'published',) },),
                 )
 
@@ -31,7 +31,7 @@ class BlogAdmin(BaseAdmin):
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
-                 (None, { 'fields': ('project','title', 'slug', 'subtitle', 'description', 'tags',) },),
+                 (None, { 'fields': ('project','title', 'slug', 'cover_photo', 'subtitle', 'description', 'tags',) },),
                  ('Admin', { 'fields': ('published',) },),
                 )
 
