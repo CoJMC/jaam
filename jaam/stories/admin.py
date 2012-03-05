@@ -6,11 +6,11 @@ class StoryAdmin(BaseAdmin):
     list_display = ('__unicode__', 'blurb', 'author', 'published')
     list_filter = ('author', 'published')
     filter_horizontal = ('tags',)
-    prepopulated_fields = {'slug': ('headline',)}
+    prepopulated_fields = {'slug': ('title',)}
 
     fieldsets = (
         (None, { 'fields':
-            ('project', 'headline', 'slug', 'blurb', 'body', 'tags') }),
+            ('project', 'title', 'slug', 'blurb', 'body', 'tags') }),
         ('Admin', { 'fields':
             ('published', 'author') }),
     )

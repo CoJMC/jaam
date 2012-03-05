@@ -22,13 +22,13 @@ class Blog(BaseModel):
 
 class BlogPost(BaseModel):
     blog = models.ForeignKey(Blog)
-    headline = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     body = RichTextField()
     author = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
 
     def __unicode__(self):
-        return self.headline
+        return self.title
 
     @models.permalink
     def get_absolute_url(self):

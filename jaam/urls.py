@@ -58,6 +58,9 @@ urlpatterns = patterns('',
     (r'^feeds/(?P<project_slug>[^\\]+)/blog_posts.rss$', LatestBlogsFeed()),
     (r'^feeds/(?P<project_slug>[^\\]+)/stories.rss$', LatestStoriesFeed()),
     (r'^feeds/(?P<project_slug>[^\\]+)/photos.rss$', LatestPhotosFeed()),
+
+    # Search
+    (r'^search/', include('haystack.urls')),
 )
 
 

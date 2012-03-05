@@ -25,7 +25,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 		{% for story in project.story_set.all %}
-			<div class="span3"> <h4> <a style="color: white" href="{{story.get_absolute_url}}">{{story.headline}}</a> </h4></div>
+			<div class="span3"> <h4> <a style="color: white" href="{{story.get_absolute_url}}">{{story.title}}</a> </h4></div>
 			{%endfor %}
 		</div>
 	</div> <!-- end container -->

@@ -11,10 +11,10 @@ class BlogPostInline(admin.StackedInline):
 class BlogPostAdmin(BaseAdmin):
     list_display = ('__unicode__', 'description', 'author', 'published')
     list_filter = ('blog', 'author', 'published')
-    prepopulated_fields = {'slug': ('headline',)}
+    prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
-                 (None, { 'fields': ('blog', 'headline', 'slug', 'description', 'body','tags',) },),
+                 (None, { 'fields': ('blog', 'title', 'slug', 'description', 'body','tags',) },),
                  ('Admin', { 'fields': ('author', 'published',) },),
                 )
 

@@ -10,7 +10,7 @@ from ckeditor.fields import RichTextField
 class Story(BaseModel):
     project = models.ForeignKey(Project)
     author = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
-    headline = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
     body = RichTextField()
     blurb = models.CharField(max_length=1000)
     pub_date = models.DateTimeField(
@@ -24,7 +24,7 @@ class Story(BaseModel):
 
 
     def __unicode__(self):
-        return self.headline
+        return self.title
 
     @models.permalink
     def get_absolute_url(self):

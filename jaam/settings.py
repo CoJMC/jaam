@@ -143,6 +143,8 @@ INSTALLED_APPS = (
     'doccloud',
     'compressor',
     'tastypie',
+    'haystack',
+    'whoosh',
     'djcelery',
     'django_inlines',
 )
@@ -235,3 +237,20 @@ try:
     from local_settings import *
 except ImportError, exp:
     pass
+
+
+# Search functionality
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_INCLUDE_SPELLING = True
+HAYSTACK_SITECONF = 'search_indexes'
+HAYSTACK_WHOOSH_PATH ='./search/whoosh_index'
+
+
+# Whoosh Search Engine
+# TODO: Make sure the path.dirname(__file__) makes sense
+HAYSTACK_CONNECTIONS = {
+    'whoosh': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}

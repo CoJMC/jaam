@@ -6,6 +6,7 @@ from jaam.journalism.models import BaseModel, User
 from ckeditor.fields import RichTextField
 import re
 
+
 class ProjectLocation(models.Model):
     location = models.CharField(max_length=1000)
 
