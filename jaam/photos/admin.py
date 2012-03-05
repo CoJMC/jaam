@@ -12,13 +12,6 @@ class PhotoAdmin(BaseAdmin):
                  (None, { 'fields': ('project', 'title', 'slug', 'image', 'caption',) },),
                  ('Admin', { 'fields': ('journalist', 'published',) },),
                 )
-
-    def get_form(self, request, obj=None, **kwargs):
-        self.exclude = []
-        if not request.user.is_superuser:
-            self.exclude.append('published')
-            self.exclude.append('journalist')
-        return super(PhotoAdmin, self).get_form(request, obj, **kwargs)
     
     def save_model(self, request, obj, form, change):
         if not change:
@@ -40,13 +33,6 @@ class PhotoGalleryAdmin(BaseAdmin):
                  (None, { 'fields': ('project', 'title', 'slug', 'introduction', 'tags',) },),
                  ('Admin', { 'fields': ('published',) },),
                 )
-
-    def get_form(self, request, obj=None, **kwargs):
-        self.exclude = []
-        if not request.user.is_superuser:
-            self.exclude.append('published')
-            self.exclude.append('author')
-        return super(PhotoGalleryAdmin, self).get_form(request, obj, **kwargs)
 
 class PhotoExifDataAdmin(admin.ModelAdmin):
     pass

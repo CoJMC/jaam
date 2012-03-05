@@ -77,6 +77,7 @@ class StoryResource(ModelResource):
         allowed_methods = ['get']
 
 class BlogResource(ModelResource):
+    project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
         queryset = Blog.published_objects.all()
         allowed_methods = ['get']

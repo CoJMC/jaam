@@ -1,0 +1,41 @@
+{% extends 'admin/change_form.html' %}
+
+{% block extrahead %}
+{{block.super}}
+<script>
+(function($) {
+    var update_cover_photo_project_photos = function(project_id, callback) {
+        $.getJSON('/api/v1/photo',{'project':project_id}, function(data) {
+            var cover_photo_select = $('#id_cover_photo');
+            cover_photo_select.empty();
+            cover_photo_select.append('<option>---------</option>')
+            $.each(data.objects, function(index, photo) {
+                cover_photo_select.append('<option value="'+photo.id+'">'+photo.title+'</option>');
+            });
+            callback();
+        });
+    }
+
+    var blog_project_id = function(blog_id, callback) {
+        $.getJSON('/api/v1/blog/'+blog_id, function(data) {
+            $.getJSON(data.project, function(data) {
+                var project_id = data.id;
+                update_cover_photo_project_photos(project_id, callback);
+            });
+        });
+    }
+
+    $(document).ready(function(){
+        var cover_photo_id = $('#id_cover_photo').val();;
+        blog_project_id($('#id_blog').val(), function() {
+            $('#id_cover_photo').val(cover_photo_id);
+        });
+
+        $('#id_blog').change(function() {
+            var blog_id = $(this).val(); 
+            blog_project_id(blog_id);
+        });
+    });
+})(django.jQuery)
+</script>
+{% endblock %}

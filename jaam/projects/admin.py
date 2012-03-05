@@ -11,23 +11,17 @@ class LocationInline(admin.TabularInline):
 
 class ProjectAdmin(BaseAdmin):
     search_fields = ('title', 'description',)
-    list_display = ('__unicode__', 'description', 'rss_urls', 'published')
+    list_display = ('__unicode__', 'tagline', 'rss_urls', 'published')
     exclude = [ 'locations', ]
     inlines = [ LocationInline, ]
     list_filter = ( 'locations', 'published')
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
-                 (None, { 'fields': ('title', 'slug', 'description', 'coverGallery', 'tags',) },),
+                 (None, { 'fields': ('title', 'slug', 'tagline', 'description', 'coverGallery', 'tags',) },),
                  ('ProjectColors', {'fields': ('primaryColor', 'accentColor',)},),
                  ('Admin', { 'fields': ('published',) },),
                 )
-
-    def get_form(self, request, obj=None, **kwargs):
-        self.exclude = []
-        if not request.user.is_superuser:
-            self.exclude.append('published')
-        return super(ProjectAdmin, self).get_form(request, obj, **kwargs)
 
 class ProjectLocationAdmin(admin.ModelAdmin):
     pass
