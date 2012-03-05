@@ -11,7 +11,7 @@ import ast
 class ProjectResource(ModelResource):
     covergallery = fields.ForeignKey('jaam.api.resources.PhotoGalleryResource', 'coverGallery', null=True)
     class Meta:
-        queryset = Project.published_objects.all()
+        queryset = Project.published_objects.exclude(coverGallery__published=False);
         allowed_methods = ['get']
         filtering = {
             'pk': ALL,
