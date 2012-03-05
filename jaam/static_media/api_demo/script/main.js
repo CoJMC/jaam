@@ -19,8 +19,8 @@ function carousel(){
 }
 
 function addFade() {
-    var left = $("<div>").addClass("fade").addClass("left");
-    var right = $("<div>").addClass("fade").addClass("right");
+    var left = $("<div>").addClass("side-fade").addClass("left");
+    var right = $("<div>").addClass("side-fade").addClass("right");
     $("#container").children().first().append(left).append(right);
 }
 
@@ -40,7 +40,7 @@ $(document).ready(function (){
                 $.getJSON(BASE_URL+proj.covergallery+"?format=jsonp&callback=?", function (cover_data) {
                     var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
                     $.getJSON(BASE_URL+"/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
-                        var project_li = $("<li>").addClass("project").attr("id", "proj_"+proj.id).appendTo("#projects");
+                        var project_li = $("<li>").addClass("project").attr("id", "proj_"+(i+1)).appendTo("#projects");
                         project_li.click(function (){
                             if ($(this).hasClass("noclick")){
                                 $(this).removeClass("noclick");

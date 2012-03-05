@@ -2,15 +2,12 @@
 {% load thumbnail %}
 {% load comments %}
 
-{% block title %} {{project.title}} stories{% endblock %}
-
 {%block banner%} {{project.title}} {%endblock%}
 
 {% block banner_body %}
 
     <div class="span12" id="view9"> 
-    <div class="row" >
-    
+    <div class="row" >   
     {% for story in project.story_set.all %}
 		<div class="span2">
 		   <p class="contrib_page">

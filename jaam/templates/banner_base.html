@@ -14,11 +14,24 @@
 <div class="row-fluid">
 	<div class="span12">
 		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px;">
-			<img class="nav_image" src="/s/static/info_icon.png"/ style="padding-top: 10px;">
-			<img class="nav_image" src="/s/static/photo_icon.png"/>
-			<img src="/s/static/video_icon.png"/>
-			<img src="/s/static/stories_icon.png"/>
-			<img src="/s/static/back_icon.png"/>
+			<a href="/projects/{{project.slug}}/info"><img class="nav_image" src="/s/static/info_icon.png"/></a>
+			<a href="/projects/{{project.slug}}/photos/"><img class="nav_image" src="/s/static/photo_icon.png"/></a>
+			
+			<!-- @TODO: clean up this video link.... what's the cover video? -->
+			{% for video in project.video_set.all|slice:":1" %}
+			<a href="/projects/{{project.slug}}/videos/{{video.id}}/"><img class="nav_image" src="/s/static/video_icon.png"/></a>
+			{% endfor %}
+			
+			<a href="/projects/{{project.slug}}/stories/"><img class="nav_image" src="/s/static/stories_icon.png"/></a>
+			
+			<!-- @TODO: clean up this video link.... what's the blog gallery page? -->
+			{% for blog in project.blog_set.all|slice:":1" %}
+			<a href="/projects/{{project.slug}}/blog/{{blog.slug}}/"><img class="nav_image" src="/s/static/blog_icon.png"/></a>
+			{% endfor %}
+			
+			<a href="/projects/{{project.slug}}/contributors/"><img class="nav_image" src="/s/static/contributors_icon.png"/></a>
+			
+			
 		</div>
 		
 		<!-- Inside content -->
@@ -27,7 +40,6 @@
 			
 			{% endblock %}
 		</div>
-		
 		<!-- Breadcrumbs --> 
 		<div class="row-fluid" style="margin-left: 20px">
 			<img src="/s/static/Breadcrumbs.png" width="440px"/>

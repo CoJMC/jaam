@@ -4,6 +4,7 @@ from django.contrib.comments.moderation import CommentModerator, moderator
 import datetime
 from jaam.projects.models import Project
 from jaam.journalism.models import BaseModel
+from jaam.photos.models import Photo
 from ckeditor.fields import RichTextField
 
 # Create your models here.
@@ -18,6 +19,8 @@ class Story(BaseModel):
         default=datetime.datetime.now
         )
     enable_comments = models.BooleanField()
+    cover_photo = models.ForeignKey(Photo)
+
     class Meta:
         verbose_name = "story"
         verbose_name_plural = "stories"

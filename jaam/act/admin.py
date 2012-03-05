@@ -14,9 +14,6 @@ class ActAdmin(BaseAdmin):
         ('Admin', { 'fields':
             ('published',) }),
     )
-    def get_form(self, request, obj=None, **kwargs):
-        self.exclude = []
-        return super(ActAdmin, self).get_form(request, obj, **kwargs)
 
     def save_model(self, request, obj, form, change):
         obj.save()

@@ -4,7 +4,7 @@ h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,cite,code,del,dfn,em,i
 table{max-width:100%;border-collapse:collapse;border-spacing:0;}
 ol,ul{list-style:none;}
 q:before,q:after,blockquote:before,blockquote:after{:"";}
-html{overflow-y:scroll;font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+html{overflow-y:auto;font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
 a:focus{outline:thin dotted;}
 a:hover,a:active{outline:0;}
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
@@ -565,14 +565,14 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 /*@TODO: fix this to be versatile for the screen */
 .span3-opener {padding-left: 20px; float:left;}
 
-.nav_image {background-image:url('/s/static/icon_slider.png'); background-repeat: no-repeat; background-size: 160px;}
+.nav_image {background-repeat: no-repeat; background-size: 160px; padding-top: 5px;}
 
 .gallery_banner {background-image:url('/s/static/gallery_banner.png'); width: 388px; height: 59px; background-repeat: no-repeat; background-color:#D11919;}
 #footer { width:100%; position:fixed; left:0px; bottom:0px; background-color:#262626;}
 #nav {height:100px; width:900px; margin:0px auto;}
 #logo {background-image:url('/s/static/logo_simple-white.png'); background-size:140px; background-repeat:no-repeat; width:200px; height:100px; float:left; margin-right:10px;}
 #social {float:right;}
-#social img {height:48px; width:auto; margin-top: 8px; margin-right: 30px;}
+#social img {height:48px; width:48px; padding-top: 8px;}
 .nav_item { color:white;float:left;padding:12px 20px;margin-top: 10px;font-size:24pt; font-family:sans-serif; font-weight:bold;}
 .nav_item>a, .profile_link>a{color: white; text-decoration: none;}
 .nav_item>a:hover{color: #939393;}
@@ -587,15 +587,14 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .video_caption{font-variant: normal; line-height:10%;}
 .video_sidebar{padding-bottom: 20px;}
 .form_label>label{color: white;}
-.title, .side_title{color: white; font-weight: bold;}
-.title{font-size: 14pt; padding-top: 15px;}
+.title_body, .side_title{color: white; font-weight: bold;}
+.title_body{font-size: 14pt; padding-top: 3px;}
 .description, .description > p {color: white; font-size: 10pt; padding: 5px;}
+.post {overflow-y: auto; height: 350px;}
 .side_title{font-size: 10pt;}
-
+.act_logo{height: 150px; width: 150px;}
 .act_image{padding: 10px; text-align: center;}
  .inside_page{text-align: center;}
-.act_logo{height: 150px; width: 150px;}
-
 .blanket { background-color:#111; opacity: 0.65; filter:alpha(opacity=65); position:absolute; top:0px; left:0px; width:100%;}
 .popUp { position:absolute; background-color:#8F8F8F; height:470px; width:880px; left: 80px;}
 .blog_popUp { position:absolute; left: 440px; top:100px; background-color:#5B5B5B; height:410px; width:555px; float: left;}

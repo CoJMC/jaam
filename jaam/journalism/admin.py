@@ -18,6 +18,17 @@ class BaseAdmin(admin.ModelAdmin):
             item.published = False
             item.save()
 
+    # All fields in the 'admin' fieldset are hidden from non-admins
+    def get_form(self, request, obj=None, **kwargs):
+        self.exclude = self.exclude or []
+        non_admin_fieldsets = []
+        if not request.user.is_superuser:
+            for fieldset in self.fieldsets:
+                if not fieldset[0] == 'Admin':
+                    non_admin_fieldsets.append(fieldset)
+        self.fieldsets = non_admin_fieldsets
+        return super(BaseAdmin, self).get_form(request, obj, **kwargs)
+
 #class UserProfileInline(admin.TabularInline):
 #    model = UserProfile
 

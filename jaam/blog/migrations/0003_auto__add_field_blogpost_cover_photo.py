@@ -8,83 +8,17 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Deleting field 'Act.act_code'
-        db.delete_column('act_act', 'act_code')
-
-        # Adding field 'Act.created_at'
-        db.add_column('act_act', 'created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, default=datetime.datetime(2012, 2, 23, 16, 44, 56, 543394), blank=True), keep_default=False)
-
-        # Adding field 'Act.modified_at'
-        db.add_column('act_act', 'modified_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime(2012, 2, 23, 16, 44, 56, 543394), blank=True), keep_default=False)
-
-        # Adding field 'Act.published'
-        db.add_column('act_act', 'published', self.gf('django.db.models.fields.BooleanField')(default=False), keep_default=False)
-
-        # Adding field 'Act.slug'
-        db.add_column('act_act', 'slug', self.gf('django.db.models.fields.SlugField')(default='a', unique=True, max_length=50, db_index=True), keep_default=False)
-
-        # Adding field 'Act.project'
-        db.add_column('act_act', 'project', self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['projects.Project']), keep_default=False)
-
-        # Adding field 'Act.text'
-        db.add_column('act_act', 'text', self.gf('ckeditor.fields.RichTextField')(default=''), keep_default=False)
-
-        # Adding field 'Act.image'
-        db.add_column('act_act', 'image', self.gf('django.db.models.fields.files.ImageField')(default=1, max_length=200), keep_default=False)
-
-        # Adding M2M table for field tags on 'Act'
-        db.create_table('act_act_tags', (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('act', models.ForeignKey(orm['act.act'], null=False)),
-            ('tag', models.ForeignKey(orm['journalism.tag'], null=False))
-        ))
-        db.create_unique('act_act_tags', ['act_id', 'tag_id'])
+        # Adding field 'BlogPost.cover_photo'
+        db.add_column('blog_blogpost', 'cover_photo', self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['photos.Photo']), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Adding field 'Act.act_code'
-        db.add_column('act_act', 'act_code', self.gf('ckeditor.fields.RichTextField')(default=0), keep_default=False)
-
-        # Deleting field 'Act.created_at'
-        db.delete_column('act_act', 'created_at')
-
-        # Deleting field 'Act.modified_at'
-        db.delete_column('act_act', 'modified_at')
-
-        # Deleting field 'Act.published'
-        db.delete_column('act_act', 'published')
-
-        # Deleting field 'Act.slug'
-        db.delete_column('act_act', 'slug')
-
-        # Deleting field 'Act.project'
-        db.delete_column('act_act', 'project_id')
-
-        # Deleting field 'Act.text'
-        db.delete_column('act_act', 'text')
-
-        # Deleting field 'Act.image'
-        db.delete_column('act_act', 'image')
-
-        # Removing M2M table for field tags on 'Act'
-        db.delete_table('act_act_tags')
+        # Deleting field 'BlogPost.cover_photo'
+        db.delete_column('blog_blogpost', 'cover_photo_id')
 
 
     models = {
-        'act.act': {
-            'Meta': {'object_name': 'Act'},
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '200'}),
-            'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['projects.Project']"}),
-            'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
-            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'}),
-            'text': ('ckeditor.fields.RichTextField', [], {'default': "''"}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-        },
         'auth.group': {
             'Meta': {'object_name': 'Group'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -114,6 +48,34 @@ class Migration(SchemaMigration):
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
+        'blog.blog': {
+            'Meta': {'object_name': 'Blog'},
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['projects.Project']"}),
+            'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'subtitle': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'})
+        },
+        'blog.blogpost': {
+            'Meta': {'object_name': 'BlogPost'},
+            'author': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'blog': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['blog.Blog']"}),
+            'body': ('ckeditor.fields.RichTextField', [], {}),
+            'cover_photo': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['photos.Photo']"}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'headline': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'})
+        },
         'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -130,6 +92,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Photo'},
             'caption': ('django.db.models.fields.CharField', [], {'max_length': '5000'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'enable_comments': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'exif_data': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['photos.PhotoExifData']", 'unique': 'True', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '200'}),
@@ -200,4 +163,4 @@ class Migration(SchemaMigration):
         }
     }
 
-    complete_apps = ['act']
+    complete_apps = ['blog']
