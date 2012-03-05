@@ -32,6 +32,7 @@ body {
 #logo {
     background-image: url('../img/logo_simple-white.png');
     background-size: 160px;
+    -moz-background-size: 160px;
     background-repeat: no-repeat;
     width: 160px;
     height: 65px;
