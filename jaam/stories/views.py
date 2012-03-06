@@ -13,7 +13,7 @@ def details(request, project_slug, story_slug):
     inlines.registry.register('photo', inlines.inline_for_model(Photo));
     inlines.registry.register('video', inlines.inline_for_model(Video));
     story = get_object_or_404(Story, slug=story_slug)
-    title = story.headline
+    title = story.title
     project = get_object_or_404(Project, slug=project_slug)
     return render_to_response('stories/story_details.html', { 'project': project, 'story': story, 'title': title }, context_instance=RequestContext(request))
 
