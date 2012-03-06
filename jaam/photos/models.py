@@ -15,7 +15,6 @@ from django.utils.encoding import smart_str
 import akismet
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.contrib.comments.moderation import CommentModerator, moderator
 
 class PhotoExifData(models.Model):
     camera_manufacturer = models.CharField(max_length=50, null=True)
@@ -83,13 +82,6 @@ def moderate_comment(sender, comment, request, **kwargs):
         print "JAAM"
 
 comment_was_posted.connect(moderate_comment)
-
-
-class PhotoModerator(CommentModerator):
-    email_notification = False
-    enable_field = 'enable_comments'
-
-moderator.register(Photo, PhotoModerator)
 
 class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)

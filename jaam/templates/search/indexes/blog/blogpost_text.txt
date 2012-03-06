@@ -1,3 +1,5 @@
 {{ object.title }}
+{{ object.author.first_name }}
+{{ object.author.last_name }}
 {{ object.description }}
 {{ object.body }}
