@@ -11,6 +11,7 @@ easy_thumbnails==1.0-alpha-20
 django_compressor==1.1.1
 django-tastypie==0.9.11
 django-haystack==1.2.6
+Whoosh==2.3.2
 django-celery==2.4.2
 django_inlines==0.7.4
 

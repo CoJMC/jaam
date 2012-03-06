@@ -3,6 +3,9 @@ from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_protect
+import datetime
+import math
+import string
 
 from django.contrib.auth.models import User
 from forms import UserProfileForm
@@ -22,7 +25,7 @@ def profile_set(request):
 
     if request.method == 'POST': # If the form has been submitted...
         profile_form = UserProfileForm(request.POST, request.FILES)
-            
+
         if profile_form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data and return to the admin
             profile.full_name = profile_form.cleaned_data['full_name']
@@ -33,10 +36,13 @@ def profile_set(request):
             user.email = profile_form.cleaned_data['email']
             user.save()
             profile.save()
-        
         return HttpResponseRedirect('/admin') # Redirect after POST
     else:      
-        profile_form = UserProfileForm(initial={'full_name': profile.full_name, 'email': user.email}) # An unbound form
-        return render_to_response('journalism/success.html', {
-           'profile_form': profile_form, 
-        },  context_instance=RequestContext(request))
+        if profile.major == None and profile.bio == None: # if the user has not given their major or bio display the user_profile_edit form
+            profile_form = UserProfileForm(initial={'full_name': profile.full_name, 'email': user.email}) # An unbound form
+            return render_to_response('journalism/success.html', {
+               'profile_form': profile_form,
+            },  context_instance=RequestContext(request))
+        else:
+            return render_to_response('index.html')
+
