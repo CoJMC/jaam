@@ -23,9 +23,9 @@
 			</div>
 			
 			<div class="span3">
-				<p class="popup_link"><a href="#{{post.title}}" onclick="popup('{{post.title|safe}}')"><img src="/s/static/profile_arrow.png"/>Read Now</a></p>
+
+				<p class="popup_link"><a href="#{{post.title|safe}}" onclick="popup('{{post.title|safe}}')"><img src="/s/static/profile_arrow.png"/>Read Now</a></p>
 				<p class="side_title">{{post.title|safe}}</p>
-				<!--  IMAGE -->
 
 				<p class="description"> {{post.description|safe}}  </p>
 				
@@ -33,7 +33,7 @@
 					<div id="blanket" style="display:none;">
 					</div>
 					<div id="{{post.title|safe}}" style="display:none;" class="blog_popUp">
-					
+
 						<a href="/projects/{{project.slug}}/blog/{{blog.slug}}/" onclick="popup('{{post.title|safe}}'); " style="float: right">
 							<img src="/s/static/close.png" height="25px" width="25px" />
 						</a>
