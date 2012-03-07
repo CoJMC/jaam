@@ -13,12 +13,15 @@
 <!-- Side Bar -->
 <div class="row-fluid">
 	<div class="span12">
-		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px;">
-		
+		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px; position: absolute;">
+			
+			<div class="info">
 			<a href="/projects/{{project.slug}}/info">
 			<div class="link_info" style="background-color: {{project.primaryColor}}">
 				<p class="blip_info" style="background-color: {{project.primaryColor}};">info</p> 
 			</div></a>
+			</div>
+
 			
 			<a href="/projects/{{project.slug}}/photos/">
 			<div class="link_photo" style="background-color: {{project.primaryColor}}">
@@ -42,7 +45,7 @@
 			
 			<!-- @TODO: clean up this video link.... what's the blog gallery page? -->
 			{% for blog in project.blog_set.all|slice:":1" %}			
-			<a href="/projects/{{project.slug}}/blog/{{blog.slug}}/">
+			<a href="/projects/{{project.slug}}/blog/">
 			<div class="link_blog" style="background-color: {{project.primaryColor}}">
 				<p class="blip_blog" style="background-color: {{project.primaryColor}};">blogs</p> 
 			</div>
@@ -58,7 +61,7 @@
 		</div>
 		
 		<!-- Inside content -->
-		<div class="span11" style="padding-top: 30px; height: 420px">
+		<div class="span11" style="padding-top: 30px; height: 420px; margin-left: 100px;">
 			{% block banner_body %}
 			
 			{% endblock %}

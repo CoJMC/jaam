@@ -587,6 +587,8 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 [class*="link_"]:hover {margin-left: -20px;}
 [class*="link_"]>p {margin-left: 35px; margin-top: -5px; color: white; font-weight: bold; font-size: 12pt; padding-top: 6px; font-variant:small-caps; width: 70px; height: 25px;}
 
+.info>a {background-color: red;}
+
 .link_info {background-image:url('/s/static/info_icon.png');}
 .link_photo {background-image:url('/s/static/photo_icon.png');}
 .link_video {background-image:url('/s/static/video_icon.png');}
