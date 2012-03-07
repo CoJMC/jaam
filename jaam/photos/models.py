@@ -61,6 +61,12 @@ class Photo(BaseModel):
     def comments_expired(self):
         delta = datetime.datetime.now() - self.pub_date
         return delta.days < 90
+    
+    @property
+    def photos(self):
+        return Photo.objects.filter(
+            pk__in=self.project.photo_set.all().values_list('journalist', flat=True).query
+        )
 
 #Akismet spam connections
 def moderate_comment(sender, comment, request, **kwargs):
