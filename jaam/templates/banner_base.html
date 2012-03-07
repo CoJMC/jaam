@@ -42,15 +42,12 @@
 				<p class="blip_story" style="background-color: {{project.primaryColor}};">stories</p>
 			</div>
 			</a>
-			
-			<!-- @TODO: clean up this video link.... what's the blog gallery page? -->
-			{% for blog in project.blog_set.all|slice:":1" %}			
+	
 			<a href="/projects/{{project.slug}}/blog/">
 			<div class="link_blog" style="background-color: {{project.primaryColor}}">
 				<p class="blip_blog" style="background-color: {{project.primaryColor}};">blogs</p> 
 			</div>
 			</a>
-			{% endfor %}
 			
 			<a href="/projects/{{project.slug}}/contributors/">
 			<div class="link_contributor" style="background-color: {{project.primaryColor}}">
