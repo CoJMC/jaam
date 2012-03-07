@@ -4,7 +4,7 @@ from django.contrib import admin
 from blog.models import Blog, BlogPost
 # Not sure about UserProfile
 from journalism.models import UserProfile
-# from photos.models import Photo
+from photos.models import Photo
 from projects.models import Project
 from stories.models import Story
 from videos.models import Video
@@ -63,16 +63,17 @@ class VideoIndex(indexes.SearchIndex):
 	def index_queryset(self):
 		return self.get_model().objects.filter(published=True)
 
-'''
+
 class PhotoIndex(indexes.SearchIndex):
 	text = indexes.CharField(document=True, use_template=True)
+	author = indexes.CharField(model_attr='journalist');
 
 	def get_model(self):
 		return Photo
 
 	def index_queryset(self):
 		return self.get_model().objects.filter(published=True)
-'''
+
 
 
 
@@ -81,3 +82,4 @@ site.register(BlogPost, BlogPostIndex)
 site.register(Project, ProjectIndex)
 site.register(Story, StoryIndex)
 site.register(Video, VideoIndex)
+site.register(Photo, PhotoIndex)
