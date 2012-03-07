@@ -26,7 +26,7 @@ class LatestBlogsFeed(Feed):
         return BlogPost.objects.filter(blog__project__id=obj.id).all()[:20]
 
     def item_title(self, item):
-        return item.headline
+        return item.title
 
     def item_description(self, item):
         return item.body
@@ -54,7 +54,7 @@ class LatestStoriesFeed(Feed):
         return Story.objects.filter(project__id=obj.id).all()[:20]
 
     def item_title(self, item):
-        return item.headline
+        return item.title
 
     def item_description(self, item):
         return item.body

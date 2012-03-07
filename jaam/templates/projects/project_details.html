@@ -6,9 +6,8 @@
 {% block banner %}{{ project.title }}{% endblock %}
 
 {% block banner_body %}
-	<!-- @TODO: Vertically align the content in this div. -->
-	<div class="span4" style="padding-top: 30px;">
-		<h5 style="color: white;  border-bottom: 1px solid white;"> {{project.description|safe}} </h5>
+	<div class="span4">
+		<h5 style="color: white;  border-bottom: 1px solid white; height: 180px"> {{project.description|safe}} </h5>
 		<p style="margin-top: 20px;">
 		<iframe width="280" height="200" src="http://www.youtube.com/embed/am82U2U9-H4?HD=1;rel=0;showinfo=0;controls=0" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
 		</p>

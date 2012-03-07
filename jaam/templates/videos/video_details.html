@@ -2,19 +2,18 @@
 {% load thumbnail %}
 {% load comments %}
 
-{% block title %}video{% endblock %}
-
-{%block banner%} {{video.project.title}} {%endblock%}
+{%block banner%} {{project.title}} {%endblock%}
 
 {% block banner_body %}
-		<div class="span8">
+		<div class="span8" style="margin-top: -20px">
 			<iframe width="620" height="350" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
-			<p class="title_body" >{{video.title}}:&nbsp;&nbsp;<span class="video_caption">{{video.caption}}</span></p>
+			<p class="title_video" >{{video.title}}:&nbsp;&nbsp;<span class="video_caption">{{video.caption}}</span>
+			<br /> <span style="font-size: 8pt; font-style: italic;">Video by @TODO Author </span></p>
 		</div>
 		
-		<!-- @TODO: Write a method to exclude the displayed video; make SWIPEABLE -->
 		<div style="padding-left: 20px; height: 350px; overflow-y:auto; overflow-x: hidden"> 
 		{% for videoObj in video.project.video_set.all %}
+			{% if videoObj.videoId != video.videoId %}
 			<a href="{{videoObj.get_absolute_url}}">
 			<div class="span2">
 				<img src="{{videoObj.getEmbedImage}}" width="105px"/>
@@ -23,6 +22,7 @@
 			<p class="video_sidebar">{{video.title}}</p>
 			</div>
 			</a>
+			{% endif %}
 		{% endfor %}
 		</div>
 

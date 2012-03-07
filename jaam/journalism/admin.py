@@ -26,7 +26,7 @@ class BaseAdmin(admin.ModelAdmin):
             for fieldset in self.fieldsets:
                 if not fieldset[0] == 'Admin':
                     non_admin_fieldsets.append(fieldset)
-        self.fieldsets = non_admin_fieldsets
+            self.fieldsets = non_admin_fieldsets
         return super(BaseAdmin, self).get_form(request, obj, **kwargs)
 
 #class UserProfileInline(admin.TabularInline):

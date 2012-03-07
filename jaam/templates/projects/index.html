@@ -75,8 +75,10 @@ $(document).ready(function (){
             var subtitle = $("<span>").addClass("subtitle").text(proj.tagline);
             title.appendTo(title_box);
             subtitle.appendTo(title_box);
-            title_box.insertAfter(project_li.children()[3] || project_li.children().last());
-            project_li.focus();
+            if (project_li.children().length > 0)
+                title_box.insertAfter(project_li.children()[3] || project_li.children().last())
+            else
+                title_box.appendTo(project_li);
         });
     }
 });

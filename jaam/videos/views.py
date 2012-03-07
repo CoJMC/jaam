@@ -15,7 +15,8 @@ def gallery_details(request, project_slug, gallery_slug):
 def details(request, project_slug, video_id):
     project = get_object_or_404(Project, slug=project_slug)
     video = get_object_or_404(Video, pk=video_id)
-    return render_to_response('videos/video_details.html', { 'video': video, 'project': project, 'title': video}, context_instance=RequestContext(request))
+    title = video.title
+    return render_to_response('videos/video_details.html', { 'video': video, 'project': project, 'title': title}, context_instance=RequestContext(request))
 
 def index(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)

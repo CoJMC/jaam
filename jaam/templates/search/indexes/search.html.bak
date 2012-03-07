@@ -1,0 +1,28 @@
+{% url core.views.search as base %}
+{% block content %}
+<form action="{{ base }}" method="get">
+<h1><label for="query">{% block title %}Search{% endblock %}</label>
+for <input id="query" name="query" type="text" value="{{ query }}" />
+<input type="submit" value="Search" class="button" /></h1>
+</form>
+{% if page.object_list %}
+	<ol start="{{ page.start_index }}">
+	{% for o in page.object_list %}
+		<li><a href="{{ base }}/{{ o.slug }}">{{ o.name }}</a></li>
+	{% endfor %}
+	</ol>
+	<p>Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+	<ul>
+	{% if page.has_previous %}
+		<li><a href="{{ base }}?query={{ query|urlencode }}&amp;page={{ page.previous_page_number }}">&larr; Previous</a></li>
+	{% endif %}
+	{% if page.has_next %}
+		<li><a href="{{ base }}?query={{ query|urlencode }}&amp;page={{ page.next_page_number }}">Next &rarr;</a></li>
+	{% endif %}
+	</ul>
+{% else %}
+	{% if query %}
+		<p>We couldn’t find anything named <strong>{{ query }}</strong></p>
+	{% endif %}
+{% endif %}
+{% endblock %}
