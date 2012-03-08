@@ -19,12 +19,14 @@ class VideoAdmin(BaseAdmin):
         obj.save()
 
 class VideoGalleryItemInline(admin.TabularInline):
+    template = 'admin/edit_inline/video_gallery.html'
     model = VideoGalleryItem
+    ordering = ['order']
+    extra = 0
 
 class VideoGalleryAdmin(BaseAdmin):
     inlines = [VideoGalleryItemInline]
     list_display = ('project', '__unicode__', 'introduction', 'published')
-   # list_filter = ('video gallery')
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
                  (None, { 'fields': ('project', 'title', 'slug', 'introduction', 'tags',) },),
