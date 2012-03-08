@@ -16,6 +16,26 @@ from django.http import Http404
 
 import ast
 
+
+class SearchResource(ModelResource):
+    class Meta:
+        resource_name = "search";
+        queryset = Project.published_objects.all()
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(SearchResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+
 class ProjectResource(ModelResource):
     covergallery = fields.ForeignKey('jaam.api.resources.PhotoGalleryResource', 'coverGallery', null=True)
     class Meta:
@@ -26,12 +46,198 @@ class ProjectResource(ModelResource):
             'id': ALL,
             'slug': ALL,
             'covergallery': ('isnull'),
+        }    
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(ProjectResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class PhotoGalleryResource(ModelResource):
+    project = fields.ForeignKey(ProjectResource, 'project')
+    class Meta:
+        queryset = PhotoGallery.published_objects.all()
+        allowed_methods = ['get']
+        filtering = {
+            'id': ALL,
+            'project': ALL_WITH_RELATIONS,
         }
 
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(PhotoGalleryResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class PhotoResource(ModelResource):
+    project = fields.ForeignKey(ProjectResource, 'project')
+    class Meta:
+        queryset = Photo.published_objects.all()
+        allowed_methods = ['get']
+        filtering = {
+            'slug': ALL,
+            'project': ALL_WITH_RELATIONS,
+            'title': ALL,
+        }
+    def dehydrate_image(self, bundle):
+        if 'size' in bundle.request.GET:
+            # TODO:
+            # use id to filter instead of slug? implement id filtering above
+            try:
+                size = ast.literal_eval(bundle.request.GET['size'])
+            except SyntaxError:
+                return bundle.data['image']
+            thumbnailer = self.obj_get(slug=bundle.data['slug']).image
+            thumbnail_options = {'size': size}
+            if 'crop' in bundle.request.GET and bundle.request.GET['crop'].lower() == 'true':
+                thumbnail_options.update({'crop': True})
+            return thumbnailer.get_thumbnail(thumbnail_options).url
+        else:
+            return bundle.data['image']
+    def get_object_list(self, request):
+        if hasattr(request, 'GET') and 'gallery__id' in request.GET:
+            return Photo.published_objects.filter(photogallery=request.GET['gallery__id']).order_by('photogalleryitem__order')
+        else:
+            return super(PhotoResource, self).get_object_list(request)
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(PhotoResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class VideoGalleryResource(ModelResource):
+    class Meta:
+        queryset = VideoGallery.published_objects.all()
+        allowed_methods = ['get']
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(VideoGalleryResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class VideoResource(ModelResource):
+    class Meta:
+        queryset = Video.published_objects.all()
+        allowed_methods = ['get']
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(VideoResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class StoryResource(ModelResource):
+    class Meta:
+        queryset = Story.published_objects.all()
+        allowed_methods = ['get']
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(StoryResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class BlogResource(ModelResource):
+    project = fields.ForeignKey(ProjectResource, 'project')
+    class Meta:
+        queryset = Blog.published_objects.all()
+        allowed_methods = ['get']
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(BlogResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class BlogPostResource(ModelResource):
+    class Meta:
+        queryset = BlogPost.published_objects.all()
+        allowed_methods = ['get']
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+
+        orm_filters = super(BlogPostResource, self).build_filters(filters)
+
+        if "q" in filters:
+            sqs = SearchQuerySet().auto_query(filters['q'])
+
+            orm_filters["pk__in"] = [i.pk for i in sqs]
+
+        return orm_filters
+
+class DocumentResource(ModelResource):
+    # TODO:
+    # this one could be interesting
+    # check the TastyPie documentation on
+    # non-ORM resources, which is what this would be.
+    # 
+    # It will need to build a QuerySet of documents
+    # from DocumentCloud
+    class Meta:
+        pass
+
+
+
+# There's a good chance none of this is needed, but I don't really want to delete it now to have to find it all later.
+'''
 class ProjectSearchResource(ModelResource):
     class Meta:
         queryset = Project.published_objects.all()
-        resource_name = 'projects'
+        resource_name = 'projectsearch'
 
     def override_urls(self):
         return [
@@ -65,6 +271,7 @@ class ProjectSearchResource(ModelResource):
 
         self.log_throttled_access(request)
         return self.create_response(request, object_list)
+
 
 class BlogPostSearchResource(ModelResource):
     class Meta:
@@ -141,82 +348,4 @@ class VideoSearchResource(ModelResource):
 
         self.log_throttled_access(request)
         return self.create_response(request, object_list)
-
-
-class PhotoGalleryResource(ModelResource):
-    project = fields.ForeignKey(ProjectResource, 'project')
-    class Meta:
-        queryset = PhotoGallery.published_objects.all()
-        allowed_methods = ['get']
-        filtering = {
-            'id': ALL,
-            'project': ALL_WITH_RELATIONS,
-        }
-
-class PhotoResource(ModelResource):
-    project = fields.ForeignKey(ProjectResource, 'project')
-    class Meta:
-        queryset = Photo.published_objects.all()
-        allowed_methods = ['get']
-        filtering = {
-            'slug': ALL,
-            'project': ALL_WITH_RELATIONS,
-            'title': ALL,
-        }
-    def dehydrate_image(self, bundle):
-        if 'size' in bundle.request.GET:
-            # TODO:
-            # use id to filter instead of slug? implement id filtering above
-            try:
-                size = ast.literal_eval(bundle.request.GET['size'])
-            except SyntaxError:
-                return bundle.data['image']
-            thumbnailer = self.obj_get(slug=bundle.data['slug']).image
-            thumbnail_options = {'size': size}
-            if 'crop' in bundle.request.GET and bundle.request.GET['crop'].lower() == 'true':
-                thumbnail_options.update({'crop': True})
-            return thumbnailer.get_thumbnail(thumbnail_options).url
-        else:
-            return bundle.data['image']
-    def get_object_list(self, request):
-        if hasattr(request, 'GET') and 'gallery__id' in request.GET:
-            return Photo.published_objects.filter(photogallery=request.GET['gallery__id']).order_by('photogalleryitem__order')
-        else:
-            return super(PhotoResource, self).get_object_list(request)
-
-class VideoGalleryResource(ModelResource):
-    class Meta:
-        queryset = VideoGallery.published_objects.all()
-        allowed_methods = ['get']
-
-class VideoResource(ModelResource):
-    class Meta:
-        queryset = Video.published_objects.all()
-        allowed_methods = ['get']
-
-class StoryResource(ModelResource):
-    class Meta:
-        queryset = Story.published_objects.all()
-        allowed_methods = ['get']
-
-class BlogResource(ModelResource):
-    project = fields.ForeignKey(ProjectResource, 'project')
-    class Meta:
-        queryset = Blog.published_objects.all()
-        allowed_methods = ['get']
-
-class BlogPostResource(ModelResource):
-    class Meta:
-        queryset = BlogPost.published_objects.all()
-        allowed_methods = ['get']
-
-class DocumentResource(ModelResource):
-    # TODO:
-    # this one could be interesting
-    # check the TastyPie documentation on
-    # non-ORM resources, which is what this would be.
-    # 
-    # It will need to build a QuerySet of documents
-    # from DocumentCloud
-    class Meta:
-        pass
+'''
