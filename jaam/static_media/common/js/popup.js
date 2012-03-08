@@ -28,3 +28,29 @@ function popup(windowname) {
 	toggle('blanket');
 	toggle(windowname);		
 }
+
+function determinePage(pathname) {
+	
+	if (pathname.search("info") != -1) {
+		popOutLink('blip_info', 'link_info');}
+		
+	else if (pathname.search("photos") != -1) {
+		popOutLink('blip_photo', 'link_photo');}
+		
+	else if (pathname.search("video") != -1) {
+		popOutLink('blip_video', 'link_video');}
+			
+	else if (pathname.search("stories") != -1) {
+		popOutLink('blip_story', 'link_story');}
+					
+	else if (pathname.search("blog") != -1) {
+		popOutLink('blip_blog', 'link_blog');}
+			
+	else if (pathname.search("contributor") != -1) {
+		popOutLink('blip_contributor', 'link_contributor');}		
+	}
+	
+function popOutLink(blip, link) {
+		document.getElementById(blip).style.visibility="visible";
+		document.getElementById(link).style.marginLeft="-20px"; 	
+}

@@ -583,11 +583,9 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .link_div:hover{ margin-left: -15px;} 
 .nav_image:hover {margin-left: -15px;}
 
-[class*="link_"]{background-repeat: no-repeat; background-size: 160px; padding-top: 6px; padding-bottom: 6px; height: 25px; }
+[class*="link_"]{background-repeat: no-repeat; padding-top: 6px; padding-bottom: 6px; height: 25px; width: 25px; }
 [class*="link_"]:hover {margin-left: -20px;}
-[class*="link_"]>p {margin-left: 35px; margin-top: -5px; color: white; font-weight: bold; font-size: 12pt; padding-top: 6px; font-variant:small-caps; width: 70px; height: 25px;}
-
-.info>a {background-color: red;}
+[class*="link_"]>p {margin-left: 35px; margin-top: -5px; color: white; font-weight: bold; font-size: 12pt; padding-top: 6px; font-variant:small-caps; width: 65px; height: 25px;}
 
 .link_info {background-image:url('/s/static/info_icon.png');}
 .link_photo {background-image:url('/s/static/photo_icon.png');}
@@ -604,6 +602,8 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .link_story:hover .blip_story {visibility: visible;}
 .link_blog:hover .blip_blog {visibility: visible;}
 .link_contributor:hover .blip_contributor {visibility: visible;}
+
+.side_banner>a {text-decoration:none;}
 
 .journalist_thumbnail {align: left; padding:2px; border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.075);-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.075);box-shadow:0 1px 1px rgba(0, 0, 0, 0.075); height: 74px; width: 60px;}
 .mini_title, .video_sidebar {color: white; font-size: 9pt; font-weight: bold;}

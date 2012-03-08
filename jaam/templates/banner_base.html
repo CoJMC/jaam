@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block body %}
+
+<script type="text/javascript">
+
+$(document).ready(function (){
+	determinePage(window.location.pathname);
+});
+</script>
+
 <div class="row-fluid" style="padding-left: 40px; padding-top: 5px;">
 	<div class="gallery_banner" style="background-color: {{ project.primaryColor }}">
 		<p class="banner_text">
@@ -14,47 +22,45 @@
 <div class="row-fluid">
 	<div class="span12">
 		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px; position: absolute;">
-			
-			<div class="info">
+		<div class="side_banner">
 			<a href="/projects/{{project.slug}}/info">
-			<div class="link_info" style="background-color: {{project.primaryColor}}">
-				<p class="blip_info" style="background-color: {{project.primaryColor}};">info</p> 
+			<div id="link_info" class="link_info" style="background-color: {{project.primaryColor}}">
+				<p id="blip_info" class="blip_info" style="background-color: {{project.primaryColor}};">info</p> 
 			</div></a>
-			</div>
 
 			
 			<a href="/projects/{{project.slug}}/photos/">
-			<div class="link_photo" style="background-color: {{project.primaryColor}}">
-				<p class="blip_photo" style="background-color: {{project.primaryColor}};">photos</p> 
+			<div id="link_photo" class="link_photo" style="background-color: {{project.primaryColor}}">
+				<p id="blip_photo" class="blip_photo" style="background-color: {{project.primaryColor}};">photos</p> 
 			</div></a>
 			
 			<!-- @TODO: clean up this video link.... what's the cover video? -->
 			{% for video in project.video_set.all|slice:":1" %}
 			<a href="/projects/{{project.slug}}/videos/{{video.id}}/">
-			<div class="link_video" style="background-color: {{project.primaryColor}}">
-				<p class="blip_video" style="background-color: {{project.primaryColor}};">videos</p> 
+			<div id="link_video" class="link_video" style="background-color: {{project.primaryColor}}">
+				<p id="blip_video" class="blip_video" style="background-color: {{project.primaryColor}};">videos</p> 
 			</div>
 			</a>
 			{% endfor %}
 			
 			<a href="/projects/{{project.slug}}/stories/">
-			<div class="link_story" style="background-color: {{project.primaryColor}}">
-				<p class="blip_story" style="background-color: {{project.primaryColor}};">stories</p>
+			<div id="link_story" class="link_story" style="background-color: {{project.primaryColor}}">
+				<p id="blip_story" class="blip_story" style="background-color: {{project.primaryColor}};">stories</p>
 			</div>
 			</a>
 	
 			<a href="/projects/{{project.slug}}/blog/">
-			<div class="link_blog" style="background-color: {{project.primaryColor}}">
-				<p class="blip_blog" style="background-color: {{project.primaryColor}};">blogs</p> 
+			<div id="link_blog" class="link_blog" style="background-color: {{project.primaryColor}}">
+				<p id="blip_blog" class="blip_blog" style="background-color: {{project.primaryColor}};">blogs</p> 
 			</div>
 			</a>
 			
 			<a href="/projects/{{project.slug}}/contributors/">
-			<div class="link_contributor" style="background-color: {{project.primaryColor}}">
-				<p class="blip_contributor" style="background-color: {{project.primaryColor}};"> contri-<br />butors</p>
+			<div id="link_contributor" class="link_contributor" style="background-color: {{project.primaryColor}}">
+				<p id="blip_contributor" class="blip_contributor" style="background-color: {{project.primaryColor}};"> contri-<br />butors</p>
 			</div>
 			</a>
-						
+		</div>			
 		</div>
 		
 		<!-- Inside content -->
