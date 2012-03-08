@@ -41,7 +41,8 @@ class Video(BaseModel):
         
     def getEmbedLink(self):
         video_id = self.scrapeVideoId()
-        link = "http://www.youtube.com/embed/" + video_id + "?HD=1;rel=0;showinfo=0;controls=0"
+        link = "http://www.youtube.com/embed/" + video_id + "?HD=1;rel=0;showinfo=0;"
+        #hide controls with controls=0
         return link  
     
     def getEmbedImage(self):
@@ -81,3 +82,5 @@ class VideoGallery(BaseModel):
 class VideoGalleryItem(models.Model):
     video = models.ForeignKey(Video)
     gallery = models.ForeignKey(VideoGallery)
+    order = models.IntegerField(null=True)
+

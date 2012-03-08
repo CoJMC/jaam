@@ -90,11 +90,11 @@ body {
     background-position: 0 -10px;
 }
 .title {
-    font-size: 26pt;
+    font-size: 22pt;
     font-weight: 700;
     text-transform: uppercase;
     position: relative;
-    top: 38px;
+    top: 40px;
     left: 56px;
     text-align: center;
     display: block;

@@ -1,0 +1,30 @@
+{% extends "banner_base.html" %}
+{% load thumbnail %}
+
+{% block title %}blogs{% endblock %}
+{% block banner %} {{project.title}} {% endblock %}
+{% block banner_body %}
+
+    <div class="span11" id="view3"> 
+    <div class="row" >  
+    
+	{% for blog in blogs %}
+	<div class="span3">
+		<a href="{{ blog.get_absolute_url }}"> <img src="{% thumbnail blog.cover_photo.image  240x240 %}"/> </a>
+		<a href="{{ blog.get_absolute_url }}"> <p class="gallery_title"> {{ blog.title }}</a> </p> 
+		<p class="gallery_blip"> {{ blog.subtitle }} </p>
+	</div>
+
+	<div class="gallery_spacer">
+		&nbsp
+	</div>
+	
+	{% if forloop.counter|divisibleby:"9" %}
+		<!--  end the view 3 section for swiping to a new one -->
+		</div></div>
+		<div class="span11" id="view3"><div class="row">
+	{% endif %}
+	{% endfor %}
+	</div>
+	</div>
+{% endblock %}

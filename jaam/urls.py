@@ -5,7 +5,7 @@ from tastypie.api import Api
 from jaam import settings
 from jaam.feeds import LatestBlogsFeed, LatestStoriesFeed, LatestPhotosFeed
 from jaam.api.resources import ProjectResource, PhotoGalleryResource, PhotoResource, VideoGalleryResource
-from jaam.api.resources import VideoResource, StoryResource, BlogResource, BlogPostResource, DocumentResource
+from jaam.api.resources import VideoResource, StoryResource, BlogResource, BlogPostResource, DocumentResource, SearchResource
 
 admin.autodiscover()
 
@@ -20,6 +20,7 @@ v1_api.register(StoryResource())
 v1_api.register(BlogResource())
 v1_api.register(BlogPostResource())
 v1_api.register(DocumentResource())
+v1_api.register(SearchResource())
 
 # these urlmatch pattern should have a trailing slash IF AND ONLY IF there is an include('subapp.urls') reference for the routing
 urlpatterns = patterns('',
