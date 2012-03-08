@@ -615,10 +615,10 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .video_sidebar{padding-bottom: 20px;}
 .form_label>label{color: white;}
 .title_body, .side_title, .title_video{color: white; font-weight: bold;}
-.title_body{font-size: 14pt;}
+.title_body{font-size: 14pt; font-weight: bold; padding-bottom: 20px;}
 .title_video{padding-top: 2px; font-size: 11pt; overflow-y: auto; height: 70px;}
-.description, .description > p {color: white; font-size: 10pt; padding: 5px; overflow-y: auto;}
-.post {overflow-y: auto; height: 350px;}
+.description, .description > p {color: white; padding: 5px; overflow-y: auto;}
+.post {overflow-y: auto; height: 350px; width: 550px; font-size: 11pt;}
 .text_image {float: left; padding-right: 10px; padding-bottom: 10px;}
 
 .side_title{font-size: 10pt;}
@@ -627,5 +627,5 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
  .inside_page{text-align: center;}
 .blanket { background-color:#111; opacity: 0.65; filter:alpha(opacity=65); position:absolute; top:0px; left:0px; width:100%;}
 .popUp { position:absolute; background-color:#8F8F8F; height:470px; width:880px; left: 80px;}
-.blog_popUp, .profile_popUp { position:absolute; left: 440px; top:90px; background-color:#525252; height:420px; width:555px; float: left;}
+.blog_popUp, .profile_popUp { position:absolute; left: 440px; top:90px; background-color:#525252; height:420px; width:580px; float: left; overflow-y: auto;}
 .profile_popUp {position:absolute; left: 90px; top: 40px; height: 500px; width: 880px;}

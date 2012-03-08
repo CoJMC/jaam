@@ -30,7 +30,7 @@ function popup(windowname) {
 }
 
 function determinePage(pathname) {
-	
+
 	if (pathname.search("info") != -1) {
 		popOutLink('blip_info', 'link_info');}
 		
@@ -44,7 +44,13 @@ function determinePage(pathname) {
 		popOutLink('blip_story', 'link_story');}
 					
 	else if (pathname.search("blog") != -1) {
-		popOutLink('blip_blog', 'link_blog');}
+		popOutLink('blip_blog', 'link_blog');
+		
+		if(location.hash.length > 0) {
+			var blogPost = location.hash.substring(1, location.hash.length);
+			popup(blogPost);
+		}
+	}
 			
 	else if (pathname.search("contributor") != -1) {
 		popOutLink('blip_contributor', 'link_contributor');}		
