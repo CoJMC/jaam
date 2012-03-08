@@ -82,3 +82,5 @@ class VideoGallery(BaseModel):
 class VideoGalleryItem(models.Model):
     video = models.ForeignKey(Video)
     gallery = models.ForeignKey(VideoGallery)
+    order = models.IntegerField(null=True)
+
