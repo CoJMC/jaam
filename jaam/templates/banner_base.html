@@ -13,35 +13,57 @@
 <!-- Side Bar -->
 <div class="row-fluid">
 	<div class="span12">
-		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px;">
-			<a href="/projects/{{project.slug}}/info"><img class="nav_image" src="/s/static/info_icon.png"/></a>
-			<a href="/projects/{{project.slug}}/photos/"><img class="nav_image" src="/s/static/photo_icon.png"/></a>
+		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px; position: absolute;">
+			
+			<div class="info">
+			<a href="/projects/{{project.slug}}/info">
+			<div class="link_info" style="background-color: {{project.primaryColor}}">
+				<p class="blip_info" style="background-color: {{project.primaryColor}};">info</p> 
+			</div></a>
+			</div>
+
+			
+			<a href="/projects/{{project.slug}}/photos/">
+			<div class="link_photo" style="background-color: {{project.primaryColor}}">
+				<p class="blip_photo" style="background-color: {{project.primaryColor}};">photos</p> 
+			</div></a>
 			
 			<!-- @TODO: clean up this video link.... what's the cover video? -->
 			{% for video in project.video_set.all|slice:":1" %}
-			<a href="/projects/{{project.slug}}/videos/{{video.id}}/"><img class="nav_image" src="/s/static/video_icon.png"/></a>
+			<a href="/projects/{{project.slug}}/videos/{{video.id}}/">
+			<div class="link_video" style="background-color: {{project.primaryColor}}">
+				<p class="blip_video" style="background-color: {{project.primaryColor}};">videos</p> 
+			</div>
+			</a>
 			{% endfor %}
 			
-			<a href="/projects/{{project.slug}}/stories/"><img class="nav_image" src="/s/static/stories_icon.png"/></a>
+			<a href="/projects/{{project.slug}}/stories/">
+			<div class="link_story" style="background-color: {{project.primaryColor}}">
+				<p class="blip_story" style="background-color: {{project.primaryColor}};">stories</p>
+			</div>
+			</a>
+	
+			<a href="/projects/{{project.slug}}/blog/">
+			<div class="link_blog" style="background-color: {{project.primaryColor}}">
+				<p class="blip_blog" style="background-color: {{project.primaryColor}};">blogs</p> 
+			</div>
+			</a>
 			
-			<!-- @TODO: clean up this video link.... what's the blog gallery page? -->
-			{% for blog in project.blog_set.all|slice:":1" %}
-			<a href="/projects/{{project.slug}}/blog/{{blog.slug}}/"><img class="nav_image" src="/s/static/blog_icon.png"/></a>
-			{% endfor %}
-			
-			<a href="/projects/{{project.slug}}/contributors/"><img class="nav_image" src="/s/static/contributors_icon.png"/></a>
-			
-			
+			<a href="/projects/{{project.slug}}/contributors/">
+			<div class="link_contributor" style="background-color: {{project.primaryColor}}">
+				<p class="blip_contributor" style="background-color: {{project.primaryColor}};"> contri-<br />butors</p>
+			</div>
+			</a>
+						
 		</div>
 		
 		<!-- Inside content -->
-		<div class="span11" style="padding-top: 30px; height: 420px">
+		<div class="span11" style="padding-top: 30px; height: 420px; margin-left: 100px;">
 			{% block banner_body %}
 			
 			{% endblock %}
 		</div>
 		<!-- Breadcrumbs --> 
-		
 			<div class="bottom_banner" style="background-color: {{ project.primaryColor }}">
 				<div class="bottom_banner_text"> {{project.tagline}} </div>
 			</div>

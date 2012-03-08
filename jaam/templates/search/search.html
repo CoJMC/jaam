@@ -16,8 +16,29 @@
             <h3>Results</h3>
 
             {% for result in page.object_list %}
+                
                 <p>
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+                    {% if result.model_name == 'photo' %}
+                        <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
+                        By: {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
+                        {{ result.object.caption }}
+
+                    
+                    {% else %}
+                        {% if result.model_name == 'video' %}
+                            <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
+                            By: {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
+                            {{ result.object.caption }}
+
+                        {% else %}
+                            <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
+                            By: {{ result.object.author.first_name }} {{ result.object.author.last_name }} </br>
+                            {{ result.object.body }}
+                        {% endif %}
+
+                    {% endif %}
+                    
+
                 </p>
             {% empty %}
                 <p>No results found.</p>
