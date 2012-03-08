@@ -27,8 +27,6 @@ class BlogPostIndex(indexes.SearchIndex):
         #filter by published
 		return self.get_model().objects.filter(published=True)
 
-	# TODO: use reg exp to remove html
-
 
 class ProjectIndex(indexes.SearchIndex):
 	# title_value = indexes.CharField(model_attr='title')
@@ -41,8 +39,6 @@ class ProjectIndex(indexes.SearchIndex):
         # Used when the entire index for model is updated.
         #filter by published
 		return self.get_model().objects.filter(published=True)
-
-	#  TODO: use reg exp to remove html
 
 class StoryIndex(indexes.SearchIndex):
 	text = indexes.CharField(document=True, use_template=True)

@@ -2,3 +2,4 @@
 {{ object.caption }}
 {{ object.journalist.first_name }}
 {{ object.journalist.last_name }}
+{{ object.project }}
