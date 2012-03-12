@@ -26,8 +26,8 @@ class PhotoExifData(models.Model):
     flash_used = models.NullBooleanField(null=True)
     height_dimension = models.CharField(max_length=15, null=True)
     width_dimension = models.CharField(max_length=15, null=True)
-    gps_latitude = models.CharField(max_length=15, null=True)
-    gps_longitude = models.CharField(max_length=15, null=True)
+    gps_latitude = models.CharField(max_length=45, null=True)
+    gps_longitude = models.CharField(max_length=45, null=True)
     altitude = models.CharField(max_length=15, null=True)
 
     def __unicode__(self):
