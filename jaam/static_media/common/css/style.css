@@ -213,15 +213,55 @@ td { vertical-align: top; }
 
 
 
+.journalist-banner {
+	margin-top: -60px; 
+	margin-left: -20px;
+}
 
+.journalist-name {
+	color: white;
+	font-size: 18pt;
+	font-weight: bold;
+	margin-top: -40px;
+	margin-left: 20px;
+}
 
+.journalist-infobox {
+	margin-left:20px; 
+	border-left:solid; 
+	border-width:thin;
+	padding-top: 50px;
+}
 
+.journalist-label {
+	color: white;
+	font-size: 16pt;
+	font-weight: bold;
+	padding-left: 20px;
+	padding-top: 10px;
+}
 
+.journalist-info {
+	color: white; 
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
 
+.journalist-bio{
+	color:white; 
+	padding-top:42px; 
+	padding-bottom:12px; 
+	border-bottom:solid; 
+	border-width:thin
+}
 
-
-
-
+.journalist-photos {
+	color:white; 
+	border-bottom:solid; 
+	border-width:thin; 
+	padding-top:12px; 
+	padding-bottom:12px
+}
 
 
 
