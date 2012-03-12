@@ -75,7 +75,7 @@
         var id = Number($(this).val())
         var image_place = $(this).parentsUntil('tbody', 'tr').children('.image_placeholder')
         if (id > 0) {
-            $.getJSON('/api/v1/photo/'+id+'/?format=json&size=(220,150)', function(data) {
+            $.getJSON('/api/v1/photo/'+id+'/?show_unpublished=true&format=json&size=(220,150)', function(data) {
                 image_place.html('<img src="'+data.image+'">')
             });
         } else {

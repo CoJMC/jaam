@@ -1,0 +1,2 @@
+add support for fb:image
+finish adding fb/twit stuff as it is / request context
