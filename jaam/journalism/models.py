@@ -11,6 +11,7 @@ from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
 
 class PublishedObjectsManager(models.Manager):
+    use_for_related_fields = True
     def get_query_set(self):
         if _show_unpublished():
 #           print "SHOWING ALL"
@@ -33,7 +34,7 @@ class BaseModel(models.Model):
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag, blank=True)
 
-    objects = models.Manager() # little bugger, didn't know I explicitly needed this
+    objects = models.Manager() # didn't know I explicitly needed this
     published_objects = PublishedObjectsManager()
 
     class Meta:

@@ -14,18 +14,22 @@
 		<div class="column-fluid">
 			<div class="span3">
 				<div style="margin-top:10px"><img src="{% thumbnail user.get_profile.avatar 330x220 %}" /></div>
-				<div style="margin-top: -60px; margin-left:-20px">
-					<img src="/s/static/photographer_profile_banner.png" width="300px"/>
+				<div class="journalist-banner">
+					<div>
+						<img src="/s/static/photographer_profile_banner.png" width="300px"/>
+					</div>
+					<div class="journalist-name">{{user.get_profile.full_name}}</div>
 				</div>
-				<div><h2 style="color:white; margin-top:-47px">{{user.get_profile.full_name}}</h2></div>
-				<div style="color:white; margin-top:40px"> Major: {{user.get_profile.major}} </div>
-				<div style="color:white; margin-top:10px"> Email: {{user.email}} </div>
-				
+				<div class="journalist-infobox">
+					<div class="journalist-label"> Major: </div>
+					<div class="journalist-info"> {{user.get_profile.major}} </div>
+					<div class="journalist-label">Email:</div>
+					<div class="journalist-info"> {{user.email}} </div>
+				</div>
 			</div>
-			<div class="span6">
-				<div><h2 style="color:white; padding-top:12px">{{user.username}}'s Profile</h2></div>
-				<div style="color:white; padding-top:12px; padding-bottom:12px; border-bottom:solid; border-width:thin"> {{user.get_profile.bio}} </div>
-				<div style="color:white; border-bottom:solid; border-width:thin; padding-top:12px; padding-bottom:12px"> There should be photos or something </div>
+			<div class="span6">				
+				<div class="journalist-bio"> {{user.get_profile.bio}} </div>
+				<div class="journalist-photos"> There should be photos or something </div>
 				<div style="padding-top:12px"> 
 					{{ user_photo.first_or_null.title }}
 				</div>
