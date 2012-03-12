@@ -20,15 +20,15 @@ class PhotoExifData(models.Model):
     camera_manufacturer = models.CharField(max_length=50, null=True)
     camera_model = models.CharField(max_length=50, null=True)
     date = models.DateTimeField('date photographed', null=True)
-    shutter_speed = models.CharField(max_length=15, null=True)
-    fnumber = models.CharField(max_length=15, null=True)
-    focal_length = models.CharField(max_length=15, null=True)
+    shutter_speed = models.IntegerField(null=True)
+    fnumber = models.DecimalField(max_digits=5, decimal_places=1, null=True)
+    focal_length = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     flash_used = models.NullBooleanField(null=True)
-    height_dimension = models.CharField(max_length=15, null=True)
-    width_dimension = models.CharField(max_length=15, null=True)
-    gps_latitude = models.CharField(max_length=15, null=True)
-    gps_longitude = models.CharField(max_length=15, null=True)
-    altitude = models.CharField(max_length=15, null=True)
+    height_dimension = models.IntegerField(null=True)
+    width_dimension = models.IntegerField(null=True)
+    gps_latitude = models.DecimalField(max_digits=8, decimal_places=6, null=True)
+    gps_longitude = models.DecimalField(max_digits=8, decimal_places=6, null=True)
+    altitude = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
     def __unicode__(self):
         return ' '.join({self.photo.project.title, self.photo.title})
@@ -158,9 +158,9 @@ def read_exif(sender, instance, **kwargs):
 
     gps_data = dict((GPSTAGS[k], v) for (k, v) in data['GPSInfo'].items() if (k in GPSTAGS)) if ('GPSInfo' in data) else {}
 
-    exif.gps_latitude = gps_data['GPSLatitude'] if ('GPSLatitude' in gps_data) else None
-    exif.gps_longitude = gps_data['GPSLongitude'] if ('GPSLongitude' in gps_data) else None
-    exif.altitude = gps_data['GPSAltitude'] if ('GPSAltitude' in gps_data) else None
+    exif.gps_latitude = parse_latitude(gps_data['GPSLatitude'], gps_data['GPSLatitudeRef']) if ('GPSLatitude' in gps_data) else None
+    exif.gps_longitude = parse_longitude(gps_data['GPSLongitude'], gps_data['GPSLongitudeRef']) if ('GPSLongitude' in gps_data) else None
+    exif.altitude = parse_altitude(gps_data['GPSAltitude']) if ('GPSAltitude' in gps_data) else None
 
     exif.save()
 
@@ -170,13 +170,28 @@ def parse_datetime(dt):
     return datetime.datetime.strptime(dt, dt_format)
 
 def parse_shutterspeed(value):
-    return str(value[0]) + "/" + str(value[1])
+    return value[1]
 
 def parse_fnumber(value):
     return float(value[0]) / float(value[1])
 
 def parse_focallength(value):
-    return str(float(value[0]) / float(value[1])) + " mm"
+    return float(value[0]) / float(value[1])
 
 def parse_flash(value):
     return False if (value == 0|16|24|32) else True
+
+def parse_latitude(value, ref):
+    latitude = (float(value[0][0]) / float(value[0][1])) + (float(value[1][0]) / float(value[1][1])) / 60 + (float(value[2][0])/float(value[2][1])) / 3600
+    if ref != 'N':
+        latitude = 0 - latitude
+    return latitude
+
+def parse_longitude(value, ref):
+    longitude = ((float(value[0][0]) / float(value[0][1])) + (float(value[1][0]) / float(value[1][1])) / 60 + (float(value[2][0])/float(value[2][1])) / 3600)
+    if ref != 'E':
+        longitude = 0 - longitude
+    return longitude
+
+def parse_altitude(value):
+    return float(value[0]) / float(value[1])
