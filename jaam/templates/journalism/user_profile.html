@@ -30,8 +30,8 @@
 			<div class="span6">				
 				<div class="journalist-bio"> {{user.get_profile.bio}} </div>
 				<div class="journalist-photos"> There should be photos or something </div>
-				<div style="padding-top:12px"> 
-					{{ user_photo.first_or_null.title }}
+				<div> 
+					{{ Object.photo_set.first }}
 				</div>
 			</div>
 		</div>
