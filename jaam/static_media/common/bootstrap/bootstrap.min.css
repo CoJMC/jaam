@@ -36,6 +36,7 @@ a{font-weight:inherit;line-height:inherit;color:#0088cc;text-decoration:none;}a:
 .row{height: 100%; margin-left:-20px;zoom:1;}.row:before,.row:after{display:table;*display:inline;content:"";zoom:1;}
 .row:after{clear:both;}
 [class*="span"]{float:left;margin-left:20px; color: white;}
+[class*="span"]>p{color: white; font-size:12pt;}
 .span1{width:60px;}
 .span2{width:140px;}
 .span3, .project-nav, .span3-opener{width:220px;}
