@@ -1,6 +1,8 @@
 from django.contrib import admin
 from jaam.photos.models import Photo, PhotoGallery, PhotoExifData, PhotoGalleryItem
 from jaam.journalism.admin import BaseAdmin
+from jaam.photos.widgets import AdminImageWidget
+from easy_thumbnails.fields import ThumbnailerImageField
 
 class PhotoAdmin(BaseAdmin):
     search_fields = ('title', 'caption',)
@@ -12,7 +14,7 @@ class PhotoAdmin(BaseAdmin):
                  (None, { 'fields': ('project', 'title', 'slug', 'image', 'caption',) },),
                  ('Admin', { 'fields': ('journalist', 'published',) },),
                 )
-    
+
     def save_model(self, request, obj, form, change):
         if not change:
             obj.journalist = request.user
