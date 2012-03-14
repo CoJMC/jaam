@@ -10,7 +10,7 @@
 		<div class="span8" style="margin-top: -20px">
 			<iframe width="620" height="350" src="{{video.getEmbedLink}}" frameborder="0" controls="1" allowfullscreen="">You need a Frames Capable browser to view this content.</iframe>
 			<p class="title_video" >{{video.title}}:&nbsp;&nbsp;<span class="video_caption">{{video.caption}}</span>
-			<br /> <span style="font-size: 8pt; font-style: italic;">Video by @TODO Author </span></p>
+			<br /> <span style="font-size: 8pt; font-style: italic;">Video by {{video.journalist}} </span></p>
 		</div>
 		
 		<div style="padding-left: 20px; height: 350px; overflow-y:auto; overflow-x: hidden"> 
@@ -21,7 +21,7 @@
 				<img src="{{videoObj.getEmbedImage}}" width="105px"/>
 			</div>
 			<div class="span2">
-			<p class="video_sidebar">{{video.title}}</p>
+			<p class="video_sidebar">{{videoObj.title}}</p>
 			</div>
 			</a>
 			{% endif %}

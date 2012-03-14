@@ -6,6 +6,8 @@
 
 $(document).ready(function (){
 	determinePage(window.location.pathname);
+    $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
+    $(".carousel-ready").carousel();
 });
 </script>
 
@@ -20,7 +22,7 @@ $(document).ready(function (){
 
 <!-- Side Bar -->
 <div class="row-fluid">
-	<div class="span12">
+	<div class="span13">
 		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px; position: absolute;">
 		<div class="side_banner">
 			<a href="/projects/{{project.slug}}/info">
@@ -64,7 +66,7 @@ $(document).ready(function (){
 		</div>
 		
 		<!-- Inside content -->
-		<div class="span11" style="padding-top: 30px; height: 420px; margin-left: 100px;">
+		<div class="span12" style="padding-top: 30px; height: 420px; margin-left: 100px;">
 			{% block banner_body %}
 			
 			{% endblock %}

@@ -7,6 +7,8 @@
  * Copyright 2010, Donnovan Lewis
  * Edits: Benjamin Gleitzman (gleitz@mit.edu)
  * Licensed under the MIT
+ *
+ * Modified 2012, Nick Graef
  */
 
 (function($) {
@@ -45,11 +47,15 @@
             var currentPage = 1, start, stop;
             if (settings.direction.toLowerCase() === "horizontal") {
                 list.css({float: "left"});
-                $.each(pages, function(i) {
+                $.each(pages, function (i) {
                     var li = $("<li>")
                             .css($.extend(listItemCss, {float: "left"}))
-                            .html($(this).html())
-                            .click($(this).data('events').click[0].handler);
+                            .html($(this).html());
+                    var events = $(this).data('events');
+                    if (events && events.click)
+                        $.each(events.click, function (j, event) {
+                            li.click(event.handler);
+                        });
                     list.append(li);
                 });
 

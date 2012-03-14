@@ -67,13 +67,15 @@ body {
     float: left;
 }
 .pic {
-    height: 150px;
-    width: 220px;
     margin: 4px;
     overflow: hidden;
     float: left;
     border-radius: 4px;
     box-shadow: 0 0 5px 2px #202020;
+}
+.project .pic {
+    height: 150px;
+    width: 220px;
 }
 .title_block {
     color: white;
