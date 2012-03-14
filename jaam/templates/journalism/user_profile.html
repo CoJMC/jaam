@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% load thumbnail %}
 
 {% block title %}
@@ -6,14 +7,33 @@
 {% endblock %}
 
 {% block body %}
-<div></div>
+
+{% if embed %}
+	<div class="journalist-profile" style="margin-top: -20px; padding-left:13%;">
+	<script type="text/javascript">
+		$(document).ready(function (){
+			$("#footer").hide();
+		})
+		
+	</script> 
+{% else %} 
 <div class="journalist-profile" style="padding-left:13%; padding-top:3%">
+{% endif %}
 
 	<div class="span9">
 	<div class="container-fluid">
 		<div class="column-fluid">
 			<div class="span3">
-				<div style="margin-top:10px"><img src="{% thumbnail user.get_profile.avatar 330x220 %}" /></div>
+				{% if embed %}
+					<div>
+				{% else %}
+					<div style="margin-top:10px">
+				{% endif %}
+				
+				<img src="{% thumbnail user.get_profile.avatar 330x220 %}" />
+				
+				</div>
+				
 				<div class="journalist-banner">
 					<div>
 						<img src="/s/static/photographer_profile_banner.png" width="300px"/>
@@ -27,11 +47,13 @@
 					<div class="journalist-info"> {{user.email}} </div>
 				</div>
 			</div>
+
 			<div class="span6">				
-				<div class="journalist-bio"> {{user.get_profile.bio}} </div>
+				<div class="journalist-bio"> {{user.get_profile.bio|safe}} </div>
 				<div class="journalist-photos"> There should be photos or something </div>
 				<div> 
 					{{ Object.photo_set.first }}
+
 				</div>
 			</div>
 		</div>

@@ -625,7 +625,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .act_logo{height: 150px; width: 150px;}
 .act_image{padding: 10px; text-align: center;}
  .inside_page{text-align: center;}
-.blanket { background-color:#111; opacity: 0.65; filter:alpha(opacity=65); position:absolute; top:0px; left:0px; width:100%;}
+.blanket { background-color:#111; opacity: 0.35; filter:alpha(opacity=35); position:absolute; top:0px; left:0px; width:100%; height:100%;}
 .popUp { position:absolute; background-color:#8F8F8F; height:470px; width:880px; left: 80px;}
 .blog_popUp, .profile_popUp { position:absolute; left: 440px; top:90px; background-color:#525252; height:420px; width:580px; float: left; overflow-y: auto;}
-.profile_popUp {position:absolute; left: 90px; top: 40px; height: 500px; width: 880px;}
+.profile_popUp {position:absolute; left: 20px; top: 10px; height: 540px; width: 980px; background-color: #262626; overflow-y: hidden; overflow-x: hidden; border-style: solid; border-style: ridge; border-width: 4px; border-color: #A2A2A2;}
