@@ -18,9 +18,11 @@
                 </div>
             </p>
         </div>
-        <div class="span2">
-            <p class="popup_link"><a href="{{story.get_absolute_url}}"><img src="/s/static/profile_arrow.png"/>Read Now </a></p>
-            <p class="mini_title">{{story.title}} <p class="mini_info">{{story.author.first_name}} {{story.author.last_name}}</p></p>
+        <div class="span2" style="margin-left: 70px">
+            <p class="mini_title" style="margin-top: 55px">{{story.title}}
+            <h5 style="color: white; margin-top: -5px"> By {{story.author.first_name}} {{story.author.last_name}}</h5></p>
+            <p class="popup_link"><a href="{{story.get_absolute_url}}"><img src="/s/static/profile_arrow.png"/>Read Now </a></p> 
+            
         </div>
     {% if forloop.counter|divisibleby:"3" %}
      </div><div class="row" style="height:120px; padding-top: 20px">
