@@ -7,31 +7,32 @@
 {%block banner%} {{project.title}} {%endblock%}
 
 {% block banner_body %}
-
-    <div class="span12" id="view9"> 
-    <div class="row" >   
+<ul class="carousel-ready overflow-hidden">
+    <li class="span12" id="view9">
+    <div class="row" style="height:120px;">
     {% for story in project.story_set.all %}
-		<div class="span2">
-		   <p class="contrib_page">
-			<img src="{% thumbnail story.cover_photo.image  200x200 %}"/>
-			</p>
-		</div>
-		<div class="span2">
-
-			<p class="popup_link"><a href="{{story.get_absolute_url}}"><img src="/s/static/profile_arrow.png"/>Read Now </a></p>
-			<p class="mini_title">{{story.title}} <p class="mini_info">{{story.author.first_name}} {{story.author.last_name}}</p></p>
-
-		</div>
-	{% if forloop.counter|divisibleby:"3" %}
-	 </div><div class="row" style="padding-top: 30px">
-	{% endif %}
-	{% if forloop.counter|divisibleby:"9" %}
-		<!--  end the view 9 section for swiping to a new one -->
-		</div></div>
-		<div class="span12" id="view9"><div class="row">
-	{% endif %}
-	
-	{% endfor %}
-	</div>
-	</div>
+        <div class="span2">
+            <p class="contrib_page">
+                <div class="pic">
+                    <img src="{% thumbnail story.cover_photo.image 200x150 crop %}"/>
+                </div>
+            </p>
+        </div>
+        <div class="span2">
+            <p class="popup_link"><a href="{{story.get_absolute_url}}"><img src="/s/static/profile_arrow.png"/>Read Now </a></p>
+            <p class="mini_title">{{story.title}} <p class="mini_info">{{story.author.first_name}} {{story.author.last_name}}</p></p>
+        </div>
+    {% if forloop.counter|divisibleby:"3" %}
+     </div><div class="row" style="height:120px; padding-top: 20px">
+    {% endif %}
+    {% if forloop.counter|divisibleby:"9" %}
+        <!--  end the view 9 section for swiping to a new one -->
+        </div></li>
+        <li class="span12" id="view9"><div class="row">
+    {% endif %}
+    
+    {% endfor %}
+    </div>
+    </li>
+</ul>
 {% endblock %}
