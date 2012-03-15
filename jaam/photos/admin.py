@@ -12,7 +12,7 @@ class PhotoAdmin(BaseAdmin):
                  (None, { 'fields': ('project', 'title', 'slug', 'image', 'caption',) },),
                  ('Admin', { 'fields': ('journalist', 'published',) },),
                 )
-    
+
     def save_model(self, request, obj, form, change):
         if not change:
             obj.journalist = request.user

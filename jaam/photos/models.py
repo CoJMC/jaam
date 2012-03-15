@@ -40,7 +40,7 @@ class Photo(BaseModel):
                                 height_field='',
                                 width_field='',
                                 upload_to='uploads/photos',
-                                max_length=200)
+                                max_length=200)                                
     title = models.CharField(max_length=100)
     caption = models.CharField(max_length=5000)
     exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False)
