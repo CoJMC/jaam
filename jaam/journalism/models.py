@@ -11,12 +11,15 @@ from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
 
 class PublishedObjectsManager(models.Manager):
+    use_for_related_fields = True
     def get_query_set(self):
+        print "hello?"
+        #raise Exception
         if _show_unpublished():
-#           print "SHOWING ALL"
+            print "manager: all"
             return super(PublishedObjectsManager, self).get_query_set()
         else:
-#           print "SHOWING ONLY PUBLISHED"
+            print "manager: pubd"
             return super(PublishedObjectsManager, self).get_query_set().filter(published=True)
 
 # Create your models here.
@@ -33,8 +36,9 @@ class BaseModel(models.Model):
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag, blank=True)
 
-    objects = models.Manager() # little bugger, didn't know I explicitly needed this
+    #objects = models.Manager() # didn't know I explicitly needed this
     published_objects = PublishedObjectsManager()
+    objects = published_objects
 
     class Meta:
         abstract = True

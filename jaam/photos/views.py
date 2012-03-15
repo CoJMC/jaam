@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from models import User
 
 from jaam.projects.models import Project
 from jaam.photos.models import Photo, PhotoGallery
@@ -23,7 +24,8 @@ def gallery_details(request, project_slug, gallery_slug, start_number):
 def details(request, project_slug, photo_id):
     project = get_object_or_404(Project, slug=project_slug)
     photo = get_object_or_404(Photo, pk=photo_id)
-    return render_to_response('photos/photo_details.html', { 'photo': photo, 'project': project }, context_instance=RequestContext(request))
+    user = User.objects.get(username=photo.journalist)
+    return render_to_response('photos/photo_details.html', { 'photo': photo, 'project': project, 'user': user }, context_instance=RequestContext(request))
 
 def index(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)

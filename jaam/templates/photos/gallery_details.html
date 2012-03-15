@@ -22,7 +22,8 @@
 			{% for photo in photos %}
 				{% if photo.id != first_photo.id %}
 					<!-- @TODO: Determine what the order number for the object is -->
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=2 %}"> <img src="{% thumbnail photo.image 300x300 %}"/> </a>
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=forloop.counter0 %}"> <img src="{% thumbnail photo.image 300x300 %}"/> </a>
+					
 				{% endif %}
 			{% endfor %}
 		</div>

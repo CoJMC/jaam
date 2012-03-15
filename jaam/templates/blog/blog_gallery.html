@@ -11,7 +11,7 @@
 	{% for blog in blogs %}
 	<div class="span3">
 		<a href="{{ blog.get_absolute_url }}"> <img src="{% thumbnail blog.cover_photo.image  240x240 %}"/> </a>
-		<a href="{{ blog.get_absolute_url }}"> <p class="gallery_title"> {{ blog.title }}</a> </p> 
+		<p class="gallery_title"><a href="{{blog.get_absolute_url}}"><img src="/s/static/profile_arrow.png"/> {{blog.title}}</a></p>
 		<p class="gallery_blip"> {{ blog.subtitle }} </p>
 	</div>
 

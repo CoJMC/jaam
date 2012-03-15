@@ -6,10 +6,12 @@
 
 
 {% block banner_body %}
-		<div class="span11" style="overflow-y: auto; overflow-x: hidden; min-height: 420px">
+		<div class="span11" style="overflow-y: auto; overflow-x: hidden; height: 410px;">
+		<div class="storypage">
 		<img class="text_image" src="{% thumbnail story.cover_photo.image  250x250 %}" />
-		<p class="title_body"> {{story.title}} </p>
-		<p> 
-		 {{story.body|safe}}</p>
+		<h2 style="color: white"> {{story.title}} </h2>
+		<h5 style="color: white; font-size: 11pt; font-variant: italic"> By {{story.author.first_name}} {{story.author.last_name}} </h5>
+		<p> {{story.body|safe}}</p>
+		</div>
 		</div>
 {% endblock %}

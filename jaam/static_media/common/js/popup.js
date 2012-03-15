@@ -19,6 +19,7 @@ function blanket_size(popUpDivVar) {
 		}
 	}
 	var blanket = document.getElementById('blanket');
+	blanket_height = blanket_height;
 	blanket.style.height = blanket_height + 'px';
 
 }

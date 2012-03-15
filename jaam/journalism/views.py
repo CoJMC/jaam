@@ -12,7 +12,10 @@ from forms import UserProfileForm
 
 def user_profile(request, username):
     user = get_object_or_404(User, username=username)
-    return render_to_response('journalism/user_profile.html', { 'user': user }, context_instance=RequestContext(request))
+    embed = False
+    if "embedded" in request.GET and request.GET["embedded"]:
+        embed = True
+    return render_to_response('journalism/user_profile.html', { 'user': user, 'embed': embed }, context_instance=RequestContext(request))
 
 def about(request):
     return render_to_response('journalism/about_us.html', context_instance=RequestContext(request))
