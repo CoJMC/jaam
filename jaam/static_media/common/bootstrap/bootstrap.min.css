@@ -563,7 +563,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .gallery_title{font-size: 16pt; font-weight: bold; padding-top: 15px; padding-bottom: 5px;}
 .gallery_blip{font-size: 11pt; text-align: left;}
 
-.banner_text {text-align: center; padding-top: 22px; color: white;  font-size: 24pt; font-family: Gotham, Helvetica, Arial, sans-serif; text-transform: uppercase; font-weight: bold;}
+.banner_text {text-align: center; padding-top: 20px; color: white;  font-size: 24pt; font-family: Lato, Helvetica, Arial, sans-serif; text-transform: uppercase; font-weight: 700;}
 
 /*@TODO: fix this to be versatile for the screen */
 .span3-opener {padding-left: 20px; float:left;}
@@ -573,7 +573,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .container-center {position:absolute; top:0; bottom:125px; right:0; left:0; margin:auto; height:555px; width:990px}
 .gallery_banner {background-image:url('/s/static/gallery_banner.png'); width: 388px; height: 59px; background-repeat: no-repeat; background-color:#D11919;}
 .bottom_banner {background-image:url('/s/static/banner_bottom.png'); width: 265px; height:80px; margin-top: 423px; margin-left: 1px; background-repeat: no-repeat;}
-.bottom_banner_text {color: white; margin-left: 70px; padding-top: 37px; font-size: 12pt; font-weight: bold; text-align: left;}
+.bottom_banner_text {color: white; margin-left: 70px; padding-top: 36px; font-size: 12pt; font-family: Lato, Helvetica, Arial, sans-serif; font-weight: 400; text-align: left;}
 #footer { width:100%; position:fixed; left:0px; bottom:0px; background-color:#262626; padding-top: 5px;}
 #nav {height:80px; width:900px; margin:0px auto;}
 #logo {background-image:url('/s/static/logo_simple-white.png'); background-size:140px; -moz-background-size: 160px; background-repeat:no-repeat; width:160px; height:80px; float:left; margin-right:10px;}
