@@ -6,23 +6,30 @@
 {% block banner %} {{project.title}} {% endblock %}
 
 {% block banner_body %}
-	{% for gallery in galleries %}
-	{% if gallery.photogalleryitem_set.count %}
-    	{% if forloop.counter|divisibleby:"3" %}
-    	<div class="panel">
-    	{% endif %}
-    	<div class="span3">
-    		<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=0 %}"> <img src="{% thumbnail gallery.cover_photo.image 240x180 crop %}"/> </a>
-    		<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=0 %}"> <p class="gallery_title"> {{ gallery.title }} </p> </a>
+<ul class="carousel-ready overflow-hidden">
+    {% for gallery in galleries %}
+        {# Django 1.3 doesn't support elif tags, but the dev version does #}
+        {% if forloop.first %}
+            <li class="span11">
+        {% else %}
+            {% if forloop.counter0|divisibleby:"3" %}
+            </li> <!-- end panel -->
+            <li class="span11">
+        	{% endif %}
+        {% endif %}
+        
+        <div class="span3">
+        	<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=0 %}">
+                <div class="pic">
+                    <img src="{% thumbnail gallery.cover_photo.image 240x160 crop %}"/>
+                </div>
+    		    <p class="gallery_title"> {{ gallery.title }} </p>
+            </a>
     		<p class="gallery_blip"> {{ gallery.introduction }} </p>
     	</div>
     
-    	<div class="gallery_spacer">
-    			&nbsp
-    			</div>
-    	{% if forloop.counter|divisibleby:"3" %}
-    	</div> <!-- end panel -->
-    	{% endif %}
-	{% endif %}
+    	<div class="gallery_spacer">&nbsp</div>
 	{% endfor %}
+    </li> <!-- end panel -->
+</ul>
 {% endblock %}

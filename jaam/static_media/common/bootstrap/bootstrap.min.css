@@ -578,6 +578,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 #nav {height:80px; width:900px; margin:0px auto;}
 #logo {background-image:url('/s/static/logo_simple-white.png'); background-size:140px; -moz-background-size: 160px; background-repeat:no-repeat; width:160px; height:80px; float:left; margin-right:10px;}
 #social {float:right;}
+#social>a {text-decoration:none;}
 #social img {height:48px; width:48px; padding-top: 8px;}
 .nav_item { color:white;float:left;padding:12px 20px;margin-top: 10px;font-size:24pt; font-family:sans-serif; font-weight:bold;}
 .nav_item>a, .profile_link>a{color: white; text-decoration: none;}
