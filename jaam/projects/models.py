@@ -42,8 +42,12 @@ class Project(BaseModel):
 
     @property
     def journalists(self):
+        journalist_ids = list(self.photo_set.all().values_list('journalist', flat=True))
+        journalist_ids.extend(self.video_set.all().values_list('journalist', flat=True))
+        journalist_ids.extend(self.story_set.all().values_list('author', flat=True))
+        journalist_ids.extend(self.blog_set.all().values_list('blogpost__author', flat=True))
         return User.objects.filter(
-            pk__in=self.photo_set.all().values_list('journalist', flat=True).query
+            pk__in=journalist_ids
         )
 
 @receiver(pre_save, sender=Project)

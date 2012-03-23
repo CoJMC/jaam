@@ -111,7 +111,11 @@ class PhotoGallery(BaseModel):
 
     @property
     def cover_photo(self):
-        return self.photogalleryitem_set.order_by('order')[0].photo
+        if self.photogalleryitem_set.count() is not 0:
+            return self.photogalleryitem_set.order_by('order')[0].photo
+        else:
+            return None
+        
 # This is for ordering photos inside of photo galleries which can't be done with
 # a regular m2m relationship
 class PhotoGalleryItem(models.Model):

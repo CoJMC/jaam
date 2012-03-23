@@ -23,4 +23,7 @@ class PublishFlexMiddleware():
     def process_request(self, request):
         if request.user.is_authenticated() and request.user.get_profile().is_journalist and "show_unpublished" in request.GET:
             _active._show_unpublished = True
+            print "request: all"
+        else:
+            print "request: pubd"
         return None
