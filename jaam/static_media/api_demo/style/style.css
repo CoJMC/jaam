@@ -1,6 +1,6 @@
 /*add css reset*/
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+/*@import url(http://fonts.googleapis.com/css?family=Lato:400,700);*/
 
 body {
     margin: 0;
@@ -13,7 +13,7 @@ body {
     height: 474px;
     position: absolute;
     top: 0;
-    bottom: 120px; /*equal to footer height*/
+    bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
