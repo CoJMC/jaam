@@ -1,0 +1,20 @@
+{% extends 'admin/change_form.html' %}
+
+{% block extrahead %}
+{{block.super}}
+<script>
+(function($) {
+    $(document).ready(function(){
+        $('#id_project').val(function() {
+            var opener = window.opener;
+            if (opener) {
+                var elem = opener.document.getElementById("id_project");
+                var project_id = $(elem).val();
+                return project_id;
+            }
+            return false;
+        });
+    });
+})(django.jQuery)
+</script>
+{% endblock %}
