@@ -18,35 +18,20 @@ Additionally, you will need to access the site in a specific way for the social 
 Gondor (Just the) Tips
 ======================
 
-Gondor Configuration
---------------------
+**Gondor Configuration**: https://gondor.io/support/introduction/
 
-https://gondor.io/support/introduction/
+**Make a Backup**: `gondor manage sqldump`
 
-Follow the instructions ONLY in the “Global Setup” heading
+**Clear the Database**: `gondor manage primary database:clear`
 
-Reset Database
---------------
+**Deploy to Gondor**: `gondor deploy primary master`
 
-1. Make a backup:
-	`command`
-2. Reset the database:
-	`gondor manage primary database:clear`
+**Initialize Project** (creates permissions/groups): `gondor run primary initializeproject`
 
-Deploy to Gondor
-----------------
-`gondor deploy primary master`
-
-Initialize Project (creates permissions/groups)
------------------------------------------------
-`gondor run primary initializeproject`
-
-Create Admin User
------------------
-`gondor run primary createsuperuser`
+** Create Admin User**: `gondor run primary createsuperuser`
 
 Media/Static/Static_media Explained
------------------------------------
+===================================
 
 * MEDIA
 	* Uploaded user media
@@ -61,7 +46,7 @@ Media/Static/Static_media Explained
 	* Is a directory I created for miscellaneous site media that we need to be able to serve for example, ckeditor
 
 South Explained
----------------
+===============
 
 http://south.aeracode.org/docs/
 
