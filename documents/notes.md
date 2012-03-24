@@ -15,8 +15,8 @@ During local development, you now need to execute the following anytime you dele
 
 Additionally, you will need to access the site in a specific way for the social auth to work: Add `dev.jaam.us.to` to your `HOSTS` file and point it at your development machine (usually `localhost` or `127.0.0.1`). Now you can access the development server through the new hostname, for example: http://dev.jaam.us.to:8000 after running the dev server.
 
-Gondor (Just the) Tips
-======================
+Gondor Tips
+===========
 
 **Gondor Configuration**: https://gondor.io/support/introduction/
 
@@ -28,22 +28,25 @@ Gondor (Just the) Tips
 
 **Initialize Project** (creates permissions/groups): `gondor run primary initializeproject`
 
-** Create Admin User**: `gondor run primary createsuperuser`
+**Create Admin User**: `gondor run primary createsuperuser`
 
 Media/Static/Static_media Explained
 ===================================
 
-* MEDIA
-	* Uploaded user media
-	* We will never use it
-	* It was “wrong” of Ckeditor to want to be placed there.
+MEDIA
 
-* STATIC
-	* Any static files go to this directory, THOUGH, you should never place anything there yourself.
-	* The django.contrib.staticfiles app processes other applications static files and includes them were appropriate (this means that the django ckeditor was just written poorly, it should have been much, much, much, easier to use, in fact I’m tempted to patch it)
+* Uploaded user media
+* We will never use it
+* It was “wrong” of Ckeditor to want to be placed there.
 
-* STATIC_MEDIA
-	* Is a directory I created for miscellaneous site media that we need to be able to serve for example, ckeditor
+STATIC
+
+* Any static files go to this directory, THOUGH, you should never place anything there yourself.
+* The django.contrib.staticfiles app processes other applications static files and includes them were appropriate (this means that the django ckeditor was just written poorly, it should have been much, much, much, easier to use, in fact I’m tempted to patch it)
+
+STATIC_MEDIA
+
+* Is a directory I created for miscellaneous site media that we need to be able to serve for example, ckeditor
 
 South Explained
 ===============
