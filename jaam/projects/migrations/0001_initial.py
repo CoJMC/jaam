@@ -25,6 +25,9 @@ class Migration(SchemaMigration):
             ('modified_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('published', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=50, db_index=True)),
+            ('tagline', self.gf('django.db.models.fields.CharField')(max_length=250)),
+            ('primaryColor', self.gf('django.db.models.fields.CharField')(default='FF0000', max_length=7)),
+            ('accentColor', self.gf('django.db.models.fields.CharField')(default='FFFFFF', max_length=7)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('description', self.gf('ckeditor.fields.RichTextField')(null=True, blank=True)),
         ))
@@ -70,13 +73,16 @@ class Migration(SchemaMigration):
         },
         'projects.project': {
             'Meta': {'object_name': 'Project'},
+            'accentColor': ('django.db.models.fields.CharField', [], {'default': "'FFFFFF'", 'max_length': '7'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'description': ('ckeditor.fields.RichTextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'locations': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['projects.ProjectLocation']", 'symmetrical': 'False'}),
             'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'primaryColor': ('django.db.models.fields.CharField', [], {'default': "'FF0000'", 'max_length': '7'}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'tagline': ('django.db.models.fields.CharField', [], {'max_length': '250'}),
             'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },

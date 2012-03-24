@@ -18,19 +18,12 @@ class Migration(SchemaMigration):
         # Adding model 'UserProfile'
         db.create_table('journalism_userprofile', (
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True, primary_key=True)),
-            ('avatar', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('avatar', self.gf('django.db.models.fields.files.ImageField')(max_length=200, null=True, blank=True)),
             ('full_name', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-        ))
-        db.send_create_signal('journalism', ['UserProfile'])
-
-        # Adding model 'Journalist'
-        db.create_table('journalism_journalist', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user_profile', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['journalism.UserProfile'], unique=True)),
             ('bio', self.gf('ckeditor.fields.RichTextField')(null=True, blank=True)),
             ('major', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
         ))
-        db.send_create_signal('journalism', ['Journalist'])
+        db.send_create_signal('journalism', ['UserProfile'])
 
 
     def backwards(self, orm):
@@ -40,9 +33,6 @@ class Migration(SchemaMigration):
 
         # Deleting model 'UserProfile'
         db.delete_table('journalism_userprofile')
-
-        # Deleting model 'Journalist'
-        db.delete_table('journalism_journalist')
 
 
     models = {
@@ -82,13 +72,6 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'journalism.journalist': {
-            'Meta': {'object_name': 'Journalist'},
-            'bio': ('ckeditor.fields.RichTextField', [], {'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'major': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
-            'user_profile': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['journalism.UserProfile']", 'unique': 'True'})
-        },
         'journalism.tag': {
             'Meta': {'object_name': 'Tag'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -96,8 +79,10 @@ class Migration(SchemaMigration):
         },
         'journalism.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
-            'avatar': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'avatar': ('django.db.models.fields.files.ImageField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'bio': ('ckeditor.fields.RichTextField', [], {'null': 'True', 'blank': 'True'}),
             'full_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
+            'major': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True', 'primary_key': 'True'})
         }
     }
