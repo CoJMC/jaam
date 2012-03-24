@@ -17,14 +17,15 @@ from django.http import Http404
 import ast
 
 class BaseModelResource(ModelResource):
-    def get_object_list:
-        #blah
-        pass
+    pass
 
 class SearchResource(BaseModelResource):
     class Meta:
         resource_name = "search";
         queryset = Project.published_objects.all()
+
+    def get_object_list(self, request):
+        return Project.published_objects.all()
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -43,7 +44,7 @@ class SearchResource(BaseModelResource):
 class ProjectResource(BaseModelResource):
     covergallery = fields.ForeignKey('jaam.api.resources.PhotoGalleryResource', 'coverGallery', null=True)
     class Meta:
-        queryset = Project.published_objects.exclude(coverGallery__published=False);
+        queryset = Project.published_objects.exclude(coverGallery__published=False)
         allowed_methods = ['get']
         filtering = {
             'pk': ALL,
@@ -51,6 +52,9 @@ class ProjectResource(BaseModelResource):
             'slug': ALL,
             'covergallery': ('isnull'),
         }    
+
+    def get_object_list(self, request):
+        return Project.published_objects.exclude(coverGallery__published=False);
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -75,6 +79,9 @@ class PhotoGalleryResource(BaseModelResource):
             'project': ALL_WITH_RELATIONS,
         }
 
+    def get_object_list(self, request):
+        return PhotoGallery.published_objects.all()
+
     def build_filters(self, filters=None):
         if filters is None:
             filters = {}
@@ -98,6 +105,7 @@ class PhotoResource(BaseModelResource):
             'project': ALL_WITH_RELATIONS,
             'title': ALL,
         }
+
     def dehydrate_image(self, bundle):
         if 'size' in bundle.request.GET:
             # TODO:
@@ -113,11 +121,12 @@ class PhotoResource(BaseModelResource):
             return thumbnailer.get_thumbnail(thumbnail_options).url
         else:
             return bundle.data['image']
+    
     def get_object_list(self, request):
         if hasattr(request, 'GET') and 'gallery__id' in request.GET:
             return Photo.published_objects.filter(photogallery=request.GET['gallery__id']).order_by('photogalleryitem__order')
         else:
-            return super(PhotoResource, self).get_object_list(request)
+            return Photo.published_objects.all()
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -132,10 +141,17 @@ class PhotoResource(BaseModelResource):
 
         return orm_filters
 
-class VideoGalleryResource(BaseModelResource):
+class VideoGalleryResource(ModelResource):
     class Meta:
         queryset = VideoGallery.published_objects.all()
         allowed_methods = ['get']
+
+    def get_object_list(self, request):
+        return VideoGallery.published_objects.all()
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
 
         orm_filters = super(VideoGalleryResource, self).build_filters(filters)
 
@@ -150,6 +166,9 @@ class VideoResource(BaseModelResource):
     class Meta:
         queryset = Video.published_objects.all()
         allowed_methods = ['get']
+
+    def get_object_list(self, request):
+        return Video.published_objects.all()
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -168,6 +187,9 @@ class StoryResource(BaseModelResource):
     class Meta:
         queryset = Story.published_objects.all()
         allowed_methods = ['get']
+
+    def get_object_list(self, request):
+        return Story.published_objects.all()
 
     def build_filters(self, filters=None):
         if filters is None:
@@ -188,6 +210,9 @@ class BlogResource(BaseModelResource):
         queryset = Blog.published_objects.all()
         allowed_methods = ['get']
 
+    def get_object_list(self, request):
+        return Blog.published_objects.all()
+
     def build_filters(self, filters=None):
         if filters is None:
             filters = {}
@@ -205,6 +230,9 @@ class BlogPostResource(BaseModelResource):
     class Meta:
         queryset = BlogPost.published_objects.all()
         allowed_methods = ['get']
+
+    def get_object_list(self, request):
+        return BlogPost.published_objects.all()
 
     def build_filters(self, filters=None):
         if filters is None:
