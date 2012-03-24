@@ -164,26 +164,29 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
+# below is from:
+# https://gondor.io/support/logging/
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
+    "version": 1,
+    "disable_existing_loggers": True,
+    "formatters": {
+        "simple": {
+            "format": "%(levelname)s %(message)s"
+        },
+    },
+    "handlers": {
+        "console":{
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple"
         }
     },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
+    "loggers": {
+        "": {
+            "handlers": ["console"],
+            "propagate": True,
+            "level": "INFO",
+        }
     }
 }
 
@@ -237,7 +240,8 @@ INLINE_DEBUG = True
 try:
     from jaamconfig import *
 except ImportError, exp:
-    pass
+    print "error: please get 'jaamconfig.py' and place it in the same directory as settings.py"
+    os.exit(-1)
 
 # for gondor.io
 try:
