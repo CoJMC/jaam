@@ -16,8 +16,12 @@ from django.http import Http404
 
 import ast
 
+class BaseModelResource(ModelResource):
+    def get_object_list:
+        #blah
+        pass
 
-class SearchResource(ModelResource):
+class SearchResource(BaseModelResource):
     class Meta:
         resource_name = "search";
         queryset = Project.published_objects.all()
@@ -36,7 +40,7 @@ class SearchResource(ModelResource):
         return orm_filters
 
 
-class ProjectResource(ModelResource):
+class ProjectResource(BaseModelResource):
     covergallery = fields.ForeignKey('jaam.api.resources.PhotoGalleryResource', 'coverGallery', null=True)
     class Meta:
         queryset = Project.published_objects.exclude(coverGallery__published=False);
@@ -61,7 +65,7 @@ class ProjectResource(ModelResource):
 
         return orm_filters
 
-class PhotoGalleryResource(ModelResource):
+class PhotoGalleryResource(BaseModelResource):
     project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
         queryset = PhotoGallery.published_objects.all()
@@ -84,7 +88,7 @@ class PhotoGalleryResource(ModelResource):
 
         return orm_filters
 
-class PhotoResource(ModelResource):
+class PhotoResource(BaseModelResource):
     project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
         queryset = Photo.published_objects.all()
@@ -128,14 +132,10 @@ class PhotoResource(ModelResource):
 
         return orm_filters
 
-class VideoGalleryResource(ModelResource):
+class VideoGalleryResource(BaseModelResource):
     class Meta:
         queryset = VideoGallery.published_objects.all()
         allowed_methods = ['get']
-
-    def build_filters(self, filters=None):
-        if filters is None:
-            filters = {}
 
         orm_filters = super(VideoGalleryResource, self).build_filters(filters)
 
@@ -146,7 +146,7 @@ class VideoGalleryResource(ModelResource):
 
         return orm_filters
 
-class VideoResource(ModelResource):
+class VideoResource(BaseModelResource):
     class Meta:
         queryset = Video.published_objects.all()
         allowed_methods = ['get']
@@ -164,7 +164,7 @@ class VideoResource(ModelResource):
 
         return orm_filters
 
-class StoryResource(ModelResource):
+class StoryResource(BaseModelResource):
     class Meta:
         queryset = Story.published_objects.all()
         allowed_methods = ['get']
@@ -182,7 +182,7 @@ class StoryResource(ModelResource):
 
         return orm_filters
 
-class BlogResource(ModelResource):
+class BlogResource(BaseModelResource):
     project = fields.ForeignKey(ProjectResource, 'project')
     class Meta:
         queryset = Blog.published_objects.all()
@@ -201,7 +201,7 @@ class BlogResource(ModelResource):
 
         return orm_filters
 
-class BlogPostResource(ModelResource):
+class BlogPostResource(BaseModelResource):
     class Meta:
         queryset = BlogPost.published_objects.all()
         allowed_methods = ['get']
@@ -219,7 +219,7 @@ class BlogPostResource(ModelResource):
 
         return orm_filters
 
-class DocumentResource(ModelResource):
+class DocumentResource(BaseModelResource):
     # TODO:
     # this one could be interesting
     # check the TastyPie documentation on
@@ -234,7 +234,7 @@ class DocumentResource(ModelResource):
 
 # There's a good chance none of this is needed, but I don't really want to delete it now to have to find it all later.
 '''
-class ProjectSearchResource(ModelResource):
+class ProjectSearchResource(BaseModelResource):
     class Meta:
         queryset = Project.published_objects.all()
         resource_name = 'projectsearch'
@@ -273,7 +273,7 @@ class ProjectSearchResource(ModelResource):
         return self.create_response(request, object_list)
 
 
-class BlogPostSearchResource(ModelResource):
+class BlogPostSearchResource(BaseModelResource):
     class Meta:
         queryset = BlogPost.published_objects.all()
         resource_name = 'blog'
@@ -311,7 +311,7 @@ class BlogPostSearchResource(ModelResource):
         self.log_throttled_access(request)
         return self.create_response(request, object_list)
 
-class VideoSearchResource(ModelResource):
+class VideoSearchResource(BaseModelResource):
     class Meta:
         queryset = Video.published_objects.all()
         resource_name = 'videos'
