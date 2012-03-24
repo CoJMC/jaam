@@ -98,7 +98,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.middleware.csrf.CsrfResponseMiddleware',
+# below is commented out for django-1.4
+#    'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'jaam.journalism.middleware.PublishFlexMiddleware'
@@ -108,7 +109,7 @@ ROOT_URLCONF = 'jaam.urls'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
 )
@@ -152,7 +153,6 @@ INSTALLED_APPS = (
     'tastypie',
     'haystack',
     'whoosh',
-    'djcelery',
     'django_inlines',
 )
 
@@ -247,17 +247,22 @@ except ImportError, exp:
 
 
 # Search functionality
-HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_INCLUDE_SPELLING = True
-HAYSTACK_SITECONF = 'search_indexes'
-HAYSTACK_WHOOSH_PATH ='./search/whoosh_index'
+# OLD FOR HAYSTACK 1.x
+#HAYSTACK_SEARCH_ENGINE = 'whoosh'
+#HAYSTACK_INCLUDE_SPELLING = True
+#HAYSTACK_SITECONF = 'search_indexes'
+#HAYSTACK_WHOOSH_PATH ='./search/whoosh_index'
+
 
 
 # Whoosh Search Engine
 # TODO: Make sure the path.dirname(__file__) makes sense
 HAYSTACK_CONNECTIONS = {
-    'whoosh': {
+    'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'), # shouldn't this be ./search/whoosh_index?
+        'STORAGE': 'file',
+        'INCLUDE_SPELLING': True,
+
     },
 }

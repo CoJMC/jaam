@@ -37,8 +37,10 @@ class BaseModel(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
 
     #objects = models.Manager() # didn't know I explicitly needed this
-    published_objects = PublishedObjectsManager()
-    objects = published_objects
+    #published_objects = PublishedObjectsManager()
+    #objects = published_objects
+    objects = PublishedObjectsManager()
+    published_objects = objects
 
     class Meta:
         abstract = True

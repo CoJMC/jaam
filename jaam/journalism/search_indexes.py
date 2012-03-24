@@ -1,5 +1,5 @@
 import haystack
-from haystack import indexes, site
+from haystack import indexes
 from django.contrib import admin
 from blog.models import Blog, BlogPost
 # Not sure about UserProfile
@@ -9,10 +9,7 @@ from projects.models import Project
 from stories.models import Story
 from videos.models import Video
 
-haystack.autodiscover()
-
-
-class BlogPostIndex(indexes.SearchIndex):
+class BlogPostIndex(indexes.SearchIndex, indexes.Indexable):
 	# author = indexes.CharField(model_attr='author')
 	# title = indexes.CharField(model_attr='title')
 	text = indexes.CharField(document=True, use_template=True)
@@ -28,7 +25,7 @@ class BlogPostIndex(indexes.SearchIndex):
 		return self.get_model().objects.filter(published=True)
 
 
-class ProjectIndex(indexes.SearchIndex):
+class ProjectIndex(indexes.SearchIndex, indexes.Indexable):
 	# title_value = indexes.CharField(model_attr='title')
 	text = indexes.CharField(document=True, use_template=True)
 
@@ -40,7 +37,7 @@ class ProjectIndex(indexes.SearchIndex):
         #filter by published
 		return self.get_model().objects.filter(published=True)
 
-class StoryIndex(indexes.SearchIndex):
+class StoryIndex(indexes.SearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
 
 	def get_model(self):
@@ -50,7 +47,7 @@ class StoryIndex(indexes.SearchIndex):
 		return self.get_model().objects.filter(published=True)
 
 
-class VideoIndex(indexes.SearchIndex):
+class VideoIndex(indexes.SearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
 
 	def get_model(self):
@@ -60,7 +57,7 @@ class VideoIndex(indexes.SearchIndex):
 		return self.get_model().objects.filter(published=True)
 
 
-class PhotoIndex(indexes.SearchIndex):
+class PhotoIndex(indexes.SearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
 	author = indexes.CharField(model_attr='journalist');
 
@@ -73,9 +70,9 @@ class PhotoIndex(indexes.SearchIndex):
 
 
 
-
-site.register(BlogPost, BlogPostIndex)
-site.register(Project, ProjectIndex)
-site.register(Story, StoryIndex)
-site.register(Video, VideoIndex)
-site.register(Photo, PhotoIndex)
+# No registering is needed in Haystack 2.x
+#site.register(BlogPost, BlogPostIndex)
+#site.register(Project, ProjectIndex)
+#site.register(Story, StoryIndex)
+#site.register(Video, VideoIndex)
+#site.register(Photo, PhotoIndex)
