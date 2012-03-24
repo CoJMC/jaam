@@ -54,12 +54,14 @@ South Explained
 http://south.aeracode.org/docs/
 
 After editing an Django model run:
-    python manage.py schemamigration --auto APP_NAME
 
-besides auto there is --add-field, --add-model, etc
+`python manage.py schemamigration --auto APP_NAME`
+
+besides auto there is `--add-field`, `--add-model`, etc
 
 If you need to change the data instead of the table structure, you can write a datamigration:
-    python manage.py datamigration APP_NAME MIGRATION_NAME
+
+`python manage.py datamigration APP_NAME MIGRATION_NAME`
 
 A file will be created in the apps migration folder where you will add the code to modify the data.
 When moving data into another column you might have to run a schemamigration to add the new column, a datamigration to move the data over, and another schemamigration to remove the old column.
