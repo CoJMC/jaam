@@ -3,9 +3,11 @@ from jaam.photos.models import Photo, PhotoGallery, PhotoExifData, PhotoGalleryI
 from jaam.journalism.admin import BaseAdmin
 
 class PhotoAdmin(BaseAdmin):
+    add_form_template = 'admin/photo_add.html'
     search_fields = ('title', 'caption',)
     list_display = ('__unicode__', 'caption', 'journalist', 'published')
     list_filter = ( 'project', 'published')
+    date_hierarchy = 'modified_at'
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
