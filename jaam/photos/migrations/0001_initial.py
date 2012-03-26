@@ -5,6 +5,9 @@ from south.v2 import SchemaMigration
 from django.db import models
 
 class Migration(SchemaMigration):
+    depends_on = (
+        ("projects", "0001_initial"),
+    )
 
     def forwards(self, orm):
         
@@ -20,8 +23,8 @@ class Migration(SchemaMigration):
             ('flash_used', self.gf('django.db.models.fields.NullBooleanField')(null=True, blank=True)),
             ('height_dimension', self.gf('django.db.models.fields.CharField')(max_length=15, null=True)),
             ('width_dimension', self.gf('django.db.models.fields.CharField')(max_length=15, null=True)),
-            ('gps_latitude', self.gf('django.db.models.fields.CharField')(max_length=15, null=True)),
-            ('gps_longitude', self.gf('django.db.models.fields.CharField')(max_length=15, null=True)),
+            ('gps_latitude', self.gf('django.db.models.fields.CharField')(max_length=45, null=True)),
+            ('gps_longitude', self.gf('django.db.models.fields.CharField')(max_length=45, null=True)),
             ('altitude', self.gf('django.db.models.fields.CharField')(max_length=15, null=True)),
         ))
         db.send_create_signal('photos', ['PhotoExifData'])
@@ -39,6 +42,7 @@ class Migration(SchemaMigration):
             ('title', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('caption', self.gf('django.db.models.fields.CharField')(max_length=5000)),
             ('exif_data', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['photos.PhotoExifData'], unique=True, null=True, blank=True)),
+            ('enable_comments', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('photos', ['Photo'])
 
@@ -75,6 +79,7 @@ class Migration(SchemaMigration):
         db.create_table('photos_photogalleryitem', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('photo', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['photos.Photo'])),
+            ('order', self.gf('django.db.models.fields.IntegerField')(null=True)),
             ('gallery', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['photos.PhotoGallery'])),
         ))
         db.send_create_signal('photos', ['PhotoGalleryItem'])
@@ -147,6 +152,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Photo'},
             'caption': ('django.db.models.fields.CharField', [], {'max_length': '5000'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'enable_comments': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'exif_data': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['photos.PhotoExifData']", 'unique': 'True', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '200'}),
@@ -167,8 +173,8 @@ class Migration(SchemaMigration):
             'flash_used': ('django.db.models.fields.NullBooleanField', [], {'null': 'True', 'blank': 'True'}),
             'fnumber': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True'}),
             'focal_length': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True'}),
-            'gps_latitude': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True'}),
-            'gps_longitude': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True'}),
+            'gps_latitude': ('django.db.models.fields.CharField', [], {'max_length': '45', 'null': 'True'}),
+            'gps_longitude': ('django.db.models.fields.CharField', [], {'max_length': '45', 'null': 'True'}),
             'height_dimension': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'shutter_speed': ('django.db.models.fields.CharField', [], {'max_length': '15', 'null': 'True'}),
@@ -180,6 +186,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'introduction': ('django.db.models.fields.CharField', [], {'max_length': '5000'}),
             'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'photos': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['photos.Photo']", 'through': "orm['photos.PhotoGalleryItem']", 'symmetrical': 'False'}),
             'project': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['projects.Project']"}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
@@ -190,17 +197,22 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'PhotoGalleryItem'},
             'gallery': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['photos.PhotoGallery']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'order': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
             'photo': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['photos.Photo']"})
         },
         'projects.project': {
             'Meta': {'object_name': 'Project'},
+            'accentColor': ('django.db.models.fields.CharField', [], {'default': "'FFFFFF'", 'max_length': '7'}),
+            'coverGallery': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'+'", 'null': 'True', 'to': "orm['photos.PhotoGallery']"}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'description': ('ckeditor.fields.RichTextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'locations': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['projects.ProjectLocation']", 'symmetrical': 'False'}),
             'modified_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'primaryColor': ('django.db.models.fields.CharField', [], {'default': "'FF0000'", 'max_length': '7'}),
             'published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
+            'tagline': ('django.db.models.fields.CharField', [], {'max_length': '250'}),
             'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['journalism.Tag']", 'symmetrical': 'False', 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },

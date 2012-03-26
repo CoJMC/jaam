@@ -23,4 +23,10 @@ class PublishFlexMiddleware():
     def process_request(self, request):
         if request.user.is_authenticated() and request.user.get_profile().is_journalist and "show_unpublished" in request.GET:
             _active._show_unpublished = True
+            print "request: all (get param)"
+        if request.user.is_authenticated() and request.user.is_staff and request.path.startswith('/admin'):
+            _active._show_unpublished = True
+            print "request: all (admin)"
+        else:
+            print "request: pubd"
         return None

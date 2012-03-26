@@ -3,28 +3,34 @@
 
 {% block title %}blogs{% endblock %}
 {% block banner %} {{project.title}} {% endblock %}
+
 {% block banner_body %}
-
-    <div class="span11" id="view3"> 
-    <div class="row" >  
-    
-	{% for blog in blogs %}
-	<div class="span3">
-		<a href="{{ blog.get_absolute_url }}"> <img src="{% thumbnail blog.cover_photo.image  240x240 %}"/> </a>
-		<a href="{{ blog.get_absolute_url }}"> <p class="gallery_title"> {{ blog.title }}</a> </p> 
-		<p class="gallery_blip"> {{ blog.subtitle }} </p>
-	</div>
-
-	<div class="gallery_spacer">
-		&nbsp
-	</div>
-	
-	{% if forloop.counter|divisibleby:"9" %}
-		<!--  end the view 3 section for swiping to a new one -->
-		</div></div>
-		<div class="span11" id="view3"><div class="row">
-	{% endif %}
-	{% endfor %}
-	</div>
-	</div>
+<ul class="carousel-ready overflow-hidden">
+    {% for blog in blogs %}
+        {# Django 1.3 doesn't support elif tags, but the dev version does #}
+        {% if forloop.first %}
+            <li class="span11">
+        {% else %}
+            {% if forloop.counter0|divisibleby:"3" %}
+            </li> <!-- end panel -->
+            <li class="span11">
+            {% endif %}
+        {% endif %}
+        
+        <div class="span3">
+            <a href="{{ blog.get_absolute_url }}">
+                <div class="pic">
+                    <img src="{% thumbnail blog.cover_photo.image  240x160 crop %}"/>
+                </div>
+            </a>
+            <p class="gallery_title">
+                <a href="{{blog.get_absolute_url}}"><img src="/s/static/profile_arrow.png"/>{{blog.title}}</a>
+            </p>
+            <p class="gallery_blip"> {{ blog.subtitle }} </p>
+        </div>
+        
+        <div class="gallery_spacer">&nbsp</div>
+        {% endfor %}
+    </li> <!-- end panel -->
+</ul>
 {% endblock %}

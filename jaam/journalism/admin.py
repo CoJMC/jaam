@@ -9,6 +9,7 @@ class TagAdmin(admin.ModelAdmin):
 
 class BaseAdmin(admin.ModelAdmin):
     actions = ['publish', 'unpublish']
+    save_on_top = True
     def publish(self, request, queryset):
         for item in queryset.all():
             item.published = True

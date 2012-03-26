@@ -21,6 +21,12 @@ class Blog(BaseModel):
             'project_slug': self.project.slug,
             'blog_title_slug': self.slug,
         })
+        
+    @property
+    def authors(self):
+        return User.objects.filter(
+            pk__in=self.blogpost_set.all().values_list('author', flat=True).query
+        )
 
 class BlogPost(BaseModel):
     blog = models.ForeignKey(Blog)

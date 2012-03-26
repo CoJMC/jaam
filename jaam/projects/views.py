@@ -23,6 +23,7 @@ def contributors(request, project_slug):
 def details(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
     #in your template, filter out. We need the whole list.
+    #photos = Photo.published_objects.all()
     photos = project.photo_set.all()
     video = project.video_set.all()
     story = project.story_set.all()

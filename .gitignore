@@ -9,7 +9,6 @@ database.db
 .DS_Store
 
 jaam/static
-jaam/search/whoosh_index
 
 *.sublime-project
 *.sublime-workspace
