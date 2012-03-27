@@ -20,7 +20,7 @@ Gondor Tips
 
 **Gondor Configuration**: https://gondor.io/support/introduction/
 
-**Make a Backup**: `gondor manage sqldump`
+**Make a Backup**: `gondor sqldump primary`
 
 **Clear the Database**: `gondor manage primary database:clear`
 
