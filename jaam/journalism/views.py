@@ -35,17 +35,18 @@ def profile_set(request):
             profile.avatar = request.POST.get('avatar')
             profile.bio = profile_form.cleaned_data['bio']
             profile.major = profile_form.cleaned_data['major']
+            profile.profile_set = True
 
             user.email = profile_form.cleaned_data['email']
             user.save()
             profile.save()
         return HttpResponseRedirect('/admin') # Redirect after POST
     else:
-        if profile.major == None and profile.bio == None: # if the user has not given their major or bio display the user_profile_edit form
+        if profile.profile_set == False: # if the user has not submitted their information
             profile_form = UserProfileForm(initial={'full_name': profile.full_name, 'email': user.email}) # An unbound form
             return render_to_response('journalism/user_profile_edit.html', {
                'profile_form': profile_form,
             },  context_instance=RequestContext(request))
         else:
-            return render_to_response('index.html')
+            return HttpResponseRedirect('/')
 
