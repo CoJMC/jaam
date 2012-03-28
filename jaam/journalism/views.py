@@ -7,6 +7,7 @@ import datetime
 import math
 import string
 
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from forms import UserProfileForm
 
@@ -19,6 +20,10 @@ def user_profile(request, username):
 
 def about(request):
     return render_to_response('journalism/about_us.html', context_instance=RequestContext(request))
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 @csrf_protect
 def profile_set(request):
