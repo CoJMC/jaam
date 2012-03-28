@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Post Details
+User Details
 {% endblock %}
 
 {% block body %}
@@ -11,10 +11,15 @@ Post Details
 		<h3 style="color: white">Please complete your profile information.</h3>
 		<br />
 		<div class="span3" style="background-color: white; padding: 10px;">
+		<ul>
+		<li> <a href="/associate/facebook"> Associate Facebook </a> </li>
+		<li> <a href="/associate/twitter"> Associate Twitter </a> </li>
+		<li> <a href="/associate/google"> Associate Google </a> </li>
+		<li> <a href="/associate/openid"> Associate OpenID </a> </li>
+		</ul>
 		<h3 style="color: white"> <form action="confirm" method="post"> {% csrf_token %}		
-		  	{{ profile_form.as_p }}
+		  {{ profile_form.as_p }}
 		  	<input type="submit" value="Submit"/>
-		  	</p>
 		  	</form>
 		</h3>
 		</div>
