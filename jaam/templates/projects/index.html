@@ -39,9 +39,14 @@ $(document).ready(function (){
         });
         $.when.apply(null, requests).done(function() {
             var photo_requests = []
-            for (i = 0; i < arguments.length; i++) {
+            // A hack is necessary if there is only one project
+            var args = arguments;
+            if (arguments[1] === "success") {
+                args = [arguments];
+            }
+            for (i = 0; i < args.length; i++) {
                 var project = proj_data.objects[i];
-                var cover_data = arguments[i][0];
+                var cover_data = args[i][0];
                 var request = load_project_photos(project, cover_data);
                 photo_requests.push(request);
             }
