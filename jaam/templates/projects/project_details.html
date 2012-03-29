@@ -6,13 +6,25 @@
 {% block banner %}{{ project.title }}{% endblock %}
 
 {% block banner_body %}
+
+	<style type="text/css">
+		.span4 h5 * {
+			color: white !important;
+			font-size: 11pt !important;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+		}
+	</style>
+	
 	<div class="span4">
-		<h5 style="color: white;  border-bottom: 1px solid white; height: 180px"> {{project.description|safe}} </h5>
+		<h5 style="border-bottom: 1px solid white; height: 180px"> {{project.description|safe}} </h5>
 		<p style="margin-top: 20px;">
-		<iframe width="280" height="200" src="http://www.youtube.com/embed/am82U2U9-H4?HD=1;rel=0;showinfo=0;controls=0" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
+		{% for video in project.video_set.all|slice:":1" %}
+		<iframe width="280" height="200" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
+		{% endfor %}
 		</p>
 	</div>
 	<div class="span6">
 		<img src="/s/static/Kyrgyzstan.png"/>
-	</div>	
+	</div>
+
 {% endblock %}
