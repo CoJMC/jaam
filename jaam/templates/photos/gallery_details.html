@@ -5,31 +5,55 @@
 
 {% block banner %} {{gallery.title}} {% endblock %}
 
+	
 {% block banner_body %}
+<ul class="carousel-ready overflow-hidden">
 
+	<li class="span12">
+			<!-- @TODO: MAKE THIS SWIPABLE Between photos! -->	
 	<div class="span12">
+	
 			<div class="span7">
-				<img src="{% thumbnail first_photo.image 473x315 %}"/>
+
+			<div style="display:none"><div id="comments">Comments go here. </div></div>
+			
+			<div style="display:none; min-height: 500; min-width: 600;"><div id="exif_data">
+				<p> Camera Manufacturer: {{first_photo.exif_data.camera_manufacturer}}</p>
+				<p> Model: {{first_photo.exif_data.camera_model}}</p>
+			    <p> Date Taken: {{first_photo.exif_data.date}}</p>
+			    <p> Shutter Speed: {{first_photo.exif_data.shutter_speed}}</p>
+			    <p> Fnumber:{{first_photo.exif_data.fnumber}}</p>
+			    <p> Focal Length: {{first_photo.exif_data.focal_length}}</p>
+			    <p> Flash: {{first_photo.exif_data.flash_used}}</p>
+			    <p> Height: {{first_photo.exif_data.height_dimension}}</p>
+			    <p> Width: {{first_photo.exif_data.width_dimension}}</p>
+			    <p> GPS lat: {{first_photo.exif_data.gps_latitude}}</p>
+			    <p> GPS long: {{first_photo.exif_data.gps_longitude}}</p>
+			    <p> Altitude: {{first_photo.exif_data.altitude}}</p>
+			</div></div>
+			
+				<a class="single_image" href="{% thumbnail first_photo.image 946x630 %}"><img src="{% thumbnail first_photo.image 473x315 %}"/></a>
 			</div>
 			<div class="span4" style="margin-left:-30px; height: 315px">
 				
-				<h2 style="color: white; margin-top: -5px">{{first_photo.title}}</h2>
+				<h2 style=" margin-top: -5px">{{first_photo.title}}</h2>
 
-				<h4 style="color: white; font-weight: normal">{{first_photo.caption}}</h4>
+				<h4 style="font-weight: normal">{{first_photo.caption}}</h4>
 				<br/>
-				<p style="font-style:italic; font-size:11pt"> View More... </p>
+				 <p style="font-size:11pt;"> <a style="color: white" href="#comments" id="commenters"> Comments |</a> <a style="color: white" id="exif" href="#exif_data">EXIF Data</a></p>
 				
 				<br/>
 				<p> 
+					<a style="color: white" href="/users/{{user.username}}?embedded=true" class="iframe" id="journalist">
 					<img src="{% thumbnail first_photo.journalist.get_profile.avatar 50x50 crop %}">
 					{{first_photo.journalist.get_profile.full_name}}, Photographer
+					</a>
 				</p>
 				
 			</div>
 			
 	</div>
 					
-		<!-- @TODO: MAKE THIS SWIPABLE? -->
 		<div class="span12" style="text-align: center;  margin-top: 20px; margin-left: -40px; height:75px">
 			{% for photo in photos_before %}
 			
@@ -70,7 +94,8 @@
 					{% endif %}						
 				{% endwith %}
 			{% endfor %}
-
 		</div>
+		</li>
 
+</ul>
 {% endblock %}
