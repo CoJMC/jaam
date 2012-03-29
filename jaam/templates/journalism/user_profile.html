@@ -59,9 +59,9 @@
 			<div class="span6">				
 				<div class="journalist-bio"><p class="description"> {{user.get_profile.bio|safe}} </p> </div>
 				<div class="journalist-photos"> There should be photos or something </div>
+				<div> 
+					{{ Object.photo_set.first }}
 
-				<div style="padding-top:12px"> 
-					{{ user_photo.first_or_null.title }}
 				</div>
 			</div>
 		</div>
