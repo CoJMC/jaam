@@ -7,27 +7,70 @@
 
 {% block banner_body %}
 
-	<div class="span12" style="margin-top: -20px;">
+	<div class="span12">
+			<div class="span7">
+				<img src="{% thumbnail first_photo.image 473x315 %}"/>
+			</div>
+			<div class="span4" style="margin-left:-30px; height: 315px">
+				
+				<h2 style="color: white; margin-top: -5px">{{first_photo.title}}</h2>
 
-			<div class="span8">
-			<img src="{% thumbnail first_photo.image 576x864 %}"/>
+				<h4 style="color: white; font-weight: normal">{{first_photo.caption}}</h4>
+				<br/>
+				<p style="font-style:italic; font-size:11pt"> View More... </p>
+				
+				<br/>
+				<p> 
+					<img src="{% thumbnail first_photo.journalist.get_profile.avatar 50x50 crop %}">
+					{{first_photo.journalist.get_profile.full_name}}, Photographer
+				</p>
+				
 			</div>
 			
-		<!-- @TODO: MAKE THIS SWIPABLE -->
-		<div class="span3" style="text-align: center; height: 435px; overflow-y: auto;">
-				
-			<p class="popup_link"> <a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number %}">  Next in gallery </a>
- 			&nbsp &nbsp &nbsp<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=previous_number %}"> Previous in gallery </a>  </p>
-	
-			{% for photo in photos %}
-				{% if photo.id != first_photo.id %}
-					<!-- @TODO: Determine what the order number for the object is -->
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=forloop.counter0 %}"> <img src="{% thumbnail photo.image 300x300 %}"/> </a>
-					
-				{% endif %}
-			{% endfor %}
-		</div>
-		
 	</div>
+					
+		<!-- @TODO: MAKE THIS SWIPABLE? -->
+		<div class="span12" style="text-align: center;  margin-top: 20px; margin-left: -40px; height:75px">
+			{% for photo in photos_before %}
+			
+			{% if photos_before|length == 3 %}
+				{% with number=previous_number|add:forloop.counter0 %}     
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+				{% endwith %}
+			{% elif photos_before|length == 1 %}
+				{% with number=previous_number|add:forloop.counter0|add:2 %}     
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73%}"/> </a>
+				{% endwith %}
+			{% elif photos_before|length == 2 %}
+				{% with number=previous_number|add:forloop.counter0|add:1 %}     
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+				{% endwith %}
+			{% elif photos_before|length == 4 %}
+				{% with number=previous_number|add:forloop.counter0|add:-1 %}     
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+				{% endwith %}
+			{% elif photos_before|length == 5 %}
+				{% with number=previous_number|add:forloop.counter0|add:-2 %}     
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+				{% endwith %}
+			{% else %}
+				{% with number=previous_number|add:forloop.counter0|add:-3 %}     
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+				{% endwith %}
+			{% endif %}
+			
+			{% endfor %}
+		
+			{% for photo in photos_after %}
+				{% with number=next_number|add:forloop.counter0 %}
+					{% if forloop.first %}
+						<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img class="highlight" src="{% thumbnail photo.image 110x73 %}"/> </a>
+				    {% else %} 
+						<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>					
+					{% endif %}						
+				{% endwith %}
+			{% endfor %}
+
+		</div>
 
 {% endblock %}

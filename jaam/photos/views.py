@@ -15,11 +15,34 @@ def galleries(request, project_slug):
 def gallery_details(request, project_slug, gallery_slug, start_number):
     project = get_object_or_404(Project, slug=project_slug)
     gallery = get_object_or_404(PhotoGallery, slug=gallery_slug)
-    photos = [i.photo for i in gallery.photogalleryitem_set.order_by('order')]
+    previous_number = int(start_number) -3
+    
+    size = gallery.photogalleryitem_set.order_by('order').__len__() -1 
+    
+    if int(start_number) ==  size:
+        photos_before = [i.photo for i in gallery.photogalleryitem_set.filter(order__lte=start_number).order_by('order').reverse()[:6]]
+    elif int(start_number) ==  size-1:
+        photos_before = [i.photo for i in gallery.photogalleryitem_set.filter(order__lte=start_number).order_by('order').reverse()[:5]]
+    elif int(start_number) ==  size-2:
+        photos_before = [i.photo for i in gallery.photogalleryitem_set.filter(order__lte=start_number).order_by('order').reverse()[:4]]       
+    else :
+        photos_before = [i.photo for i in gallery.photogalleryitem_set.filter(order__lte=start_number).order_by('order').reverse()[:3]]
+    
+    photos_before.reverse()
+    number_before = photos_before.__len__()
+    if number_before == 0: 
+        photos_after = [i.photo for i in gallery.photogalleryitem_set.filter(order__gt=start_number).order_by('order')[:7]]
+    elif number_before == 1:
+        photos_after = [i.photo for i in gallery.photogalleryitem_set.filter(order__gt=start_number).order_by('order')[:6]]
+    elif number_before == 2:
+        photos_after = [i.photo for i in gallery.photogalleryitem_set.filter(order__gt=start_number).order_by('order')[:5]]
+    else:
+        photos_after = [i.photo for i in gallery.photogalleryitem_set.filter(order__gt=start_number).order_by('order')[:4]] 
     first_photo = gallery.photogalleryitem_set.order_by('order')[int(start_number)].photo
-    next_number = int(start_number) + 1
-    previous_number = int(start_number) -1
-    return render_to_response('photos/gallery_details.html', { 'gallery': gallery, 'photos': photos, 'project': project, 'first_photo': first_photo, 'previous_number': previous_number, 'next_number': next_number}, context_instance=RequestContext(request))
+    
+    #TODO: What if it's in the last 3 photos?
+    
+    return render_to_response('photos/gallery_details.html', { 'gallery': gallery, 'photos_before': photos_before, 'photos_after': photos_after, 'project': project, 'first_photo': first_photo, 'previous_number': previous_number, 'next_number': start_number}, context_instance=RequestContext(request))
 
 def details(request, project_slug, photo_id):
     project = get_object_or_404(Project, slug=project_slug)

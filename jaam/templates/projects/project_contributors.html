@@ -38,12 +38,14 @@
         </div>
         
         <div class="span2" style="margin-top: 10px;">
+            
             <div id="{{user.get_profile.full_name}}" style="display:none;" class="profile_popUp">
                 <a href="" onclick="popup('{{user.get_profile.full_name}}'); return false">
                     <img src="/s/static/close.png" style="float: right;" height="40px" width="40px" />
                 </a>
                 <iframe name="foo" width="960px" height="400px" scrolling="no" frameborder="0"></iframe>
             </div>
+            
             <p class="mini_title" style="margin-top: 20px; margin-left: -5px">
                 <a href="/users/{{user.username}}/?embedded=true" target="foo" onclick="popup('{{user.get_profile.full_name}}')">
                     <img src="/s/static/profile_arrow.png"/>
