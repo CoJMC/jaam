@@ -30,6 +30,16 @@ class BaseAdmin(admin.ModelAdmin):
             self.fieldsets = non_admin_fieldsets
         return super(BaseAdmin, self).get_form(request, obj, **kwargs)
 
+    # Removes publish and unpublish for regular journalists
+    def get_actions(self, request):
+        actions = super(BaseAdmin, self).get_actions(request)
+        if not request.user.is_superuser:
+            if 'publish' in actions:
+                del actions['publish']
+            if 'unpublish' in actions:
+                del actions['unpublish']
+        return actions
+
 #class UserProfileInline(admin.TabularInline):
 #    model = UserProfile
 
@@ -78,6 +88,8 @@ class NewUserAdmin(UserAdmin):
             user.groups.remove(Group.objects.get(name="Journalists"))
             user.is_staff = False
             user.save()
+
+
 
 admin.site.unregister(User)
 admin.site.register(User, NewUserAdmin)
