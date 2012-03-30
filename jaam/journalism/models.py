@@ -14,13 +14,13 @@ add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
 class PublishedObjectsManager(models.Manager):
     use_for_related_fields = True
     def get_query_set(self):
-        print "hello?"
+        #print "hello?"
         #raise Exception
         if _show_unpublished():
-            print "manager: all"
+            #print "manager: all"
             return super(PublishedObjectsManager, self).get_query_set()
         else:
-            print "manager: pubd"
+            #print "manager: pubd"
             return super(PublishedObjectsManager, self).get_query_set().filter(published=True)
 
 # Create your models here.
