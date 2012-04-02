@@ -216,6 +216,7 @@ canvas {
 }
 [class*="link_"] {
     background-repeat: no-repeat;
+    background-size: 31px;
     padding: 0;
     height: 32px;
     width: 32px;
