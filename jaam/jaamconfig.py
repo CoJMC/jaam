@@ -1,3 +1,5 @@
+import os
+
 SECRET_KEY = os.environ['SECRET_KEY']
 
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
