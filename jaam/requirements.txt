@@ -1,4 +1,5 @@
 django==1.4
+gondor==1.0.2
 South==0.7.4
 pil==1.1.7
 django-storages==1.1.4

@@ -1,8 +1,3 @@
-Config File (Private)
-=====================
-
-https://docs.google.com/document/d/18Vgv92AUaqD5SP-NfiSkhYKIWQHZ1_YQEeTIcQb1a_k/edit?hl=en_US
-
 Local Development Tips
 ======================
 
@@ -19,6 +14,8 @@ Gondor Tips
 ===========
 
 **Gondor Configuration**: https://gondor.io/support/introduction/
+
+**Initial Instance Configuration**: Run the commands in this file (only once per instance, they are persisted across deploys): https://docs.google.com/document/d/18Vgv92AUaqD5SP-NfiSkhYKIWQHZ1_YQEeTIcQb1a_k/edit?hl=en_US This file is private for our copy of this code. If you would like to deploy it, follow the instructions in the jaam/jaam/jaamconfig.py file.
 
 **Make a Backup**: `gondor sqldump primary`
 
