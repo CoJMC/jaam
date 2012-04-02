@@ -89,18 +89,21 @@ $(document).ready(function (){
 
 
 <script type="text/javascript">
+var primary = new Color("{{project.primaryColor}}");
+
 var c1 = document.getElementById("topBanner");
 var ctx = c1.getContext("2d");
 var width = c1.width;
 
 ctx.lineWidth = 1;
 ctx.strokeStyle = "rgba(255,255,255,0)";
-ctx.fillStyle = "{{project.primaryColor}}";
+ctx.fillStyle = primary.hex(false);
 ctx.shadowOffsetX = 0;
 ctx.shadowOffsetY = 0;
 ctx.shadowBlur = 8;
 ctx.shadowColor = "rgba(0, 0, 0, 0.9)";
 
+ctx.beginPath();
 ctx.moveTo(10,70);
 ctx.lineTo(39,13);
 ctx.lineTo(41,11);
@@ -114,6 +117,7 @@ ctx.lineTo(10,70);
 
 ctx.stroke();
 ctx.fill();
+ctx.closePath();
 
 var c2 = document.getElementById("bottomBanner");
 var ctx2 = c2.getContext("2d");
@@ -121,12 +125,13 @@ var width2 = c2.width;
 
 ctx2.lineWidth = 1;
 ctx2.strokeStyle = "rgba(255,255,255,0)";
-ctx2.fillStyle = "{{project.primaryColor}}";
+ctx2.fillStyle = primary.hex(false);;
 ctx2.shadowOffsetX = 0;
 ctx2.shadowOffsetY = 0;
 ctx2.shadowBlur = 8;
 ctx2.shadowColor = "rgba(0, 0, 0, 0.9)";
 
+ctx2.beginPath();
 ctx2.moveTo(45,50);
 ctx2.lineTo(41,49);
 ctx2.lineTo(39,47);
@@ -140,6 +145,11 @@ ctx2.lineTo(45,50);
 
 ctx2.stroke();
 ctx2.fill();
+ctx2.closePath();
+
+// darken sidebar
+var accent = primary.adjustSatLum(-10, -10);
+$(".sidebar").css("background-color", accent);
 </script>
 
 {% endblock %}
