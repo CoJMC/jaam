@@ -8,33 +8,35 @@
 	
 {% block banner_body %}
 <ul class="carousel-ready overflow-hidden">
-
+	{% for first_photo in photos_swipe %}			<!-- @TODO: MAKE THIS SWIPABLE Between photos! -->	
 	<li class="span12">
-			<!-- @TODO: MAKE THIS SWIPABLE Between photos! -->	
 	<div class="span12">
 	
 			<div class="span7">
 
-			<div style="display:none"><div id="comments">Comments go here. </div></div>
+			<div style="display:none"><div id="comments" class="exif_div"> <p> Comments go here. </p> </div></div>
 			
-			<div style="display:none; min-height: 500; min-width: 600;"><div id="exif_data">
-				<p> Camera Manufacturer: {{first_photo.exif_data.camera_manufacturer}}</p>
-				<p> Model: {{first_photo.exif_data.camera_model}}</p>
-			    <p> Date Taken: {{first_photo.exif_data.date}}</p>
-			    <p> Shutter Speed: {{first_photo.exif_data.shutter_speed}}</p>
-			    <p> Fnumber:{{first_photo.exif_data.fnumber}}</p>
-			    <p> Focal Length: {{first_photo.exif_data.focal_length}}</p>
-			    <p> Flash: {{first_photo.exif_data.flash_used}}</p>
-			    <p> Height: {{first_photo.exif_data.height_dimension}}</p>
-			    <p> Width: {{first_photo.exif_data.width_dimension}}</p>
-			    <p> GPS lat: {{first_photo.exif_data.gps_latitude}}</p>
-			    <p> GPS long: {{first_photo.exif_data.gps_longitude}}</p>
-			    <p> Altitude: {{first_photo.exif_data.altitude}}</p>
+			<div style="display:none; min-height: 500; min-width: 600;  margin-top: -60px;">
+			<div id="exif_data" class="exif_div">
+				<p><br/>
+				 Camera Manufacturer: {{first_photo.exif_data.camera_manufacturer}}<br/>
+				 Model: {{first_photo.exif_data.camera_model}}<br/>
+			     Date Taken: {{first_photo.exif_data.date}}<br/>
+			     Shutter Speed: {{first_photo.exif_data.shutter_speed}}<br/>
+			     Fnumber:{{first_photo.exif_data.fnumber}}<br/>
+			     Focal Length: {{first_photo.exif_data.focal_length}}<br/>
+			     Flash: {{first_photo.exif_data.flash_used}}<br/>
+			     Height: {{first_photo.exif_data.height_dimension}}<br/>
+			     Width: {{first_photo.exif_data.width_dimension}}<br/>
+			     GPS lat: {{first_photo.exif_data.gps_latitude}}<br/>
+			     GPS long: {{first_photo.exif_data.gps_longitude}}<br/>
+			     Altitude: {{first_photo.exif_data.altitude}}<br/>
+			    </p>
 			</div></div>
 			
-				<a class="single_image" href="{% thumbnail first_photo.image 946x630 %}"><img src="{% thumbnail first_photo.image 473x315 %}"/></a>
+				<a class="single_image" rel="gallery_group" href="{% thumbnail first_photo.image 900x600 %}"><img src="{% thumbnail first_photo.image 520x347 %}"/></a>
 			</div>
-			<div class="span4" style="margin-left:-30px; height: 315px">
+			<div class="span3" style="height: 315px">
 				
 				<h2 style=" margin-top: -5px">{{first_photo.title}}</h2>
 
@@ -44,9 +46,9 @@
 				
 				<br/>
 				<p> 
-					<a style="color: white" href="/users/{{user.username}}?embedded=true" class="iframe" id="journalist">
-					<img src="{% thumbnail first_photo.journalist.get_profile.avatar 50x50 crop %}">
-					{{first_photo.journalist.get_profile.full_name}}, Photographer
+					<a style="color: white; font-weight: bold" href="/users/{{user.username}}?embedded=true" class="iframe" id="journalist">
+					<img src="{% thumbnail first_photo.journalist.get_profile.avatar 60x60 crop %}">
+					{{first_photo.journalist.get_profile.full_name}}
 					</a>
 				</p>
 				
@@ -54,48 +56,46 @@
 			
 	</div>
 					
-		<div class="span12" style="text-align: center;  margin-top: 20px; margin-left: -40px; height:75px">
+		<div class="span12" style="text-align: center;  margin-top: 5px; margin-left: -40px; height:75px">
 			{% for photo in photos_before %}
 			
 			{% if photos_before|length == 3 %}
 				{% with number=previous_number|add:forloop.counter0 %}     
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58 %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 1 %}
 				{% with number=previous_number|add:forloop.counter0|add:2 %}     
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73%}"/> </a>
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58 %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 2 %}
 				{% with number=previous_number|add:forloop.counter0|add:1 %}     
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 4 %}
 				{% with number=previous_number|add:forloop.counter0|add:-1 %}     
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 5 %}
 				{% with number=previous_number|add:forloop.counter0|add:-2 %}     
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% else %}
-				{% with number=previous_number|add:forloop.counter0|add:-3 %}     
-					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>
+				{% with number=previous_number|add:forloop.counter0|add:-3 %}   
+					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% endif %}
-			
 			{% endfor %}
 		
 			{% for photo in photos_after %}
 				{% with number=next_number|add:forloop.counter0 %}
-					{% if forloop.first %}
-						<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img class="highlight" src="{% thumbnail photo.image 110x73 %}"/> </a>
-				    {% else %} 
-						<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img src="{% thumbnail photo.image 110x73 %}"/> </a>					
-					{% endif %}						
+					
+						<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58 %}"/> </a>
+				
 				{% endwith %}
 			{% endfor %}
 		</div>
+		
 		</li>
-
+{% endfor %}
 </ul>
 {% endblock %}

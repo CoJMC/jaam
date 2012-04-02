@@ -8,10 +8,10 @@ $(document).ready(function (){
 	determinePage(window.location.pathname);
     $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
     $(".carousel-ready").carousel();
-    $(".single_image").fancybox({ 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
-    $("#journalist").fancybox( {'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
-    $("#exif").fancybox();
-    $("#commenters").fancybox();
+    $(".single_image").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
+    $("#journalist").fancybox( {'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
+    $("#exif").fancybox( {'overlayColor': '#000000'});
+    $("#commenters").fancybox({'overlayColor': '#000000'});
 });
 </script>
 

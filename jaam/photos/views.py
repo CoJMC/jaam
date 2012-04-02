@@ -39,9 +39,7 @@ def gallery_details(request, project_slug, gallery_slug, start_number):
     else:
         photos_after = [i.photo for i in gallery.photogalleryitem_set.filter(order__gt=start_number).order_by('order')[:4]] 
     first_photo = gallery.photogalleryitem_set.order_by('order')[int(start_number)].photo
-    
     photos_swipe = [i.photo for i in gallery.photogalleryitem_set.filter(order__gte=start_number).order_by('order')[:3]]
-    
     return render_to_response('photos/gallery_details.html', { 'gallery': gallery, 'photos_before': photos_before, 'photos_after': photos_after, 'photos_swipe': photos_swipe, 'project': project, 'first_photo': first_photo, 'previous_number': previous_number, 'next_number': start_number}, context_instance=RequestContext(request))
 
 def details(request, project_slug, photo_id):
