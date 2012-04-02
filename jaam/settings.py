@@ -260,11 +260,10 @@ except ImportError, exp:
 
 
 # Whoosh Search Engine
-# TODO: Make sure the path.dirname(__file__) makes sense
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'), # shouldn't this be ./search/whoosh_index?
+        'PATH': 'whoosh_index', 
         'STORAGE': 'file',
         'INCLUDE_SPELLING': True,
 

@@ -27,10 +27,10 @@ urlpatterns = patterns('',
     # ADMIN
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    
+
     #comment
     (r'^comments/', include('django.contrib.comments.urls')),
-    
+
     # CKEDITOR
     (r'^ckeditor/', include('ckeditor.urls')), # TODO: Is this necessary
 
@@ -43,6 +43,7 @@ urlpatterns = patterns('',
 
     # USER / AUTH
     url(r'^logout/$', 'django.contrib.auth.views.logout', name="auth_logout"),
+    url(r'^logout2/$', 'jaam.journalism.views.logout_view', name="auth_logout2"),
     url(r'', include('social_auth.urls')),
     url(r'^accounts/profile', 'jaam.journalism.views.profile_set'), # TODO: This goes in the journalism project
     url(r'^confirm', 'jaam.journalism.views.profile_set'), # TODO: This too

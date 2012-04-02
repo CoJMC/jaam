@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 from easy_thumbnails.fields import ThumbnailerImageField
 from social_auth.signals import pre_update
 from jaam.journalism.middleware import _show_unpublished
+from django.forms import ModelForm
 
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
@@ -52,6 +53,7 @@ class UserProfile(models.Model):
                                 null = True,
                                 blank = True)
     full_name = models.CharField(max_length=255, blank=True)
+    profile_set = models.BooleanField(default = False)
 
     # Only for journalists
     bio = RichTextField(null=True, blank=True)
@@ -78,7 +80,7 @@ def create_profile(sender, instance, created, **kwargs):
             user_profile = UserProfile()
             user_profile.user = instance
             user_profile.save()
-            
+
 @receiver(pre_update)
 def create_full_name(sender, user, response, details, **kwargs):
     user.email = response.get('email', '')

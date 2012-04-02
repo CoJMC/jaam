@@ -7,6 +7,7 @@ import datetime
 import math
 import string
 
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from forms import UserProfileForm
 
@@ -19,6 +20,10 @@ def user_profile(request, username):
 
 def about(request):
     return render_to_response('journalism/about_us.html', context_instance=RequestContext(request))
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 @csrf_protect
 def profile_set(request):
@@ -35,17 +40,18 @@ def profile_set(request):
             profile.avatar = request.POST.get('avatar')
             profile.bio = profile_form.cleaned_data['bio']
             profile.major = profile_form.cleaned_data['major']
+            profile.profile_set = True
 
             user.email = profile_form.cleaned_data['email']
             user.save()
             profile.save()
         return HttpResponseRedirect('/admin') # Redirect after POST
     else:
-        if profile.major == None and profile.bio == None: # if the user has not given their major or bio display the user_profile_edit form
+        if profile.profile_set == False: # if the user has not submitted their information
             profile_form = UserProfileForm(initial={'full_name': profile.full_name, 'email': user.email}) # An unbound form
             return render_to_response('journalism/user_profile_edit.html', {
                'profile_form': profile_form,
             },  context_instance=RequestContext(request))
         else:
-            return render_to_response('index.html')
+            return HttpResponseRedirect('/')
 

@@ -42,7 +42,7 @@ class Photo(BaseModel):
                                 upload_to='uploads/photos',
                                 max_length=200)                                
     title = models.CharField(max_length=100)
-    caption = models.CharField(max_length=5000)
+    caption = models.TextField(max_length=500)
     exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False)
     enable_comments = models.BooleanField()
 
@@ -91,7 +91,7 @@ comment_was_posted.connect(moderate_comment)
 
 class PhotoGallery(BaseModel):
     title = models.CharField(max_length=100)
-    introduction = models.CharField(max_length=5000)
+    introduction = models.TextField(max_length=5000)
     project = models.ForeignKey(Project)
     photos = models.ManyToManyField(Photo, through="PhotoGalleryItem")
 

@@ -4,21 +4,21 @@ from jaam.journalism.models import UserProfile
 # class JournalistForm(forms.ModelForm):
 #     class Meta:
 #         model = Journalist
-#         exclude = ('user_profile') 
-        
+#         exclude = ('user_profile')
+
 #     def getBio(self):
 #         return self.cleaned_data["bio"]
 #     def getMajor(self):
-#         return self.cleaned_data["major"]        
-        
+#         return self.cleaned_data["major"]
+
 class UserProfileForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     class Meta:
         model = UserProfile
-        exclude = ('user')
-        if model.is_journalist == False:
-        	exclude = exclude + ('bio', 'major')
-        
+        exclude = ('user', 'profile_set')
+       # if model.is_journalist() == False:
+       # 	exclude = exclude + ('bio', 'major')
+
     def getFull_Name(self):
         return self.cleaned_data["full_name"]
     def getEmail(self):

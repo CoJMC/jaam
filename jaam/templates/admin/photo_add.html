@@ -14,6 +14,11 @@
             }
             return false;
         });
+        $('#id_image').change(function(){
+            var imageName = $(this).val().replace("C:\\fakepath\\", "" );
+            imageName = imageName.substr(0, imageName.lastIndexOf('.')) || imageName;
+            $('#id_title').val(imageName).focus().blur();
+        });
     });
 })(django.jQuery)
 </script>

@@ -22,10 +22,17 @@
         <link rel="stylesheet" href="/s/static/common/css/style.css">
         <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
-        <link rel="stylesheet" href="/s/static/api_demo/style/style.css">
+        <link rel="stylesheet" href="/s/static/api_demo/style/style.css">              
         {% endcompress %}
-		
+        
+        <link rel="stylesheet" href="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<!-- trial -->
+		<script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+		<script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js"></script>
+		<script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+		
 		{% compress js %}
 		<script src="/s/static/dora/scripts/pages.js"></script>
 		<script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
@@ -34,6 +41,8 @@
 		<script src="/s/static/api_demo/script/jquery.mobile.carousel.js"></script>
 		<script src="/s/static/common/js/popup.js"></script>
 		<script src="/s/static/common/js/plugins.js"></script>
+		<script src="/s/static/common/js/bootstrap-dropdown.js"></script>
+
 		{% endcompress %}		
 		<!--[if lt IE 7 ]>
 			<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
@@ -48,11 +57,36 @@
 		{% endblock %}
 		</div>
 		
+		<!-- Header -->
+		<div id="header">
+			<div id="user">
+				{% if user.is_authenticated %}
+				<a href="/users/{{user.username}}"> User Profile </a>
+				<a href="/logout2"> Logout </a>
+				{% else %}
+			<ul class="nav">
+				<li class="dropdown" id="menu1">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+					Login
+					<b class="caret"></b>
+					</a>
+				<ul class="dropdown-menu">
+					<li> <a href="/login/facebook"> Facebook </a> </li>
+					<li> <a href="/login/twitter"> Twitter </a> </li>
+					<li> <a href="/login/google"> Google </a> </li>
+					<li> <a href="/login/openid"> OpenID </a> </li>
+				</ul>
+				</li>
+			</ul>
+				{% endif %}
+			</div>
+		</div>
+		
 		<!-- Footer -->
 		<div id="footer">
 			<div id="nav">
 				<a href="/"><div id="logo"></div></a>
-				<div class="nav_item"><a href="/projects">PROJECTS</a></div>
+				<div class="nav_item"><a href="/">PROJECTS</a></div>
 				<div class="nav_item"><a href="/about">ABOUT</a></div>
 				<div class="nav_item"><a href="/act?project={{project.slug}}">ACT</a></div>
 				<div id="social">

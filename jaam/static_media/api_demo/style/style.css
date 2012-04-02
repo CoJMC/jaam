@@ -102,6 +102,7 @@ body {
     display: block;
     width: 350px;
     cursor: default;
+    text-shadow: hsla(0, 0%, 40%, 0.6) 0 0 8px;
 }
 .subtitle {
     font-size: 12pt;
@@ -116,6 +117,7 @@ body {
     cursor: default;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-shadow: hsla(0, 0%, 40%, 0.7) 0 0 5px;
     white-space: nowrap;
 }
 .nav_item {

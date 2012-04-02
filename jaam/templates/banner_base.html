@@ -8,6 +8,10 @@ $(document).ready(function (){
 	determinePage(window.location.pathname);
     $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
     $(".carousel-ready").carousel();
+    $(".single_image").fancybox({ 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
+    $("#journalist").fancybox( {'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
+    $("#exif").fancybox();
+    $("#commenters").fancybox();
 });
 </script>
 
@@ -30,11 +34,12 @@ $(document).ready(function (){
 				<p id="blip_info" class="blip_info" style="background-color: {{project.primaryColor}};">info</p> 
 			</div></a>
 
-			
+			{% if project.photo_set.all %}
 			<a href="/projects/{{project.slug}}/photos/">
 			<div id="link_photo" class="link_photo" style="background-color: {{project.primaryColor}}">
 				<p id="blip_photo" class="blip_photo" style="background-color: {{project.primaryColor}};">photos</p> 
 			</div></a>
+			{% endif %}
 			
 			<!-- @TODO: clean up this video link.... what's the cover video? -->
 			{% for video in project.video_set.all|slice:":1" %}
@@ -45,23 +50,28 @@ $(document).ready(function (){
 			</a>
 			{% endfor %}
 			
+			{% if project.story_set.all %}
 			<a href="/projects/{{project.slug}}/stories/">
 			<div id="link_story" class="link_story" style="background-color: {{project.primaryColor}}">
 				<p id="blip_story" class="blip_story" style="background-color: {{project.primaryColor}};">stories</p>
 			</div>
 			</a>
-	
+			{% endif %}
+			
+			{% if project.blog_set.all %}
 			<a href="/projects/{{project.slug}}/blog/">
 			<div id="link_blog" class="link_blog" style="background-color: {{project.primaryColor}}">
 				<p id="blip_blog" class="blip_blog" style="background-color: {{project.primaryColor}};">blogs</p> 
 			</div>
 			</a>
-			
+			{% endif %}
+			{% if project.journalists %}
 			<a href="/projects/{{project.slug}}/contributors/">
 			<div id="link_contributor" class="link_contributor" style="background-color: {{project.primaryColor}}">
 				<p id="blip_contributor" class="blip_contributor" style="background-color: {{project.primaryColor}};"> contri-<br />butors</p>
 			</div>
 			</a>
+			{% endif %}
 		</div>			
 		</div>
 		

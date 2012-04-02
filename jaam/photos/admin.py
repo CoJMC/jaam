@@ -11,7 +11,7 @@ class PhotoAdmin(BaseAdmin):
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
-                 (None, { 'fields': ('project', 'title', 'slug', 'image', 'caption',) },),
+                 (None, { 'fields': ('project', 'image', 'title', 'slug', 'caption',) },),
                  ('Admin', { 'fields': ('journalist', 'published',) },),
                 )
 
@@ -27,6 +27,9 @@ class PhotoGalleryInline(admin.TabularInline):
     extra = 0
 
 class PhotoGalleryAdmin(BaseAdmin):
+    add_form_template = 'admin/photogallery_form.html'
+    change_form_template = 'admin/photogallery_form.html'
+
     inlines = [ PhotoGalleryInline ]
     list_display = ('__unicode__', 'project', 'introduction', 'published')
    # list_filter = ('video gallery')
