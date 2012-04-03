@@ -54,8 +54,11 @@ function determinePage(pathname) {
 	}
 			
 	else if (pathname.search("contributor") != -1) {
-		popOutLink('blip_contributor', 'link_contributor');}		
-	}
+		popOutLink('blip_contributor', 'link_contributor');}
+    
+    else {
+        popOutLink('blip_info', 'link_info');}
+}
 	
 function popOutLink(blip, link) {
 		document.getElementById(blip).style.visibility="visible";
