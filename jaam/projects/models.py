@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.contrib.sites.models import Site
 from jaam.journalism.models import BaseModel, User
 from ckeditor.fields import RichTextField
-import re
+import re #regex
 
 
 class ProjectLocation(models.Model):
@@ -14,11 +14,10 @@ class ProjectLocation(models.Model):
         return self.location
 
 class Project(BaseModel):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
     tagline = models.CharField(max_length=250)
     primaryColor = models.CharField(max_length=7,default="FF0000")
     accentColor = models.CharField(max_length=7, default="FFFFFF")
-    title = models.CharField(max_length=200)
     description = RichTextField(null=True, blank=True)
     locations = models.ManyToManyField(ProjectLocation)
     coverGallery = models.ForeignKey('photos.PhotoGallery', null=True, blank=True, related_name='+')
@@ -53,11 +52,20 @@ class Project(BaseModel):
 @receiver(pre_save, sender=Project)
 def format_colors(instance, **kwargs):
     p_length = len(instance.primaryColor)
-    a_length = len(instance.accentColor)
     if (p_length is 3 or p_length is 6) and is_hex(instance.primaryColor):
         instance.primaryColor = "#" + instance.primaryColor.upper()
+    elif (p_length is 4 or p_length is 7) and is_hex(instance.primaryColor[1:]):
+        pass
+    else:
+        instance.primaryColor = "#FF0000"
+        
+    a_length = len(instance.accentColor)
     if (a_length is 3 or a_length is 6) and is_hex(instance.accentColor):
         instance.accentColor = "#" + instance.accentColor.upper()
+    elif (a_length is 4 or a_length is 7) and is_hex(instance.accentColor[1:]):
+        pass
+    else:
+        instance.accentColor = "#FFFFFF"
 
 def is_hex(value):
     search = re.compile(r'[^0-9a-fA-F]').search
