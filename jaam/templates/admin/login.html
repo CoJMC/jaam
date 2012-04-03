@@ -12,11 +12,21 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
+
+<script type="text/javascript">
+  function toggleDiv(divid){
+    if(document.getElementById(divid).style.display == 'none'){
+      document.getElementById(divid).style.display = 'block';
+    }else{
+      document.getElementById(divid).style.display = 'none';
+    }
+  }
+</script>
+
 <p style="background-color: #F4F379; border: 1px solid #CCCCCC; font-size: 1.1em; padding: 0.25em;">
 Users should login via
 <a href="/login/facebook"> Facebook</a>, <a href="/login/twitter"> Twitter</a>, <a href="/login/google"> Google</a>, or <a href="/login/openid"> OpenId</a>.
 </p>
-<p>The administrator can login using the form below:</p>
 {% if form.errors and not form.non_field_errors and not form.this_is_the_login_form.errors %}
 <p class="errornote">
 {% blocktrans count form.errors.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
@@ -30,8 +40,9 @@ Users should login via
 </p>
 {% endfor %}
 {% endif %}
+<p><a href="javascript:;" onmousedown="toggleDiv('content-main');">Show\Hide Admin login</a> </p>
 
-<div id="content-main">
+<div id="content-main" style="display:none">
 <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
   <div class="form-row">
     {% if not form.this_is_the_login_form.errors %}{{ form.username.errors }}{% endif %}

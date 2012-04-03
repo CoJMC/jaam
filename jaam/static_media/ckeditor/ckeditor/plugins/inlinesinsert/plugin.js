@@ -27,7 +27,15 @@ CKEDITOR.plugins.add('inlinesinsert',
 		editor.ui.addButton('inlinesinsert-photo', {
 			label: 'Insert Photo',
 			command: 'inlinesinsert-photo',
-			icon: this.path + 'images/inlinesinsert-photo.png'
+			className: 'cke_button_image'
+			
+			/* The className property handles the button icon. There was a thread on StackOverflow
+				that mentions doing it the below way if we want to use a custom icon, but I couldn't
+				get it to work.
+				
+				icon: this.path + 'images/inlinesinsert-photo.png'
+			*/
+
 		})
 
 		/*editor.ui.addButton('inlinesinsert-video', {
