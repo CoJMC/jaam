@@ -1,8 +1,3 @@
-Config File (Private)
-=====================
-
-https://docs.google.com/document/d/18Vgv92AUaqD5SP-NfiSkhYKIWQHZ1_YQEeTIcQb1a_k/edit?hl=en_US
-
 Local Development Tips
 ======================
 
@@ -29,6 +24,43 @@ Gondor Tips
 **Initialize Project** (creates permissions/groups): `gondor run primary initializeproject`
 
 **Create Admin User**: `gondor run primary createsuperuser`
+
+Secrets
+=======
+
+Secret keys (django's secret key, oauth keys, other username/passwords) are now stored in environment variables. That is how jaamconfig.py acquires those values for use in the application. A list of these values for our deployment are available here: https://docs.google.com/document/d/18Vgv92AUaqD5SP-NfiSkhYKIWQHZ1_YQEeTIcQb1a_k/edit?hl=en_US
+
+These pairs of keys and values must be set for various environments, both the local development environments and gondor's.
+
+To set these for gondor:
+
+    gondor env:set primary SECRET_KEY='gibberish'
+    gondor env:set primary AWS_ACCESS_ACCESS_KEY='blahblahblah'
+ 
+To set these for a local LINUX/UNIX/MAC environment, add the following lines to your ~/.profile:
+
+    export SECRET_KEY=''
+    export AWS_ACCESS_KEY_ID=''
+
+To set these for a local Windows environment:
+
+1. Start
+
+2. Right-Click on [My] Computer
+
+3. Choose "Properties"
+
+4. Click "Advanced System Settings"
+
+5. Make sure you're on the Advanced tab.
+
+6. Click the "Environment Variables" button.
+
+7. Then use the "New" button under the "User Variables" setting to add the environment variables as neccessary:
+
+	* "Variable Name" would be "SECRET_KEY" [no parenthasis]
+	* "Variable Value" would be "gibberish_actual_secret_key" [no parenthasis]
+
 
 Media/Static/Static_media Explained
 ===================================

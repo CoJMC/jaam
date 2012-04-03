@@ -1,4 +1,3 @@
-jaamconfig.py
 local_settings.py
 database.db
 *.pyc
