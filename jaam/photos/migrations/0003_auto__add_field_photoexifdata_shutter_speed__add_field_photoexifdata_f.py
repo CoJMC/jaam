@@ -8,67 +8,71 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding field 'PhotoExifData.shutter_speed'
+        db.add_column('photos_photoexifdata', 'shutter_speed',
+                      self.gf('django.db.models.fields.IntegerField')(null=True),
+                      keep_default=False)
 
-        # Changing field 'Photo.caption'
-        db.alter_column('photos_photo', 'caption', self.gf('django.db.models.fields.TextField')(max_length=500))
+        # Adding field 'PhotoExifData.fnumber'
+        db.add_column('photos_photoexifdata', 'fnumber',
+                      self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=1),
+                      keep_default=False)
 
-        # Changing field 'PhotoGallery.introduction'
-        db.alter_column('photos_photogallery', 'introduction', self.gf('django.db.models.fields.TextField')(max_length=5000))
+        # Adding field 'PhotoExifData.focal_length'
+        db.add_column('photos_photoexifdata', 'focal_length',
+                      self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=2),
+                      keep_default=False)
 
-        # Changing field 'PhotoExifData.height_dimension'
-        db.alter_column('photos_photoexifdata', 'height_dimension', self.gf('django.db.models.fields.IntegerField')(null=True))
+        # Adding field 'PhotoExifData.height_dimension'
+        db.add_column('photos_photoexifdata', 'height_dimension',
+                      self.gf('django.db.models.fields.IntegerField')(null=True),
+                      keep_default=False)
 
-        # Changing field 'PhotoExifData.fnumber'
-        db.alter_column('photos_photoexifdata', 'fnumber', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=1))
+        # Adding field 'PhotoExifData.width_dimension'
+        db.add_column('photos_photoexifdata', 'width_dimension',
+                      self.gf('django.db.models.fields.IntegerField')(null=True),
+                      keep_default=False)
 
-        # Changing field 'PhotoExifData.shutter_speed'
-        db.alter_column('photos_photoexifdata', 'shutter_speed', self.gf('django.db.models.fields.IntegerField')(null=True))
+        # Adding field 'PhotoExifData.gps_latitude'
+        db.add_column('photos_photoexifdata', 'gps_latitude',
+                      self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=8, decimal_places=6),
+                      keep_default=False)
 
-        # Changing field 'PhotoExifData.width_dimension'
-        db.alter_column('photos_photoexifdata', 'width_dimension', self.gf('django.db.models.fields.IntegerField')(null=True))
+        # Adding field 'PhotoExifData.gps_longitude'
+        db.add_column('photos_photoexifdata', 'gps_longitude',
+                      self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=8, decimal_places=6),
+                      keep_default=False)
 
-        # Changing field 'PhotoExifData.focal_length'
-        db.alter_column('photos_photoexifdata', 'focal_length', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=2))
+        # Adding field 'PhotoExifData.altitude'
+        db.add_column('photos_photoexifdata', 'altitude',
+                      self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=2),
+                      keep_default=False)
 
-        # Changing field 'PhotoExifData.gps_latitude'
-        db.alter_column('photos_photoexifdata', 'gps_latitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=8, decimal_places=6))
-
-        # Changing field 'PhotoExifData.gps_longitude'
-        db.alter_column('photos_photoexifdata', 'gps_longitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=8, decimal_places=6))
-
-        # Changing field 'PhotoExifData.altitude'
-        db.alter_column('photos_photoexifdata', 'altitude', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=5, decimal_places=2))
     def backwards(self, orm):
+        # Deleting field 'PhotoExifData.shutter_speed'
+        db.delete_column('photos_photoexifdata', 'shutter_speed')
 
-        # Changing field 'Photo.caption'
-        db.alter_column('photos_photo', 'caption', self.gf('django.db.models.fields.CharField')(max_length=5000))
+        # Deleting field 'PhotoExifData.fnumber'
+        db.delete_column('photos_photoexifdata', 'fnumber')
 
-        # Changing field 'PhotoGallery.introduction'
-        db.alter_column('photos_photogallery', 'introduction', self.gf('django.db.models.fields.CharField')(max_length=5000))
+        # Deleting field 'PhotoExifData.focal_length'
+        db.delete_column('photos_photoexifdata', 'focal_length')
 
-        # Changing field 'PhotoExifData.height_dimension'
-        db.alter_column('photos_photoexifdata', 'height_dimension', self.gf('django.db.models.fields.CharField')(max_length=15, null=True))
+        # Deleting field 'PhotoExifData.height_dimension'
+        db.delete_column('photos_photoexifdata', 'height_dimension')
 
-        # Changing field 'PhotoExifData.fnumber'
-        db.alter_column('photos_photoexifdata', 'fnumber', self.gf('django.db.models.fields.CharField')(max_length=15, null=True))
+        # Deleting field 'PhotoExifData.width_dimension'
+        db.delete_column('photos_photoexifdata', 'width_dimension')
 
-        # Changing field 'PhotoExifData.shutter_speed'
-        db.alter_column('photos_photoexifdata', 'shutter_speed', self.gf('django.db.models.fields.CharField')(max_length=15, null=True))
+        # Deleting field 'PhotoExifData.gps_latitude'
+        db.delete_column('photos_photoexifdata', 'gps_latitude')
 
-        # Changing field 'PhotoExifData.width_dimension'
-        db.alter_column('photos_photoexifdata', 'width_dimension', self.gf('django.db.models.fields.CharField')(max_length=15, null=True))
+        # Deleting field 'PhotoExifData.gps_longitude'
+        db.delete_column('photos_photoexifdata', 'gps_longitude')
 
-        # Changing field 'PhotoExifData.focal_length'
-        db.alter_column('photos_photoexifdata', 'focal_length', self.gf('django.db.models.fields.CharField')(max_length=15, null=True))
+        # Deleting field 'PhotoExifData.altitude'
+        db.delete_column('photos_photoexifdata', 'altitude')
 
-        # Changing field 'PhotoExifData.gps_latitude'
-        db.alter_column('photos_photoexifdata', 'gps_latitude', self.gf('django.db.models.fields.CharField')(max_length=45, null=True))
-
-        # Changing field 'PhotoExifData.gps_longitude'
-        db.alter_column('photos_photoexifdata', 'gps_longitude', self.gf('django.db.models.fields.CharField')(max_length=45, null=True))
-
-        # Changing field 'PhotoExifData.altitude'
-        db.alter_column('photos_photoexifdata', 'altitude', self.gf('django.db.models.fields.CharField')(max_length=15, null=True))
     models = {
         'auth.group': {
             'Meta': {'object_name': 'Group'},
