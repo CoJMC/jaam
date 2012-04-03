@@ -32,7 +32,7 @@ $(document).ready(function (){
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
         var requests = [];
         $.each(proj_data.objects, function(i, proj) {
-            if (proj.covergallery != null) {
+            if ((proj.covergallery != null) && (proj.archived == 0)) {
                 var request = $.getJSON(proj.covergallery+"?format=jsonp&callback=?");
                 requests.push(request);
             }
