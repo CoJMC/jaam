@@ -5,11 +5,16 @@
 
 {% block banner %} {{gallery.title}} {% endblock %}
 
-	
+<script type="text/javascript">
+	function moveRight() {
+		window.location('google.com');
+	}
+</script>
+
 {% block banner_body %}
 <ul class="carousel-ready overflow-hidden">
-	{% for first_photo in photos_swipe %}			<!-- @TODO: MAKE THIS SWIPABLE Between photos! -->	
-	<li class="span12">
+	{% for first_photo in photos_swipe %}
+	<li id="listitem" class="listitem"> <!-- TODO: Change Page URL on Swipe -->
 	<div class="span12">
 	
 			<div class="span7">
@@ -33,8 +38,12 @@
 			     Altitude: {{first_photo.exif_data.altitude}}<br/>
 			    </p>
 			</div></div>
-			
-				<a class="single_image" rel="gallery_group" href="{% thumbnail first_photo.image 900x600 %}"><img src="{% thumbnail first_photo.image 520x347 %}"/></a>
+				<a class="single_image" rel="gallery_group" href="{% thumbnail first_photo.image 900x600 %}">
+					<div id="imgBox">
+						<img src="{% thumbnail first_photo.image 520x347 %}"/>
+					</div>
+
+				</a>
 			</div>
 			<div class="span3" style="height: 315px">
 				
@@ -55,46 +64,48 @@
 			</div>
 			
 	</div>
-					
-		<div class="span12" style="text-align: center;  margin-top: 5px; margin-left: -40px; height:75px">
+		
+		<div class="span12" style="text-align: center;  margin-top: 5px; margin-left: -140px; height:75px">
+			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:-1 %}"><img src="/s/static/arrow-left.png"/ width="20px" height="60px" style="margin-left: 15%; padding-right: 10px;"></img></a>	
 			{% for photo in photos_before %}
 			
 			{% if photos_before|length == 3 %}
-				{% with number=previous_number|add:forloop.counter0 %}     
+				{% with number=previous_number|add:forloop.counter0|add:1 %}     
 					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58 %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 1 %}
-				{% with number=previous_number|add:forloop.counter0|add:2 %}     
+				{% with number=previous_number|add:forloop.counter0|add:3 %}     
 					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58 %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 2 %}
-				{% with number=previous_number|add:forloop.counter0|add:1 %}     
+				{% with number=previous_number|add:forloop.counter0|add:2 %}     
 					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 4 %}
-				{% with number=previous_number|add:forloop.counter0|add:-1 %}     
+				{% with number=previous_number|add:forloop.counter0 %}     
 					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% elif photos_before|length == 5 %}
-				{% with number=previous_number|add:forloop.counter0|add:-2 %}     
+				{% with number=previous_number|add:forloop.counter0|add:-1 %}     
 					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% else %}
-				{% with number=previous_number|add:forloop.counter0|add:-3 %}   
+				{% with number=previous_number|add:forloop.counter0|add:-2 %}   
 					<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58  %}"/> </a>
 				{% endwith %}
 			{% endif %}
 			{% endfor %}
 		
 			{% for photo in photos_after %}
-				{% with number=next_number|add:forloop.counter0 %}
+				{% with number=next_number|add:forloop.counter0|add:1 %}
 					
 						<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=number%}"> <img {% if photo.id == first_photo.id %} class="highlight" {% endif %} src="{% thumbnail photo.image 88x58 %}"/> </a>
 				
 				{% endwith %}
 			{% endfor %}
+			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:1 %}"><img src="/s/static/arrow-right.png"/ width="20px" height="60px" style="padding-left: 10px;"></img></a>	
+
 		</div>
-		
 		</li>
 {% endfor %}
 </ul>

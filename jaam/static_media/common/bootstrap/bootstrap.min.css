@@ -647,3 +647,4 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .profile_popUp {position:absolute; left: 20px; top: 10px; height: 540px; width: 980px; background-color: #262626; overflow-y: hidden; overflow-x: hidden; border-style: solid; border-style: ridge; border-width: 4px; border-color: #A2A2A2;}
 .exif_div {min-height: 350px; min-width: 750px; padding: 25px; background-color: #666;}
  .exif_div>p { border-top: 2px solid white; color: white; font-size: 10pt; font-weight: bold; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+ 
