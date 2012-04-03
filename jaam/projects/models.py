@@ -22,6 +22,7 @@ class Project(BaseModel):
     description = RichTextField(null=True, blank=True)
     locations = models.ManyToManyField(ProjectLocation)
     coverGallery = models.ForeignKey('photos.PhotoGallery', null=True, blank=True, related_name='+')
+    archived = models.BooleanField(default = False)
 
     def __unicode__(self):
         return self.title
