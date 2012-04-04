@@ -26,25 +26,20 @@
 			
 			<div class="span3">
 
-				<p class="side_title"><a href="#{{post.title|safe}}" onclick="popup('{{post.title|safe}}')">
+				<p class="side_title"><a href="#posts" class="posts">
 				<img src="/s/static/profile_arrow.png"/>{{post.title|safe}}</a></p>
 
 				<p class="description"> {{post.description|safe}}  </p>
 				
 				<div class="span1">
-					<div id="blanket" style="display:none;">
-					</div>
-					<div id="{{post.title|safe}}" style="display:none;" class="blog_popUp">
-
-						<a href="/projects/{{project.slug}}/blog/{{blog.slug}}/" onclick="popup('{{post.title|safe}}'); " style="float: right;">
-							<img src="/s/static/close.png" height="25px" width="25px" />
-						</a>
+					<div style="display:none"><div id="posts" class="posts">
 						<div class="description">
 							<p class="title_body">
 							<img  class="text_image" src="{% thumbnail post.cover_photo.image 182x112 %}"/>
 					 		 {{post.title|safe}} <br/> <br/>
 					 		<span class="post"> {{post.body|safe}} </span> </p>		 		
-
+						</div>
+						</div>
 					 	</div>
 					</div>
 				</div>

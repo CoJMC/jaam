@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 from easy_thumbnails.fields import ThumbnailerImageField
 from social_auth.signals import pre_update
 from jaam.journalism.middleware import _show_unpublished
+#from jaam.photos.models import Photo
 from django.forms import ModelForm
 
 from south.modelsinspector import add_introspection_rules
@@ -67,6 +68,12 @@ class UserProfile(models.Model):
 
     def is_journalist(self):
         return self.user.groups.filter(name='Journalists').count() > 0
+    
+   # def get_photos(self):
+        #HELP HERE
+    #    return Photo.objects.filter(
+     #       pk__in=self.project.photo_set.all().values_list('journalist', flat=True).query
+      #  )
 
     @models.permalink
     def get_absolute_url(self):
