@@ -7,16 +7,10 @@ from jaam.projects.models import Project
 from jaam.blog.models import BlogPost
 from django.contrib.auth.models import User
 
-def index(request):
-    projects = Project.published_objects.filter(archived=False).all()
-    return render_to_response('projects/index.html', {
-        'projects': projects,
-        'title': "Project Detail",
-    }, context_instance=RequestContext(request))
 
-def archives(request):
+def all_projects(request):
     projects = Project.published_objects.filter(archived=True).all()
-    return render_to_response('projects/archives.html', {
+    return render_to_response('projects/all_projects.html', {
         'projects': projects,
         'title': "Project Detail",
     }, context_instance=RequestContext(request))
@@ -24,7 +18,6 @@ def archives(request):
 def contributors(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
     return render_to_response('projects/project_contributors.html', { 'project': project }, context_instance=RequestContext(request))
-
 
 def details(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)

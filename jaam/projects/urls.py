@@ -2,7 +2,6 @@ from django.conf.urls.defaults import patterns, include, url
 
 # these urlmatch pattern should have a trailing slash IF AND ONLY IF there is an include('subapp.urls') reference for the routing
 urlpatterns = patterns('',
-    url(r'^archives/$', 'jaam.projects.views.archives'),
     url(r'^(?P<project_slug>[^\/]+)/blog/', include('jaam.blog.urls')),
     url(r'^(?P<project_slug>[^\/]+)/photos/?', include('jaam.photos.urls')),
     url(r'^(?P<project_slug>[^\/]+)/photos/galleries/(?P<gallery_slug>[^\\]+)/(?P<start_number>[^\\]+)/$', 'jaam.photos.views.gallery_details', name="start_photo_gallery"),
@@ -13,6 +12,5 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[^\/]+)/act/', include('jaam.act.urls')),
     url(r'^(?P<project_slug>[^\/]+)/contributors', 'jaam.projects.views.contributors'),
     url(r'^(?P<project_slug>[^\/]+)', 'jaam.projects.views.details'),
-    url(r'^$', 'jaam.projects.views.index'),
-
+    url(r'^$', 'jaam.projects.views.all_projects'),
 )
