@@ -3,11 +3,11 @@
 {% block body %}
 
 <script type="text/javascript">
-
 $(document).ready(function (){
-	determinePage(window.location.pathname);
+    determinePage(window.location.pathname);
     $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
     $(".carousel-ready").carousel();
+
     $(".single_image").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
     $("#journalist").fancybox( {'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
     $("#exif").fancybox( {'overlayColor': '#000000'});
@@ -23,82 +23,146 @@ $(document).ready(function (){
 			alert("swiped left!");
 		}
 	});
-	
+
 });
 </script>
 
-<div class="row-fluid" style="padding-left: 20px; padding-top: 5px;">
-	<div class="gallery_banner" style="background-color: {{ project.primaryColor }}">
-		<p class="banner_text">
-		{% block banner %}
-		{% endblock %}
-		</p>
-	</div>
+<div class="ribbon-top">
+    <canvas id="topBanner" width="450" height="80">
+        Your browser does not support the canvas element.
+    </canvas>
+    <span class="ribbon-content">{{project.title}}</span>
 </div>
 
-<!-- Side Bar -->
-<div class="row-fluid">
-	<div class="span13" style="margin-left:0;">
-		<div class="span1" style="background-color: {{ project.primaryColor }}; height:450px; width:30px; margin-left: 22px; position: absolute;">
-		<div class="side_banner">
-			<a href="/projects/{{project.slug}}/info">
-			<div id="link_info" class="link_info" style="background-color: {{project.primaryColor}}">
-				<p id="blip_info" class="blip_info" style="background-color: {{project.primaryColor}};">info</p> 
-			</div></a>
+<!-- begin side nav bar -->
+<div class="sidebar" style="background-color: {{project.primaryColor}}">
+    <ul>
+        <li><a href="/projects/{{project.slug}}/info">
+            <div id="link_info" class="link_info" style="background-color: {{project.primaryColor}}">
+                <p id="blip_info" class="blip_info" style="background-color: {{project.primaryColor}};"><span>info</span></p> 
+            </div>
+        </a></li>
+        
+        {% if project.photo_set.all %}
+        <li><a href="/projects/{{project.slug}}/photos/">
+            <div id="link_photo" class="link_photo" style="background-color: {{project.primaryColor}}">
+                <p id="blip_photo" class="blip_photo" style="background-color: {{project.primaryColor}};"><span>photos</span></p> 
+            </div>
+        </a></li>
+        {% endif %}
+        
+        <!-- @TODO: clean up this video link.... what's the cover video? -->
+        {% for video in project.video_set.all|slice:":1" %}
+        <li><a href="/projects/{{project.slug}}/videos/{{video.id}}/">
+            <div id="link_video" class="link_video" style="background-color: {{project.primaryColor}}">
+                <p id="blip_video" class="blip_video" style="background-color: {{project.primaryColor}};"><span>videos</span></p> 
+            </div>
+        </a></li>
+        {% endfor %}
+        
+        {% if project.blog_set.all %}
+        <li><a href="/projects/{{project.slug}}/blog/">
+            <div id="link_blog" class="link_blog" style="background-color: {{project.primaryColor}}">
+                <p id="blip_blog" class="blip_blog" style="background-color: {{project.primaryColor}};"><span>blogs</span></p> 
+            </div>
+        </a></li>
+        {% endif %}
+        
+        {% if project.story_set.all %}
+        <li><a href="/projects/{{project.slug}}/stories/">
+            <div id="link_story" class="link_story" style="background-color: {{project.primaryColor}}">
+                <p id="blip_story" class="blip_story" style="background-color: {{project.primaryColor}};"><span>stories</span></p>
+            </div>
+        </a></li>
+        {% endif %}
+        
+        {% if project.journalists %}
+        <li><a href="/projects/{{project.slug}}/contributors/">
+            <div id="link_contributor" class="link_contributor" style="background-color: {{project.primaryColor}}">
+                <p id="blip_contributor" class="blip_contributor" style="background-color: {{project.primaryColor}};"><span>contri-<br />butors</span></p>
+            </div>
+        </a></li>
+        {% endif %}
+    </ul>
+</div> <!-- end side nav bar -->
 
-			{% if project.photo_set.all %}
-			<a href="/projects/{{project.slug}}/photos/">
-			<div id="link_photo" class="link_photo" style="background-color: {{project.primaryColor}}">
-				<p id="blip_photo" class="blip_photo" style="background-color: {{project.primaryColor}};">photos</p> 
-			</div></a>
-			{% endif %}
-			
-			<!-- @TODO: clean up this video link.... what's the cover video? -->
-			{% for video in project.video_set.all|slice:":1" %}
-			<a href="/projects/{{project.slug}}/videos/{{video.id}}/">
-			<div id="link_video" class="link_video" style="background-color: {{project.primaryColor}}">
-				<p id="blip_video" class="blip_video" style="background-color: {{project.primaryColor}};">videos</p> 
-			</div>
-			</a>
-			{% endfor %}
-			
-			{% if project.story_set.all %}
-			<a href="/projects/{{project.slug}}/stories/">
-			<div id="link_story" class="link_story" style="background-color: {{project.primaryColor}}">
-				<p id="blip_story" class="blip_story" style="background-color: {{project.primaryColor}};">stories</p>
-			</div>
-			</a>
-			{% endif %}
-			
-			{% if project.blog_set.all %}
-			<a href="/projects/{{project.slug}}/blog/">
-			<div id="link_blog" class="link_blog" style="background-color: {{project.primaryColor}}">
-				<p id="blip_blog" class="blip_blog" style="background-color: {{project.primaryColor}};">blogs</p> 
-			</div>
-			</a>
-			{% endif %}
-			{% if project.journalists %}
-			<a href="/projects/{{project.slug}}/contributors/">
-			<div id="link_contributor" class="link_contributor" style="background-color: {{project.primaryColor}}">
-				<p id="blip_contributor" class="blip_contributor" style="background-color: {{project.primaryColor}};"> contri-<br />butors</p>
-			</div>
-			</a>
-			{% endif %}
-		</div>			
-		</div>
-		
-		<!-- Inside content -->
-		<div class="span11" style="padding-top: 20px; height: 420px; margin-left: 100px;">
-			{% block banner_body %}
-			
-			{% endblock %}
-		</div>
-		<!-- Breadcrumbs --> 
-			<div class="bottom_banner" style="background-color: {{ project.primaryColor }}">
-				<div class="bottom_banner_text"> {{project.tagline}} </div>
-			</div>
-			</div>
-
-	</div>
+<div class="ribbon-bottom">
+    <canvas id="bottomBanner" width="400" height="60">
+        Your browser does not support the canvas element.
+    </canvas>
+    <span class="ribbon-content">{{project.tagline}}</span>
 </div>
+
+<!-- Inside content -->
+<div class="span11 ribbon-inside-container">
+    {% block banner_body %}
+    
+    {% endblock %}
+</div>
+
+
+<script type="text/javascript">
+var primary = new Color("{{project.primaryColor}}");
+
+var c1 = document.getElementById("topBanner");
+var ctx = c1.getContext("2d");
+var width = c1.width;
+
+ctx.lineWidth = 1;
+ctx.strokeStyle = "rgba(255,255,255,0)";
+ctx.fillStyle = primary.hex(false);
+ctx.shadowOffsetX = 0;
+ctx.shadowOffsetY = 0;
+ctx.shadowBlur = 8;
+ctx.shadowColor = "rgba(0, 0, 0, 0.9)";
+
+ctx.beginPath();
+ctx.moveTo(10,70);
+ctx.lineTo(39,13);
+ctx.lineTo(41,11);
+ctx.lineTo(45,10);
+ctx.lineTo(width-10,10);
+ctx.lineTo(width-30,40);
+ctx.lineTo(width-10,70);
+ctx.lineTo(14,70);
+ctx.lineTo(10,71);
+ctx.lineTo(10,70);
+
+ctx.stroke();
+ctx.fill();
+ctx.closePath();
+
+var c2 = document.getElementById("bottomBanner");
+var ctx2 = c2.getContext("2d");
+var width2 = c2.width;
+
+ctx2.lineWidth = 1;
+ctx2.strokeStyle = "rgba(255,255,255,0)";
+ctx2.fillStyle = primary.hex(false);;
+ctx2.shadowOffsetX = 0;
+ctx2.shadowOffsetY = 0;
+ctx2.shadowBlur = 8;
+ctx2.shadowColor = "rgba(0, 0, 0, 0.9)";
+
+ctx2.beginPath();
+ctx2.moveTo(45,50);
+ctx2.lineTo(41,49);
+ctx2.lineTo(39,47);
+ctx2.lineTo(10,10);
+ctx2.lineTo(10,9);
+ctx2.lineTo(14,10);
+ctx2.lineTo(width2-25,10);
+ctx2.lineTo(width2-10,30);
+ctx2.lineTo(width2-25,50);
+ctx2.lineTo(45,50);
+
+ctx2.stroke();
+ctx2.fill();
+ctx2.closePath();
+
+// darken sidebar
+var accent = primary.adjustSatLum(-10, -10);
+$(".sidebar").css("background-color", accent);
+</script>
+
 {% endblock %}
