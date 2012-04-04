@@ -10,7 +10,7 @@
 </div>
 
 <script type="text/javascript">
-var PROJECT_OPTIONS = {'covergallery__isnull': 'false'};
+var PROJECT_OPTIONS = {'covergallery__isnull': 'false', 'archived': 'false'};
 var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
 var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
 
@@ -31,12 +31,21 @@ $(document).ready(function (){
     $("#container").hide();
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
         var requests = [];
+        var null_ids = [];
         $.each(proj_data.objects, function(i, proj) {
-            if ((proj.covergallery != null) && (proj.archived == 0)) {
+            // secondary check for null cover gallery because the API returns null for unpubd galleries
+            if ((proj.covergallery != null)) { 
                 var request = $.getJSON(proj.covergallery+"?format=jsonp&callback=?");
                 requests.push(request);
+            } else {
+                null_ids.push(i);
             }
         });
+        
+        for (var j=null_ids.length-1; j>=0; j--) {
+            proj_data.objects.splice(null_ids[j],1);
+        }
+        
         $.when.apply(null, requests).done(function() {
             var photo_requests = []
             // A hack is necessary if there is only one project
@@ -59,7 +68,7 @@ $(document).ready(function (){
     var load_project_photos = function (proj, cover_data) {
         var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
         return $.getJSON("/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
-            var project_li = $("<li>").addClass("project").attr("id", "proj_"+(i+1)).appendTo("#projects");
+            var project_li = $("<li>").addClass("project").appendTo("#projects");
             project_li.click(function (){
                 if ($(this).hasClass("noclick")){
                     $(this).removeClass("noclick");

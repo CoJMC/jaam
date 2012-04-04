@@ -44,17 +44,18 @@ class SearchResource(BaseModelResource):
 class ProjectResource(BaseModelResource):
     covergallery = fields.ForeignKey('jaam.api.resources.PhotoGalleryResource', 'coverGallery', null=True)
     class Meta:
-        queryset = Project.published_objects.exclude(coverGallery__published=False)
+        queryset = Project.published_objects
         allowed_methods = ['get']
         filtering = {
             'pk': ALL,
             'id': ALL,
             'slug': ALL,
+            'archived': ALL,
             'covergallery': ('isnull'),
         }    
 
     def get_object_list(self, request):
-        return Project.published_objects.exclude(coverGallery__published=False);
+        return Project.published_objects
 
     def build_filters(self, filters=None):
         if filters is None:

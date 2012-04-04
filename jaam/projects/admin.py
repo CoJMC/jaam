@@ -20,7 +20,7 @@ class ProjectAdmin(BaseAdmin):
     fieldsets = (
                  (None, { 'fields': ('title', 'slug', 'tagline', 'description', 'coverGallery', 'tags',) },),
                  ('ProjectColors', {'fields': ('primaryColor', 'accentColor',)},),
-                 ('Admin', { 'fields': ('published',) },),
+                 ('Admin', { 'fields': ('published', 'archived') },),
                 )
 
 class ProjectLocationAdmin(admin.ModelAdmin):
