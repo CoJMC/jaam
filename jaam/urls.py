@@ -32,30 +32,25 @@ urlpatterns = patterns('',
     (r'^comments/', include('django.contrib.comments.urls')),
 
     # CKEDITOR
-    (r'^ckeditor/', include('ckeditor.urls')), # TODO: Is this necessary
+    (r'^ckeditor/', include('ckeditor.urls')),
 
     # JAAM
     url(r'^act/', include('jaam.act.urls')),
     url(r'^journalism/', include('jaam.journalism.urls')),
     url(r'^projects/', include('jaam.projects.urls')),
-    (r'^archives', direct_to_template, {'template': 'projects/archives.html'}),
-    url(r'^$', 'jaam.projects.views.index'), # TODO ????
-    #(r'^$', direct_to_template, {'template': 'api_demo/index.html'}),
+    url(r'^$', 'jaam.views.home'),
 
     # USER / AUTH
-    url(r'^logout/$', 'django.contrib.auth.views.logout', name="auth_logout"),
-    url(r'^logout2/$', 'jaam.journalism.views.logout_view', name="auth_logout2"),
+    url(r'^logout/$', 'jaam.journalism.views.logout_view'),
     url(r'', include('social_auth.urls')),
-    url(r'^accounts/profile', 'jaam.journalism.views.profile_set'), # TODO: This goes in the journalism project
-    url(r'^confirm', 'jaam.journalism.views.profile_set'), # TODO: This too
-    url(r'^users/(?P<username>[^\\]+)/', 'jaam.journalism.views.user_profile'), # TODO: Probably goes in the journalism app too
+    url(r'^accounts/profile', 'jaam.journalism.views.profile_set'),
+    url(r'^confirm', 'jaam.journalism.views.profile_set'),
+    url(r'^users/(?P<username>[^\\]+)/', 'jaam.journalism.views.user_profile'),
     url(r'^act', 'jaam.act.views.information'),
     url(r'^about', 'jaam.journalism.views.about'),
+
     # REST API
     (r'^api/', include(v1_api.urls)),
-
-    # REST UI CONSUMER
-    (r'roy/', direct_to_template, {'template': 'roy/index.html'}),
 
     # RSS Feeds
     (r'^feeds/(?P<project_slug>[^\\]+)/blog_posts.rss$', LatestBlogsFeed()),

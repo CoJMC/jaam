@@ -1,5 +1,0 @@
-<div id="projects">
-{#data}
-	{title}
-{/data}
-</div>
