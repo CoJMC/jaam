@@ -10,7 +10,7 @@
 </div>
 
 <script type="text/javascript">
-var PROJECT_OPTIONS = {'covergallery__isnull': 'false'};
+var PROJECT_OPTIONS = {'covergallery__isnull': 'false', 'archived': 'false'};
 var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
 var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
 
@@ -59,7 +59,7 @@ $(document).ready(function (){
     var load_project_photos = function (proj, cover_data) {
         var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
         return $.getJSON("/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
-            var project_li = $("<li>").addClass("project").attr("id", "proj_"+(i+1)).appendTo("#projects");
+            var project_li = $("<li>").addClass("project").appendTo("#projects");
             project_li.click(function (){
                 if ($(this).hasClass("noclick")){
                     $(this).removeClass("noclick");
