@@ -6,7 +6,7 @@ from jaam.projects.models import Project
 
 def home(request):
     projects = Project.published_objects.filter(archived=False).all()
-    return render_to_response('projects/index.html', {
+    return render_to_response('home.html', {
         'projects': projects,
         'title': "List of All Projects",
     }, context_instance=RequestContext(request))
