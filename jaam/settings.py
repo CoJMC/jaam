@@ -154,6 +154,8 @@ INSTALLED_APPS = (
     'haystack',
     'whoosh',
     'django_inlines',
+
+    'raven.contrib.django',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -237,6 +239,7 @@ API_LIMIT_PER_PAGE = 0
 INLINE_DEBUG = True
 
 # for personal config - doccloud/aws/etc
+# TODO: Clean this up.
 try:
     from jaamconfig import *
 except ImportError, exp:
@@ -269,3 +272,4 @@ HAYSTACK_CONNECTIONS = {
 
     },
 }
+
