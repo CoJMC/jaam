@@ -232,7 +232,6 @@ CKEDITOR_CONFIGS = {
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
 COMPRESS_ENABLED = True
-COMPRESS_URL = '/s/static/'
 
 # Tastypie default page size
 API_LIMIT_PER_PAGE = 0
