@@ -31,12 +31,21 @@ $(document).ready(function (){
     $("#container").hide();
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
         var requests = [];
+        var null_ids = [];
         $.each(proj_data.objects, function(i, proj) {
+            // secondary check for null cover gallery because the API returns null for unpubd galleries
             if (proj.covergallery != null) {
                 var request = $.getJSON(proj.covergallery+"?format=jsonp&callback=?");
                 requests.push(request);
+            } else {
+                null_ids.push(i);
             }
         });
+        
+        for (var j=null_ids.length-1; j>=0; j--) {
+            proj_data.objects.splice(null_ids[j],1);
+        }
+        
         $.when.apply(null, requests).done(function() {
             var photo_requests = []
             // A hack is necessary if there is only one project
