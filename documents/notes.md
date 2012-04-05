@@ -25,6 +25,8 @@ Gondor Tips
 
 **Create Admin User**: `gondor run primary createsuperuser`
 
+**View the Logs**: Check the logs here: https://gondor.io/instance/981/logs/?limit=200 (change the limit parameter to see more), or use the Sentry account to check errors.
+
 Secrets
 =======
 
