@@ -8,14 +8,12 @@
 {% block banner_body %}
 <ul class="carousel-ready overflow-hidden">
     {% for gallery in galleries %}
-        {# Django 1.3 doesn't support elif tags, but the dev version does #}
+        {# make carousel panels #}
         {% if forloop.first %}
             <li class="span11">
-        {% else %}
-            {% if forloop.counter0|divisibleby:"3" %}
+        {% elif forloop.counter0|divisibleby:"3" %}
             </li> <!-- end panel -->
             <li class="span11">
-        	{% endif %}
         {% endif %}
         
         <div class="span3">
