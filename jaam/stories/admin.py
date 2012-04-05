@@ -14,7 +14,7 @@ class StoryAdmin(BaseAdmin):
         (None, { 'fields':
             ('project', 'title', 'slug', 'blurb', 'cover_photo', 'body', 'tags') }),
         ('Admin', { 'fields':
-            ('published', 'author') }),
+            ('author', 'published') }),
     )
 
     def save_model(self, request, obj, form, change):
