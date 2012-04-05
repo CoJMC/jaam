@@ -7,16 +7,16 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
-	{% load i18n %}
-	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<meta name="apple-mobile-web-app-capable" content="yes"/>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
-		<title>jaam | {% block title %}{% endblock %}</title>
+    {% load i18n %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        
+        <title>jaam | {% block title %}{% endblock %}</title>
         
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         {% compress css %}
@@ -27,88 +27,88 @@
         {% endcompress %}
         
         <link rel="stylesheet" href="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-	
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-		<script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-		<script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js"></script>
-		<script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
-		
-		{% compress js %}
-		<script src="/s/static/dora/scripts/pages.js"></script>
-		<script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
-		<script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
-		<script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
-		<script src="/s/static/api_demo/script/jquery.mobile.carousel.js"></script>
-		<script src="/s/static/common/js/popup.js"></script>
-		<script src="/s/static/common/js/plugins.js"></script>
-        <script src="/s/static/common/js/color-converter.js"></script>		
-		{% endcompress %}
+        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js"></script>
+        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+        
+        {% compress js %}
+        <script src="/s/static/dora/scripts/pages.js"></script>
+        <script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
+        <script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
+        <script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
+        <script src="/s/static/api_demo/script/jquery.mobile.carousel.js"></script>
+        <script src="/s/static/common/js/popup.js"></script>
+        <script src="/s/static/common/js/plugins.js"></script>
+        <script src="/s/static/common/js/color-converter.js"></script>      
+        {% endcompress %}
 
-		<script src="/s/static/common/js/bootstrap-dropdown.js"></script>
+        <script src="/s/static/common/js/bootstrap-dropdown.js"></script>
 
-		<!--[if lt IE 7 ]>
-			<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-			<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-		<![endif]-->
-	</head>
-	
-	<body style="height:100%; width:100%; background-color: #262626;">
-		<div class="container-fluid container-center">
-		{% block body %}
+        <!--[if lt IE 7 ]>
+            <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+            <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+    </head>
+    
+    <body style="height:100%; width:100%; background-color: #262626;">
+        <div class="container-fluid container-center">
+        {% block body %}
 
-		{% endblock %}
-		</div>
-		
-		<!-- Header -->
-		<div id="header">
-			<div id="user">
-				{% if user.is_authenticated %}
-				<a href="/users/{{user.username}}"> User Profile </a>
-				<a href="/logout2"> Logout </a>
-				{% else %}
-			<ul class="nav">
-				<li class="dropdown" id="menu1">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-					Login
-					<b class="caret"></b>
-					</a>
-				<ul class="dropdown-menu">
-					<li> <a href="/login/facebook"> Facebook </a> </li>
-					<li> <a href="/login/twitter"> Twitter </a> </li>
-					<li> <a href="/login/google"> Google </a> </li>
-					<li> <a href="/login/openid"> OpenID </a> </li>
-				</ul>
-				</li>
-			</ul>
-				{% endif %}
-			</div>
-		</div>
-		
-		<!-- Footer -->
-		<div id="footer">
-			<div id="nav">
-				<a href="/"><div id="logo"></div></a>
-				<div class="nav_item"><a href="/">PROJECTS</a></div>
-				<div class="nav_item"><a href="/about">ABOUT</a></div>
-				<div class="nav_item"><a href="/act?project={{project.slug}}">ACT</a></div>
-				<div id="social">
-					<a href="https://twitter.com/share?url={{ request.get_full_path }}">
-						<img src="/s/static/common/img/twitter-white.png"/>
-					</a>
-					<a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}">
-						<img src="/s/static/common/img/facebook-white.png"/>
-					</a>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Change UA-XXXXX-X to be your site's ID -->
-		<script>
-			window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-			Modernizr.load({
-				load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-			});
-		</script>  
-	</body>
+        {% endblock %}
+        </div>
+        
+        <!-- Header -->
+        <div id="header">
+            <div id="user">
+                {% if user.is_authenticated %}
+                <a href="/users/{{user.username}}"> User Profile </a>
+                <a href="/logout2"> Logout </a>
+                {% else %}
+            <ul class="nav">
+                <li class="dropdown" id="menu1">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                    Login
+                    <b class="caret"></b>
+                    </a>
+                <ul class="dropdown-menu">
+                    <li> <a href="/login/facebook"> Facebook </a> </li>
+                    <li> <a href="/login/twitter"> Twitter </a> </li>
+                    <li> <a href="/login/google"> Google </a> </li>
+                    <li> <a href="/login/openid"> OpenID </a> </li>
+                </ul>
+                </li>
+            </ul>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div id="footer">
+            <div id="nav">
+                <a href="/"><div id="logo"></div></a>
+                <div class="nav_item"><a href="/">PROJECTS</a></div>
+                <div class="nav_item"><a href="/about">ABOUT</a></div>
+                <div class="nav_item"><a href="/act?project={{project.slug}}">ACT</a></div>
+                <div id="social">
+                    <a href="https://twitter.com/share?url={{ request.get_full_path }}">
+                        <img src="/s/static/common/img/twitter-white.png"/>
+                    </a>
+                    <a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}">
+                        <img src="/s/static/common/img/facebook-white.png"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Change UA-XXXXX-X to be your site's ID -->
+        <script>
+            window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+            Modernizr.load({
+                load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+            });
+        </script>  
+    </body>
 </html>

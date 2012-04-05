@@ -13,16 +13,16 @@ $(document).ready(function (){
     $("#exif").fancybox( {'overlayColor': '#000000'});
     $("#commenters").fancybox({'overlayColor': '#000000'});
     $(".iframe").fancybox({'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
-	$(".posts").fancybox({'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
-	$(".ui-draggable").swiperight(function() {
-    	alert('swiped right!');
-	});
-	
-	$("#listitem").live('swipeleft swiperight',function(event){
-		if (event.type == "swipeleft") {
-			alert("swiped left!");
-		}
-	});
+    $(".posts").fancybox({'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
+    $(".ui-draggable").swiperight(function() {
+        alert('swiped right!');
+    });
+    
+    $("#listitem").live('swipeleft swiperight',function(event){
+        if (event.type == "swipeleft") {
+            alert("swiped left!");
+        }
+    });
 
 });
 </script>
