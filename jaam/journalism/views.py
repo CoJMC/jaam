@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_protect
 import datetime
@@ -28,8 +28,11 @@ def logout_view(request):
 @csrf_protect
 def profile_set(request):
     user = request.user
+    if not user.is_authenticated():
+        return HttpResponseNotFound('You must be logged in to see this page.')
+
     profile = user.get_profile()
-    is_journalist = profile.is_journalist
+    is_journalist = profile.is_journalist()
 
     if request.method == 'POST': # If the form has been submitted...
         profile_form = UserProfileForm(request.POST, request.FILES)
