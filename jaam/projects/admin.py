@@ -10,15 +10,16 @@ class LocationInline(admin.TabularInline):
     verbose_name_plural = "Locations"
 
 class ProjectAdmin(BaseAdmin):
+    change_form_template = 'admin/project_change.html'
     search_fields = ('title', 'description',)
-    list_display = ('__unicode__', 'tagline', 'rss_urls', 'published')
+    list_display = ('__unicode__', 'tagline', 'rss_urls', 'published', 'archived')
     exclude = [ 'locations', ]
     inlines = [ LocationInline, ]
-    list_filter = ( 'locations', 'published')
+    list_filter = ( 'locations', 'published', 'archived')
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
-                 (None, { 'fields': ('title', 'slug', 'tagline', 'description', 'coverGallery', 'tags',) },),
+                 (None, { 'fields': ('title', 'slug', 'tagline', 'description', 'coverGallery', 'infographic', 'tags',) },),
                  ('ProjectColors', {'fields': ('primaryColor', 'accentColor',)},),
                  ('Admin', { 'fields': ('published', 'archived') },),
                 )
