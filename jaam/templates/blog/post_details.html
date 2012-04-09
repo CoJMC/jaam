@@ -1,11 +1,8 @@
 {% extends "banner_base.html" %}
 {% block body %}
 
-
-
-
 	<div class="journalist-profile" style="margin-top: 13%; margin-left: 10%;">
-	
+
 	<script type="text/javascript">
 		$(document).ready(function (){
             $("#header").hide();
@@ -16,6 +13,7 @@
 			body {
 			background-color: #555555 !important;
 		}
+
 		.post_description, .post_description>p {
 			background-color: #555555 !important;
 			color: white !important;
@@ -32,7 +30,7 @@
 			<h2 style="color: white">{{post.title|safe}} </h2>
 	 		<h5 style="font-size: 10pt; font-style: italic"> By {{post.author.get_profile.full_name}} </h5>
 	 		<p> {{post.body|safe}} </p>
-	 			 		
+
 		</div>
 
 </div> 
