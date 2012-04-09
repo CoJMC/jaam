@@ -10,6 +10,7 @@ class LocationInline(admin.TabularInline):
     verbose_name_plural = "Locations"
 
 class ProjectAdmin(BaseAdmin):
+    change_form_template = 'admin/project_change.html'
     search_fields = ('title', 'description',)
     list_display = ('__unicode__', 'tagline', 'rss_urls', 'published', 'archived')
     exclude = [ 'locations', ]
