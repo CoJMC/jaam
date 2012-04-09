@@ -6,17 +6,16 @@
 
 {% block banner_body %}
 
+
 <div class="span12">
-<div class="font11">
-		
 	<div class="span4" height="450px">
-		<img style="padding-bottom: 10px;" src="{% thumbnail blog.cover_photo.image 200x250 %}">
+		<img style="padding-bottom: 10px;" src="{% thumbnail blog.cover_photo.image 200x250 %}"/>
 		<p class="title_body"> {{blog.title}}</p>
 		<p class="description" style="height: 200px; margin-top: -15px;"> {{blog.description|safe}}</p>
 	</div>
 		
 	<!-- @TODO: make SWIPEABLE (vertically) -->
-	<div class="span7" style="overflow-y: auto; overflow-x: hidden; max-height: 400px">
+	<div class="span7" style="overflow-y: auto; overflow-x: hidden;">
 		{% for post in blog.blogpost_set.all %}
 			<div class="row" style="padding-bottom: 10px;">
 			
@@ -25,28 +24,18 @@
 			</div>
 			
 			<div class="span3">
-
-				<p class="side_title"><a href="#posts" class="posts">
-				<img src="/s/static/profile_arrow.png"/>{{post.title|safe}}</a></p>
-
-				<p class="description"> {{post.description|safe}}  </p>
+				<p class="side_title"><a href="projects/{{project.slug}}/blog/{{blog.slug}}/posts/{{post.slug}}/" class="iframe" rel="blog_posts">
 				
-				<div class="span1">
-					<div style="display:none"><div id="posts" class="posts">
-						<div class="description">
-							<p class="title_body">
-							<img  class="text_image" src="{% thumbnail post.cover_photo.image 182x112 %}"/>
-					 		 {{post.title|safe}} <br/> <br/>
-					 		<span class="post"> {{post.body|safe}} </span> </p>		 		
-						</div>
-						</div>
-					 	</div>
-					</div>
-				</div>
-			</div>
+					<img src="/s/static/profile_arrow.png"/>{{post.title|safe}}</a></p>
+					 
+					<p class="description"> {{post.description|safe}}  </p>
+
+			</div> <!--  end span3 -->
+			</div> <!-- end row -->
 			</div>
 		{%endfor %}
-	</div>
+	</div> <!-- end span7 -->
 </div>
-</div>
+</div></div>
+
 {% endblock %}

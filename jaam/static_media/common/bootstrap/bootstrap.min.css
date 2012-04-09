@@ -602,7 +602,6 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .title_body{font-size: 14pt; font-weight: bold; padding-bottom: 20px;}
 .title_video{padding-top: 2px; font-size: 12pt; overflow-y: auto; height: 70px;}
 .description, .description > p {color: white; padding: 5px; overflow-y: auto;}
-.post {overflow-y: auto; height: 350px; width: 550px; font-size: 11pt;}
 .text_image {float: left; padding-right: 10px; padding-bottom: 10px;}
 .storypage>p {font-size: 12pt; margin-top: 10px; line-height: 1.25;}
 .font11>p {font-size: 11pt;}
