@@ -12,7 +12,8 @@ def galleries(request, project_slug):
     galleries = project.photogallery_set.all()
     return render_to_response('photos/photo_galleries.html', { 'galleries': galleries, 'project': project }, context_instance=RequestContext(request))
 
-def gallery_details(request, project_slug, gallery_slug, start_number):
+def gallery_details(request, project_slug, gallery_slug, start_number=1):
+    #This is REALLY jankety and should be fixed :p
     project = get_object_or_404(Project, slug=project_slug)
     gallery = get_object_or_404(PhotoGallery, slug=gallery_slug)
     previous_number = int(start_number) -3

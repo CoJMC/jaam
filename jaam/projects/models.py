@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.contrib.sites.models import Site
 from jaam.journalism.models import BaseModel, User
 from ckeditor.fields import RichTextField
+from easy_thumbnails.fields import ThumbnailerImageField
 import re #regex
 
 
@@ -22,6 +23,11 @@ class Project(BaseModel):
     locations = models.ManyToManyField(ProjectLocation)
     coverGallery = models.ForeignKey('photos.PhotoGallery', null=True, blank=True, related_name='+')
     archived = models.BooleanField(default = False)
+    infographic = ThumbnailerImageField(('Image'),
+                                height_field='',
+                                width_field='',
+                                upload_to='uploads/infographics',
+                                max_length=200)
 
     def __unicode__(self):
         return self.title
