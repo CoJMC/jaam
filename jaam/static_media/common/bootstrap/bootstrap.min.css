@@ -598,8 +598,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .video_caption{font-size: 11pt;}
 .video_sidebar{padding-bottom: 20px;}
 .form_label>label{color: white;}
-.title_body, .side_title, .title_video, .side_title>a {color: white; font-weight: bold;}
-.title_body{font-size: 14pt; font-weight: bold; padding-bottom: 20px;}
+.side_title, .title_video, .side_title>a {color: white; font-weight: bold;}
 .title_video{padding-top: 2px; font-size: 12pt; overflow-y: auto; height: 70px;}
 .description, .description > p {color: white; padding: 5px; overflow-y: auto;}
 .text_image {float: left; padding-right: 10px; padding-bottom: 10px;}

@@ -1,7 +1,11 @@
 {% extends "banner_base.html" %}
 {% block body %}
 
+
+
+
 	<div class="journalist-profile" style="margin-top: 13%; margin-left: 10%;">
+	
 	<script type="text/javascript">
 		$(document).ready(function (){
             $("#header").hide();
@@ -12,20 +16,23 @@
 			body {
 			background-color: #555555 !important;
 		}
-			.post_description, .post_description>p {
+		.post_description, .post_description>p {
 			background-color: #555555 !important;
 			color: white !important;
 			padding: 5px !important; 
 			overflow-y: auto !important;
 			font-family:sans-serif !important;
+			font-size: 10.5pt !important;
 		}
+
+		
 	</style>
 
-		<div class="post_description">
-			<p class="title_body">
-	 		 		{{post.title|safe}} </p>
-	 		<p style="margin-top: -60px"> {{post.body|safe}} </p> 
-	 		<p style="font-stlye: italic; margin-top: -10px"> --{{post.author.get_profile.full_name}} </p>	 		
+		<div class="post_description" style="-moz-column-count:3; -webkit-column-count:3; column-count:3; height: 410px; width: 850px; overflow-x: auto">
+			<h2 style="color: white">{{post.title|safe}} </h2>
+	 		<h5 style="font-size: 10pt; font-style: italic"> By {{post.author.get_profile.full_name}} </h5>
+	 		<p> {{post.body|safe}} </p>
+	 			 		
 		</div>
 
 </div> 
