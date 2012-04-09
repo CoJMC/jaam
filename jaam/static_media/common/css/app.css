@@ -14,6 +14,7 @@ body {
     right: 0;
     left: 0;
     margin: auto;
+    overflow-x: hidden;
 }
 #container {
     height: 474px;
@@ -302,7 +303,7 @@ canvas {
 
 @media all and (max-width: 767px) { /* TODO: phone */
     .container-center {
-        width: 560px;
+        width: 560px !important;
     }
     #container {
         width: 456px !important;
@@ -330,8 +331,8 @@ canvas {
 
 @media all and (max-width: 1023px) and (min-width: 768px) { /*iPad portrait*/
     .container-center {
-        width: 768px;
-        height: 640px;
+        width: 768px !important;
+        height: 640px !important;
     }
     #container { /* project width */
         width: 684px !important;
@@ -358,8 +359,8 @@ canvas {
 
 @media all and (min-width: 1024px) { /*iPad landscape and most desktop screens*/
     .container-center {
-        width: 990px;
-        height: 555px;
+        width: 1024px !important;
+        height: 555px !important;
     }
     #container {
         width: 912px !important;
