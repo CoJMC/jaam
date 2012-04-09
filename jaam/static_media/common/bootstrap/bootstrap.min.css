@@ -590,7 +590,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .journalist_thumbnail {align: left; padding:2px; border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.075);-moz-box-shadow:0 1px 1px rgba(0, 0, 0, 0.075);box-shadow:0 1px 1px rgba(0, 0, 0, 0.075); height: 74px; width: 60px;}
 .mini_title {color: white; font-size: 9pt; font-weight: bold;}
 .mini_title>a {color: white; font-size: 11pt; font-weight: bold;}
-.popup_link, .popup_link>a, .video_caption, .video_sidebar {color: #CCCCCC; font-size: 10pt; font-weight: bold;}
+.popup_link, .popup_link>a,  .video_sidebar {color: #CCCCCC; font-size: 10pt; font-weight: bold;}
 .mini_info {font-size: 9pt;} 
 .popup_link, .popup_link>a, .mini_info {font-variant: small-caps;}
 .popup_link, .popup_link>a, .video_caption {padding-top: 10px;}
@@ -598,8 +598,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .video_caption{font-size: 11pt;}
 .video_sidebar{padding-bottom: 20px;}
 .form_label>label{color: white;}
-.side_title, .title_video, .side_title>a {color: white; font-weight: bold;}
-.title_video{padding-top: 2px; font-size: 12pt; overflow-y: auto; height: 70px;}
+.side_title, .side_title>a {color: white; font-weight: bold;}
 .description, .description > p {color: white; padding: 5px; overflow-y: auto;}
 .text_image {float: left; padding-right: 10px; padding-bottom: 10px;}
 .storypage>p {font-size: 12pt; margin-top: 10px; line-height: 1.25;}
@@ -623,4 +622,13 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .profile_popUp {position:absolute; left: 20px; top: 10px; height: 540px; width: 980px; background-color: #262626; overflow-y: hidden; overflow-x: hidden; border-style: solid; border-style: ridge; border-width: 4px; border-color: #A2A2A2;}
 .exif_div {min-height: 350px; min-width: 750px; padding: 25px; background-color: #666;}
  .exif_div>p { border-top: 2px solid white; color: white; font-size: 10pt; font-weight: bold; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+ .project_img {
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-top-style: double;
+    border-bottom-style: double;
+    border-top-color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+    padding: 8px 0px;
+ }
  
