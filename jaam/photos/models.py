@@ -43,7 +43,7 @@ class Photo(BaseModel):
                                 max_length=200)                                
     title = models.CharField(max_length=100)
     caption = models.TextField(max_length=500)
-    exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False)
+    exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False, on_delete=models.SET_NULL)
     enable_comments = models.BooleanField()
 
     def __unicode__(self):
@@ -66,6 +66,7 @@ class Photo(BaseModel):
         return Photo.objects.filter(
             pk__in=self.project.photo_set.all().values_list('journalist', flat=True).query
         )
+
 
 #Akismet spam connections
 def moderate_comment(sender, comment, request, **kwargs):
