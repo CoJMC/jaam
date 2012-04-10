@@ -21,7 +21,7 @@ class Project(BaseModel):
     accentColor = models.CharField(max_length=7, default="FFFFFF")
     description = RichTextField(null=True, blank=True)
     locations = models.ManyToManyField(ProjectLocation)
-    coverGallery = models.ForeignKey('photos.PhotoGallery', null=True, blank=True, related_name='+')
+    coverGallery = models.ForeignKey('photos.PhotoGallery', null=True, blank=True, related_name='+', on_delete=models.SET_NULL)
     archived = models.BooleanField(default = False)
     infographic = ThumbnailerImageField(('Image'),
                                 height_field='',

@@ -38,6 +38,7 @@ class BaseModel(models.Model):
     #objects = models.Manager() # didn't know I explicitly needed this
     #published_objects = PublishedObjectsManager()
     #objects = published_objects
+    all_objects = models.Manager()
     objects = PublishedObjectsManager()
     published_objects = objects
 
