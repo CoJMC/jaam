@@ -31,7 +31,7 @@ class PhotoExifData(models.Model):
     altitude = models.DecimalField(max_digits=5, decimal_places=2, null=True)
 
     def __unicode__(self):
-        return ' '.join({self.photo.project.title, self.photo.title})
+        return ' - '.join({self.photo.project.title, self.photo.title})
 
 class Photo(BaseModel):
     journalist = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
@@ -115,6 +115,10 @@ class PhotoGallery(BaseModel):
             return self.photogalleryitem_set.order_by('order')[0].photo
         else:
             return None
+            
+    @property
+    def size(self):
+        return self.photos.count()
         
 # This is for ordering photos inside of photo galleries which can't be done with
 # a regular m2m relationship

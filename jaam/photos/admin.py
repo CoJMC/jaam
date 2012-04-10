@@ -5,8 +5,8 @@ from jaam.journalism.admin import BaseAdmin
 class PhotoAdmin(BaseAdmin):
     add_form_template = 'admin/photo_add.html'
     search_fields = ('title', 'caption',)
-    list_display = ('__unicode__', 'caption', 'journalist', 'published')
-    list_filter = ( 'project', 'published')
+    list_display = ('__unicode__', 'project', 'caption', 'journalist', 'published')
+    list_filter = ( 'project', 'journalist', 'published')
     date_hierarchy = 'modified_at'
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
@@ -31,8 +31,8 @@ class PhotoGalleryAdmin(BaseAdmin):
     change_form_template = 'admin/photogallery_form.html'
 
     inlines = [ PhotoGalleryInline ]
-    list_display = ('__unicode__', 'project', 'introduction', 'published')
-   # list_filter = ('video gallery')
+    list_display = ('__unicode__', 'project', 'introduction', 'size', 'published',)
+    list_filter = ('project', 'published',)
     prepopulated_fields = {'slug': ('title',)}
     fieldsets = (
                  (None, { 'fields': ('project', 'title', 'slug', 'introduction', 'tags',) },),

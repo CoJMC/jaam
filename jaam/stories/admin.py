@@ -5,8 +5,8 @@ from jaam.journalism.admin import BaseAdmin
 class StoryAdmin(BaseAdmin):
     add_form_template = 'admin/story_change.html'
     change_form_template = 'admin/story_change.html'
-    list_display = ('__unicode__', 'blurb', 'author', 'published')
-    list_filter = ('author', 'published')
+    list_display = ('__unicode__', 'project', 'blurb', 'author', 'published')
+    list_filter = ('project', 'author', 'published')
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
 
