@@ -23,10 +23,15 @@ class BaseAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         self.exclude = self.exclude or []
         non_admin_fieldsets = []
+        print 'superuser?', request.user.is_superuser
         if not request.user.is_superuser:
+            print 'limiting fieldsets...'
             for fieldset in self.fieldsets:
                 if not fieldset[0] == 'Admin':
                     non_admin_fieldsets.append(fieldset)
+                    print '  visible:', fieldset[0]
+                else:
+                    print '  hidden:', fieldset[0]
             self.fieldsets = non_admin_fieldsets
         return super(BaseAdmin, self).get_form(request, obj, **kwargs)
 
