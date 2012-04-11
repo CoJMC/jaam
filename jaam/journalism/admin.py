@@ -11,13 +11,9 @@ class BaseAdmin(admin.ModelAdmin):
     actions = ['publish', 'unpublish']
     save_on_top = True
     def publish(self, request, queryset):
-        for item in queryset.all():
-            item.published = True
-            item.save()
+        queryset.all().update(published=True)
     def unpublish(self, request, queryset):
-        for item in queryset.all():
-            item.published = False
-            item.save()
+        queryset.all().update(published=False)
 
     # All fields in the 'admin' fieldset are hidden from non-admins
     def get_fieldsets(self, request, obj=None, **kwargs):
