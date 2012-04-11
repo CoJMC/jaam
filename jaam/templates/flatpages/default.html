@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load comments %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block body %}
+<div  style="width:800px; margin:0 auto;">
+	<div class="span10" style="margin-top: 10%;">
+		<p class="info_page">
+			{{ flatpage.content }}
+		</p> 
+		<div class="fb-send" data-href="http://jaam.us.to" data-font="arial" data-colorscheme="dark"></div>
+	</div>
+</div>
+	
+{% endblock %}

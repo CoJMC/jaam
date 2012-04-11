@@ -91,6 +91,8 @@ def create_profile(sender, instance, created, **kwargs):
 
 @receiver(pre_update)
 def create_full_name(sender, user, response, details, **kwargs):
+    response.get()
+    user.userprofile.avatar = "http://graph.facebook.com/" + response.get('id', '') + "/picture?type=large"
     user.email = response.get('email', '')
     user.userprofile.full_name = user.get_full_name()
     user.userprofile.save()

@@ -19,7 +19,7 @@
 		<h5 style="border-bottom: 1px solid white; max-height: 180px"> {{project.description|safe}} </h5>
 		<p style="margin-top: 20px;">
 		{% for video in project.video_set.all|slice:":1" %}
-		<iframe width="280" height="200" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
+		<iframe width="300" height="200" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
 		{% endfor %}
 		</p>
 	</div>

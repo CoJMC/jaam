@@ -98,6 +98,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 # below is commented out for django-1.4
 #    'django.middleware.csrf.CsrfResponseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -133,6 +134,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.admin',
     'django.contrib.comments',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
 
     'jaam.act',
     'jaam.blog',
