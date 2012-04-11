@@ -67,7 +67,7 @@
                 <a href="/users/{{user.username}}"> User Profile </a>
                 <a href="/logout2"> Logout </a>
                 {% else %}
-            <ul class="nav">
+            <!-- <ul class="nav">
                 <li class="dropdown" id="menu1">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
                     Login
@@ -81,9 +81,26 @@
                 </ul>
                 </li>
             </ul>
+            -->
+                    <a id="login-link" href="#login-popup">Login</a>
+                    <div style="display:none">
+                        <div id="login-popup" style="background-color: #262626">
+                            <center><h3>    Login     </h3></center>
+                            <ul>
+                            <a href="/login/facebook"> <img src="/s/static/common/img/login-icons/facebook_32.png"/>  Facebook </a> <br />
+                            <a href="/login/twitter"> <img src="/s/static/common/img/login-icons/twitter_32.png"/>  Twitter </a> <br />
+                            <a href="/login/google"> <img src="/s/static/common/img/login-icons/google_plus_32.png"/>  Google </a> <br />
+                            <a href="/login/openid"> <img src="/s/static/common/img/login-icons/openid_32.png"/>  OpenID </a> 
+                        </ul>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
         </div>
+
+        <!-- Login -->
+
+        
         
         <!-- Footer -->
         <div id="footer">
@@ -93,16 +110,49 @@
                 <div class="nav_item"><a href="/about">ABOUT</a></div>
                 <div class="nav_item"><a href="/act?project={{project.slug}}">ACT</a></div>
                 <div id="social">
-                    <a href="https://twitter.com/share?url={{ request.get_full_path }}">
+                    <!--<a href="https://twitter.com/share?url={{ request.get_full_path }}">-->
+                    <a id="share-link" href="#share-popup">
                         <img src="/s/static/common/img/twitter-white.png"/>
-                    </a>
-                    <a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}">
+                    <!-- </a>
+                    <a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}"> -->
                         <img src="/s/static/common/img/facebook-white.png"/>
                     </a>
                 </div>
             </div>
+
+            <div style="display:none">
+                <div id="share-popup" style="background: #262626">
+                    <h3> Share </h3>
+                    <a id="facebookShare" href="#"><img src="/s/static/common/img/login-icons/facebook_32.png"/></a>
+                    <iframe id="share-iframe" src="#"> Your browser does not support iframes. </iframe>
+
+                </div>
+            </div>
         </div>
         
+
+        <script>
+            $(document).ready(function() {
+                    $("#fancybox-outer").css("background", "#262626");
+                    $("#login-link").fancybox({
+                        'padding'   : 2, 
+                        'width'     : 300,
+                        'height'    : 200,
+                        'autoDimensions'    : false,
+                        
+                    });
+                    $("#share-link").fancybox({
+                        'padding'   : 2
+                    });
+
+                    $("#facebookShare").click(function(event){
+                        event.preventDefault();
+                        $("#share-iframe").attr("src", "https://www.example.com");
+                        //$("#share-iframe")[0].src="https://twitter.com/share?url={{ request.buiild_absolute_uri }}";
+                    });
+            });
+        </script>
+
         <!-- Change UA-XXXXX-X to be your site's ID -->
         <script>
             window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
