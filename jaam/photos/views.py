@@ -9,7 +9,9 @@ from jaam.photos.models import Photo, PhotoGallery
 # Create your views here.
 def galleries(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
-    galleries = project.photogallery_set.all()
+    #galleries = project.photogallery_set.all()
+    #galleries = project.photogallery_set.filter(published=True)
+    galleries = PhotoGallery.objects.filter(project_id=project.id)
     return render_to_response('photos/photo_galleries.html', { 'galleries': galleries, 'project': project }, context_instance=RequestContext(request))
 
 def gallery_details(request, project_slug, gallery_slug, start_number=1):
