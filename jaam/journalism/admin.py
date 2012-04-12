@@ -16,16 +16,40 @@ class BaseAdmin(admin.ModelAdmin):
         queryset.all().update(published=False)
 
     # All fields in the 'admin' fieldset are hidden from non-admins
-    def get_fieldsets(self, request, obj=None, **kwargs):
-        fieldsets = super(BaseAdmin, self).get_fieldsets(request, obj)
+    # def get_fieldsets(self, request, obj=None, **kwargs):
+    #     fieldsets = super(BaseAdmin, self).get_fieldsets(request, obj)
+    #     if not request.user.is_superuser:
+    #         non_admin_fieldsets = []
+    #         for fieldset in fieldsets:
+    #             if not fieldset[0] == 'Admin':
+    #                 non_admin_fieldsets.append(fieldset)
+    #         return non_admin_fieldsets
+    #     else:
+    #         return fieldsets
+
+    def get_form(self, request, obj=None, **kwargs):
+        import copy
+
+        copied_instance = copy.deepcopy(self)
+        remove_me = []
+
         if not request.user.is_superuser:
-            non_admin_fieldsets = []
-            for fieldset in fieldsets:
-                if not fieldset[0] == 'Admin':
-                    non_admin_fieldsets.append(fieldset)
-            return non_admin_fieldsets
-        else:
-            return fieldsets
+            for fieldset in copied_instance.fieldsets:
+                if fieldset[0] == 'Admin':
+                    remove_me.append(fieldset)
+        
+        for fieldset in remove_me:
+            copied_instance.fieldsets.remove(fieldset)
+
+        # inf loop below
+        # obvious why it inf loops
+        # return copied_instance.get_form(request, obj)
+        
+        # why doesn't this work (with self)?
+        # we're not modifying self.... :/
+        # return super(BaseAdmin, copied_instance).get_form(request, obj)
+        
+        return super(BaseAdmin, copied_instance).get_form(request, obj)
 
     # Removes publish and unpublish for regular journalists
     def get_actions(self, request):

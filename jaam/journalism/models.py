@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 from easy_thumbnails.fields import ThumbnailerImageField
-from social_auth.signals import pre_update
+import social_auth.signals
 from jaam.journalism.middleware import _show_unpublished
 #from jaam.photos.models import Photo
 from django.forms import ModelForm
@@ -89,9 +89,8 @@ def create_profile(sender, instance, created, **kwargs):
             user_profile.user = instance
             user_profile.save()
 
-@receiver(pre_update)
+@receiver(social_auth.signals.pre_update)
 def create_full_name(sender, user, response, details, **kwargs):
-    response.get()
     user.userprofile.avatar = "http://graph.facebook.com/" + response.get('id', '') + "/picture?type=large"
     user.email = response.get('email', '')
     user.userprofile.full_name = user.get_full_name()
