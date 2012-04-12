@@ -10,21 +10,16 @@
 	<style type="text/css">
 		.span4 h5 * {
 			color: white !important;
-			font-size: 10.5pt !important;
+			font-size: 10pt !important;
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 		}
 	</style>
 <div class="span12" style="margin-top: 20px">
-	<div class="span4">
-		<h5 style="border-bottom: 1px solid white; max-height: 180px"> {{project.description|safe}} </h5>
-		<p style="margin-top: 20px;">
-		<!-- if no video pull the first photo -->
-		{% for video in project.video_set.all|slice:":1" %}
-		<iframe width="300" height="200" src="{{video.getEmbedLink}}" seamless="seamless" frameborder="0" allowfullscreen>You need a Frames Capable browser to view this content.</iframe>
-		{% endfor %}
-		</p>
+	<div class="span5">
+		<h5 style="max-height: 400px; overflow-y: auto;"> {{project.description|safe}} </h5>
+
 	</div>
-	<div class="span7" style="margin-left: 40px">
+	<div class="span6" style="margin-left: 20px; margin-top: 20px">
 		<img src="{% thumbnail project.infographic 490x327%}" class="project_img"/>
 	</div>
 </div>
