@@ -15,10 +15,10 @@ class BlogPostAdmin(BaseAdmin):
     list_filter = ('blog__project', 'blog', 'author', 'published',)
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
-    fieldsets = (
+    fieldsets = [
                  (None, { 'fields': ('blog', 'title', 'slug', 'cover_photo', 'description', 'body','tags',) },),
                  ('Admin', { 'fields': ('author', 'published',) },),
-                )
+                ]
 
     def save_model(self, request, obj, form, change):
         if not change:
@@ -30,10 +30,10 @@ class BlogAdmin(BaseAdmin):
     list_filter = ('project', 'published',)
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
-    fieldsets = (
+    fieldsets = [
                  (None, { 'fields': ('project','title', 'slug', 'cover_photo', 'subtitle', 'description', 'tags',) },),
                  ('Admin', { 'fields': ('published',) },),
-                )
+                ]
 
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Blog, BlogAdmin)

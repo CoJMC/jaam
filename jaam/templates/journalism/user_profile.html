@@ -8,113 +8,108 @@
 
 {% block body %}
 
-	<style type="text/css">
-		.journalist-bio * {
-			color: white !important;
-			font-size: 10pt !important;
-			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
-		}
-		
-	</style>
-	
-	<style type="text/css">
-		@font-face {
-		    font-family: 'CabinRegular';
-		    src: url('Cabin-Regular-webfont.eot');
-		    src: url('Cabin-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-		         url('Cabin-Regular-webfont.woff') format('woff'),
-		         url('Cabin-Regular-webfont.ttf') format('truetype'),
-		         url('Cabin-Regular-webfont.svg#CabinRegular') format('svg');
-		    font-weight: normal;
-		    font-style: normal;
-		
-		}
-	</style>
+    <style type="text/css">
+        .journalist-bio * {
+            color: white !important;
+            font-size: 10pt !important;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+        }
+        
+        .user-photos-thumbnail {
+            float: left;
+        }
+
+        #user-photos-thumbnails {
+            clear: left;
+        }
+    </style>
+    
+    <style type="text/css">
+        @font-face {
+            font-family: 'CabinRegular';
+            src: url('Cabin-Regular-webfont.eot');
+            src: url('Cabin-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+                 url('Cabin-Regular-webfont.woff') format('woff'),
+                 url('Cabin-Regular-webfont.ttf') format('truetype'),
+                 url('Cabin-Regular-webfont.svg#CabinRegular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        
+        }
+    </style>
 
 {% if embed %}
-	<div class="journalist-profile" style="margin-top: 13%; margin-left: 10%;">
-	<script type="text/javascript">
-		$(document).ready(function (){
+    <div class="journalist-profile" style="margin-top: 5%; overflow-y: hidden;">
+    <script type="text/javascript">
+        $(document).ready(function (){
             $("#header").hide();
-			$("#footer").hide();
-		})
-	</script> 
-	<style type="text/css">
-			body {
-			background-color: #555555 !important;
-		}
-	</style>
+            $("#footer").hide();
+        })
+    </script> 
+    <style type="text/css">
+            body {
+            background-color: #555555 !important;
+        }
+    </style>
 {% else %} 
-<div class="journalist-profile" style="padding-left:13%; padding-top:3%;">
+<div class="journalist-profile" style="margin-top: 13%; margin-left: 13%; overflow-y: hidden;">
 
 {% endif %}
 
-	<div class="span9">
-	<div class="container-fluid">
-		<div class="column-fluid">
-			<div class="span3">
-				{% if embed %}
-					<div>
-				{% else %}
-					<div style="margin-top:10px">
-				{% endif %}
-				
-				<img src="{% thumbnail user.get_profile.avatar 330x220 %}" />
-				
-				</div>
-				
-				<div class="journalist-banner">
-					<div>
-						<img src="/s/static/photographer_profile_banner.png" width="300px"/>
-					</div>
-					<div class="journalist-name">{{user.get_profile.full_name}}</div>
-				</div>
-				<div class="journalist-infobox">
-					<div class="journalist-info"> {{user.get_profile.major}} </div>
-					<div class="journalist-label" > MAJOR </div>
-					<div class="journalist-info"> {{user.email}} </div>
-					<div class="journalist-label" > EMAIL </div>
-				</div>
-			</div>
+    <div class="span9">
+    <div class="container-fluid">
+        <div class="column-fluid">
+            <div class="span3">
+                <div style="min-height: 220px; margin-top:10px">
+                    <img src="{% thumbnail user.get_profile.avatar 330x220 %}" />
+                </div>
+                
+                <div class="journalist-banner">
+                    <div>
+                        <img src="/s/static/photographer_profile_banner.png" width="300px"/>
+                    </div>
+                    <div class="journalist-name">{{user.get_profile.full_name}}</div>
+                </div>
+                <div class="journalist-infobox">
+                    <div class="journalist-info"> {{user.get_profile.major}} </div>
+                    <div class="journalist-label" > MAJOR </div>
+                    <div class="journalist-info"> {{user.email}} </div>
+                    <div class="journalist-label" > EMAIL </div>
+                </div>
+            </div>
 
-			<div class="span6" style="margin-top: -50px;">				
-				<div class="journalist-bio"><p class="description"> {{user.get_profile.bio|safe}} </p> </div>
-				<div class="journalist-div">
-					<div style="float: left; width=70px; padding-top: 8px; margin-left: -30px">
-						<img src="/s/static/camera.png" height="50px" width="67px">
-					</div>
-					<div style="float: left" width="40px">
-						<p class="bar-info">
-						 	Canon 5D </p>
-						 <p class="bar-label"> CAMERA </p>
-					 </div>
-					  
-					 <div style="float: left; width=50px; padding-left: 50px; padding-top: 8px">
-							<img src="/s/static/photos.png"/ height="52px" width="46px">
-					</div>
-					<div style="float: left" width="30px">
-					<p class="bar-info">
-					 	Canon 5D </p>
-					 <p class="bar-label"> IMAGES </p>
-					 
-					 </div>
-				</div>
-				<div>
-				<div style="padding-left: 8px;">
-<!-- for loop start -->
- 
-				<img src="http://indiacurrentaffairs.org/wp-content/uploads/2010/07/indian-poverty.jpg" class="journalist-img ">
-				<img src="http://indiacurrentaffairs.org/wp-content/uploads/2010/07/indian-poverty.jpg" class="journalist-img ">
-				<img src="http://indiacurrentaffairs.org/wp-content/uploads/2010/07/indian-poverty.jpg" class="journalist-img ">
-				<img src="http://indiacurrentaffairs.org/wp-content/uploads/2010/07/indian-poverty.jpg" class="journalist-img ">
-				</div>				 
-					{{ Object.photo_set.first }}
+            <div class="span6" style="margin-top: -50px;">              
+                <div class="journalist-bio"><p class="description"> {{user.get_profile.bio|safe}} </p> </div>
+                <div class="journalist-div">
+                    <div style="display: inline-block;">
+                        <img src="/s/static/camera.png" height="50px" width="67px">
+                    </div>
+                    <div style="display: inline-block">
+                        <p class="bar-info">
+                            Canon 5D </p>
+                         <p class="bar-label"> CAMERA </p>
+                     </div>
+                      
+                     <div style="display: inline-block; margin-left: 2em;">
+                            <img src="/s/static/photos.png"/ height="52px" width="46px">
+                    </div>
+                    <div style="display: inline-block">
+                    <p class="bar-info">
+                        Canon 5D </p>
+                     <p class="bar-label"> IMAGES </p>
+                     
+                     </div>
+                </div>
 
-				</div>
-			</div>
-		</div>
-	</div> <!-- end container -->
-	</div> <!-- end span 9 -->
+                <div id="user-photos-thumbnails" style="margin-left: 10px">
+                    {% for photo in user.photo_set.all|slice:"5" %}
+                        <img class="user-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" />
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container -->
+    </div> <!-- end span 9 -->
 
 </div>
 

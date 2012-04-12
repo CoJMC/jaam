@@ -142,6 +142,9 @@ body {
     position: absolute;
     top: 0;
 }
+.side-fade:hover {
+    background: hsla(0,0%,25%,0.96) !important;
+}
 .side-fade.left {
     left:0;
     background: -moz-linear-gradient(left,  rgba(38,38,38,1) 0%, rgba(38,38,38,0.6) 70%, rgba(38,38,38,0) 100%); /* FF3.6+ */
@@ -161,6 +164,23 @@ body {
     background: -ms-linear-gradient(left,  rgba(38,38,38,0) 0%,rgba(38,38,38,0.6) 30%,rgba(38,38,38,1) 100%); /* IE10+ */
     background: linear-gradient(left,  rgba(38,38,38,0) 0%,rgba(38,38,38,0.6) 30%,rgba(38,38,38,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00262626', endColorstr='#262626',GradientType=1 ); /* IE6-9 */
+}
+.scroll-arrow {
+    height: 75px;
+    width: 28px;
+    background: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.scroll-arrow.left {
+    right: 10px;
+    background: url('/s/static/common/img/arrow-left.png') no-repeat;
+}
+.scroll-arrow.right {
+    left: 10px;
+    background: url('/s/static/common/img/arrow-right.png') no-repeat;
 }
 
 canvas {

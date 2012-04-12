@@ -3,12 +3,29 @@ Local Development Tips
 
 During local development, you now need to execute the following anytime you delete the database and start from scratch and remember to skip original creation of superuser:
 
-    python manage.py syncdb
+    python manage.py syncdb  (do not create a superuser at this time)
     python manage.py migrate
     python manage.py initializeproject
     python manage.py createsuperuser
 
 Additionally, you will need to access the site in a specific way for the social auth to work: Add `dev.jaam.us.to` to your `HOSTS` file and point it at your development machine (usually `localhost` or `127.0.0.1`). Now you can access the development server through the new hostname, for example: http://dev.jaam.us.to:8000 after running the dev server.
+
+Considerations
+==============
+
+If you are not the UNL College of Journalism, you will want to consider the following things:
+
+You will want to change the values in jaamconfig for:
+
+* Facebook Page
+
+* Twitter Username
+
+* Pinterest Page
+
+* Google Analytics UA
+
+These values are specific to their deployment of this code and it wouldn't make sense to keep them for your deployment.
 
 Gondor Tips
 ===========
@@ -24,6 +41,8 @@ Gondor Tips
 **Initialize Project** (creates permissions/groups): `gondor run primary initializeproject`
 
 **Create Admin User**: `gondor run primary createsuperuser`
+
+**View the Logs**: Check the logs here: https://gondor.io/instance/981/logs/?limit=200 (change the limit parameter to see more), or use the Sentry account to check errors.
 
 Secrets
 =======

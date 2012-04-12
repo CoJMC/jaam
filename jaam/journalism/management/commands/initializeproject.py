@@ -72,5 +72,5 @@ class Command(BaseCommand):
             default_photo.slug = "default"
             default_photo.caption = "The default photo"
             default_photo.journalist = User.objects.get(username="Default")
-            default_photo.image = 0
+            default_photo.image = "http://i.imgur.com/uxRkD.jpg"
             default_photo.save()
