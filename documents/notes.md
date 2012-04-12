@@ -3,7 +3,7 @@ Local Development Tips
 
 During local development, you now need to execute the following anytime you delete the database and start from scratch and remember to skip original creation of superuser:
 
-    python manage.py syncdb
+    python manage.py syncdb  (do not create a superuser at this time)
     python manage.py migrate
     python manage.py initializeproject
     python manage.py createsuperuser

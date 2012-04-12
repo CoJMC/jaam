@@ -18,9 +18,6 @@ def user_profile(request, username):
         embed = True
     return render_to_response('journalism/user_profile.html', { 'user': user, 'embed': embed }, context_instance=RequestContext(request))
 
-def about(request):
-    return render_to_response('journalism/about_us.html', context_instance=RequestContext(request))
-
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')

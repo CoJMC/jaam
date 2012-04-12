@@ -23,7 +23,9 @@
         <link rel="stylesheet" href="/s/static/common/css/style.css">
         <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
-        <link rel="stylesheet" href="/s/static/common/css/app.css">              
+        <link rel="stylesheet" href="/s/static/common/css/app.css">
+        <link rel="stylesheet" href="/s/static/common/css/zocial.css">
+
         {% endcompress %}
         
         <link rel="stylesheet" href="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
@@ -40,12 +42,33 @@
         <script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
         <script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
         <script src="/s/static/api_demo/script/jquery.mobile.carousel.js"></script>
+        <script src="/s/static/common/js/jquery.simulate.js"></script>
         <script src="/s/static/common/js/popup.js"></script>
         <script src="/s/static/common/js/plugins.js"></script>
-        <script src="/s/static/common/js/color-converter.js"></script>      
+        <script src="/s/static/common/js/color-converter.js"></script>
+        <script src="/s/static/common/js/login.js"></script>
+        <script src="/s/static/common/js/share.js"></script>              
         {% endcompress %}
 
         <script src="/s/static/common/js/bootstrap-dropdown.js"></script>
+
+        <style>
+        body .zocial {
+            margin: 4px 4px;
+            font-size: 13px;
+        }
+        </style>
+
+        <!-- TODO: fix appID -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=175522359195104";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
 
         <!--[if lt IE 7 ]>
             <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
@@ -56,7 +79,7 @@
     <body style="height:100%; width:100%; background-color: #262626;">
         <div class="container-fluid container-center">
         {% block body %}
-
+            
 		{% endblock %}
 		</div>
 		

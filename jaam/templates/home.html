@@ -24,7 +24,23 @@ function carousel(){
 function addFade() {
     var left = $("<div>").addClass("side-fade").addClass("left");
     var right = $("<div>").addClass("side-fade").addClass("right");
+    var left_arrow = $("<div>").addClass("scroll-arrow").addClass("left");
+    var right_arrow = $("<div>").addClass("scroll-arrow").addClass("right");
+    left.append(left_arrow);
+    right.append(right_arrow);
     $("#container").children().first().append(left).append(right);
+    
+    $(".side-fade").mousedown(function (e){
+        $('ul.ui-draggable').trigger(e);
+    });
+    $(".side-fade.right").on("click", function (e){
+        var options = { dx : -50 }
+        $('ul.ui-draggable').simulate('drag', options);
+    });
+    $(".side-fade.left").on("click", function (e){
+        var options = { dx : 50 }
+        $('ul.ui-draggable').simulate('drag', options);
+    });
 }
 
 $(document).ready(function (){
