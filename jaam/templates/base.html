@@ -79,7 +79,7 @@
     <body style="height:100%; width:100%; background-color: #262626;">
         <div class="container-fluid container-center">
         {% block body %}
-            
+
         {% endblock %}
         </div>
         
@@ -88,9 +88,9 @@
             <div id="user">
                 {% if user.is_authenticated %}
                 <a href="/users/{{user.username}}"> User Profile </a>
-                <a href="/logout"> Logout </a>
+                <a href="/logout2"> Logout </a>
                 {% else %}
-            <ul class="nav">
+            <!-- <ul class="nav">
                 <li class="dropdown" id="menu1">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
                     Login
@@ -104,6 +104,33 @@
                 </ul>
                 </li>
             </ul>
+            -->
+                    <a id="login-link" href="#login-popup">Login</a>
+                    <div style="display:none">
+                        <div align="center" id="login-popup" style="background-color: #262626">
+                            <h3>Login</h3>                            
+                            <a href="{% url socialauth_begin 'facebook' %}" class="zocial facebook"><span>Sign in with Facebook  </span> </a>
+                            <a href="{% url socialauth_begin 'twitter' %}" class="zocial twitter"><span>Sign in with Twitter &nbsp;</span> </a> 
+                            <a href="{% url socialauth_begin 'google' %}" class="zocial google"><span>&nbsp; Sign in with Google &nbsp;</span> </a>
+                            <a href="#openid-login-box" class="zocial openid" id="openid-login"><span>&nbsp; Sign in with OpenID</span> </a>
+                            <div style="display: none">
+                                <div id="openid-login-box" class=".form-inline" class="form-inline" style="padding: 15px 15px 0px 15px" >
+                                    <h3>OpenID Login</h3>
+                                    <br/>
+                                    <form action="{% url socialauth_begin 'openid' %}" type="get" style="color: #000">
+                                        <input type="text" name="openid_identifier" placeholder="OpenID URL" class="input-large" />
+                                        <button type="submit" class="btn btn.primary">Login</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#openid-login").fancybox();
+                                })
+                            </script>
+
+                        </div>
+                    </div>
                 {% endif %}
             </div>
         </div>
@@ -115,20 +142,83 @@
                 <div class="nav_item"><a href="/">PROJECTS</a></div>
                 <div class="nav_item"><a href="/about">ABOUT</a></div>
                 <div class="nav_item"><a href="/act?project={{project.slug}}">ACT</a></div>
-                <div id="social">
+                <div id="social" class="nav_item" style="position: fixed; margin-left: 750px">
+                 <!--
                     <a href="https://twitter.com/share?url={{ request.build_absolute_uri }}">
                         <img src="/s/static/common/img/twitter-white.png"/>
                     </a>
-                    <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ title }}">
-                        <img src="/s/static/common/img/facebook-white.png"/>
+                    <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ title }}; ">
+                <div id="social">
+                    <a href="https://twitter.com/share?url={{ request.build_absolute_uri }}">
+                    <a id="share-link" href="#share-popup">
+                        <img src="/s/static/common/img/twitter-white.png"/>
                     </a>
+                    <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ title }}"> 
+                        <img src="/s/static/common/img/facebook-white.png"/>
+                    </a> 
+                -->
+                    <a href="" class="share_btn" style=" position: fixed; margin-left: -20px; margin-top: -20px; color: black;"> <p class="share" id="share"> SHARE </p> </a>
+                      <!-- Make look like a button -->
+                    <div id="share_box_content" style="position: fixed; margin-left: -60px; margin-top: -40px">
+                        <ul class="social">
+                        <li class="facebook">
+                            <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ title }}">
+
+                            </a>
+                        </li>
+                        <li class="twitter">
+                            <a href="https://twitter.com/share?url={{ request.build_absolute_uri }}">
+
+                            </a>
+                        </li>
+                        <li class="pinterest">
+                            <a href="http://www.pinterest.com/">
+
+                            </a>
+                        </li>
+                        </ul>
+                </div>
+            -->
+            </div>
+
+            <div style="display:none">
+                <div id="share-popup" style="background: #262626">
+                    <h3 align="center"> Share </h3>
+                    <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div> <br />
+
+                    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> <br />
+
+                    <a href="http://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+
                 </div>
             </div>
         </div>
         
+
+        <script>
+            $(document).ready(function() {
+                    $("#fancybox-outer").css("background", "#262626");
+                    $("#login-link").fancybox({
+                        'padding'   : 2, 
+                        'width'     : 250,
+                        'height'    : 200,
+                        'autoDimensions'    : false,
+                        
+                    });
+                    $("#share-link").fancybox({
+                        'padding'   : 2,
+                        'scrolling' : false,
+                        'width'     : 150,
+                        'height'    : 100,
+                        'autoDimensions'    : false,
+                    });
+            });
+        </script>
+
         <!-- Change UA-XXXXX-X to be your site's ID -->
         <script>
-            window._gaq = [['_setAccount','{{ GOOGLE_UA_ID }}'],['_trackPageview'],['_trackPageLoadTime']];
+            window._gaq = [['_setAccount',''],['_trackPageview'],['_trackPageLoadTime']];
             Modernizr.load({
                 load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
             });
