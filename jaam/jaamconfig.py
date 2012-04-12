@@ -15,6 +15,7 @@ AKISMET_API_KEY = os.environ['AKISMET_API_KEY']
 
 TWITTER_CONSUMER_KEY = os.environ['TWITTER_CONSUMER_KEY']
 TWITTER_CONSUMER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
+
 FACEBOOK_APP_ID = os.environ['FACEBOOK_APP_ID']
 FACEBOOK_API_SECRET = os.environ['FACEBOOK_API_SECRET']
 
@@ -22,3 +23,8 @@ try:
     SENTRY_DSN = os.environ['SENTRY_DSN']
 except KeyError, exp:
     print "no value for sentry_dsn, who knows what will happen"
+
+FACEBOOK_PAGE = ''
+TWITTER_USERNAME = 'globaleyewitnes'
+PINTEREST_PAGE = ''
+GOOGLE_UA_ID = 'UA-30635036-1'
