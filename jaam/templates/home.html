@@ -25,6 +25,9 @@ function addFade() {
     var left = $("<div>").addClass("side-fade").addClass("left");
     var right = $("<div>").addClass("side-fade").addClass("right");
     $("#container").children().first().append(left).append(right);
+    $(".side-fade").mousedown(function (e){
+        $('ul.ui-draggable').trigger(e);
+    });
 }
 
 $(document).ready(function (){
