@@ -98,10 +98,26 @@
                     <div style="display:none">
                         <div id="login-popup" style="background-color: #262626">
                             <center><h3>Login</h3>                            
-                            <a href="/login/facebook" class="zocial facebook"><span>Sign in with Facebook  </span> </a>
-                            <a href="/login/twitter" class="zocial twitter"><span>Sign in with Twitter &nbsp;</span> </a> 
-                            <a href="/login/google" class="zocial google"><span>&nbsp; Sign in with Google &nbsp;</span> </a>
-                            <a href="/login/openid" class="zocial openid"><span>&nbsp; Sign in with OpenID</span> </a> 
+                            <a href="{% url socialauth_begin 'facebook' %}" class="zocial facebook"><span>Sign in with Facebook  </span> </a>
+                            <a href="{% url socialauth_begin 'twitter' %}" class="zocial twitter"><span>Sign in with Twitter &nbsp;</span> </a> 
+                            <a href="{% url socialauth_begin 'google' %}" class="zocial google"><span>&nbsp; Sign in with Google &nbsp;</span> </a>
+                            <a href="#openid-login-box" class="zocial openid" id="openid-login"><span>&nbsp; Sign in with OpenID</span> </a>
+                            <div style="display: none">
+                                <div id="openid-login-box" class=".form-inline" class="form-inline" style="padding: 15px 15px 0px 15px" >
+                                    <h3>OpenID Login</h3>
+                                    <br/>
+                                    <form action="{% url socialauth_begin 'openid' %}" type="get" style="color: #000">
+                                        <input type="text" name="openid_identifier" placeholder="OpenID URL" class="input-large" />
+                                        <input type="submit" value="Login" />
+                                    </form>
+                                </div>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#openid-login").fancybox();
+                                })
+                            </script>
+
                             </center>
                         </div>
                     </div>
