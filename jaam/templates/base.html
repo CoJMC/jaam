@@ -58,6 +58,16 @@
         }
         </style>
 
+        <!-- TODO: fix appID -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=175522359195104";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
 
         <!--[if lt IE 7 ]>
             <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
@@ -96,13 +106,13 @@
             -->
                     <a id="login-link" href="#login-popup">Login</a>
                     <div style="display:none">
-                        <div id="login-popup" style="background-color: #262626">
-                            <center><h3>Login</h3>                            
-                            <a href="/login/facebook" class="zocial facebook"><span>Sign in with Facebook  </span> </a>
-                            <a href="/login/twitter" class="zocial twitter"><span>Sign in with Twitter &nbsp;</span> </a> 
-                            <a href="/login/google" class="zocial google"><span>&nbsp; Sign in with Google &nbsp;</span> </a>
+                        <div id="login-popup" style="background-color: #262626" align="center">
+                            <h3>Login</h3>                            
+                            <a href="/login/facebook" class="zocial facebook"><span>Sign in with Facebook  </span> </a> <br />
+                            <a href="/login/twitter" class="zocial twitter"><span>Sign in with Twitter &nbsp;</span> </a>  <br />
+                            <a href="/login/google" class="zocial google"><span>&nbsp; Sign in with Google &nbsp;</span> </a> <br />
                             <a href="/login/openid" class="zocial openid"><span>&nbsp; Sign in with OpenID</span> </a> 
-                            </center>
+                            
                         </div>
                     </div>
                 {% endif %}
@@ -121,7 +131,7 @@
                 <div class="nav_item"><a href="/about">ABOUT</a></div>
                 <div class="nav_item"><a href="/act?project={{project.slug}}">ACT</a></div>
                 <div id="social" class="nav_item" style="position: fixed; margin-left: 750px">
-                <!--  
+                 <!--
                     <a href="https://twitter.com/share?url={{ request.get_full_path }}">
                         <img src="/s/static/common/img/twitter-white.png"/>
                     </a>
@@ -136,33 +146,38 @@
                     </a> 
                 -->
 					<a href="" class="share_btn" style=" position: fixed; margin-left: -20px; margin-top: -20px; color: black;"> <p class="share" id="share"> SHARE </p> </a>
-					<!--  Make look like a button -->
+					  <!-- Make look like a button -->
                     <div id="share_box_content" style="position: fixed; margin-left: -60px; margin-top: -40px">
                         <ul class="social">
                         <li class="facebook">
                             <a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}">
-                                <!-- <strong style="width:82px; text-align:center;">FACEBOOK</strong> -->
+                                <strong style="width:82px; text-align:center;">FACEBOOK</strong> 
                             </a>
                         </li>
                         <li class="twitter">
                             <a href="https://twitter.com/share?url={{ request.get_full_path }}">
-                               <!-- <strong style="width:68px; text-align:center;">TWITTER</strong> -->
+                               <strong style="width:68px; text-align:center;">TWITTER</strong>
                             </a>
                         </li>
                         <li class="pinterest">
                             <a href="http://www.pinterest.com/">
-                              <!--  <strong style="width:85px; text-align:center;"> PINTEREST </strong> -->
+                               <strong style="width:85px; text-align:center;"> PINTEREST </strong> 
                             </a>
                         </li>
                         </ul>
                 </div>
+            -->
             </div>
 
             <div style="display:none">
                 <div id="share-popup" style="background: #262626">
-                    <h3> Share </h3>
-                    <a id="facebookShare" href="#"><img src="/s/static/common/img/login-icons/facebook_32.png"/></a>
-                    <iframe id="share-iframe" src="#"> Your browser does not support iframes. </iframe>
+                    <h3 align="center"> Share </h3>
+                    <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div> <br />
+
+                    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> <br />
+
+                    <a href="http://pinterest.com/pin/create/button/?url={{ request.get_full_path }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
 
                 </div>
             </div>
@@ -174,19 +189,17 @@
                     $("#fancybox-outer").css("background", "#262626");
                     $("#login-link").fancybox({
                         'padding'   : 2, 
-                        'width'     : 300,
+                        'width'     : 250,
                         'height'    : 200,
                         'autoDimensions'    : false,
                         
                     });
                     $("#share-link").fancybox({
-                        'padding'   : 2
-                    });
-
-                    $("#facebookShare").click(function(event){
-                        event.preventDefault();
-                        $("#share-iframe").attr("src", "https://www.example.com");
-                        //$("#share-iframe")[0].src="https://twitter.com/share?url={{ request.buiild_absolute_uri }}";
+                        'padding'   : 2,
+                        'scrolling' : false,
+                        'width'     : 150,
+                        'height'    : 100,
+                        'autoDimensions'    : false,
                     });
             });
         </script>
