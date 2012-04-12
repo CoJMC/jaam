@@ -5,10 +5,9 @@ $(document).ready(function() {
         var shareBox = $("#share_box_content");
         if (shareBox.is(":visible"))
             shareBox.fadeOut("fast");
-          /*  $("#share_text").style.visibility="visible"; */
+           /* document.getElementById('share').style.display = 'visible'; */
         else
             shareBox.fadeIn("fast");
-           /*	 $("#share_text").style.visibility="hidden"; */
         return false;
     });
  
