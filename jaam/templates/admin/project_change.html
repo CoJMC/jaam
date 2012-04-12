@@ -1,0 +1,21 @@
+{% extends 'admin/change_form.html' %}
+
+{% block extrahead %}
+{{block.super}}
+<script>
+(function($) {
+    $(document).ready(function() {
+        var current_photogallery_id = $('#id_coverGallery').val();
+        $.getJSON('/api/v1/photogallery/', {'project': {{ original.id }} }, function(data) {
+            var covergallery_select = $('#id_coverGallery');
+            covergallery_select.empty();
+            covergallery_select.append('<option>---------</option>');
+            $.each(data.objects, function(index, gallery) {
+                covergallery_select.append('<option value="'+gallery.id+'">'+gallery.title+'</option>');
+            });
+            covergallery_select.val(current_photogallery_id);
+        });
+    });
+})(django.jQuery)
+</script>
+{% endblock %}

@@ -20,15 +20,16 @@ class BaseAdmin(admin.ModelAdmin):
             item.save()
 
     # All fields in the 'admin' fieldset are hidden from non-admins
-    def get_form(self, request, obj=None, **kwargs):
-        self.exclude = self.exclude or []
-        non_admin_fieldsets = []
+    def get_fieldsets(self, request, obj=None, **kwargs):
+        fieldsets = super(BaseAdmin, self).get_fieldsets(request, obj)
         if not request.user.is_superuser:
-            for fieldset in self.fieldsets:
+            non_admin_fieldsets = []
+            for fieldset in fieldsets:
                 if not fieldset[0] == 'Admin':
                     non_admin_fieldsets.append(fieldset)
-            self.fieldsets = non_admin_fieldsets
-        return super(BaseAdmin, self).get_form(request, obj, **kwargs)
+            return non_admin_fieldsets
+        else:
+            return fieldsets
 
     # Removes publish and unpublish for regular journalists
     def get_actions(self, request):

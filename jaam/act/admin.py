@@ -3,7 +3,7 @@ from jaam.act.models import Act
 from jaam.journalism.admin import BaseAdmin
 
 class ActAdmin(BaseAdmin):
-    list_display = ('__unicode__', 'title')
+    list_display = ('__unicode__', 'project', 'text',)
     list_filter = ('project',)
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}

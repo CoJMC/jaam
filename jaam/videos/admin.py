@@ -4,7 +4,7 @@ from jaam.journalism.admin import BaseAdmin
 
 class VideoAdmin(BaseAdmin):
     search_fields = ('title', 'caption',)
-    list_display = ('__unicode__', 'caption', 'journalist', 'published')
+    list_display = ('__unicode__', 'project', 'caption', 'journalist', 'published')
     list_filter = ( 'project', 'published')
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)

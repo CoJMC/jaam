@@ -2,6 +2,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import Group, Permission, User
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from projects.models import Project
+from photos.models import Photo
 
 class Command(BaseCommand):
     help = 'Creates Journalist group and assigns default permissions'
@@ -41,3 +43,34 @@ class Command(BaseCommand):
                 Permission.objects.get(codename='add_document'), Permission.objects.get(codename='change_document'), Permission.objects.get(codename='delete_document'),
                 Permission.objects.get(codename='add_documentcloudproperties'), Permission.objects.get(codename='change_documentcloudproperties'), Permission.objects.get(codename='delete_documentcloudproperties'),
             )
+
+        try:
+            User.objects.get(username="Default")
+        except User.DoesNotExist:
+            default_journalist = User()
+            default_journalist.username = 'Default'
+            default_journalist.save()
+            default_journalist.groups.add(Group.objects.get(name='Journalists'))
+            default_journalist.save()
+
+        try:
+            Project.all_objects.get(slug="default")
+        except Project.DoesNotExist:
+            default_project = Project()
+            default_project.title = "Default"
+            default_project.slug = "default"
+            default_project.tagline = "The default project"
+            default_project.image = 0
+            default_project.save()
+
+        try:
+            Photo.all_objects.get(slug="default")
+        except Photo.DoesNotExist:
+            default_photo = Photo()
+            default_photo.project = Project.all_objects.get(slug="default")
+            default_photo.title = "Default"
+            default_photo.slug = "default"
+            default_photo.caption = "The default photo"
+            default_photo.journalist = User.objects.get(username="Default")
+            default_photo.image = 0
+            default_photo.save()

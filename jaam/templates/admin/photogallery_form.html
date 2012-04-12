@@ -5,7 +5,7 @@
 <script>
 (function($) {
     var update_photo_gallery_project_photos = function(project_id, callback) {
-        $.getJSON('/api/v1/photo',{'project':project_id}, function(data) {
+        $.getJSON('/api/v1/photo',{'project':project_id, 'show_unpublished':true}, function(data) {
             $('select[id^=id_photogalleryitem_set]').each(function(i, select) {
                 var photo_select = $(select);
                 photo_select.empty();

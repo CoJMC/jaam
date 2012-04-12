@@ -211,6 +211,47 @@ td { vertical-align: top; }
    Author: 
    ========================================================================== */
 
+.journalist-div {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 1px 4px 0px inset;
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-color: transparent;
+	background-image: -webkit-linear-gradient(top, #222, #2A2A2A);
+	background-origin: padding-box;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.496094) 0px 1px 4px 0px inset;
+	display: block;
+	height: 55px;
+	margin-bottom: 10px;
+	margin-right: 3px;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 90px;
+	padding-right: 90px;
+	width: 295px;
+}
+
+.journalist-img {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.398438) 1px 2px 5px 0px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	border-top-style: none;
+	display: inline;
+	height: 69px;
+	margin-bottom: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 3px;
+	width: 104px;
+}
 
 
 .journalist-banner {
@@ -233,26 +274,43 @@ td { vertical-align: top; }
 	padding-top: 50px;
 }
 
+.bar-label {
+	font-size: 8pt;
+	font-family:'CabinSemiBold', sans-serif; 
+	color: #777;
+	padding-left: 10px;
+	margin-top: -10px;
+}
+
+.bar-info {
+	color: #B5B4B7; 
+	font-family: CabinSemiBold, sans-serif;
+	font-size: 12pt;
+	padding-top: 20px;
+	padding-left: 10px;
+}
+
 .journalist-label {
-	color: white;
-	font-size: 16pt;
-	font-weight: bold;
 	padding-left: 20px;
-	padding-top: 10px;
+	padding-bottom: 20px;
+	font-size: 8pt;
+	font-family:'CabinSemiBold', sans-serif; 
+	color: #777;
 }
 
 .journalist-info {
-	color: white; 
+	color: #B5B4B7; 
+	font-family: CabinSemiBold, sans-serif;
+	font-size: 12pt;
 	padding-left: 20px;
-	padding-bottom: 20px;
+	padding-top: 10px;
 }
 
 .journalist-bio{
 	color:white; 
 	padding-top:42px; 
-	padding-bottom:12px; 
-	border-bottom:solid; 
-	border-width:thin
+	height: 220px;
+	overflow-y: hidden;
 }
 
 .journalist-photos {

@@ -11,8 +11,8 @@ class BlogPostInline(admin.StackedInline):
 class BlogPostAdmin(BaseAdmin):
     add_form_template = 'admin/blog_post_change.html'
     change_form_template = 'admin/blog_post_change.html'
-    list_display = ('__unicode__', 'description', 'author', 'published')
-    list_filter = ('blog', 'author', 'published')
+    list_display = ('__unicode__', 'blog', 'description', 'author', 'published',)
+    list_filter = ('blog__project', 'blog', 'author', 'published',)
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
@@ -26,8 +26,8 @@ class BlogPostAdmin(BaseAdmin):
         obj.save()
 
 class BlogAdmin(BaseAdmin):
-    list_display = ('__unicode__', 'subtitle', 'published')
-    list_filter = ('project', 'published')
+    list_display = ('__unicode__', 'project', 'subtitle', 'published',)
+    list_filter = ('project', 'published',)
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = (
