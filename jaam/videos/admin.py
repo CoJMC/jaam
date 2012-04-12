@@ -8,10 +8,10 @@ class VideoAdmin(BaseAdmin):
     list_filter = ( 'project', 'published')
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
-    fieldsets = (
+    fieldsets = [
                  (None, { 'fields': ('project', 'title', 'slug', 'videoUrl', 'caption',) },),
                  ('Admin', { 'fields': ('journalist', 'published',) },),
-                )
+                ]
 
     def save_model(self, request, obj, form, change):
         if not change:
@@ -28,10 +28,10 @@ class VideoGalleryAdmin(BaseAdmin):
     inlines = [VideoGalleryItemInline]
     list_display = ('project', '__unicode__', 'introduction', 'published')
     prepopulated_fields = {'slug': ('title',)}
-    fieldsets = (
+    fieldsets = [
                  (None, { 'fields': ('project', 'title', 'slug', 'introduction', 'tags',) },),
                  ('Admin', { 'fields': ('published',) },),
-                )
+                ]
 
     def get_form(self, request, obj=None, **kwargs):
         self.exclude = []
