@@ -39,7 +39,7 @@
     </style>
 
 {% if embed %}
-    <div class="journalist-profile">
+    <div class="journalist-profile" style="margin-top: 5%; overflow-y: hidden;">
     <script type="text/javascript">
         $(document).ready(function (){
             $("#header").hide();
@@ -52,7 +52,7 @@
         }
     </style>
 {% else %} 
-<div class="journalist-profile">
+<div class="journalist-profile" style="margin-top: 13%; margin-left: 13%; overflow-y: hidden;">
 
 {% endif %}
 
@@ -100,11 +100,11 @@
                      
                      </div>
                 </div>
-                <div id="user-photos-thumbnails"">
-                    {% for photo in user.photo_set.all %}
-                        <img class="user-photos-thumbnail" src="{% thumbnail photo.image 330x220 %}" />
+
+                <div id="user-photos-thumbnails" style="margin-left: 10px">
+                    {% for photo in user.photo_set.all|slice:"5" %}
+                        <img class="user-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" />
                     {% endfor %}
-                    {{ Object.photo_set.first }}
                 </div>
             </div>
         </div>
