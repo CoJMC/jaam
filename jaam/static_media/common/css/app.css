@@ -8,11 +8,11 @@ body {
     height: 100%;
 }
 .container-center {
-    /*position: absolute;
+    position: absolute;
     top: 20px;
     bottom: 125px;
     right: 0;
-    left: 0;*/
+    left: 0;
     margin: auto;
     overflow-x: hidden;
     overflow-y: hidden;
