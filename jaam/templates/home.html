@@ -8,7 +8,8 @@
 <div id="container">
     <ul id="projects"></ul>
 </div>
-
+<div style="display:none"><a style="color: white; font-weight: bold" href="/intro/" id="JaamIntro" class="iframe"> Help</a></div>
+        
 <script type="text/javascript">
 var PROJECT_OPTIONS = {'covergallery__isnull': 'false', 'archived': 'false'};
 var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
@@ -28,6 +29,8 @@ function addFade() {
 }
 
 $(document).ready(function (){
+    $("#JaamIntro").fancybox();
+   	checkCookie();
     $("#container").hide();
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
         var requests = [];

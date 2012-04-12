@@ -10,3 +10,6 @@ def home(request):
         'projects': projects,
         'title': "List of All Projects",
     }, context_instance=RequestContext(request))
+    
+def splash(request):
+    return render_to_response('splash.html',{'title':'Intro'}, context_instance=RequestContext(request))
