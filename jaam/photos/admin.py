@@ -10,10 +10,10 @@ class PhotoAdmin(BaseAdmin):
     date_hierarchy = 'modified_at'
     prepopulated_fields = { 'slug': ('title',)}
     filter_horizontal = ('tags',)
-    fieldsets = (
+    fieldsets = [
                  (None, { 'fields': ('project', 'image', 'title', 'slug', 'caption',) },),
                  ('Admin', { 'fields': ('journalist', 'published',) },),
-                )
+                ]
 
     def save_model(self, request, obj, form, change):
         if not change:
@@ -34,10 +34,10 @@ class PhotoGalleryAdmin(BaseAdmin):
     list_display = ('__unicode__', 'project', 'introduction', 'size', 'published',)
     list_filter = ('project', 'published',)
     prepopulated_fields = {'slug': ('title',)}
-    fieldsets = (
+    fieldsets = [
                  (None, { 'fields': ('project', 'title', 'slug', 'introduction', 'tags',) },),
                  ('Admin', { 'fields': ('published',) },),
-                )
+                ]
 
 class PhotoExifDataAdmin(admin.ModelAdmin):
     pass

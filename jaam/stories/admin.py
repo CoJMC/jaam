@@ -10,12 +10,12 @@ class StoryAdmin(BaseAdmin):
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
 
-    fieldsets = (
+    fieldsets = [
         (None, { 'fields':
             ('project', 'title', 'slug', 'blurb', 'cover_photo', 'body', 'tags') }),
         ('Admin', { 'fields':
             ('author', 'published') }),
-    )
+    ]
 
     def save_model(self, request, obj, form, change):
         if not change:
