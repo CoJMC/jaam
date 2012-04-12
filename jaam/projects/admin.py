@@ -18,11 +18,11 @@ class ProjectAdmin(BaseAdmin):
     list_filter = ( 'locations', 'published', 'archived')
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
-    fieldsets = (
+    fieldsets = [
                  (None, { 'fields': ('title', 'slug', 'tagline', 'description', 'coverGallery', 'infographic', 'tags',) },),
                  ('ProjectColors', {'fields': ('primaryColor', 'accentColor',)},),
                  ('Admin', { 'fields': ('published', 'archived') },),
-                )
+                ]
 
 class ProjectLocationAdmin(admin.ModelAdmin):
     pass

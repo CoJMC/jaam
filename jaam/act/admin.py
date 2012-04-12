@@ -8,12 +8,12 @@ class ActAdmin(BaseAdmin):
     filter_horizontal = ('tags',)
     prepopulated_fields = {'slug': ('title',)}
 
-    fieldsets = (
+    fieldsets = [
         (None, { 'fields':
             ('project', 'title', 'slug', 'image', 'text', 'tags') }),
         ('Admin', { 'fields':
             ('published',) }),
-    )
+    ]
 
     def save_model(self, request, obj, form, change):
         obj.save()
