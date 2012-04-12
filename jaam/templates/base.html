@@ -42,7 +42,9 @@
         <script src="/s/static/api_demo/script/jquery.mobile.carousel.js"></script>
         <script src="/s/static/common/js/popup.js"></script>
         <script src="/s/static/common/js/plugins.js"></script>
-        <script src="/s/static/common/js/color-converter.js"></script>      
+        <script src="/s/static/common/js/color-converter.js"></script>
+        <script src="/s/static/common/js/login.js"></script>
+        <script src="/s/static/common/js/share.js"></script>              
         {% endcompress %}
 
         <script src="/s/static/common/js/bootstrap-dropdown.js"></script>
@@ -92,13 +94,34 @@
                 <div class="nav_item"><a href="/">PROJECTS</a></div>
                 <div class="nav_item"><a href="/about">ABOUT</a></div>
                 <div class="nav_item"><a href="/act?project={{project.slug}}">ACT</a></div>
-                <div id="social">
+                <div id="social" class="nav_item" style="position: fixed; margin-left: 750px">
+                <!--  
                     <a href="https://twitter.com/share?url={{ request.get_full_path }}">
                         <img src="/s/static/common/img/twitter-white.png"/>
                     </a>
                     <a href="https://www.facebook.com/sharer.php?u={{ request.get_full_path }}&amp;t={{ title }}; ">
                         <img src="/s/static/common/img/facebook-white.png"/>
-                    </a>
+                    </a>-->
+					<a href="" class="share_btn"> <span id="share_text" style="font-size: 14pt;"> SHARE </span> </a>
+					<!--  Make look like a button -->
+                    <div id="share_box_content" style="position: fixed; margin-left: -60px; margin-top: -40px">
+                        <ul class="social">
+                        <li class="facebook">
+                            <a href="http://www.facebook.com/">
+                                <strong style="width:82px; text-align:center;">FACEBOOK</strong>
+                            </a>
+                        </li>
+                        <li class="twitter">
+                            <a href="http://www.twitter.com/">
+                                <strong style="width:68px; text-align:center;">TWITTER</strong>
+                            </a>
+                        </li>
+                        <li class="pinterest">
+                            <a href="http://www.pinterest.com/">
+                                <strong style="width:85px; text-align:center;"> PINTEREST </strong>
+                            </a>
+                        </li>
+                        </ul>
                 </div>
             </div>
         </div>

@@ -631,3 +631,90 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
     padding: 8px 0px;
  }
  
+ 
+ 
+/* Zach's stuff */
+#share_box_content {
+    display: none;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(99,99,99,0.9)), to(rgba(77,77,77,0.9)));
+    border-radius:10px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 35px;
+    -webkit-box-shadow: 0px 2px 10px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0px 2px 10px rgba(0,0,0,0.6);
+    padding: 10px 0 0 10px;
+}
+
+
+.social { 
+    list-style:none;
+}
+.social li { 
+    display:inline; 
+    float:left; 
+    
+}
+.social li a { 
+    display:block; 
+    width:50px; 
+    height:50px; 
+    padding: 5px;
+    position:relative; 
+}
+.social li a strong { 
+    position:absolute; 
+    left:-5px; top:-30px;
+    text-shadow:1px 1px 0 rgba(0, 0, 0, 0.75); 
+    background-color:rgba(0, 0, 0, 0.7);
+    border-radius:2px; 
+    box-shadow: 0 0 5px rgba(0, 0, 2, 0.5);
+}
+ 
+li.facebook { 
+    background-image:url("/s/static/common/img/facebook_inactive.png"); 
+    background-repeat: no-repeat;
+}
+li.facebook:hover { 
+    background-image:url("/s/static/common/img/facebook_active.png"); 
+    background-repeat: no-repeat;
+}
+li.twitter { 
+    background-image:url("s/static/common/img/twitter_inactive.png"); 
+    background-repeat: no-repeat;
+}
+li.twitter:hover { 
+    background-image:url("/s/static/common/img/twitter_active.png"); 
+    background-repeat: no-repeat;
+}
+li.pinterest { 
+    background-image:url("/s/static/common/img/pinterest_inactive.png"); 
+    background-repeat: no-repeat;
+}
+li.pinterest:hover { 
+    background-image:url("/s/static/common/img/pinterest_active.png"); 
+    background-repeat: no-repeat;
+}
+
+.social:hover li { opacity:0.2; }
+ 
+.social li { 
+    transition-property: opacity; 
+    /** transition length **/
+    transition-duration: 500ms; 
+}
+.social li a strong { 
+    opacity:0;
+    transition-property: opacity, top; 
+    transition-duration: 300ms;
+
+}
+.social li:hover { 
+    opacity:1; 
+}
+.social li:hover a strong { 
+    opacity:1; 
+    top:-15px; 
+    font: 10pt "CabinBold", sans-serif;
+    color: #888;
+}

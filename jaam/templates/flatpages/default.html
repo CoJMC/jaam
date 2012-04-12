@@ -2,13 +2,13 @@
 {% load thumbnail %}
 {% load comments %}
 
-{% block title %}{{ flatpage.title }}{% endblock %}
+{% block title %}{{ flatpage.title|safe }}{% endblock %}
 
 {% block body %}
 <div  style="width:800px; margin:0 auto;">
-	<div class="span10" style="margin-top: 10%;">
+	<div class="span10" style="margin-top: 5%;">
 		<p class="info_page">
-			{{ flatpage.content }}
+			{{ flatpage.content|safe }}
 		</p> 
 		<div class="fb-send" data-href="http://jaam.us.to" data-font="arial" data-colorscheme="dark"></div>
 	</div>
