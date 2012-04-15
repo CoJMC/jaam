@@ -18,40 +18,65 @@
         
         <title>jaam | {% block title %}{% endblock %}</title>
         
+
+
+        <!-- CSS -->
+        
+        <!-- html5 boilerplate -->
+        <script src="/s/static/third_party/html5-boilerplate/style.css"></script>
+
+        <!-- our custom font for the project -->        
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-        {% compress css %}
-        <link rel="stylesheet" href="/s/static/common/css/style.css">
-        <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
-        <link rel="stylesheet" href="/s/static/common/css/app.css">
-        <link rel="stylesheet" href="/s/static/common/css/zocial.css">
 
-        {% endcompress %}
-        
+        <!-- stock bootstrap -->
+        <link rel="stylesheet" href="/s/static/third_party/bootstrap-2.0.2/css/bootstrap.min.css">
+
+        <!-- fancybox css -->
         <link rel="stylesheet" href="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-    
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js"></script>
-        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+        <!-- zocial icons -->
+        <link rel="stylesheet" href="/s/static/third_party/css-social-buttons-e27191ffd6/zocial.css">
+
+        <!-- our custom style sheets -->
+        <link rel="stylesheet" href="/s/static/common/css/pages.css">
+        <link rel="stylesheet" href="/s/static/common/css/app.css">
+        <link rel="stylesheet" href="/s/static/common/css/bootstrap-extractions.css">
+        <link rel="stylesheet" href="/s/static/common/css/style-extractions.css"> <!-- SIGH, more [modified] stock css (html5 bp) -->
+
+
+        <!-- JAVASCRIPT -->
+
+        <!-- html5 boilerplate -->
+        <script src="/s/static/third_party/html5-boilerplate/logging.js"></script>
+
+        <!-- good ole jquery/ui -->   
+        <script type="text/javascript" src="/s/static/third_party/jquery-1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/s/static/third_party/jquery-ui-1.8.18/js/jquery-ui.min.js"></script>
+
+        <!-- modernizr (do we even use this, anywhere) -->
+        <script src="/s/static/third_party/modernizr-2.3.5/modernizr.js"></script>
+
+        <!-- fancybox js -->
+        <script type="text/javascript" src="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        <script type="text/javascript" src="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js"></script>
+        <script type="text/javascript" src="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
         
-        {% compress js %}
-        <script src="/s/static/dora/scripts/pages.js"></script>
-        <script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
-        <script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
-        <script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
-        <script src="/s/static/api_demo/script/jquery.mobile.carousel.js"></script>
-        <script src="/s/static/common/js/jquery.simulate.js"></script>
+        <!-- jquery ui simulate -->
+        <script src="/s/static/third_party/jquery.simulate-e2a6cdd525/jquery.simulate.js"></script>
+
+        <!-- jquery ui for ipad and iphone -->
+        <script src="/s/static/third_party/jquery-ui-for-ipad-and-iphone-2011-02-16/jquery.ui.ipad.js"></script>
+
+        <!-- our custom javascript -->
+        <script src="/s/static/common/js/pages.js"></script>
         <script src="/s/static/common/js/popup.js"></script>
-        <script src="/s/static/common/js/plugins.js"></script>
-        <script src="/s/static/common/js/color-converter.js"></script>
+        <script src="/s/static/common/js/color-converter.js"></script> <!-- TODO: What's up with this still? -->
         <script src="/s/static/common/js/login.js"></script>
-        <script src="/s/static/common/js/share.js"></script>              
-        {% endcompress %}
-
-        <script src="/s/static/common/js/bootstrap-dropdown.js"></script>
-
+        <script src="/s/static/common/js/share.js"></script>
+        <!-- nick's wonderful fork of the carousel plugin -->
+        <script src="/s/static/common/js/nicks-mobile-carousel-fork/jquery.mobile.carousel.js"></script>
+            
+        <!-- TODO: extract css -->
         <style>
         body .zocial {
             margin: 4px 4px;
@@ -76,6 +101,7 @@
         <![endif]-->
     </head>
     
+    <!-- TODO: extract css -->
     <body style="height:100%; width:100%; background-color: #262626;">
         <div class="container-fluid container-center">
         {% block body %}
@@ -90,21 +116,6 @@
                 <a href="/users/{{user.username}}"> User Profile </a>
                 <a href="/logout"> Logout </a>
                 {% else %}
-            <!-- <ul class="nav">
-                <li class="dropdown" id="menu1">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
-                    Login
-                    <b class="caret"></b>
-                    </a>
-                <ul class="dropdown-menu">
-                    <li> <a href="/login/facebook"> Facebook </a> </li>
-                    <li> <a href="/login/twitter"> Twitter </a> </li>
-                    <li> <a href="/login/google"> Google </a> </li>
-                    <li> <a href="/login/openid"> OpenID </a> </li>
-                </ul>
-                </li>
-            </ul>
-            -->
                     <a id="login-link" href="#login-popup">Login</a>
                     <div style="display:none">
                         <div align="center" id="login-popup" style="background-color: #262626">
@@ -196,6 +207,7 @@
         </div>
         
 
+        <!-- TODO: extract -->
         <script>
             $(document).ready(function() {
                     $("#fancybox-outer").css("background", "#262626");
@@ -216,7 +228,6 @@
             });
         </script>
 
-        <!-- Change UA-XXXXX-X to be your site's ID -->
         <script>
             window._gaq = [['_setAccount','{{ GOOGLE_UA_ID }}'],['_trackPageview'],['_trackPageLoadTime']];
             Modernizr.load({

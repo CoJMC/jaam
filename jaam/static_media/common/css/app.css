@@ -208,21 +208,21 @@ canvas {
     height: 80px;
 }
 .ribbon-top .ribbon-content {
-   font-size: 2.5em;
-   font-weight: 700;
-   text-transform: uppercase;
-   top: -51px;
-   width: 380px;
+ font-size: 2.5em;
+ font-weight: 700;
+ text-transform: uppercase;
+ top: -51px;
+ width: 380px;
 }
 .ribbon-bottom {
     width: 400px;
     height: 60px;
 }
 .ribbon-bottom .ribbon-content {
-   font-size: 1.3em;
-   font-weight: 400;
-   top: -40px;
-   width: 340px;
+ font-size: 1.3em;
+ font-weight: 400;
+ top: -40px;
+ width: 340px;
 }
 .sidebar {
     width: 32px;

@@ -1,0 +1,2 @@
+This came from here:
+https://github.com/jquery/jquery-ui/blob/master/tests/jquery.simulate.js
