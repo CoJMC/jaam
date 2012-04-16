@@ -43,6 +43,9 @@ function determinePage(pathname) {
 			
 	else if (pathname.search("stories") != -1) {
 		popOutLink('blip_story', 'link_story');}
+		
+	else if (pathname.search("act") != -1) {
+		popOutLink('blip_act', 'link_act');}
 					
 	else if (pathname.search("blog") != -1) {
 		popOutLink('blip_blog', 'link_blog');
