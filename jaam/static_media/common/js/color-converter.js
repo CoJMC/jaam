@@ -30,7 +30,7 @@ function Color(color, type) {
         }
     }
 }
-Color.prototype.setHsl = this.setHsl;
+Color.prototype.setHsl = setHsl;
 Color.prototype.setRgb = setRgb;
 Color.prototype.setHex = setHex;
 Color.prototype.adjustLum = adjustLum;
