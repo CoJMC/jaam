@@ -8,6 +8,13 @@
 
 {% block body %}
 
+<script type="text/javascript">
+$(document).ready(function (){
+    $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
+    $(".carousel-ready").carousel();
+ })
+ </script>
+
     <style type="text/css">
         .journalist-bio * {
             color: white !important;
@@ -86,7 +93,10 @@
                     </div>
                     <div style="display: inline-block">
                         <p class="bar-info">
-                            Canon 5D </p>
+                        {% for photo in user.photo_set.all|slice:"1" %}
+                            {{photo.exif_data.camera_manufacturer}}
+                        {% endfor %}
+                        </p>
                          <p class="bar-label"> CAMERA </p>
                      </div>
                       
@@ -95,16 +105,23 @@
                     </div>
                     <div style="display: inline-block">
                     <p class="bar-info">
-                        5 </p>
+                     	{{user.photo_set.count}}
+                     </p>
                      <p class="bar-label"> IMAGES </p>
                      
                      </div>
                 </div>
-
-                <div id="user-photos-thumbnails" style="margin-left: 10px">
-                    {% for photo in user.photo_set.all|slice:"5" %}
-                        <img class="user-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" />
+				
+				<div style="width: 450px; overflow-x: hidden;">
+                <div id="user-photos-thumbnails" style="margin-left: 10px; max-height: 80px; width: 100px;">
+                <ul class="carousel-ready">
+                    {% for photo in user.photo_set.all %}
+                    	<li>
+                          <img class="user-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" />
+                         </li>
                     {% endfor %}
+                </ul>
+                </div>
                 </div>
             </div>
         </div>
