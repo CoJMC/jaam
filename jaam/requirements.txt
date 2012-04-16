@@ -15,5 +15,6 @@ django-tastypie==0.9.11
 Whoosh==2.3.2
 django_inlines==0.7.4
 raven==1.5.0
+slimit==0.6.2
 
 -e git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud
