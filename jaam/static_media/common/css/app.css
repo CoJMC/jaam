@@ -287,6 +287,11 @@ canvas {
 .link_blog {
     background-image: url('/s/static/common/img/blog_icon.png');
 }
+
+.link_act {
+    background-image: url('/s/static/common/img/blog_icon.png');
+}
+
 .link_contributor {
     background-image: url('/s/static/common/img/contributor_icon.png');
     height: 32px;
@@ -316,6 +321,12 @@ canvas {
 .link_contributor:hover .blip_contributor {
     visibility: visible;
 }
+
+.link_act:hover .blip_act {
+    visibility: visible;
+}
+
+
 .ribbon-inside-container {
     position: relative;
     top: -480px;

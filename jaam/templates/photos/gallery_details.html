@@ -102,7 +102,7 @@
 	</div>
 		
 		<div class="span12" style="text-align: center;  margin-top: 5px; margin-left: -140px; height:75px">
-			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:-1 %}"><img src="/s/static/arrow-left.png"/ width="20px" height="60px" style="margin-left: 15%; padding-right: 10px;"></img></a>	
+			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:-1 %}"><img src="/s/static/common/img/arrow-left.png"/ width="20px" height="60px" style="margin-left: 15%; padding-right: 10px;"></img></a>	
 			{% for photo in photos_before %}
 			
 			{% if photos_before|length == 3 %}
@@ -139,7 +139,7 @@
 				
 				{% endwith %}
 			{% endfor %}
-			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:1 %}"><img src="/s/static/arrow-right.png"/ width="20px" height="60px" style="padding-left: 10px;"></img></a>	
+			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:1 %}"><img src="/s/static/common/img/arrow-right.png"/ width="20px" height="60px" style="padding-left: 10px;"></img></a>	
 
 		</div>
 		</li>
