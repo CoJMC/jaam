@@ -39,6 +39,7 @@ urlpatterns = patterns('',
     url(r'^journalism/', include('jaam.journalism.urls')),
     url(r'^projects/', include('jaam.projects.urls')),
     url(r'^$', 'jaam.views.home'),
+    url(r'^project_act', 'jaam.act.views.information'),
 
     # USER / AUTH
     url(r'^logout/$', 'jaam.journalism.views.logout_view'),

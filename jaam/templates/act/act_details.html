@@ -8,12 +8,21 @@
 
 {% block banner_body %}
 
+	<style type="text/css">
+		.span3>p {
+			color: white !important;
+			overflow-y: auto !important;
+			font-family:sans-serif !important;
+			font-size: 10.5pt !important;
+			max-height: 250px;
+		}
+	</style>
+
 	 <div class="span12" id="view9">
-	  
 	{% for act in project.act_set.all %}
 	<div class="span3">
 		<p class="act_image"> <img src="{% thumbnail act.image 150x150 %}"/></p>
-		<h5 style="color: white;">{{act.text|safe}}</h5>
+		<p>{{act.text|safe}}</p>
 	</div>
 	<div class="gallery_spacer">
 			&nbsp

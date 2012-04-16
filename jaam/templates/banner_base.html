@@ -13,6 +13,7 @@ $(document).ready(function (){
     $("#exif").fancybox( {'overlayColor': '#000000'});
     $("#commenters").fancybox({'overlayColor': '#000000'});
     $(".iframe").fancybox({'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
+    $("#act_url").attr("href", "/project_act?project={{project.slug}}");
 
 });
 </script>
