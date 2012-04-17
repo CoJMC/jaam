@@ -12,7 +12,8 @@ def galleries(request, project_slug):
     #galleries = project.photogallery_set.all()
     #galleries = project.photogallery_set.filter(published=True)
     galleries = PhotoGallery.objects.filter(project_id=project.id)
-    return render_to_response('photos/photo_galleries.html', { 'galleries': galleries, 'project': project }, context_instance=RequestContext(request))
+    published_galleries = galleries.filter(published=True)
+    return render_to_response('photos/photo_galleries.html', { 'galleries': published_galleries, 'project': project }, context_instance=RequestContext(request))
 
 def gallery_details(request, project_slug, gallery_slug, start_number=1):
     #This is REALLY jankety and should be fixed :p

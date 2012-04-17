@@ -1,6 +1,7 @@
 {% extends "banner_base.html" %}
 {% load thumbnail %}
 {% load comments %}
+{% load inlines %}
 
 {%block banner%} {{project.title}} {%endblock%}
 
@@ -19,7 +20,7 @@
 			}
 		</style>
 		
-		<p class="storybody"> {{story.body|safe}} </p>
+		<p class="storybody"> {% process_inlines story.body %} </p>
 		
 		
 		</div>

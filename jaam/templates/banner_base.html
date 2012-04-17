@@ -10,7 +10,7 @@ $(document).ready(function (){
 
     $(".single_image").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
     $("#journalist").fancybox( {'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
-    $("#exif").fancybox( {'overlayColor': '#000000', 'height': 475, 'width': 800});
+    $("#exif").fancybox( {'overlayColor': '#000000', 'height': 475, 'width': 700});
     $("#commenters").fancybox({'overlayColor': '#000000'});
     $(".iframe").fancybox({'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
 });
@@ -76,7 +76,7 @@ $(document).ready(function (){
         {% if project.act_set.all %}
         <li><a href="/project_act?project={{project.slug}}">
             <div id="link_act" class="link_act" style="background-color: {{project.primaryColor}}">
-                <p id="blip_act" class="blip_act" style="background-color: {{project.primaryColor}};"><span>Act</span></p>
+                <p id="blip_act" class="blip_act" style="background-color: {{project.primaryColor}};"><span>act</span></p>
             </div>
         </a></li>
         {% endif %}

@@ -24,7 +24,7 @@
 						{% get_comment_list for first_photo as comment_list %}
 			<h4> Comments </h4>
 				{% for comment in comment_list %}
-                  	<a href=#"> <img src="something" /> </a>
+                  	<a href="#"> <img src="something" /> </a>
                     <p> {{ comment.comment }} </p>
 				{% endfor %}
 				<a class="btn btn-primary btn-large">Leave a Comment</a>
@@ -59,8 +59,8 @@
 			
 			<div style="display:none;  margin-top: -60px;">
 			<div id="exif_data" class="exif_div">
-				<div class="exif_center">
-				<div class="span4">
+				<div class="exif_center" style="width: 700px; height: 300px;     position: absolute; right: 0; left: 60; margin: auto;">
+				<div class="span4" style="margin-left: 100px">
 				<p class="exif">
 				  Camera Manufacturer: {{first_photo.exif_data.camera_manufacturer}}<br />
 				  Model: {{first_photo.exif_data.camera_model}}<br />
@@ -70,7 +70,7 @@
 			      Focal Length: {{first_photo.exif_data.focal_length}}<br />
 			    </p>
 			    </div>
-			    <div class="span4">
+			    <div class="span3">
 			    <p class="exif">
 			     Flash: {{first_photo.exif_data.flash_used}}<br />
 			     Height: {{first_photo.exif_data.height_dimension}} <br />
