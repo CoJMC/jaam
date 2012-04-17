@@ -17,37 +17,61 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         
         <title>jaam | {% block title %}{% endblock %}</title>
-        
+                <!-- our custom font for the project -->        
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-        
+
         {% compress css %}
-        <link rel="stylesheet" href="/s/static/common/css/style.css">
-        <link rel="stylesheet" href="/s/static/common/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/s/static/dora/styles/pages.css">
+        <!-- html5 boilerplate -->
+        <script src="/s/static/third_party/html5-boilerplate/style.css"></script>
+
+        <!-- stock bootstrap -->
+        <link rel="stylesheet" href="/s/static/third_party/bootstrap-2.0.2/css/bootstrap.min.css">
+
+        <!-- our custom style sheets -->
+        <link rel="stylesheet" href="/s/static/common/css/bootstrap.extractions.css">
+        <link rel="stylesheet" href="/s/static/common/css/style.extractions.css">
+
+        <link rel="stylesheet" href="/s/static/common/css/pages.css">
         <link rel="stylesheet" href="/s/static/common/css/app.css">
-        <link rel="stylesheet" href="/s/static/common/css/zocial.css">
-        <link rel="stylesheet" href="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
+        <!-- fancybox css -->
+        <link rel="stylesheet" href="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
+        <!-- zocial icons -->
+        <link rel="stylesheet" href="/s/static/third_party/css-social-buttons-e27101ffd6/zocial.css">
         {% endcompress %}
-    
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        
+
+
         {% compress js %}
-        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js"></script>
-        <script type="text/javascript" src="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+        <!-- html5 boilerplate -->
+        <script src="/s/static/third_party/html5-boilerplate/logging.js"></script>
+
+        <!-- good ole jquery/ui -->   
+        <script type="text/javascript" src="/s/static/third_party/jquery-1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/s/static/third_party/jquery-ui-1.8.18/js/jquery-ui-min.js"></script>
+
+        <!-- modernizr (do we even use this, anywhere) -->
+        <script src="/s/static/third_party/modernizr-2.5.3/modernizr.js"></script>
+
+        <!-- fancybox js -->
+        <script type="text/javascript" src="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        <script type="text/javascript" src="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.easing-1.3.pack.js"></script>
+        <script type="text/javascript" src="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
         
-        <script src="/s/static/dora/scripts/pages.js"></script>
-        <script src="/s/static/common/js/modernizr-2.0.6.min.js"></script>
-        <script src="/s/static/dora/scripts/jquery-ui-1.8.7.custom.min.js"></script>
-        <script src="/s/static/dora/scripts/jquery.ui.ipad.js"></script>
-        <script src="/s/static/api_demo/script/jquery.mobile.carousel.js"></script>
-        <script src="/s/static/common/js/jquery.simulate.js"></script>
+        <!-- jquery ui simulate -->
+        <script src="/s/static/third_party/jquery.simulate-e2a6cdd525/jquery.simulate.js"></script>
+
+        <!-- jquery ui for ipad and iphone -->
+        <script src="/s/static/third_party/jquery-ui-for-ipad-and-iphone-2011-02-16/jquery.ui.touch.js"></script>
+
+        <!-- our custom javascript -->
+        <script src="/s/static/common/js/pages.js"></script>
         <script src="/s/static/common/js/popup.js"></script>
-        <script src="/s/static/common/js/plugins.js"></script>
-        <script src="/s/static/common/js/color-converter.js"></script>
+        <script src="/s/static/common/js/color-converter.js"></script> <!-- TODO: What's up with this still? -->
         <script src="/s/static/common/js/login.js"></script>
         <script src="/s/static/common/js/share.js"></script>
-        <script src="/s/static/common/js/bootstrap-dropdown.js"></script>
+        <!-- nick's wonderful fork of the carousel plugin -->
+        <script src="/s/static/common/js/nicks-mobile-carousel-fork/jquery.mobile.carousel.js"></script>
         {% endcompress %}
 
         <style>
