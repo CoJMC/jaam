@@ -17,44 +17,42 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         
         <title>jaam | {% block title %}{% endblock %}</title>
-        
-
-
-        <!-- CSS -->
-        
-        <!-- html5 boilerplate -->
-        <script src="/s/static/third_party/html5-boilerplate/style.css"></script>
 
         <!-- our custom font for the project -->        
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 
+        {% compress css %}
+        <!-- html5 boilerplate -->
+        <script src="/s/static/third_party/html5-boilerplate/style.css"></script>
+
         <!-- stock bootstrap -->
         <link rel="stylesheet" href="/s/static/third_party/bootstrap-2.0.2/css/bootstrap.min.css">
 
-        <!-- fancybox css -->
-        <link rel="stylesheet" href="/s/static/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-
-        <!-- zocial icons -->
-        <link rel="stylesheet" href="/s/static/third_party/css-social-buttons-e27191ffd6/zocial.css">
-
         <!-- our custom style sheets -->
+        <link rel="stylesheet" href="/s/static/common/css/bootstrap.extractions.css">
+        <link rel="stylesheet" href="/s/static/common/css/style.extractions.css">
+
         <link rel="stylesheet" href="/s/static/common/css/pages.css">
         <link rel="stylesheet" href="/s/static/common/css/app.css">
-        <link rel="stylesheet" href="/s/static/common/css/bootstrap-extractions.css">
-        <link rel="stylesheet" href="/s/static/common/css/style-extractions.css"> <!-- SIGH, more [modified] stock css (html5 bp) -->
+
+        <!-- fancybox css -->
+        <link rel="stylesheet" href="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
+        <!-- zocial icons -->
+        <link rel="stylesheet" href="/s/static/third_party/css-social-buttons-e27101ffd6/zocial.css">
+        {% endcompress %}
 
 
-        <!-- JAVASCRIPT -->
-
+        {% compress js %}
         <!-- html5 boilerplate -->
         <script src="/s/static/third_party/html5-boilerplate/logging.js"></script>
 
         <!-- good ole jquery/ui -->   
         <script type="text/javascript" src="/s/static/third_party/jquery-1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" src="/s/static/third_party/jquery-ui-1.8.18/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/s/static/third_party/jquery-ui-1.8.18/js/jquery-ui-min.js"></script>
 
         <!-- modernizr (do we even use this, anywhere) -->
-        <script src="/s/static/third_party/modernizr-2.3.5/modernizr.js"></script>
+        <script src="/s/static/third_party/modernizr-2.5.3/modernizr.js"></script>
 
         <!-- fancybox js -->
         <script type="text/javascript" src="/s/static/third_party/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
@@ -65,7 +63,7 @@
         <script src="/s/static/third_party/jquery.simulate-e2a6cdd525/jquery.simulate.js"></script>
 
         <!-- jquery ui for ipad and iphone -->
-        <script src="/s/static/third_party/jquery-ui-for-ipad-and-iphone-2011-02-16/jquery.ui.ipad.js"></script>
+        <script src="/s/static/third_party/jquery-ui-for-ipad-and-iphone-2011-02-16/jquery.ui.touch.js"></script>
 
         <!-- our custom javascript -->
         <script src="/s/static/common/js/pages.js"></script>
@@ -75,6 +73,7 @@
         <script src="/s/static/common/js/share.js"></script>
         <!-- nick's wonderful fork of the carousel plugin -->
         <script src="/s/static/common/js/nicks-mobile-carousel-fork/jquery.mobile.carousel.js"></script>
+        {% endcompress %}
             
         <!-- TODO: extract css -->
         <style>
@@ -130,7 +129,8 @@
                                     <br/>
                                     <form action="{% url socialauth_begin 'openid' %}" type="get" style="color: #000">
                                         <input type="text" name="openid_identifier" placeholder="OpenID URL" class="input-large" />
-                                        <button type="submit" class="btn btn.primary">Login</button>
+                                        <br/>
+                                        <button type="submit" class="btn btn-primary">Login</button>
                                     </form>
                                 </div>
                             </div>
