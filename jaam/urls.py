@@ -40,6 +40,7 @@ urlpatterns = patterns('',
     url(r'^projects/', include('jaam.projects.urls')),
     url(r'^intro/', 'jaam.views.splash'),
     url(r'^$', 'jaam.views.home'),
+    url(r'^project_act', 'jaam.act.views.information'),
 
     # USER / AUTH
     url(r'^logout/$', 'jaam.journalism.views.logout_view'),

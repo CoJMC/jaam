@@ -206,7 +206,7 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 from django.template.defaultfilters import slugify
 SOCIAL_AUTH_USERNAME_FIXER = lambda u: slugify(u)
 
-CKEDITOR_MEDIA_PREFIX = '/s/static/ckeditor/'
+CKEDITOR_MEDIA_PREFIX = '/s/static/third_party/ckeditor-3.2/'
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_UPLOAD_PATH = ''
 
@@ -236,6 +236,11 @@ CKEDITOR_CONFIGS = {
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
 COMPRESS_ENABLED = True
+
+if os.name is "nt":
+    COMPRESS_ENABLED = False
+
+COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.SlimItFilter']
 
 # Tastypie default page size
 API_LIMIT_PER_PAGE = 0

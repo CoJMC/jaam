@@ -57,22 +57,31 @@
 
 
 			
-			<div style="display:none; min-height: 500; min-width: 300;  margin-top: -60px;">
+			<div style="display:none;  margin-top: -60px;">
 			<div id="exif_data" class="exif_div">
-				<p><br/>
-				 Camera Manufacturer: {{first_photo.exif_data.camera_manufacturer}}<br/>
-				 Model: {{first_photo.exif_data.camera_model}}<br/>
-			     Date Taken: {{first_photo.exif_data.date}}<br/>
-			     Shutter Speed: {{first_photo.exif_data.shutter_speed}}<br/>
-			     Fnumber:{{first_photo.exif_data.fnumber}}<br/>
-			     Focal Length: {{first_photo.exif_data.focal_length}}<br/>
-			     Flash: {{first_photo.exif_data.flash_used}}<br/>
-			     Height: {{first_photo.exif_data.height_dimension}}<br/>
-			     Width: {{first_photo.exif_data.width_dimension}}<br/>
-			     GPS lat: {{first_photo.exif_data.gps_latitude}}<br/>
+				<div class="exif_center">
+				<div class="span4">
+				<p class="exif">
+				  Camera Manufacturer: {{first_photo.exif_data.camera_manufacturer}}<br />
+				  Model: {{first_photo.exif_data.camera_model}}<br />
+			      Date Taken: {{first_photo.exif_data.date}} <br />
+			      Shutter Speed: {{first_photo.exif_data.shutter_speed}}<br />
+			      Fnumber:{{first_photo.exif_data.fnumber}}<br />
+			      Focal Length: {{first_photo.exif_data.focal_length}}<br />
+			    </p>
+			    </div>
+			    <div class="span4">
+			    <p class="exif">
+			     Flash: {{first_photo.exif_data.flash_used}}<br />
+			     Height: {{first_photo.exif_data.height_dimension}} <br />
+			     Width: {{first_photo.exif_data.width_dimension}} <br />
+			     GPS lat: {{first_photo.exif_data.gps_latitude}}<br />
 			     GPS long: {{first_photo.exif_data.gps_longitude}}<br/>
 			     Altitude: {{first_photo.exif_data.altitude}}<br/>
 			    </p>
+				</div>
+				</div>
+				
 			</div></div>
 				<a class="single_image" rel="gallery_group" href="{% thumbnail first_photo.image 900x600 %}">
 					<div id="imgBox">
@@ -102,7 +111,7 @@
 	</div>
 		
 		<div class="span12" style="text-align: center;  margin-top: 5px; margin-left: -140px; height:75px">
-			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:-1 %}"><img src="/s/static/arrow-left.png"/ width="20px" height="60px" style="margin-left: 15%; padding-right: 10px;"></img></a>	
+			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:-1 %}"><img src="/s/static/common/img/arrow-left.png"/ width="20px" height="60px" style="margin-left: 15%; padding-right: 10px;"></img></a>	
 			{% for photo in photos_before %}
 			
 			{% if photos_before|length == 3 %}
@@ -139,7 +148,7 @@
 				
 				{% endwith %}
 			{% endfor %}
-			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:1 %}"><img src="/s/static/arrow-right.png"/ width="20px" height="60px" style="padding-left: 10px;"></img></a>	
+			<a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=next_number|add:1 %}"><img src="/s/static/common/img/arrow-right.png"/ width="20px" height="60px" style="padding-left: 10px;"></img></a>	
 
 		</div>
 		</li>

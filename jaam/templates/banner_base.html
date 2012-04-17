@@ -10,10 +10,9 @@ $(document).ready(function (){
 
     $(".single_image").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
     $("#journalist").fancybox( {'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
-    $("#exif").fancybox( {'overlayColor': '#000000'});
+    $("#exif").fancybox( {'overlayColor': '#000000', 'height': 475, 'width': 800});
     $("#commenters").fancybox({'overlayColor': '#000000'});
     $(".iframe").fancybox({'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'scrolling':'no', 'height': 475, 'width': 960 });
-
 });
 </script>
 
@@ -70,6 +69,14 @@ $(document).ready(function (){
         <li><a href="/projects/{{project.slug}}/contributors/">
             <div id="link_contributor" class="link_contributor" style="background-color: {{project.primaryColor}}">
                 <p id="blip_contributor" class="blip_contributor" style="background-color: {{project.primaryColor}};"><span>contri-<br />butors</span></p>
+            </div>
+        </a></li>
+        {% endif %}
+        
+        {% if project.act_set.all %}
+        <li><a href="/project_act?project={{project.slug}}">
+            <div id="link_act" class="link_act" style="background-color: {{project.primaryColor}}">
+                <p id="blip_act" class="blip_act" style="background-color: {{project.primaryColor}};"><span>Act</span></p>
             </div>
         </a></li>
         {% endif %}

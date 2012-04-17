@@ -208,21 +208,21 @@ canvas {
     height: 80px;
 }
 .ribbon-top .ribbon-content {
-   font-size: 2.5em;
-   font-weight: 700;
-   text-transform: uppercase;
-   top: -51px;
-   width: 380px;
+ font-size: 2.5em;
+ font-weight: 700;
+ text-transform: uppercase;
+ top: -51px;
+ width: 380px;
 }
 .ribbon-bottom {
     width: 400px;
     height: 60px;
 }
 .ribbon-bottom .ribbon-content {
-   font-size: 1.3em;
-   font-weight: 400;
-   top: -40px;
-   width: 340px;
+ font-size: 1.3em;
+ font-weight: 400;
+ top: -40px;
+ width: 340px;
 }
 .sidebar {
     width: 32px;
@@ -287,6 +287,11 @@ canvas {
 .link_blog {
     background-image: url('/s/static/common/img/blog_icon.png');
 }
+
+.link_act {
+    background-image: url('/s/static/common/img/blog_icon.png');
+}
+
 .link_contributor {
     background-image: url('/s/static/common/img/contributor_icon.png');
     height: 32px;
@@ -316,6 +321,25 @@ canvas {
 .link_contributor:hover .blip_contributor {
     visibility: visible;
 }
+
+.link_act:hover .blip_act {
+    visibility: visible;
+}
+
+.exif {
+font-weight: normal; 
+line-height: 2; 
+font-size: 12pt;
+}
+
+.exif_center {
+	top: 0px;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
 .ribbon-inside-container {
     position: relative;
     top: -480px;
