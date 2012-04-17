@@ -46,7 +46,7 @@ $(document).ready(function (){
     </style>
 
 {% if embed %}
-    <div class="journalist-profile" style="margin-top: 20%; overflow-y: hidden;">
+    <div class="journalist-profile" style="margin-top: 22%; margin-left: -8%; overflow: hidden;">
     <script type="text/javascript">
         $(document).ready(function (){
             $("#header").hide();
@@ -59,14 +59,14 @@ $(document).ready(function (){
         }
     </style>
 {% else %} 
-<div class="journalist-profile" style="margin-top: 13%; margin-left: 13%; overflow-y: hidden;">
+<div class="journalist-profile" style="margin-top: 13%; margin-left: 8%; overflow: hidden;">
 
 {% endif %}
 
-    <div class="span9">
+    <div class="span12">
     <div class="container-fluid">
         <div class="column-fluid">
-            <div class="span3">
+            <div class="span4">
                 <div style="min-height: 220px; margin-top:10px">
                     <img src="{% thumbnail user.get_profile.avatar 330x220 %}" />
                 </div>
@@ -88,10 +88,10 @@ $(document).ready(function (){
             <div class="span6" style="margin-top: -50px;">              
                 <div class="journalist-bio"><p class="description"> {{user.get_profile.bio|safe}} </p> </div>
                 <div class="journalist-div">
-                    <div style="display: inline-block;">
+                    <div style="display: inline-block; margin-left: -20px">
                         <img src="/s/static/camera.png" height="50px" width="67px">
                     </div>
-                    <div style="display: inline-block">
+                    <div style="display: inline-block" >
                         <p class="bar-info">
                         {% for photo in user.photo_set.all|slice:"1" %}
                             {{photo.exif_data.camera_manufacturer}}
@@ -113,7 +113,7 @@ $(document).ready(function (){
                 </div>
 				
 				<div style="width: 450px; overflow-x: hidden;">
-                <div id="user-photos-thumbnails" style="margin-left: 10px; max-height: 80px; width: 100px;">
+                <div id="user-photos-thumbnails" style="margin-left: 10px; height: 80px; width: 96px;">
                 <ul class="carousel-ready">
                     {% for photo in user.photo_set.all %}
                     	<li>
