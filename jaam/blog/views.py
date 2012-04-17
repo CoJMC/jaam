@@ -17,5 +17,5 @@ def post_details(request, project_slug, blog_title_slug, blog_post_slug):
 
 def index(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
-    blogs = project.blog_set.all()
+    blogs = project.blog_set.filter(published=True)
     return render_to_response('blog/blog_gallery.html', {'project': project, 'blogs': blogs, 'title': 'blogs' } ,context_instance=RequestContext(request))
