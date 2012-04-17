@@ -23,7 +23,7 @@ def details(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
     #in your template, filter out. We need the whole list.
     #photos = Photo.published_objects.all()
-    photos = project.photo_set.filter(publshed=True)
+    photos = project.photo_set.filter(published=True)
     video = project.video_set.filter(published=True)
     story = project.story_set.filter(published=True)
     blog_post = BlogPost.objects.filter(blog__project__slug=project_slug)
