@@ -236,6 +236,10 @@ CKEDITOR_CONFIGS = {
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
 COMPRESS_ENABLED = True
+
+if os.name is "nt":
+    COMPRESS_ENABLED = False
+
 COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.SlimItFilter']
 
 # Tastypie default page size
