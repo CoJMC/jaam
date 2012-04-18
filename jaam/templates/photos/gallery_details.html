@@ -10,6 +10,14 @@
 	function moveRight() {
 		window.location('google.com');
 	}
+	
+	(function(){
+  $('#comment-toggle').click(function(){
+     $('#comment-list').toggle();
+     $('#comment-form').toggle();
+		});
+	});
+
 </script>
 
 {% block banner_body %}
@@ -20,40 +28,10 @@
 	
 			<div class="span7">
 
-			<div style="display:none"><div id="comments" class="exif_div"> 
-						{% get_comment_list for first_photo as comment_list %}
-			<h4> Comments </h4>
-				{% for comment in comment_list %}
-                  	<a href="#"> <img src="something" /> </a>
-                    <p> {{ comment.comment }} </p>
-				{% endfor %}
-				<a class="btn btn-primary btn-large">Leave a Comment</a>
-
-				<div class="comment_form">
-        {% if user.is_authenticated %}
-        {% get_comment_form for first_photo as form %}
-			<h3> Add to the Chatter </h3>
-			<form action="{% comment_form_target %} " method="post">
-				{% csrf_token %}
-					{{ form.comment }}
-					<p style="display:none">
-					{{ form.honeypot }}
-					{{form.user }}
-					{{ form.content_type }}
-					{{ form.object_pk }}
-					{{ form.timestamp }}
-					{{ form.security_hash }}
-					</p>
-				<input type="submit" name="submit" value="Post Comment">
-				<a class="btn btn-primary btn-large">View All Comments</a>
-				<a href="{{gallery.get_absolute_url}}"> {{gallery.title}} </a>
-				<input type="hidden" name="next" value="{{first_photo.get_absolute_url}}" />
-        	</form>
-        {% else %}
-            <p> Please <a href="http://jaam.us.to/admin/">login</a> to post a comment. </p>
-        {% endif %}
-		</div>
-			</div></div>
+			<div style="display:none">
+			<div id="comments" class="exif_div">
+			{% include "comments/jaam_form.html" with item=first_photo %}
+				</div></div>
 
 
 			

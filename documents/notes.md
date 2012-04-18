@@ -1,3 +1,12 @@
+Initial Setup
+=============
+
+* Install pip `sudo apt-get install python-pip`
+
+* `cd jaam/jaam && pip install -r requirements.txt` (use sudo if appropriate)
+
+* Follow the local development tips to get a sqlite3 database up and running.
+
 Local Development Tips
 ======================
 
