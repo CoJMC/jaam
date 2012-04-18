@@ -280,7 +280,7 @@ except ImportError, exp:
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': 'whoosh_index', 
+        'PATH': 'GONDOR_DATA_DIR/whoosh_index', 
         'STORAGE': 'file',
         'INCLUDE_SPELLING': True,
 

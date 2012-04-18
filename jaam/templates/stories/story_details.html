@@ -5,13 +5,7 @@
 
 {%block banner%} {{project.title}} {%endblock%}
 
-{% block banner_body %}
-		<div class="span11">
-		<div class="storypage" style="-moz-column-count:3; -webkit-column-count:3; column-count:3; height: 410px; width: 850px; overflow-x: auto">
-				
-		<h3 style="color: white"> {{story.title}} </h3>
-		<h5 style="font-size: 10pt; font-style: italic"> By {{story.journalist.get_profile.full_name}} </h5>
-		
+{%block extrahead%}
 		<style type="text/css">
 			.storypage>p {
 				color: white !important;
@@ -19,10 +13,15 @@
 				font-family:sans-serif !important;
 			}
 		</style>
-		
+
+{%endblock%}
+
+{% block banner_body %}
+		<div class="span11">
+		<div class="storypage">
+		<h3 style="color: white"> {{story.title}} </h3>
+		<h5 style="font-size: 10pt; font-style: italic"> By {{story.journalist.get_profile.full_name}} </h5>
 		<p class="storybody"> {% process_inlines story.body %} </p>
-		
-		
 		</div>
 		</div>
 {% endblock %}
