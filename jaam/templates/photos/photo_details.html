@@ -14,10 +14,10 @@
 		<h2> {{ photo.title }} </h2>
 		<p> {{ photo.caption }} </p>
 		
-		<img src="{% thumbnail user.userprofile.avatar 50x50 %}" />
+		<img src="{% thumbnail journalist.userprofile.avatar 50x50 %}" />
 		<h3> {{ photo.journalist }} </h3>
-		<p> {{ user.userprofile.bio }} </p>
-		<a href="/users/{{user.username}}"> Learn more... </a>
+		<p> {{ journalist.userprofile.bio }} </p>
+		<a href="/users/{{journalist.username}}"> Learn more... </a>
 		
 		<a href="javascript:void()"> <h3 name="showhide"> Photo EXIF Data </h3> </a>
 		<div class="photo_exif">

@@ -20,21 +20,26 @@
                 <p>
                     {% if result.model_name == 'photo' %}
                         <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
-                        By: {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
+                        By:  {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
                         {{ result.object.caption }}
 
                     
-                    {% else %}
-                        {% if result.model_name == 'video' %}
-                            <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
-                            By: {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
-                            {{ result.object.caption }}
+                    {% elif result.model_name == 'video' %}
+                        <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
+                        By: {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
+                        {{ result.object.caption }}
 
-                        {% else %}
-                            <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
-                            By: {{ result.object.author.first_name }} {{ result.object.author.last_name }} </br>
-                            {{ result.object.body }}
-                        {% endif %}
+                    {% elif result.model_name == 'blogpost' %}
+                        <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
+                        By: {{ result.object.author.first_name }} {{ result.object.author.last_name }} </br>
+                        {{ result.object.body }}
+                    
+                    {% elif result.model_name == 'project' %}
+                        <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></br>
+                        {{ result.object.tagline }} </br>
+                        {{ result.object.description }}
+
+
 
                     {% endif %}
                     

@@ -50,8 +50,8 @@ def gallery_details(request, project_slug, gallery_slug, start_number=1):
 def details(request, project_slug, photo_id):
     project = get_object_or_404(Project, slug=project_slug)
     photo = get_object_or_404(Photo, pk=photo_id)
-    user = User.objects.get(username=photo.journalist)
-    return render_to_response('photos/photo_details.html', { 'photo': photo, 'project': project, 'user': user }, context_instance=RequestContext(request))
+    journalist = User.objects.get(username=photo.journalist)
+    return render_to_response('photos/photo_details.html', { 'photo': photo, 'project': project, 'journalist': journalist }, context_instance=RequestContext(request))
 
 def index(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)

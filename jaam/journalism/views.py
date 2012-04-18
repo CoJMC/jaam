@@ -12,11 +12,11 @@ from django.contrib.auth.models import User
 from forms import UserProfileForm
 
 def user_profile(request, username):
-    user = get_object_or_404(User, username=username)
+    journalist = get_object_or_404(User, username=username)
     embed = False
     if "embedded" in request.GET and request.GET["embedded"]:
         embed = True
-    return render_to_response('journalism/user_profile.html', { 'user': user, 'embed': embed }, context_instance=RequestContext(request))
+    return render_to_response('journalism/user_profile.html', { 'journalist': journalist, 'embed': embed }, context_instance=RequestContext(request))
 
 def logout_view(request):
     logout(request)

@@ -3,7 +3,7 @@
 {% load thumbnail %}
 
 {% block title %}
-{{user.get_profile.full_name}}
+{{journalist.get_profile.full_name}}
 {% endblock %}
 
 {% block body %}
@@ -22,11 +22,11 @@ $(document).ready(function (){
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
         }
         
-        .user-photos-thumbnail {
+        .journalist-photos-thumbnail {
             float: left;
         }
 
-        #user-photos-thumbnails {
+        #journalis-photos-thumbnails {
             clear: left;
         }
     </style>
@@ -68,32 +68,32 @@ $(document).ready(function (){
         <div class="column-fluid">
             <div class="span3">
                 <div style="min-height: 220px; margin-top:10px">
-                    <img src="{% thumbnail user.get_profile.avatar 330x220 %}" />
+                    <img src="{% thumbnail journalist.get_profile.avatar 330x220 %}" />
                 </div>
                 
                 <div class="journalist-banner">
                     <div>
                         <img src="/s/static/photographer_profile_banner.png" width="300px"/>
                     </div>
-                    <div class="journalist-name">{{user.get_profile.full_name}}</div>
+                    <div class="journalist-name">{{journalist.get_profile.full_name}}</div>
                 </div>
                 <div class="journalist-infobox">
-                    <div class="journalist-info"> {{user.get_profile.major}} </div>
+                    <div class="journalist-info"> {{journalist.get_profile.major}} </div>
                     <div class="journalist-label" > MAJOR </div>
-                    <div class="journalist-info"> {{user.email}} </div>
+                    <div class="journalist-info"> {{journalist.email}} </div>
                     <div class="journalist-label" > EMAIL </div>
                 </div>
             </div>
 
             <div class="span6" style="margin-top: -50px;">              
-                <div class="journalist-bio"><p class="description"> {{user.get_profile.bio|safe}} </p> </div>
+                <div class="journalist-bio"><p class="description"> {{journalist.get_profile.bio|safe}} </p> </div>
                 <div class="journalist-div">
                     <div style="display: inline-block;">
                         <img src="/s/static/camera.png" height="50px" width="67px">
                     </div>
                     <div style="display: inline-block">
                         <p class="bar-info">
-                        {% for photo in user.photo_set.all|slice:"1" %}
+                        {% for photo in journalist.photo_set.all|slice:"1" %}
                             {{photo.exif_data.camera_manufacturer}}
                         {% endfor %}
                         </p>
@@ -105,7 +105,7 @@ $(document).ready(function (){
                     </div>
                     <div style="display: inline-block">
                     <p class="bar-info">
-                     	{{user.photo_set.count}}
+                     	{{journalist.photo_set.count}}
                      </p>
                      <p class="bar-label"> IMAGES </p>
                      
@@ -113,11 +113,11 @@ $(document).ready(function (){
                 </div>
 				
 				<div style="width: 450px; overflow-x: hidden;">
-                <div id="user-photos-thumbnails" style="margin-left: 10px; max-height: 80px; width: 100px;">
+                <div id="journalist-photos-thumbnails" style="margin-left: 10px; height: 80px; width: 96px;">
                 <ul class="carousel-ready">
-                    {% for photo in user.photo_set.all %}
+                    {% for photo in journalist.photo_set.all %}
                     	<li>
-                          <img class="user-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" />
+                          <img class="journalist-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" />
                          </li>
                     {% endfor %}
                 </ul>

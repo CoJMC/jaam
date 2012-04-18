@@ -1,5 +1,4 @@
 {% load compress %}
-
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -135,6 +134,9 @@
 
         }
 
+        #share-popup {
+            float:center;
+        }
         </style>
 
         <!-- TODO: fix appID -->
@@ -166,7 +168,7 @@
 
                 {% if user.is_authenticated %}
                 <a href="/users/{{user.username}}"> {% if user.first_name != "" %}
-                                                    {{user.first_name}} {{user.last_name}}
+                                                    {{ user.first_name }} {{ user.last_name }}
                                                     {% else %}
                                                     User Profile
                                                     {% endif %}</a> &nbsp; | &nbsp;
@@ -219,41 +221,8 @@
                <div class="nav_item"><a id="act_url" href="/act/">ACT</a></div>
               
                 <div id="social" class="nav_item" style="position: fixed; margin-left: 750px">
-                 <!--
-                    <a href="https://twitter.com/share?url={{ request.build_absolute_uri }}">
-                        <img src="/s/static/common/img/twitter-white.png"/>
-                    </a>
-                    <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ title }}; ">
-                <div id="social">
-                    <a href="https://twitter.com/share?url={{ request.build_absolute_uri }}">
-                    <a id="share-link" href="#share-popup">
-                        <img src="/s/static/common/img/twitter-white.png"/>
-                    </a>
-                    <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ title }}"> 
-                        <img src="/s/static/common/img/facebook-white.png"/>
-                    </a> 
-                -->
-                    <a href="" class="share_btn" style=" position: fixed; margin-left: -20px; margin-top: -20px; color: black;"> <p class="share" id="share"> SHARE </p> </a>
 
-                    <div id="share_box_content" style="position: fixed; margin-left: -60px; margin-top: -40px">
-                        <ul class="social">
-                        <li class="facebook">
-                            <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}&amp;t={{ title }}">
-
-                            </a>
-                        </li>
-                        <li class="twitter">
-                            <a href="https://twitter.com/share?url={{ request.build_absolute_uri }}">
-
-                            </a>
-                        </li>
-                        <li class="pinterest">
-                            <a href="http://www.pinterest.com/">
-
-                            </a>
-                        </li>
-                        </ul>
-                </div>
+                    <a id="share-link" href="#share-popup" class="share_btn" style=" position: fixed; margin-left: -20px; margin-top: -20px; color: black;"> <p class="share" id="share"> SHARE </p> </a>
             </div>
 
             <div style="display:none">
@@ -291,12 +260,6 @@
             });
         </script>
 
-        <!-- Change UA-XXXXX-X to be your site's ID -->
-        <script>
-            window._gaq = [['_setAccount','{{ GOOGLE_UA_ID }}'],['_trackPageview'],['_trackPageLoadTime']];
-            Modernizr.load({
-                load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-            });
-        </script>  
+        
     </body>
 </html>
