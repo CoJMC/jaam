@@ -58,6 +58,9 @@ urlpatterns = patterns('',
 
     # Search
     (r'^search/', include('haystack.urls')),
+
+    # shut up favicon
+    (r'^favicon.ico', 'django.views.generic.simple.redirect_to', {'url': '/s/static/common/img/favicon.ico'}),
 )
 
 

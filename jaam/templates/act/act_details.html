@@ -18,11 +18,11 @@
 		}
 	</style>
 
-	 <div class="span12" id="view9">
+	 <div class="span12" id="view9" style="margin-top: 30px">
 	{% for act in project.act_set.all %}
 	<div class="span3">
-		<p class="act_image"> <img src="{% thumbnail act.image 150x150 %}"/></p>
-		<p>{{act.text|safe}}</p>
+		<img src="{% thumbnail act.image 220x147 %}"/>
+		<p style="margin-top: 30px">{{act.text|safe}}</p>
 	</div>
 	<div class="gallery_spacer">
 			&nbsp
@@ -30,7 +30,7 @@
 	
 	{% if forloop.counter|divisibleby:"3" %}
 		</div> <!-- end span12, start new one -->
-		<div class="span12" id="view9">
+		<div class="span12" id="view9" style="margin-top: 30px">
 	{% endif %}
 	{% endfor %}
 	</div>

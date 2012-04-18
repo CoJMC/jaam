@@ -199,8 +199,13 @@ LOGGING = {
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 THUMBNAIL_DEFAULT_STORAGE = DEFAULT_FILE_STORAGE
 
-SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
-SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+#LOGIN_URL = '/login/'
+#LOGIN_REDIRECT_URL = '/accounts/profile'
+#SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/accounts/profile'
+
+#SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
+#SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 from django.template.defaultfilters import slugify
@@ -235,7 +240,7 @@ CKEDITOR_CONFIGS = {
 # setting for the site-specific user profile
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 
 if os.name is "nt":
     COMPRESS_ENABLED = False

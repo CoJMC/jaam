@@ -289,7 +289,7 @@ canvas {
 }
 
 .link_act {
-    background-image: url('/s/static/common/img/blog_icon.png');
+    background-image: url('/s/static/common/img/act_icon.png');
 }
 
 .link_contributor {
@@ -329,16 +329,9 @@ canvas {
 .exif {
 font-weight: normal; 
 line-height: 2; 
-font-size: 12pt;
+font-size: 11pt;
 }
 
-.exif_center {
-	top: 0px;
-    bottom: 0px;
-    right: 0;
-    left: 0;
-    margin: auto;
-}
 
 .ribbon-inside-container {
     position: relative;

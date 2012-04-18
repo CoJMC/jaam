@@ -12,6 +12,7 @@
 $(document).ready(function (){
     $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
     $(".carousel-ready").carousel();
+    $(".journalist-photo").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
  })
  </script>
 
@@ -85,7 +86,7 @@ $(document).ready(function (){
                 </div>
             </div>
 
-            <div class="span6" style="margin-top: -50px;">              
+            <div class="span6" style="margin-top: -50px; margin-left: -10px;">              
                 <div class="journalist-bio"><p class="description"> {{journalist.get_profile.bio|safe}} </p> </div>
                 <div class="journalist-div">
                     <div style="display: inline-block; margin-left: -20px">
@@ -100,7 +101,7 @@ $(document).ready(function (){
                          <p class="bar-label"> CAMERA </p>
                      </div>
                       
-                     <div style="display: inline-block; margin-left: 2em;">
+                     <div style="display: inline-block; margin-left: 4em;">
                             <img src="/s/static/photos.png"/ height="52px" width="46px">
                     </div>
                     <div style="display: inline-block">
@@ -117,7 +118,7 @@ $(document).ready(function (){
                 <ul class="carousel-ready">
                     {% for photo in journalist.photo_set.all %}
                     	<li>
-                          <img class="journalist-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" />
+                          <a class="journalist-photo" rel="journalist-photos" href="{% thumbnail photo.image 900x600 %}"> <img class="journalist-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" /></a>
                          </li>
                     {% endfor %}
                 </ul>
