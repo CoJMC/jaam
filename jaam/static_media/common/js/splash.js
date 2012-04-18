@@ -23,13 +23,22 @@ for (i=0;i<ARRcookies.length;i++)
   }
 }
 
+function showIntro()
+{
+  var element = document.getElementById('#JaamIntro');
+  $("#JaamIntro").style.display='block';
+}
+
 function checkCookie()
 {
 var lastDate=getCookie("Jaam");
   if (lastDate==null || lastDate=="") 
   {
-  	$("#JaamIntro").trigger('click');
+  	showIntro();
   	var lastDate = "Kosovo";
     setCookie("Jaam",lastDate,365);
   }
+  showIntro();
 }
+
+

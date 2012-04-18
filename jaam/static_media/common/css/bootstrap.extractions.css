@@ -118,7 +118,11 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .gallery_link{font-size: 12pt;}
 .gallery_title>a{color:white;}
 .gallery_title{font-size: 13.5pt; font-weight: bold; padding-top: 15px; padding-bottom: 5px;}
+<<<<<<< HEAD
 .gallery_blip{font-size: 10.5pt; text-align: left; max-height: 200px;}
+=======
+.gallery_blip{font-size: 10.5pt; text-align: left; max-height: 200px; overflow-y: auto;}
+>>>>>>> branch 'master' of git@github.com:CoJMC/jaam.git
 
 .banner_text {text-align: center; padding-top: 20px; color: white;  font-size: 24pt; font-family: Lato, Helvetica, Arial, sans-serif; text-transform: uppercase; font-weight: 700;}
 

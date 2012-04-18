@@ -5,10 +5,13 @@
 
 {% block body %}
 <img class="loader" src="/s/static/common/graphics/homepage-loader.gif"/>
+<div style="postion:absolute; width:100%; height:100%; background-color:#262626">
+<div id="JaamIntro" style="display:none; position:absolute; left:25%; top:20%; width:100%; height:100%; z-index:20"> <img style="width:50%;" src="/s/static/common/img/Global_Eyewitness.png"> </img> </div>
+</div>
 <div id="container">
     <ul id="projects"></ul>
 </div>
-<div style="display:none"><a style="color: white; font-weight: bold" href="/intro/" id="JaamIntro" class="iframe"> Help</a></div>
+
         
 <script type="text/javascript">
 var PROJECT_OPTIONS = {'covergallery__isnull': 'false', 'archived': 'false'};
@@ -45,7 +48,6 @@ function addFade() {
 }
 
 $(document).ready(function (){
-    $("#JaamIntro").fancybox();
    	checkCookie();
     $("#container").hide();
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
