@@ -1,5 +1,16 @@
 {% load comments %}
 {% load thumbnail %}
+<script>
+	$(document).ready(function() {
+		$("input[name='next']").submit(function() {
+			$("input[name='next']").value = document.URL;
+		});
+	});
+	$("comment-toggle").click(function () {
+	$("comment-list").toggle();
+	});
+
+</script>
 <div id="comment-list">
 	{% get_comment_list for item as comment_list %}
 		<h4> Comments </h4>
@@ -9,7 +20,7 @@
                 <p> {{ comment.comment }} </p>
 			{% endfor %}
 				{% if user.is_authenticated %}
-				<a class="btn btn-primary btn-large" id="comment-toggle" href="javascript:void(0);">Leave a Comment</a>
+				<a class="btn btn-primary btn-large" id="comment-toggle">Leave a Comment</a>
 				{% endif %}
 			</div>
 			<div id="comment-form">
@@ -27,9 +38,11 @@
 						{{ form.timestamp }}
 						{{ form.security_hash }}
 						</p>
+					<br />
 					<input type="submit" name="submit" value="Post Comment">
-					<a id="comment-toggle" class="btn btn-primary btn-large" href="#">View All Comments</a>
-					<input type="hidden" name="next" value="{{item.get_absolute_url}}" />
+					<br />
+					<a id="comment-toggle" class="btn btn-primary btn-large">View All Comments</a>
+					<input type="hidden" name="next" value="{{ request.build_absolute_uri }}" />
 				</form>
 			{% else %}
 			<p> Please <a id="login-link" href="#login-popup">Login</a> to post comments. <p>
