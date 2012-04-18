@@ -10,7 +10,7 @@ from stories.models import Story
 from videos.models import Video
 
 class BlogPostIndex(indexes.SearchIndex, indexes.Indexable):
-	# author = indexes.CharField(model_attr='author')
+	# journalist = indexes.CharField(model_attr='journalist')
 	# title = indexes.CharField(model_attr='title')
 	text = indexes.CharField(document=True, use_template=True)
 
@@ -59,7 +59,7 @@ class VideoIndex(indexes.SearchIndex, indexes.Indexable):
 
 class PhotoIndex(indexes.SearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
-	author = indexes.CharField(model_attr='journalist');
+	journalist = indexes.CharField(model_attr='journalist');
 
 	def get_model(self):
 		return Photo

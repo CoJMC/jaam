@@ -25,7 +25,7 @@ class Blog(BaseModel):
     @property
     def authors(self):
         return User.objects.filter(
-            pk__in=self.blogpost_set.all().values_list('author', flat=True).query
+            pk__in=self.blogpost_set.all().values_list('journalist', flat=True).query
         )
 
 class BlogPost(BaseModel):
@@ -33,7 +33,7 @@ class BlogPost(BaseModel):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     body = RichTextField()
-    author = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
+    journalist = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
     cover_photo = models.ForeignKey(Photo, default= lambda: Photo.objects.get(title="Default"), on_delete=models.SET_DEFAULT)
 
     def __unicode__(self):
