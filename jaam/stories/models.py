@@ -19,7 +19,7 @@ class Story(BaseModel):
         default=datetime.datetime.now
         )
     enable_comments = models.BooleanField()
-    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.objects.get(title="Default"), on_delete=models.SET_DEFAULT)
+    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.all_objects.get(title="Default"), on_delete=models.SET_DEFAULT)
 
     class Meta:
         verbose_name = "story"

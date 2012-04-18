@@ -10,7 +10,7 @@ class Blog(BaseModel):
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.objects.get(title="Default"), on_delete=models.SET_DEFAULT)
+    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.all_objects.get(title="Default"), on_delete=models.SET_DEFAULT)
 
     def __unicode__(self):
         return self.title
@@ -34,7 +34,7 @@ class BlogPost(BaseModel):
     description = models.TextField(null=True, blank=True)
     body = RichTextField()
     journalist = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
-    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.objects.get(title="Default"), on_delete=models.SET_DEFAULT)
+    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.all_objects.get(title="Default"), on_delete=models.SET_DEFAULT)
 
     def __unicode__(self):
         return self.title
