@@ -235,7 +235,7 @@ CKEDITOR_CONFIGS = {
 # setting for the site-specific user profile
 AUTH_PROFILE_MODULE = 'journalism.UserProfile'
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 
 if os.name is "nt":
     COMPRESS_ENABLED = False
