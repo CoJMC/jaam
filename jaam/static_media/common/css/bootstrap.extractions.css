@@ -157,7 +157,8 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .side_title, .side_title>a {color: white; font-weight: bold;}
 .description, .description > p {color: white; padding: 5px; overflow-y: auto;}
 .text_image {float: left; padding-right: 10px; padding-bottom: 10px;}
-.storypage>p {font-size: 12pt; margin-top: 10px; line-height: 1.25;}
+.storypage>p {font-size: 12pt; margin-top: 10px; line-height: 1.25; }
+.storypage {-moz-column-count:3; -webkit-column-count:3; column-count:3; height: 410px; width: 850px; overflow-x: auto;}
 .font11>p {font-size: 11pt;}
 .highlight {
     border: 2px solid #E6E6E6;

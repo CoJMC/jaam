@@ -6,8 +6,7 @@
 
 {%block banner%} {{project.title}} {%endblock%}
 
-{% block banner_body %}
-
+{% block extrahead %}
 	<style type="text/css">
 		.span3>p {
 			color: white !important;
@@ -17,8 +16,11 @@
 			max-height: 250px;
 		}
 	</style>
+{% endblock %}
 
-	 <div class="span12" id="view9" style="margin-top: 30px">
+{% block banner_body %}
+	
+	<div class="span12" id="view9" style="margin-top: 30px">
 	{% for act in project.act_set.all %}
 	<div class="span3">
 		<img src="{% thumbnail act.image 220x147 %}"/>

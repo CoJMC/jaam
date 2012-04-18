@@ -6,16 +6,7 @@
 {{journalist.get_profile.full_name}}
 {% endblock %}
 
-{% block body %}
-
-<script type="text/javascript">
-$(document).ready(function (){
-    $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
-    $(".carousel-ready").carousel();
-    $(".journalist-photo").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
- })
- </script>
-
+{% block extrahead %}
     <style type="text/css">
         .journalist-bio * {
             color: white !important;
@@ -45,6 +36,17 @@ $(document).ready(function (){
         
         }
     </style>
+    
+	<script type="text/javascript">
+	$(document).ready(function (){
+	    $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
+	    $(".carousel-ready").carousel();
+	    $(".journalist-photo").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
+	 })
+	 </script>
+{% endblock %}
+
+{% block body %}
 
 {% if embed %}
     <div class="journalist-profile" style="margin-top: 22%; margin-left: -8%; overflow: hidden;">
