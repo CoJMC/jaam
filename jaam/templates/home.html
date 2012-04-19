@@ -5,8 +5,8 @@
 
 {% block body %}
 <img class="loader" src="/s/static/common/graphics/homepage-loader.gif"/>
-<div style="postion:absolute; width:100%; height:100%; background-color:#262626">
-<div id="JaamIntro" style="display:none; position:absolute; left:25%; top:20%; width:100%; height:100%; z-index:20"> <img style="width:50%;" src="/s/static/common/img/Global_Eyewitness.png"> </img> </div>
+<div id="JaamIntro" style="display:none"> <div style="position:absolute; left:40%; top:20%; width:100%; z-index:20"> <img src="/s/static/common/img/GE_1.png"> </img> </div> 
+<div style="position:absolute; bottom:10%; left:30%"><img src="/s/static/common/img/CoJMC_Logo_transparentbg_white.png"> </img> </div>
 </div>
 <div id="container">
     <ul id="projects"></ul>
@@ -22,7 +22,9 @@ function carousel(){
     $("#projects").carousel(CAROUSEL_OPTIONS);
     addFade();
     $(".loader").fadeOut("fast");
-    $("#container").delay(200).fadeIn("slow");
+    $("#JaamIntro").delay(1000).fadeOut("slow");
+    $("#container").delay(1200).fadeIn("slow");
+    $("#footer").delay(1400).fadeIn("slow");
 }
 
 function addFade() {
@@ -48,7 +50,8 @@ function addFade() {
 }
 
 $(document).ready(function (){
-   	checkCookie();
+	checkCookie();
+	$("#footer").hide();
     $("#container").hide();
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
         var requests = [];

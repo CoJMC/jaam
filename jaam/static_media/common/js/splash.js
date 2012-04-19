@@ -25,20 +25,18 @@ for (i=0;i<ARRcookies.length;i++)
 
 function showIntro()
 {
-  var element = document.getElementById('#JaamIntro');
-  $("#JaamIntro").style.display='block';
+  $("#JaamIntro").show();
 }
 
 function checkCookie()
 {
-var lastDate=getCookie("Jaam");
+var lastDate=getCookie("GlobalEyewitness");
   if (lastDate==null || lastDate=="") 
   {
   	showIntro();
-  	var lastDate = "Kosovo";
-    setCookie("Jaam",lastDate,365);
+  	var lastDate = "JournalismMeans";
+    setCookie("GlobalEyewitness",lastDate,null);
   }
-  showIntro();
 }
 
 
