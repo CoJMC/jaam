@@ -1,5 +1,10 @@
 /*@import url(http://fonts.googleapis.com/css?family=Lato:400,700);*/
 
+html {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 body {
     margin: 0;
     background: #262626;
@@ -10,10 +15,12 @@ body {
 .container-center {
     position: absolute;
     top: 20px;
-    bottom: 125px;
+    bottom: 100px;
     right: 0;
     left: 0;
     margin: auto;
+    padding-left: 0;
+    padding-right: 0;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -31,9 +38,11 @@ body {
     position: fixed;
     left: 0;
     bottom: 0;
+    background-color:#262626;
+    padding-top: 10px;
 }
 #nav {
-    height: 120px;
+    height: 90px;
     width: 900px;
     margin: 0 auto;
 }

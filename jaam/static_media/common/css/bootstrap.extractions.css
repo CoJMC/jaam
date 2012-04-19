@@ -130,7 +130,6 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .gallery_banner {background-image:url('/s/static/gallery_banner.png'); width: 388px; height: 59px; background-repeat: no-repeat; background-color:#D11919;}
 .bottom_banner {background-image:url('/s/static/banner_bottom.png'); width: 265px; height:80px; margin-top: 423px; margin-left: 1px; background-repeat: no-repeat;}
 .bottom_banner_text {color: white; margin-left: 70px; padding-top: 36px; font-size: 12pt; font-family: Lato, Helvetica, Arial, sans-serif; font-weight: 400; text-align: left;}
-#footer { width:100%; position:fixed; left:0px; bottom:0px; background-color:#262626; padding-top: 5px;}
 #nav {height:80px; width:900px; margin:0px auto;}
 #logo {background-image:url('/s/static/logo_simple-white.png'); background-size:140px; -moz-background-size: 160px; background-repeat:no-repeat; width:160px; height:80px; float:left; margin-right:10px;}
 #social {float:right;}
