@@ -100,7 +100,7 @@ h1,h2,h3,h4,h5,h6 {
     }
 }
 
-*@TODO: fix media of the project-nav fluidity */
+/*@TODO: fix media of the project-nav fluidity */
 .project-header, .project-nav{font-weight:bold; color: #fff; font-size:x-large; text-transform: lowercase; letter-spacing:0.1em; font-family: Georgia, Garamond, Times, serif; font-variant:small-caps; text-align: center; text-shadow: 0px 1px 0px #C0C0C0; padding-top: 8px; padding-bottom: 8px; }
 .project-header:first-letter{text-transform: uppercase;}
 .project-nav:first-letter{text-transform: uppercase;}
@@ -291,32 +291,17 @@ li.pinterest:hover {
     font-size: 18pt;
 }
 
-<<<<<<< HEAD
-.share_btn {
-    display: inline-block;
-    color: black;
-    background-color: #FFFFFF;
-    padding: 10px;
-    padding-top: 20px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-    position: relative;
-    cursor: pointer;
-}
-=======
 .share_img {
-background-image:url('/s/static/common/img/share_blip.png'); 
-background-size:73px; 
--moz-background-size: 73px; 
-background-repeat:no-repeat; 
-width:73px; height:73px; 
-float:left; 
-margin-right:10px;
-margin-top: -30px;
-cursor: pointer;
+    background-image: url('/s/static/common/img/share_blip.png'); 
+    background-size: 73px; 
+    -moz-background-size: 73px; 
+    background-repeat: no-repeat; 
+    width: 73px;
+    height: 73px; 
+    float: left; 
+    margin-right: 10px;
+    margin-top: -30px;
+    cursor: pointer;
 }
 
 .share_p {
@@ -326,4 +311,3 @@ cursor: pointer;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
 }
->>>>>>> branch 'master' of git@github.com:CoJMC/jaam.git
