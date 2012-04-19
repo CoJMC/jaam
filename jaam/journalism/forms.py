@@ -15,9 +15,7 @@ class UserProfileForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     class Meta:
         model = UserProfile
-        exclude = ('user', 'profile_set')
-       # if model.is_journalist() == False:
-       # 	exclude = exclude + ('bio', 'major')
+        exclude = ('user', 'profile_set', 'bio', 'major')
 
     def getFull_Name(self):
         return self.cleaned_data["full_name"]
