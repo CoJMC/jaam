@@ -260,27 +260,20 @@ except ImportError, exp:
     print "error: please get 'jaamconfig.py' and place it in the same directory as settings.py"
     os.exit(-1)
 
+# this is overridden by gondor
+GONDOR_DATA_DIR = 'GONDOR_DATA_DIR'
+
 # for gondor.io
 try:
     from local_settings import *
 except ImportError, exp:
     pass
 
-
-# Search functionality
-# OLD FOR HAYSTACK 1.x
-#HAYSTACK_SEARCH_ENGINE = 'whoosh'
-#HAYSTACK_INCLUDE_SPELLING = True
-#HAYSTACK_SITECONF = 'search_indexes'
-#HAYSTACK_WHOOSH_PATH ='./search/whoosh_index'
-
-
-
 # Whoosh Search Engine
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': 'GONDOR_DATA_DIR/whoosh_index', 
+        'PATH': os.path.join(GONDOR_DATA_DIR, "whoosh_index"), 
         'STORAGE': 'file',
         'INCLUDE_SPELLING': True,
 
