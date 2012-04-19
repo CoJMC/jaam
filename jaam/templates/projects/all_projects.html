@@ -5,14 +5,17 @@
 
 {% block body %}
 <div class="container-fluid container-center" style="position:relative">
-    <h1>All Projects</h1>
+    <h1 style="text-align: center">All Projects</h1>
     <ul class="carousel-ready overflow-hidden" style="list-style: none">
         {% for project in projects %}
             {% if forloop.first %}
                 <li class="span11">
+                <div style="margin: 0 auto; width: 780px">
             {% elif forloop.counter0|divisibleby:"3" %}
+                </div>
                 </li> <!-- end panel -->
                 <li class="span11">
+                <div style="margin: 0 auto; width: 780px">
             {% endif %}
 
             <div class="span3">
@@ -20,13 +23,14 @@
                     <div class="pic">
                         <img src="{% thumbnail project.cover_photo.image 240x160 crop %}"/>
                     </div>
-                    <p class="gallery_title"> {{ project.title }} </p>
+                    <p class="gallery_title" style="clear: left"> {{ project.title }} </p>
                 </a>
                 <p class="gallery_blip"> {{project.description|safe}} </p>
             </div>
             
             <div class="gallery_spacer">&nbsp</div>
         {% endfor %}
+        </div>
         </li>
     <ul>
 </div>
