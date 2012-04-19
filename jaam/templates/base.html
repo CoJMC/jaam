@@ -89,7 +89,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
 
-
         <!--[if lt IE 7 ]>
             <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
             <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
@@ -97,6 +96,7 @@
     </head>
     
     <body style="height:100%; width:100%; background-color: #262626;">
+        <div class="container-fluid container-center">
         {% block body %}
 
         {% endblock %}
@@ -105,23 +105,19 @@
         <!-- Header -->
         <div id="header" >
             <div class="user_login">
-
                 {% if user.is_authenticated %}
-                <a href="/users/{{user.username}}"> {% if user.first_name != "" %}
-                                                    {{ user.first_name }} {{ user.last_name }}
-                                                    {% else %}
-                                                    User Profile
-                                                    {% endif %}</a> &nbsp; | &nbsp;
-                <a href="/logout">Logout</a>
+                    <a href="/users/{{user.username}}">{{ user.get_profile.fullname }} (Profile)</a>
+                    &nbsp; | &nbsp;
+                    <a href="/logout">Logout</a>
                 {% else %}
                     <a id="login-link" href="#login-popup">Login</a>
                     <div style="display:none">
                         <div align="center" id="login-popup" style="background-color: #262626">
                             <h3>Login</h3>                            
-                            <a href="{% url socialauth_begin 'facebook' %}" class="zocial facebook"><span>Sign in with Facebook  </span> </a>
-                            <a href="{% url socialauth_begin 'twitter' %}" class="zocial twitter"><span>Sign in with Twitter &nbsp;</span> </a> 
-                            <a href="{% url socialauth_begin 'google' %}" class="zocial google"><span>&nbsp; Sign in with Google &nbsp;</span> </a>
-                            <a href="#openid-login-box" class="zocial openid" id="openid-login"><span>&nbsp; Sign in with OpenID</span> </a>
+                            <a href="{% url socialauth_begin 'facebook' %}" class="zocial facebook"><span>Sign in with Facebook</span></a>
+                            <a href="{% url socialauth_begin 'twitter' %}" class="zocial twitter"><span>Sign in with Twitter</span></a> 
+                            <a href="{% url socialauth_begin 'google' %}" class="zocial google"><span>Sign in with Google</span></a>
+                            <a href="#openid-login-box" class="zocial openid" id="openid-login"><span>Sign in with OpenID</span></a>
                             <div style="display: none">
                                 <div id="openid-login-box" class=".form-inline" class="form-inline" style="padding: 15px 15px 0px 15px" >
                                     <h3>OpenID Login</h3>
@@ -132,10 +128,6 @@
                                     </form>
                                 </div>
                             </div>
-                            <script>
-                                
-                            </script>
-
                         </div>
                     </div>
                 {% endif %}
@@ -153,26 +145,33 @@
             <div id="nav">
                 <a href="/"><div id="logo"></div></a>
                 <div class="nav_item"><a href="/projects/">PROJECTS</a></div>
-                
                 <div class="nav_item"><a href="/about/">ABOUT</a></div>
-                
-               <div class="nav_item"><a id="act_url" href="/act/">ACT</a></div>
-              
-                <div id="social" class="nav_item" style="position: fixed; margin-left: 750px">
+                <div class="nav_item"><a id="act_url" href="/act/">ACT</a></div>
 
-                    <a id="share-link" href="#share-popup" class="share_btn" style=" position: fixed;"> <div class="share_img"><p class="share_p"> SHARE </p></div> </a>
-            </div>
+                <div id="social" class="nav_item" style="position: fixed; margin-left: 750px">
+                    <a id="share-link" href="#share-popup" class="share_btn" style=" position: fixed;">
+                        <div class="share_img">
+                            <p class="share_p">SHARE</p>
+                        </div>
+                    </a>
+                </div>
 
             <div style="display:none">
                 <div id="share-popup" style="background: #262626">
-                    <h3 align="center"> Share </h3>
+                    <h3 align="center">Share</h3>
+                    <!--
+                    These are the widget style things (that don't really work)
+                    ==========================================================
                     <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend"></div> <br />
 
                     <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> <br />
 
                     <a href="http://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
-
+                    -->
+                    <a href="#" id="share-facebook-btn" class="zocial facebook"><span>Share to Facebook</span></a>
+                    <a href="#" id="share-twitter-btn" class="zocial twitter"><span>Tweet via Twitter</span></a>
+                    <a href="#" id="share-pinterest-btn" class="zocial pinterest"><span>Pin to Pinterest</span></a>
                 </div>
             </div>
         </div>
