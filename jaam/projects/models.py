@@ -46,6 +46,10 @@ class Project(BaseModel):
         return photos + stories + blog_posts
     rss_urls.allow_tags = True
 
+    # Photo shown on all_projects page
+    def cover_photo(self):
+        return self.coverGallery.photos.all()[0]
+
     @property
     def journalists(self):
         journalist_ids = list(self.photo_set.all().values_list('journalist', flat=True))

@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 def all_projects(request):
-    projects = Project.published_objects.filter(archived=True).all()
+    projects = Project.published_objects.all()
     return render_to_response('projects/all_projects.html', {
         'projects': projects,
         'title': "Project Detail",
