@@ -1,8 +1,38 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 
-{% block title %}All Projects{% endblock %}
+{% block title %}all projects{% endblock %}
 
 {% block body %}
-Show ALL the Projects
+<div class="container-fluid container-center" style="position:relative">
+    <h1>All Projects</h1>
+    <ul class="carousel-ready overflow-hidden" style="list-style: none">
+        {% for project in projects %}
+            {% if forloop.first %}
+                <li class="span11">
+            {% elif forloop.counter0|divisibleby:"3" %}
+                </li> <!-- end panel -->
+                <li class="span11">
+            {% endif %}
+
+            <div class="span3">
+                <a href="{{project.get_absolute_url}}">
+                    <div class="pic">
+                        <img src="{% thumbnail project.cover_photo.image 240x160 crop %}"/>
+                    </div>
+                    <p class="gallery_title"> {{ project.title }} </p>
+                </a>
+                <p class="gallery_blip"> {{project.description|safe}} </p>
+            </div>
+            
+            <div class="gallery_spacer">&nbsp</div>
+        {% endfor %}
+        </li>
+    <ul>
+</div>
+<script>
+(function() {
+    $('.carousel-ready').carousel()
+})(jQuery);
+</script>
 {% endblock %}

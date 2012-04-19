@@ -118,11 +118,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .gallery_link{font-size: 12pt;}
 .gallery_title>a{color:white;}
 .gallery_title{font-size: 13.5pt; font-weight: bold; padding-top: 15px; padding-bottom: 5px;}
-<<<<<<< HEAD
-.gallery_blip{font-size: 10.5pt; text-align: left; max-height: 200px;}
-=======
 .gallery_blip{font-size: 10.5pt; text-align: left; max-height: 200px; overflow-y: auto;}
->>>>>>> branch 'master' of git@github.com:CoJMC/jaam.git
 
 .banner_text {text-align: center; padding-top: 20px; color: white;  font-size: 24pt; font-family: Lato, Helvetica, Arial, sans-serif; text-transform: uppercase; font-weight: 700;}
 
@@ -162,6 +158,9 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .text_image {float: left; padding-right: 10px; padding-bottom: 10px;}
 .storypage>p {font-size: 12pt; margin-top: 10px; line-height: 1.25; }
 .storypage {-moz-column-count:3; -webkit-column-count:3; column-count:3; height: 410px; width: 850px; overflow-x: auto;}
+.storypage>p>.inline-img { width: 270px !important; height: auto;}
+.post_description { -moz-column-count:3; -webkit-column-count:3; column-count:3; height: 410px; width: 750px; overflow-x: auto;}
+.post_description .inline-img { width: 240px !important; height: auto;}
 .font11>p {font-size: 11pt;}
 .highlight {
     border: 2px solid #E6E6E6;
@@ -292,6 +291,7 @@ li.pinterest:hover {
     font-size: 18pt;
 }
 
+<<<<<<< HEAD
 .share_btn {
     display: inline-block;
     color: black;
@@ -306,3 +306,24 @@ li.pinterest:hover {
     position: relative;
     cursor: pointer;
 }
+=======
+.share_img {
+background-image:url('/s/static/common/img/share_blip.png'); 
+background-size:73px; 
+-moz-background-size: 73px; 
+background-repeat:no-repeat; 
+width:73px; height:73px; 
+float:left; 
+margin-right:10px;
+margin-top: -30px;
+cursor: pointer;
+}
+
+.share_p {
+	margin-top: 30px;
+	margin-left: -65px;
+    font-size: 24pt;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+>>>>>>> branch 'master' of git@github.com:CoJMC/jaam.git
