@@ -1,3 +1,9 @@
-#honeypotField  {
-    display: none;
-}
+p.comment {
+	color: white;
+	padding: 10px;
+	}
+
+.row {
+	padding-bottom: 5px;
+	width: 600px;
+	}
