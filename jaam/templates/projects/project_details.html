@@ -5,8 +5,7 @@
 
 {% block banner %}{{ project.title }}{% endblock %}
 
-{% block banner_body %}
-
+{% block extrahead %}
 	<style type="text/css">
 		.span4 h5 * {
 			color: white !important;
@@ -14,10 +13,13 @@
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
 		}
 	</style>
+{% endblock %}
+
+{% block banner_body %}
+
 <div class="span12" style="margin-top: 20px">
 	<div class="span5">
-		<h5 style="max-height: 400px; overflow-y: auto;"> {{project.description|safe}} </h5>
-
+		<h5 style="max-height: 400px; overflow-y: auto; font-weight: normal"> {{project.description|safe}} </h5>
 	</div>
 	<div class="span6" style="margin-left: 20px; margin-top: 20px">
 		<img src="{% thumbnail project.infographic 490x327%}" class="project_img"/>

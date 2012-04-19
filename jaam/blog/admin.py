@@ -11,18 +11,18 @@ class BlogPostInline(admin.StackedInline):
 class BlogPostAdmin(BaseAdmin):
     add_form_template = 'admin/blog_post_change.html'
     change_form_template = 'admin/blog_post_change.html'
-    list_display = ('__unicode__', 'blog', 'description', 'author', 'published',)
-    list_filter = ('blog__project', 'blog', 'author', 'published',)
+    list_display = ('__unicode__', 'blog', 'description', 'journalist', 'published',)
+    list_filter = ('blog__project', 'blog', 'journalist', 'published',)
     prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ('tags',)
     fieldsets = [
                  (None, { 'fields': ('blog', 'title', 'slug', 'cover_photo', 'description', 'body','tags',) },),
-                 ('Admin', { 'fields': ('author', 'published',) },),
+                 ('Admin', { 'fields': ('journalist', 'published',) },),
                 ]
 
     def save_model(self, request, obj, form, change):
         if not change:
-            obj.author = request.user
+            obj.journalist = request.user
         obj.save()
 
 class BlogAdmin(BaseAdmin):

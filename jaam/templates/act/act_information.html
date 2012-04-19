@@ -1,19 +1,18 @@
 {% extends "base.html" %}
-{% load thumbnail %}
-{% load comments %}
 
 {% block title %}act{% endblock %}
 
-{%block banner%} JAAM {%endblock%}
-
-{% block body %}
+{% block extrahead %}
 	<script type="text'javascript'">
 		$(document).ready(function (){
 			$("a").attr("href", document.URL + '#Home');
 		})
 	</script>
+{% endblock %}
 
-	
+
+{% block body %}
+
 <div  style="width:800px; margin:0 auto;">
 	<div class="span10">
 		<p class="info_page">

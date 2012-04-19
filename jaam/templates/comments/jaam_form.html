@@ -1,0 +1,50 @@
+{% load comments %}
+{% load thumbnail %}
+<script>
+	$(document).ready(function() {
+		$("input[name='next']").submit(function() {
+			$("input[name='next']").value = document.URL;
+		});
+	});
+	$("comment-toggle").click(function () {
+	$("comment-list").toggle();
+	});
+
+</script>
+<div id="comment-list">
+	{% get_comment_list for item as comment_list %}
+		<h4> Comments </h4>
+			{% for comment in comment_list %}
+				<a href="#"> <img src="something" /> </a>
+                <a href=#"> <img src="{% thumbnail user.get_profile.avatar 330x220 %}" /> </a>
+                <p> {{ comment.comment }} </p>
+			{% endfor %}
+				{% if user.is_authenticated %}
+				<a class="btn btn-primary btn-large" id="comment-toggle">Leave a Comment</a>
+				{% endif %}
+			</div>
+			<div id="comment-form">
+			{% if user.is_authenticated %}
+			{% get_comment_form for item as form %}
+				<h3> Add to the Chatter </h3>
+				<form action="{% comment_form_target %} " method="post">
+					{% csrf_token %}
+						{{ form.comment }}
+						<p style="display:none">
+						{{ form.honeypot }}
+						{{form.user }}
+						{{ form.content_type }}
+						{{ form.object_pk }}
+						{{ form.timestamp }}
+						{{ form.security_hash }}
+						</p>
+					<br />
+					<input type="submit" name="submit" value="Post Comment">
+					<br />
+					<a id="comment-toggle" class="btn btn-primary btn-large">View All Comments</a>
+					<input type="hidden" name="next" value="{{ request.build_absolute_uri }}" />
+				</form>
+			{% else %}
+			<p> Please <a id="login-link" href="#login-popup">Login</a> to post comments. <p>
+			{% endif %}
+			</div>

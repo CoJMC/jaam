@@ -10,7 +10,7 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class Story(BaseModel):
     project = models.ForeignKey(Project)
-    author = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
+    journalist = models.ForeignKey(User, limit_choices_to = { 'groups__name': "Journalists" })
     title = models.CharField(max_length=200)
     body = RichTextField()
     blurb = models.CharField(max_length=1000)
@@ -19,7 +19,7 @@ class Story(BaseModel):
         default=datetime.datetime.now
         )
     enable_comments = models.BooleanField()
-    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.objects.get(title="Default"), on_delete=models.SET_DEFAULT)
+    cover_photo = models.ForeignKey(Photo, default= lambda: Photo.all_objects.get(title="Default"), on_delete=models.SET_DEFAULT)
 
     class Meta:
         verbose_name = "story"

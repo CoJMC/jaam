@@ -31,7 +31,7 @@
 
                     {% elif result.model_name == 'blogpost' %}
                         <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
-                        By: {{ result.object.author.first_name }} {{ result.object.author.last_name }} </br>
+                        By: {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
                         {{ result.object.body }}
                     
                     {% elif result.model_name == 'project' %}

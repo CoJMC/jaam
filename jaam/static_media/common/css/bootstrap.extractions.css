@@ -134,7 +134,6 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .gallery_banner {background-image:url('/s/static/gallery_banner.png'); width: 388px; height: 59px; background-repeat: no-repeat; background-color:#D11919;}
 .bottom_banner {background-image:url('/s/static/banner_bottom.png'); width: 265px; height:80px; margin-top: 423px; margin-left: 1px; background-repeat: no-repeat;}
 .bottom_banner_text {color: white; margin-left: 70px; padding-top: 36px; font-size: 12pt; font-family: Lato, Helvetica, Arial, sans-serif; font-weight: 400; text-align: left;}
-#footer { width:100%; position:fixed; left:0px; bottom:0px; background-color:#262626; padding-top: 5px;}
 #nav {height:80px; width:900px; margin:0px auto;}
 #logo {background-image:url('/s/static/logo_simple-white.png'); background-size:140px; -moz-background-size: 160px; background-repeat:no-repeat; width:160px; height:80px; float:left; margin-right:10px;}
 #social {float:right;}
@@ -161,7 +160,8 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 .side_title, .side_title>a {color: white; font-weight: bold;}
 .description, .description > p {color: white; padding: 5px; overflow-y: auto;}
 .text_image {float: left; padding-right: 10px; padding-bottom: 10px;}
-.storypage>p {font-size: 12pt; margin-top: 10px; line-height: 1.25;}
+.storypage>p {font-size: 12pt; margin-top: 10px; line-height: 1.25; }
+.storypage {-moz-column-count:3; -webkit-column-count:3; column-count:3; height: 410px; width: 850px; overflow-x: auto;}
 .font11>p {font-size: 11pt;}
 .highlight {
     border: 2px solid #E6E6E6;
@@ -176,7 +176,7 @@ a.gallery_image:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 
 
 .side_title, .side_title>a {font-size: 12pt;}
 .act_logo{height: 150px; width: 150px;}
-.act_image{padding-left: 10px; padding-right: 10px; text-align: center; height: 150px;}
+
 .inside_page{text-align: center;}
 .blanket { background-color:#111; opacity: 0.35; filter:alpha(opacity=35); position:absolute; top:0px; left:0px; width:100%; height:100%;}
 .popUp { position:absolute; background-color:#8F8F8F; height:470px; width:880px; left: 80px;}

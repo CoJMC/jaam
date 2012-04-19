@@ -37,7 +37,7 @@ class VideoGalleryAdmin(BaseAdmin):
         self.exclude = []
         if not request.user.is_superuser:
             self.exclude.append('published')
-            self.exclude.append('author')
+            self.exclude.append('journalist')
         return super(VideoGalleryAdmin, self).get_form(request, obj, **kwargs)
 
 admin.site.register(Video, VideoAdmin)
