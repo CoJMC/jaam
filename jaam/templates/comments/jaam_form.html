@@ -21,7 +21,7 @@
 	{% if user.is_authenticated %}
 	{% endif %}
 </div>
-<div id="comment-form" style="display: none;">
+<div id="comment-form">
 	{% if user.is_authenticated %}
 		{% get_comment_form for item as form %}
 		<h3>Add to the Chatter</h3>
@@ -42,6 +42,6 @@
 			<input type="hidden" name="next" value="{{ request.build_absolute_uri }}" />
 		</form>
 	{% else %}
-		<p>Please<a id="login-link" href="#login-popup">Login</a>to post comments.<p>
+		<h2>Please <a id="login-link" href="#login-popup">login</a> to post comments.<h2>
 	{% endif %}
 </div>
