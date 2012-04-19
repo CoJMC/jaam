@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 def all_projects(request):
-    projects = Project.published_objects.filter(archived=True).all()
+    projects = Project.published_objects.all()
     return render_to_response('projects/all_projects.html', {
         'projects': projects,
         'title': "Project Detail",
@@ -23,9 +23,9 @@ def details(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
     #in your template, filter out. We need the whole list.
     #photos = Photo.published_objects.all()
-    photos = project.photo_set.filter(published=True)
-    video = project.video_set.filter(published=True)
-    story = project.story_set.filter(published=True)
+    photos = project.photo_set.all()
+    video = project.video_set.all()
+    story = project.story_set.all()
     blog_post = BlogPost.objects.filter(blog__project__slug=project_slug)
     contributors = User.objects.filter(photo__project__slug=project_slug).distinct()
     return render_to_response('projects/project_details.html', {

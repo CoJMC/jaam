@@ -5,10 +5,14 @@
 
 {% block body %}
 <img class="loader" src="/s/static/common/graphics/homepage-loader.gif"/>
+<div id="JaamIntro" style="display:none"> <div style="position:absolute; left:40%; top:20%; width:100%; z-index:20"> <img src="/s/static/common/img/GE_1.png"> </img> </div> 
+<div style="position:absolute; bottom:10%; left:30%"><img src="/s/static/common/img/CoJMC_Logo_transparentbg_white.png"> </img> </div>
+</div>
 <div id="container">
     <ul id="projects"></ul>
 </div>
 
+        
 <script type="text/javascript">
 var PROJECT_OPTIONS = {'covergallery__isnull': 'false', 'archived': 'false'};
 var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
@@ -18,7 +22,9 @@ function carousel(){
     $("#projects").carousel(CAROUSEL_OPTIONS);
     addFade();
     $(".loader").fadeOut("fast");
-    $("#container").delay(200).fadeIn("slow");
+    $("#JaamIntro").delay(1000).fadeOut("slow");
+    $("#container").delay(1200).fadeIn("slow");
+    $("#footer").delay(1400).fadeIn("slow");
 }
 
 function addFade() {
@@ -44,6 +50,8 @@ function addFade() {
 }
 
 $(document).ready(function (){
+	checkCookie();
+	$("#footer").hide();
     $("#container").hide();
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
         var requests = [];

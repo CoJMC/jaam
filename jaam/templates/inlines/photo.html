@@ -1,1 +1,2 @@
-<img class="inline-img" src="{{ object.image.url }}" />
+{% load thumbnail %}
+<img class="inline-img" src="{% thumbnail object.image 300x0 %}" />

@@ -70,6 +70,7 @@
         <script src="/s/static/common/js/color-converter.js"></script> <!-- TODO: What's up with this still? -->
         <script src="/s/static/common/js/login.js"></script>
         <script src="/s/static/common/js/share.js"></script>
+        <script src="/s/static/common/js/splash.js"></script>
         <script src="/s/static/common/js/site-nav.js"></script>
         <!-- nick's wonderful fork of the carousel plugin -->
         <script src="/s/static/common/js/nicks-mobile-carousel-fork/jquery.mobile.carousel.js"></script>
@@ -96,7 +97,6 @@
     </head>
     
     <body style="height:100%; width:100%; background-color: #262626;">
-        <div class="container-fluid container-center">
         {% block body %}
 
         {% endblock %}
@@ -148,19 +148,19 @@
             </div>
 
         </div>
-        
         <!-- Footer -->
         <div id="footer">
             <div id="nav">
                 <a href="/"><div id="logo"></div></a>
-                <div class="nav_item"><a href="/">PROJECTS</a></div>
+                <div class="nav_item"><a href="/projects/">PROJECTS</a></div>
                 
                 <div class="nav_item"><a href="/about/">ABOUT</a></div>
                 
                <div class="nav_item"><a id="act_url" href="/act/">ACT</a></div>
-
+              
                 <div id="social" class="nav_item" style="position: fixed; margin-left: 750px">
-                    <a id="share-link" href="#share-popup" class="share_btn" style=" position: fixed; margin-left: -20px; margin-top: -20px; color: black;"> <p class="share" id="share"> SHARE </p> </a>
+
+                    <a id="share-link" href="#share-popup" class="share_btn" style=" position: fixed;"> <div class="share_img"><p class="share_p"> SHARE </p></div> </a>
             </div>
 
             <div style="display:none">

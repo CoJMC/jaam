@@ -38,6 +38,7 @@ urlpatterns = patterns('',
     url(r'^act/', include('jaam.act.urls')),
     url(r'^journalism/', include('jaam.journalism.urls')),
     url(r'^projects/', include('jaam.projects.urls')),
+    url(r'^intro/', 'jaam.views.splash'),
     url(r'^$', 'jaam.views.home'),
     url(r'^project_act', 'jaam.act.views.information'),
 
