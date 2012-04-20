@@ -5,12 +5,12 @@ $(document).ready(function() {
     
     $("input[name='submit']").click(function() {
         var next_url = location.protocol + '//' + location.host + location.pathname;
-        console.log(this.siblings("input[name='next']"));
-        console.log(this.siblings("input[name='next']").val());
+        console.log($(this).siblings("input[name='next']"));
+        console.log($(this).siblings("input[name='next']").val());
         $("input[name='next']").val(next_url);
-        console.log(this.siblings("input[name='next']").val());
+        console.log($(this).siblings("input[name='next']").val());
         // this will break if the form ever has something wrap the submit button
-        this.closest("form").submit()
+        $(this).closest("form").submit()
     });
         
 });
