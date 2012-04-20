@@ -11,8 +11,8 @@ a:hover {
     border: 0 none;
     font: bold 12px Arial,Helvetica,Sans-serif;
     color: #d7d7d7;
-    width:150px;
-    padding: 6px 15px 6px 35px;
+    width: 50px;
+    padding: 5px 15px 5px 30px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -43,8 +43,16 @@ a:hover {
 
 .search {
     display:table-cell;
-    padding-top: 3px;
-    padding-right: 10px;
+    padding-top: 8px;
+    padding-right: 8px;
+}
+
+.search > form {
+    margin: 0;
+}
+
+.search > form > input {
+    margin-bottom: 5px;
 }
 
 .user_login {
