@@ -47,6 +47,7 @@
         var splashDefer = runSplash();
         var loadDefer = $.Deferred();
         $.when(splashDefer, loadDefer).done(function(){
+            console.log("defers done");
             carousel();
         });
         // <new
