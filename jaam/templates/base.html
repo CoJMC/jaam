@@ -97,7 +97,7 @@
             <div class="user_login">
 
                 {% if user.is_authenticated %}
-                    <a href="/users/{{user.username}}">{{ user.get_profile.fullname }} (Profile)</a>
+                    <a href="/users/{{user.username}}">{{ user.get_profile.full_name }} (Profile)</a>
                     &nbsp; | &nbsp;
                     <a href="/logout">Logout</a>
                 {% else %}
