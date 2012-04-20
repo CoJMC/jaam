@@ -79,16 +79,6 @@
 
         {% endblock %}
 
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=175522359195104";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
-
         <!--[if lt IE 7 ]>
             <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
             <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
@@ -113,7 +103,7 @@
                 {% else %}
                     <a id="login-link" href="#login-popup">Login</a>
                     <div style="display:none">
-                        <div align="center" id="login-popup" style="background-color: #262626">
+                        <div id="login-popup" style="background-color: #262626">
                             <h3>Login</h3>                            
                             <a href="{% url socialauth_begin 'facebook' %}" class="zocial facebook"><span>Sign in with Facebook</span></a>
                             <a href="{% url socialauth_begin 'twitter' %}" class="zocial twitter"><span>Sign in with Twitter</span></a> 
