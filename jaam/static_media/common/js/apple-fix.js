@@ -8,6 +8,6 @@ if(!fix_apple_nonsense) {
 		});
 
 		// hide something? I don't know if we want this
-		window.scrollTo(0,0.9);
+		//window.scrollTo(0,0.9);
 	});
 }
