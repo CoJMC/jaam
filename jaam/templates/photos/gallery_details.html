@@ -67,7 +67,7 @@ function moveRight() {
                 
                 <br/>
                 <p> 
-                    <a style="color: white; font-weight: bold" href="/users/{{user.username}}?embedded=true" class="iframe" id="journalist">
+                    <a style="color: white; font-weight: bold" href="/users/{{first_photo.journalist.username}}?embedded=true" class="iframe" id="journalist">
                         <img src="{% thumbnail first_photo.journalist.get_profile.avatar 60x60 crop %}">
                         {{first_photo.journalist.get_profile.full_name}}
                     </a>
