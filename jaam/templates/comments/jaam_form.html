@@ -3,7 +3,7 @@
 <script>
 $(document).ready(function() {
     
-    $("input[name='submit']").click(function() {
+    $("input[name='submitbtn']").click(function() {
         var next_url = location.protocol + '//' + location.host + location.pathname;
         console.log($(this).siblings("input[name='next']"));
         console.log($(this).siblings("input[name='next']").val());
@@ -45,7 +45,7 @@ $(document).ready(function() {
             {{ form.security_hash }}
         </p>
         <br />
-        <input type="submit" name="submit" value="Post Comment">
+        <input type="submit" name="submitbtn" value="Post Comment">
         <br />
         <input type="hidden" name="next" value="THIS_SHOULD_NOT_BE_HERE" />
     </form>
