@@ -14,6 +14,8 @@
     function carousel(){
         $("#projects").carousel(CAROUSEL_OPTIONS);
         addFade();
+        $(".loader").fadeOut("fast");
+        $("#container").delay(200).fadeIn("slow");
     }
 
     function addFade() {
@@ -40,7 +42,7 @@
 
     $(document).ready(function (){
         $("#container").hide();
-        runSplash();
+        //runSplash();
 
         $(document).bind('touchmove', function (e) {
             e.preventDefault();
