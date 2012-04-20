@@ -88,7 +88,7 @@
                 }
                 $.when.apply(null, photo_requests).done(function() {
                     //carousel();
-                    loadDefer.done();
+                    loadDefer.resolve();
                 });
             });
         });
