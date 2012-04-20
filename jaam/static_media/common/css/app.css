@@ -145,7 +145,7 @@ body {
 .nav_item > a:hover {
     color: #939393;
 }
-#share_link {
+#share-link {
     position: absolute;
     margin-left: 100px;
 }
