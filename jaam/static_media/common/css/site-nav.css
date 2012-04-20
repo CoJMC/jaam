@@ -61,6 +61,7 @@ a:hover {
 
 #login-popup, #share-popup {
     text-align: center;
+    padding: 20px;
 }
 
 .zocial {
