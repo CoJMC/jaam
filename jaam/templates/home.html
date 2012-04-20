@@ -14,8 +14,9 @@
     function carousel(){
         $("#projects").carousel(CAROUSEL_OPTIONS);
         addFade();
+
         $(".loader").fadeOut("fast");
-        $("#container").delay(200).fadeIn("slow");
+        $("#container").delay(250).fadeIn("slow");
     }
 
     function addFade() {
@@ -42,7 +43,13 @@
 
     $(document).ready(function (){
         $("#container").hide();
-        //runSplash();
+        // new>
+        var splashDefer = runSplash();
+        var loadDefer = $.Deferred();
+        $.when(splashDefer, loadDefer).done(function(){
+            carousel();
+        });
+        // <new
 
         $(document).bind('touchmove', function (e) {
             e.preventDefault();
@@ -79,7 +86,8 @@
                     photo_requests.push(request);
                 }
                 $.when.apply(null, photo_requests).done(function() {
-                    carousel();
+                    //carousel();
+                    loadDefer.done();
                 });
             });
         });
@@ -129,8 +137,8 @@
         </div>
     </div>
 -->
-<!--
-<div id="JaamIntro" style="width:100%;"> 
+
+<div id="JaamIntro" style="width:100%; display:none;"> 
     <div style="margin-top:7%; width:300px; margin-left:auto; margin-right:auto">
         <img src="/s/static/common/img/GE_1.png" />
     </div> 
@@ -138,7 +146,7 @@
         <img src="/s/static/common/img/CoJMC_Logo_transparentbg_white.png"/>
     </div>
 </div>
--->
+
 <div id="container">
     <ul id="projects"></ul>
 </div>

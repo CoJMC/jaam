@@ -1,19 +1,27 @@
 function runSplash() {
+    var SPLASH_RUNTIME = 3000;
+    var FOOTER_TIMEOFFSET = 500;
+    
     var lastDate=getCookie("GlobalEyewitness");
-    if (lastDate==null || lastDate=="") {
+    var defer = $.Deferred();
 
+    if (lastDate==null || lastDate=="") {
         $("#footer").hide();
-        $("#container").hide();
-        
         $("#JaamIntro").show();
 
         var lastDate = "JournalismMeans";
         setCookie("GlobalEyewitness",lastDate,null);
         
-        $("#JaamIntro").delay(1000).fadeOut("slow");
-        $("#container").delay(1200).fadeIn("slow");
-        $("#footer").delay(1400).fadeIn("slow");
+        $("#JaamIntro").delay(SPLASH_RUNTIME).fadeOut("slow", function() {
+            defer.resolve();
+        });
+
+        $("#footer").delay(SPLASH_RUNTIME+FOOTER_TIMEOFFSET).fadeIn("slow");
+    } else {
+        defer.resolve();
     }
+
+    return defer;
 }
 
 function setCookie(c_name,value,exdays) {
