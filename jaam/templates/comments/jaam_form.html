@@ -10,7 +10,9 @@ $(document).ready(function() {
         $("input[name='next']").val(next_url);
         console.log($(this).siblings("input[name='next']").val());
         // this will break if the form ever has something wrap the submit button
-        $(this).closest("form").submit()
+        form = $(this).closest("form");
+        console.log(form);
+        $(this).closest("form").submit();
     });
         
 });
