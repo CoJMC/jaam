@@ -5,6 +5,14 @@
 
 {% block banner %} {{project.title}} {% endblock %}
 
+{% block extrahead %}
+    <style type="text/css">
+        .gallery_blip {
+            font-size: 10.5pt !important
+        }
+    </style>
+{% endblock %}
+
 {% block banner_body %}
 <ul class="carousel-ready overflow-hidden">
     {% for gallery in galleries %}
@@ -15,12 +23,6 @@
             </li> <!-- end panel -->
             <li class="span11">
         {% endif %}
-        
-        <style type="text/css">
-        	.gallery_blip {
-        		font-size: 10.5pt !important
-        	}
-        </style>
         
         <div class="span3">
             <a href="{% url start_photo_gallery project_slug=project.slug gallery_slug=gallery.slug start_number=0 %}">

@@ -1,8 +1,3 @@
-body .zocial {
-    margin: 4px 4px;
-    font-size: 13px;
-}
-
 a:visited {
     color: white;
 }
@@ -29,7 +24,7 @@ a:hover {
     -moz-transition: all 0.7s ease 0s;
     -o-transition: all 0.7s ease 0s;
     transition: all 0.7s ease 0s;
-    }
+}
 
 #search input[type="text"]:focus {
     background: url(/s/static/common/img/search-dark.png) no-repeat 10px 6px #fcfcfc;
@@ -39,7 +34,7 @@ a:hover {
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    }
+}
 
 #header {
     display: table;
@@ -54,9 +49,15 @@ a:hover {
 
 .user_login {
     display:table-cell;
-
 }
 
-#share-popup {
-    float:center;
+#login-popup, #share-popup {
+    text-align: center;
+}
+
+.zocial {
+    margin: 4px 4px;
+    font-size: 13px;
+    width: 200px;
+    text-align: left;
 }

@@ -100,7 +100,7 @@ h1,h2,h3,h4,h5,h6 {
     }
 }
 
-*@TODO: fix media of the project-nav fluidity */
+/*@TODO: fix media of the project-nav fluidity */
 .project-header, .project-nav{font-weight:bold; color: #fff; font-size:x-large; text-transform: lowercase; letter-spacing:0.1em; font-family: Georgia, Garamond, Times, serif; font-variant:small-caps; text-align: center; text-shadow: 0px 1px 0px #C0C0C0; padding-top: 8px; padding-bottom: 8px; }
 .project-header:first-letter{text-transform: uppercase;}
 .project-nav:first-letter{text-transform: uppercase;}
@@ -292,15 +292,16 @@ li.pinterest:hover {
 }
 
 .share_img {
-background-image:url('/s/static/common/img/share_blip.png'); 
-background-size:73px; 
--moz-background-size: 73px; 
-background-repeat:no-repeat; 
-width:73px; height:73px; 
-float:left; 
-margin-right:10px;
-margin-top: -30px;
-cursor: pointer;
+    background-image: url('/s/static/common/img/share_blip.png'); 
+    background-size: 73px; 
+    -moz-background-size: 73px; 
+    background-repeat:no-repeat; 
+    width: 73px;
+    height: 73px; 
+    float: left; 
+    margin-right: 10px;
+    margin-top: -30px;
+    cursor: pointer;
 }
 
 .share_p {

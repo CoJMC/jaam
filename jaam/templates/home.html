@@ -3,114 +3,140 @@
 
 {% block title %}projects{% endblock %}
 
+{% block extrahead %}
+<script src="/s/static/common/js/splash.js"></script>
+
+<script>
+    var PROJECT_OPTIONS = {'covergallery__isnull': 'false', 'archived': 'false'};
+    var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
+    var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
+
+    function carousel(){
+        $("#projects").carousel(CAROUSEL_OPTIONS);
+        addFade();
+    }
+
+    function addFade() {
+        var left = $("<div>").addClass("side-fade").addClass("left");
+        var right = $("<div>").addClass("side-fade").addClass("right");
+        var left_arrow = $("<div>").addClass("scroll-arrow").addClass("left");
+        var right_arrow = $("<div>").addClass("scroll-arrow").addClass("right");
+        left.append(left_arrow);
+        right.append(right_arrow);
+        $("#container").children().first().append(left).append(right);
+        
+        $(".side-fade").mousedown(function (e){
+            $('ul.ui-draggable').trigger(e);
+        });
+        $(".side-fade.right").on("click", function (e){
+            var options = { dx : -50 }
+            $('ul.ui-draggable').simulate('drag', options);
+        });
+        $(".side-fade.left").on("click", function (e){
+            var options = { dx : 50 }
+            $('ul.ui-draggable').simulate('drag', options);
+        });
+    }
+
+    $(document).ready(function (){
+        runSplash();
+
+        $(document).bind('touchmove', function (e) {
+            e.preventDefault();
+        });
+
+        $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
+            var requests = [];
+            var null_ids = [];
+            $.each(proj_data.objects, function(i, proj) {
+                // secondary check for null cover gallery because the API returns null for unpubd galleries
+                if (proj.covergallery != null) {
+                    var request = $.getJSON(proj.covergallery+"?format=jsonp&callback=?");
+                    requests.push(request);
+                } else {
+                    null_ids.push(i);
+                }
+            });
+            
+            for (var j=null_ids.length-1; j>=0; j--) {
+                proj_data.objects.splice(null_ids[j],1);
+            }
+            
+            $.when.apply(null, requests).done(function() {
+                var photo_requests = []
+                // A hack is necessary if there is only one project
+                var args = arguments;
+                if (arguments[1] === "success") {
+                    args = [arguments];
+                }
+                for (i = 0; i < args.length; i++) {
+                    var project = proj_data.objects[i];
+                    var cover_data = args[i][0];
+                    var request = load_project_photos(project, cover_data);
+                    photo_requests.push(request);
+                }
+                $.when.apply(null, photo_requests).done(function() {
+                    carousel();
+                });
+            });
+        });
+
+        var load_project_photos = function (proj, cover_data) {
+            var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
+            return $.getJSON("/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
+                var project_li = $("<li>").addClass("project").appendTo("#projects");
+                project_li.click(function (){
+                    if ($(this).hasClass("noclick")){
+                        $(this).removeClass("noclick");
+                    } else {
+                        window.location = "/projects/"+proj.slug;
+                    }
+                });
+                $.each(pic_data.objects, function(j, item){
+                    var div = $("<div>").addClass("pic").appendTo(project_li);
+                    $("<img/>").attr("src", item.image).appendTo(div);
+                });
+                var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", proj.primaryColor);
+                var title = $("<span>").addClass("title").text(proj.title);
+                var subtitle = $("<span>").addClass("subtitle").text(proj.tagline);
+                title.appendTo(title_box);
+                subtitle.appendTo(title_box);
+                if (project_li.children().length > 0)
+                    title_box.insertAfter(project_li.children()[3] || project_li.children().last())
+                else
+                    title_box.appendTo(project_li);
+            });
+        }
+    });
+</script>
+{% endblock %}
+
 {% block body %}
 <img class="loader" src="/s/static/common/graphics/homepage-loader.gif"/>
+
+<!--
+    old, replaced with below at 10:24PM
+    ===================================
+    <div id="JaamIntro" style="display:none">
+        <div style="position:absolute; left:40%; top:20%; width:100%; z-index:20">
+            <img src="/s/static/common/img/GE_1.png"/>
+        </div> 
+        <div style="position:absolute; bottom:10%; left:30%">
+            <img src="/s/static/common/img/CoJMC_Logo_transparentbg_white.png"/>
+        </div>
+    </div>
+-->
+
+<div id="JaamIntro" style="width:100%;"> 
+    <div style="margin-top:7%; width:300px; margin-left:auto; margin-right:auto">
+        <img src="/s/static/common/img/GE_1.png" />
+    </div> 
+    <div style="margin-top:15%; width:500px; margin-left: auto; margin-right: auto">
+        <img src="/s/static/common/img/CoJMC_Logo_transparentbg_white.png"/>
+    </div>
+</div>
+
 <div id="container">
     <ul id="projects"></ul>
 </div>
-
-<script type="text/javascript">
-var PROJECT_OPTIONS = {'covergallery__isnull': 'false', 'archived': 'false'};
-var PHOTO_OPTIONS = {'size': '(220,150)', 'crop': 'true'};
-var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
-
-function carousel(){
-    $("#projects").carousel(CAROUSEL_OPTIONS);
-    addFade();
-    $(".loader").fadeOut("fast");
-    $("#container").delay(200).fadeIn("slow");
-}
-
-function addFade() {
-    var left = $("<div>").addClass("side-fade").addClass("left");
-    var right = $("<div>").addClass("side-fade").addClass("right");
-    var left_arrow = $("<div>").addClass("scroll-arrow").addClass("left");
-    var right_arrow = $("<div>").addClass("scroll-arrow").addClass("right");
-    left.append(left_arrow);
-    right.append(right_arrow);
-    $("#container").children().first().append(left).append(right);
-    
-    $(".side-fade").mousedown(function (e){
-        $('ul.ui-draggable').trigger(e);
-    });
-    $(".side-fade.right").on("click", function (e){
-        var options = { dx : -50 }
-        $('ul.ui-draggable').simulate('drag', options);
-    });
-    $(".side-fade.left").on("click", function (e){
-        var options = { dx : 50 }
-        $('ul.ui-draggable').simulate('drag', options);
-    });
-}
-
-$(document).ready(function (){
-    $("#container").hide();
-    $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
-        var requests = [];
-        var null_ids = [];
-        $.each(proj_data.objects, function(i, proj) {
-            // secondary check for null cover gallery because the API returns null for unpubd galleries
-            if (proj.covergallery != null) {
-                var request = $.getJSON(proj.covergallery+"?format=jsonp&callback=?");
-                requests.push(request);
-            } else {
-                null_ids.push(i);
-            }
-        });
-        
-        for (var j=null_ids.length-1; j>=0; j--) {
-            proj_data.objects.splice(null_ids[j],1);
-        }
-        
-        $.when.apply(null, requests).done(function() {
-            var photo_requests = []
-            // A hack is necessary if there is only one project
-            var args = arguments;
-            if (arguments[1] === "success") {
-                args = [arguments];
-            }
-            for (i = 0; i < args.length; i++) {
-                var project = proj_data.objects[i];
-                var cover_data = args[i][0];
-                var request = load_project_photos(project, cover_data);
-                photo_requests.push(request);
-            }
-            $.when.apply(null, photo_requests).done(function() {
-                carousel();
-            });
-        });
-    });
-
-    var load_project_photos = function (proj, cover_data) {
-        var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
-        return $.getJSON("/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
-            var project_li = $("<li>").addClass("project").appendTo("#projects");
-            project_li.click(function (){
-                if ($(this).hasClass("noclick")){
-                    $(this).removeClass("noclick");
-                } else {
-                    window.location = "/projects/"+proj.slug;
-                }
-            });
-            $.each(pic_data.objects, function(j, item){
-                var div = $("<div>").addClass("pic").appendTo(project_li);
-                $("<img/>").attr("src", item.image).appendTo(div);
-            });
-            var title_box = $("<div>").addClass("title_block").addClass("banner").css("background-color", proj.primaryColor);
-            var title = $("<span>").addClass("title").text(proj.title);
-            var subtitle = $("<span>").addClass("subtitle").text(proj.tagline);
-            title.appendTo(title_box);
-            subtitle.appendTo(title_box);
-            if (project_li.children().length > 0)
-                title_box.insertAfter(project_li.children()[3] || project_li.children().last())
-            else
-                title_box.appendTo(project_li);
-        });
-    }
-});
-
-$(document).bind('touchmove', function (e) {
-    e.preventDefault();
-});
-</script>
 {% endblock %}

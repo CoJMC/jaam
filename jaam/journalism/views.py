@@ -38,14 +38,14 @@ def profile_set(request):
             # Process the data in form.cleaned_data and return to the admin
             profile.full_name = profile_form.cleaned_data['full_name']
             profile.avatar = request.POST.get('avatar')
-            profile.bio = profile_form.cleaned_data['bio']
-            profile.major = profile_form.cleaned_data['major']
+            #profile.bio = profile_form.cleaned_data['bio']
+            #profile.major = profile_form.cleaned_data['major']
             profile.profile_set = True
 
             user.email = profile_form.cleaned_data['email']
             user.save()
             profile.save()
-        return HttpResponseRedirect('/admin') # Redirect after POST
+        return HttpResponseRedirect('/') # Redirect after POST
     else:
         if profile.profile_set == False: # if the user has not submitted their information
             profile_form = UserProfileForm(initial={'full_name': profile.full_name, 'email': user.email}) # An unbound form
