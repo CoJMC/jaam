@@ -145,6 +145,29 @@ body {
 .nav_item > a:hover {
     color: #939393;
 }
+#share_link {
+    position: absolute;
+    margin-left: 100px;
+}
+.share_img {
+    background-image: url('/s/static/common/img/share_blip.png');
+    background-size: 73px;
+    -moz-background-size: 73px;
+    background-repeat:no-repeat;
+    width: 73px;
+    height: 73px;
+    float: left;
+    margin-right: 10px;
+    margin-top: -30px;
+    cursor: pointer;
+}
+.share_p {
+    margin-top: 30px;
+	margin-left: -65px;
+    font-size: 24pt;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
 .side-fade {
     height: 474px;
     width: 45px;
@@ -403,7 +426,13 @@ font-size: 11pt;
         width: 768px;
     }
     #logo {
-        margin-right: 20px;
+        margin-right: 10px;
+    }
+    #share_link {
+        margin-left: 65px;
+    }
+    .nav_item {
+        padding: 10px 13px;
     }
 }
 

@@ -275,28 +275,3 @@ li.pinterest:hover {
     color: black;
     font-size: 18pt;
 }
-
-.share_img {
-    background-image: url('/s/static/common/img/share_blip.png'); 
-    background-size: 73px; 
-    -moz-background-size: 73px; 
-    background-repeat:no-repeat; 
-    width: 73px;
-    height: 73px; 
-    float: left; 
-    margin-right: 10px;
-    margin-top: -30px;
-    cursor: pointer;
-}
-
-.share_p {
-	margin-top: 30px;
-	margin-left: -65px;
-    font-size: 24pt;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-}
-
-#share_link {
-    margin-left: 125px;
-}
