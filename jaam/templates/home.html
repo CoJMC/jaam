@@ -22,9 +22,6 @@ function carousel(){
     $("#projects").carousel(CAROUSEL_OPTIONS);
     addFade();
     $(".loader").fadeOut("fast");
-    $("#JaamIntro").delay(1000).fadeOut("slow");
-    $("#container").delay(1200).fadeIn("slow");
-    $("#footer").delay(1400).fadeIn("slow");
 }
 
 function addFade() {
@@ -50,9 +47,7 @@ function addFade() {
 }
 
 $(document).ready(function (){
-	checkCookie();
-	$("#footer").hide();
-    $("#container").hide();
+    runSplash();
     $.getJSON("/api/v1/project/?format=jsonp&callback=?", PROJECT_OPTIONS, function (proj_data) {
         var requests = [];
         var null_ids = [];
