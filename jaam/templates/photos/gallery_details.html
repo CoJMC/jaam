@@ -19,38 +19,8 @@ function moveRight() {
         <div class="span12">
             
             <div class="span7">
-
-                <div style="display:none">
-                    <div id="comments" class="exif_div">
-                    
-                        {% include "comments/jaam_form.html" with item=first_photo %}
-                    </div>
-                </div>
-
-
                 
-                <div style="display:none;  margin-top: -60px;">
-                    <div id="exif_data" class="exif_div">
-                        <div class="span8">
-                            <p class="exif" style="-moz-column-count:2; -webkit-column-count:2; column-count:2;">
-                              Camera Manufacturer: {{first_photo.exif_data.camera_manufacturer}} <br />
-                              Model: {{first_photo.exif_data.camera_model}} <br />
-                              Date Taken: {{first_photo.exif_data.date}} <br />
-                              Shutter Speed: {{first_photo.exif_data.shutter_speed}} <br />
-                              Fnumber:{{first_photo.exif_data.fnumber}} <br />
-                              Focal Length: {{first_photo.exif_data.focal_length}} <br />
 
-                              Flash: {{first_photo.exif_data.flash_used}} <br />
-                              Height: {{first_photo.exif_data.height_dimension}} <br />
-                              Width: {{first_photo.exif_data.width_dimension}} <br />
-                              GPS lat: {{first_photo.exif_data.gps_latitude}} <br />
-                              GPS long: {{first_photo.exif_data.gps_longitude}} <br />
-                              Altitude: {{first_photo.exif_data.altitude}} <br />
-                          </p>
-                      </div>
-
-                      
-                  </div></div>
                   <a class="single_image" rel="gallery_group" href="{% thumbnail first_photo.image 2400x1600 %}">
                     <div id="imgBox">
                         <img src="{% thumbnail first_photo.image 520x347 %}"/>
@@ -64,7 +34,7 @@ function moveRight() {
 
                 <h4 style="font-weight: normal">{{first_photo.caption}}</h4>
                 <br/>
-                <p style="font-size:11pt;"> <a style="color: white" href="/comments/{{first_photo.id}}" class="comments" id="commenters">Comments</a> | <a style="color: white" class="exif" href="#exif_data">EXIF Data</a></p>
+                <p style="font-size:11pt;"> <a style="color: white" href="/comments/{{first_photo.id}}" class="comments" id="commenters">Comments</a> | <a style="color: white" class="exif" href="/projects/{{project.slug}}/photos/exif/{{first_photo.id}}/">EXIF Data</a></p>
                 
                 <br/>
                 <p> 
