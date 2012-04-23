@@ -22,6 +22,7 @@ function moveRight() {
 
                 <div style="display:none">
                     <div id="comments" class="exif_div">
+                    
                         {% include "comments/jaam_form.html" with item=first_photo %}
                     </div>
                 </div>
@@ -63,7 +64,7 @@ function moveRight() {
 
                 <h4 style="font-weight: normal">{{first_photo.caption}}</h4>
                 <br/>
-                <p style="font-size:11pt;"> <a style="color: white" href="#comments" id="commenters">Comments</a> | <a style="color: white" id="exif" href="#exif_data">EXIF Data</a></p>
+                <p style="font-size:11pt;"> <a style="color: white" href="/comments/{{first_photo.id}}" class="comments" id="commenters">Comments</a> | <a style="color: white" class="exif" href="#exif_data">EXIF Data</a></p>
                 
                 <br/>
                 <p> 
