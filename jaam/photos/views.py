@@ -53,6 +53,15 @@ def details(request, project_slug, photo_id):
     journalist = User.objects.get(username=photo.journalist)
     return render_to_response('photos/photo_details.html', { 'photo': photo, 'project': project, 'journalist': journalist }, context_instance=RequestContext(request))
 
+def exif(request, project_slug, photo_id):
+    photo = get_object_or_404(Photo, pk=photo_id)
+    return render_to_response('photos/exif.html', { 'first_photo': photo }, context_instance=RequestContext(request))
+
+def comments(request, photo_id):
+    photo = get_object_or_404(Photo, pk=photo_id)
+    return render_to_response('comments/jaam_form.html', { 'item': photo }, context_instance=RequestContext(request))
+
+
 def index(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
     photos = project.photo_set.all()

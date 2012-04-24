@@ -47,6 +47,7 @@ urlpatterns = patterns('',
     url(r'^accounts/profile', 'jaam.journalism.views.profile_set'),
     url(r'^confirm', 'jaam.journalism.views.profile_set'),
     url(r'^users/(?P<username>[^\\]+)/', 'jaam.journalism.views.user_profile'),
+    url(r'^comments/(?P<photo_id>\d+)/', 'jaam.photos.views.comments'),
 
     # REST API
     (r'^api/', include(v1_api.urls)),

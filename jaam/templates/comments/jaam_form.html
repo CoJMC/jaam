@@ -1,5 +1,8 @@
 {% load comments %}
 {% load thumbnail %}
+
+<link rel="stylesheet" href="/s/static/third_party/bootstrap-2.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/s/static/common/css/bootstrap.extractions.css">
 <script>
 $(document).ready(function() {
     
@@ -17,22 +20,36 @@ $(document).ready(function() {
         
 });
 </script>
-<div id="comment-list">
+<div class="span10" style="overflow-x: hidden">
+<div class="row">
+<div id="comment-list" class="span10" style="padding-left: 5%; overflow-x: hidden">
     {% get_comment_list for item as comment_list %}
     {% get_comment_count for item as count %}
-    <h3>Comments ({{ count }})</h3>
+    
+   <div style="margin-top: 4%">
+    
+    <h3 style="padding-bottom: 20px">Comments ({{ count }})</h3>
+    
     {% for comment in comment_list %}
-    <div class="row">
-        <a href="/users/{{comment.user.username}}"><img src="{% thumbnail comment.user.get_profile.avatar 85x85 %}" /></a>
-        <h6>Posted by {{ comment.user_name }} on {{ comment.submit_date }}</h6>
-        <p class="comment">{{ comment.comment }}</p>
+    <div class="row" style="max-height: 100px; padding-bottom: 20px">
+    <div class="span9">
+    	<div class="span1">
+        	<img src="{% thumbnail comment.user.get_profile.avatar 65x65 %}" />
+        </div>
+        <div class="span7" style="overflow-x: hidden; margin-left: -5px;">
+        	<p style="color: white; font-size: 10.5pt;">{{ comment.comment }}</p>
+        	<p style="margin-top: -5px; font-size: 9pt; font-style: italic">Posted by {{ comment.user_name }} on {{ comment.submit_date }}</p>
+        </div>
     </div>
-    {% endfor %}
+    </div>
+    {% endfor %}  
 </div>
-<div id="comment-form">
+</div>
+<div class="row">
+<div id="comment-form" class="span6" style="padding-left: 7%;">
     {% if user.is_authenticated %}
     {% get_comment_form for item as form %}
-    <h3>Add to the Chatter</h3>
+    <h3 style="padding-top: 20px">Post a Comment</h3>
     <form action="{% comment_form_target %} " method="post">
         {% csrf_token %}
         {{ form.comment }}
@@ -52,4 +69,7 @@ $(document).ready(function() {
     {% else %}
     <h2>Please<a id="login-link" href="#login-popup">Login</a>to post comments.</h2>
     {% endif %}
+</div>
+</div>
+</div>
 </div>
