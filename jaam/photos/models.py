@@ -40,7 +40,7 @@ class Photo(BaseModel):
                                 height_field='',
                                 width_field='',
                                 upload_to='uploads/photos',
-                                max_length=200)                                
+                                max_length=200)
     title = models.CharField(max_length=100)
     caption = models.TextField(max_length=500)
     exif_data = models.OneToOneField(PhotoExifData, blank=True, null=True, editable=False, on_delete=models.SET_NULL)
@@ -56,11 +56,6 @@ class Photo(BaseModel):
             'photo_id': self.id,
         })
 
-    @property
-    def comments_expired(self):
-        delta = datetime.datetime.now() - self.pub_date
-        return delta.days < 90
-    
     @property
     def photos(self):
         return Photo.objects.filter(
@@ -116,11 +111,11 @@ class PhotoGallery(BaseModel):
             return self.photogalleryitem_set.order_by('order')[0].photo
         else:
             return None
-            
+
     @property
     def size(self):
         return self.photos.count()
-        
+
 # This is for ordering photos inside of photo galleries which can't be done with
 # a regular m2m relationship
 class PhotoGalleryItem(models.Model):
