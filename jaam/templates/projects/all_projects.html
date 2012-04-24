@@ -6,14 +6,40 @@
 {% block extrahead %}
     <script>
         (function() {
-            $('.carousel-ready').carousel()
+            var CAROUSEL_OPTIONS = {overflow:'hidden', leftOffset:45, separation:14};
+
+            $(document).ready(function() {
+                $('.carousel-ready').carousel(CAROUSEL_OPTIONS)
+                addFade();
+            });
+
+            function addFade() {
+                var left = $("<div>").addClass("side-fade").addClass("left");
+                var right = $("<div>").addClass("side-fade").addClass("right");
+                var left_arrow = $("<div>").addClass("scroll-arrow").addClass("left");
+                var right_arrow = $("<div>").addClass("scroll-arrow").addClass("right");
+                left.append(left_arrow);
+                right.append(right_arrow);
+                $("#all-projects-container").append(left).append(right);
+                
+                $(".side-fade").mousedown(function (e){
+                    $('ul.ui-draggable').trigger(e);
+                });
+                $(".side-fade.right").on("click", function (e){
+                    var options = { dx : -50 }
+                    $('ul.ui-draggable').simulate('drag', options);
+                });
+                $(".side-fade.left").on("click", function (e){
+                    var options = { dx : 50 }
+                    $('ul.ui-draggable').simulate('drag', options);
+                });
+            }
         })(jQuery);
     </script>
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid container-center" style="position:relative">
-    <h1 style="text-align: center">All Projects</h1>
+<div id="all-projects-container" class="container-fluid container-center" style="position:relative; top: 2em;">
     <ul class="carousel-ready overflow-hidden" style="list-style: none">
         {% for project in projects %}
             {% if forloop.first %}
