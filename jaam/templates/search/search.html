@@ -1,4 +1,13 @@
-{% block content %}
+{% extends "base.html" %}
+
+
+{% block body %}
+<style>
+    body {
+        color: white;
+    }
+</style>
+
     <h2>Search</h2>
 
     <form method="get" action=".">
@@ -17,7 +26,7 @@
 
             {% for result in page.object_list %}
                 
-                <p>
+                <p id="results">
                     {% if result.model_name == 'photo' %}
                         <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a> </br>
                         By:  {{ result.object.journalist.first_name }} {{ result.object.journalist.last_name }} </br>
