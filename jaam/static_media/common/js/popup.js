@@ -62,6 +62,17 @@ function determinePage(pathname) {
     else {
         popOutLink('blip_info', 'link_info');}
 }
+
+function determineOverflow(container) {
+	var xScrollWidth = container.scrollWidth;
+	if (xScrollWidth > 800 && screen.width < 970 ) {
+		document.getElementById("scrollText").style.visibility="visible";
+	}
+	else {
+		
+	} 
+}
+
 	
 function popOutLink(blip, link) {
 		document.getElementById(blip).style.visibility="visible";
