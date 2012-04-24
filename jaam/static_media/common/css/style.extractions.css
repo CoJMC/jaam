@@ -66,6 +66,14 @@
     margin-top: -10px;
 }
 
+.journalist-profile {
+    padding-left: 20px;
+    padding-bottom: 10px;
+    font-size: 9pt;
+    font-family:'CabinSemiBold', sans-serif; 
+    color: #777;
+}
+
 .bar-info {
     color: #B5B4B7; 
     font-family: CabinSemiBold, sans-serif;
