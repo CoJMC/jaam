@@ -41,7 +41,7 @@
 	$(document).ready(function (){
 	    $(".carousel-ready.overflow-hidden").carousel({"overflow":"hidden"});
 	    $(".carousel-ready").carousel();
-	    $(".journalist-photo").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true });
+	    $(".journalist-photo").fancybox({ 'overlayColor': '#000000', 'hideOnContentClick': false,'zoomSpeedIn': 300, 'zoomSpeedOut': 300, 'overlayShow': true, 'padding': 1, 'autoDimensions': true, 'autoscale': true,  });
 	 })
 	 </script>
 {% endblock %}
@@ -120,7 +120,7 @@
                 <ul class="carousel-ready">
                     {% for photo in journalist.photo_set.all %}
                     	<li>
-                          <a class="journalist-photo" rel="journalist-photos" href="{% thumbnail photo.image 900x600 %}"> <img class="journalist-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" /></a>
+                          <a class="journalist-photo" rel="journalist-photos" href="{% thumbnail photo.image 2400x1600 %}"> <img class="journalist-photos-thumbnail" src="{% thumbnail photo.image 96x64 %}" /></a>
                          </li>
                     {% endfor %}
                 </ul>
