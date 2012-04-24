@@ -61,8 +61,7 @@ class Photo(BaseModel):
         return Photo.objects.filter(
             pk__in=self.project.photo_set.all().values_list('journalist', flat=True).query
         )
-
-
+    
 #Akismet spam connections
 def moderate_comment(sender, comment, request, **kwargs):
     ak = akismet.Akismet(
@@ -78,10 +77,11 @@ def moderate_comment(sender, comment, request, **kwargs):
     }
     if ak.comment_check(smart_str(comment.comment), data=data, build_data=True):
         comment.is_public = False
+        comment.is_removed = True
         comment.save()
-        print "SPAM"
     else:
-        print "JAAM"
+        comment.is_public = False
+        comment.save()
 
 comment_was_posted.connect(moderate_comment)
 
