@@ -13,15 +13,24 @@
 				font-family:sans-serif !important;
 			}
 		</style>
+		
+<script type="text/javascript">
+$(document).ready(function (){
+    determineOverflow(document.getElementById("storypage"));
+});
+</script>
 
 {%endblock%}
 
 {% block banner_body %}
-		<div class="span11">
-		<div class="storypage">
+		<div class="span10">
+		<div class="storypage" id="storypage">
 		<h3 style="color: white"> {{story.title}} </h3>
 		<h5 style="font-size: 10pt; font-style: italic"> By {{story.journalist.get_profile.full_name}} </h5>
-		<p class="storybody"> {% process_inlines story.body %} </p>
+		<p class="storybody" style="width: 600px"> {% process_inlines story.body %} </p>
+		</div>
+		<div class="span10" style="margin-top: -16px; visibility: hidden" id="scrollText">
+			<p style="font-style: italic; font-size: 9pt; text-align: right"> {scroll for more} </p>
 		</div>
 		</div>
 {% endblock %}

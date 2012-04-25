@@ -11,11 +11,12 @@ User Details
 		<h3 style="color: white">Please complete your profile information.</h3>
 		<br />
 		<div class="span3" style="background-color: white; padding: 10px;">
+		<p style="color: black;"> You can associate other social logins to your jaam account and login with them as well. </p>
 		<ul>
-		<li> <a href="/associate/facebook"> Associate Facebook </a> </li>
-		<li> <a href="/associate/twitter"> Associate Twitter </a> </li>
-		<li> <a href="/associate/google"> Associate Google </a> </li>
-		<li> <a href="/associate/openid"> Associate OpenID </a> </li>
+		<li> <a href="/associate/facebook" style="color: black;"> Associate Facebook </a> </li>
+		<li> <a href="/associate/twitter" style="color: black;"> Associate Twitter </a> </li>
+		<li> <a href="/associate/google" style="color: black;"> Associate Google </a> </li>
+		<li> <a href="/associate/openid" style="color: black;"> Associate OpenID </a> </li>
 		</ul>
 		<h3 style="color: white"> <form action="confirm" method="post"> {% csrf_token %}		
 		  {{ profile_form.as_p }}

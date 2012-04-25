@@ -72,6 +72,10 @@
             for (var j=null_ids.length-1; j>=0; j--) {
                 proj_data.objects.splice(null_ids[j],1);
             }
+
+            proj_data.objects.sort(function(a, b) {
+                return Date.parse(b.created_at) - Date.parse(a.created_at)
+            });
             
             $.when.apply(null, requests).done(function() {
                 var photo_requests = []
@@ -85,6 +89,9 @@
                     var cover_data = args[i][0];
                     var request = load_project_photos(project, cover_data);
                     photo_requests.push(request);
+
+                    var project_li = $("<li>").addClass("project").appendTo("#projects");
+                    project_li.attr('id', project.slug)
                 }
                 $.when.apply(null, photo_requests).done(function() {
                     //carousel();
@@ -96,7 +103,7 @@
         var load_project_photos = function (proj, cover_data) {
             var options = $.extend(PHOTO_OPTIONS, {'gallery__id': cover_data.id});
             return $.getJSON("/api/v1/photo/?format=jsonp&callback=?", options, function (pic_data) {
-                var project_li = $("<li>").addClass("project").appendTo("#projects");
+                var project_li = $('.project#'+proj.slug)
                 project_li.click(function (){
                     if ($(this).hasClass("noclick")){
                         $(this).removeClass("noclick");
