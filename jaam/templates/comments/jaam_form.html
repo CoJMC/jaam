@@ -36,7 +36,7 @@ $(document).ready(function() {
     	<div class="span1">
         	<img src="{% thumbnail comment.user.get_profile.avatar 65x65 %}" />
         </div>
-        <div class="span7" style="overflow-x: hidden; margin-left: -5px;">
+        <div class="span7" style="overflow-x: hidden; margin-left: 5px;">
         	<p style="color: white; font-size: 10.5pt;">{{ comment.comment }}</p>
         	<p style="margin-top: -5px; font-size: 9pt; font-style: italic">Posted by {{ comment.user_name }} on {{ comment.submit_date }}</p>
         </div>
