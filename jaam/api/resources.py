@@ -109,6 +109,7 @@ class PhotoResource(BaseModelResource):
 
     def dehydrate_image(self, bundle):
         if 'size' in bundle.request.GET:
+            print "yes"
             # TODO:
             # use id to filter instead of slug? implement id filtering above
             try:
