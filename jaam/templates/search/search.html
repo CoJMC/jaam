@@ -9,6 +9,19 @@
 
     label {
         color: white;
+        float:left;
+        clear: none;
+        display: block;
+        margin: 5px 2px 5px 2px;
+    }
+
+    fieldset {
+        overflow: hidden;
+    }
+    input[type=checkbox] {
+        float: left;
+        clear: none;
+        margin: 3px 2px 3px 2px;
     }
 
     #nextOrPrev {
@@ -23,18 +36,46 @@
         color: white;
     }
 
+    .modelOptions {
+        float: left;
+        clear: none;
+    }
+
 </style>
 
     <h2>Search</h2>
 
     <form method="get" action=".">
+
+        <!-- This is really unwieldy -->
         <table>
-            {{ form.as_table }}
             <tr>
-                <td>&nbsp;</td>
                 <td>
-                    <input type="submit" value="Search">
+                    <tr>
+                        Search:
+                    </tr>
+                    <tr>
+                        {{ form.q }}
+                    </tr>
                 </td>
+            </tr>
+            <tr>
+                <tr><th><label for="id_models_0">Search In:</label></th><td>
+                    <fieldset>
+                        <div class='modelOptions'>
+                            <td class='models'> <label for="id_models_0"><input type="checkbox" name="models" value="blog.blogpost" id="id_models_0" /> Blog posts</label> </td>
+                            <td class='models'> <label for="id_models_1"><input type="checkbox" name="models" value="photos.photo" id="id_models_1" /> Photos</label> </td>
+                            <td class='models'> <label for="id_models_2"><input type="checkbox" name="models" value="projects.project" id="id_models_2" /> Projects</label> </td>
+                            <td class='models'> <label for="id_models_3"><input type="checkbox" name="models" value="stories.story" id="id_models_3" /> Stories</label> </td>
+                            <td class='models'> <label for="id_models_4"><input type="checkbox" name="models" value="journalism.userprofile" id="id_models_4" /> User profiles</label> </td>
+                            <td class='models'> <label for="id_models_5"><input type="checkbox" name="models" value="videos.video" id="id_models_5" /> Videos</label> </td>
+                        </div>
+                    </fieldset>
+                    </td></tr>
+
+            </tr>
+            <tr>
+                &nbsp; <input type="submit" value="Search">
             </tr>
         </table>
 
