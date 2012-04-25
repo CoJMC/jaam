@@ -1,7 +1,7 @@
 function runSplash() {
     var SPLASH_RUNTIME = 3000;
     var FOOTER_TIMEOFFSET = 500;
-    var DEMO_MODE = false;
+    var DEMO_MODE = true;
     
     var lastDate=getCookie("GlobalEyewitness");
     var defer = $.Deferred();
