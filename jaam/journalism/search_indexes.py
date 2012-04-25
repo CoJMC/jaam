@@ -9,7 +9,7 @@ from projects.models import Project
 from stories.models import Story
 from videos.models import Video
 
-class BlogPostIndex(indexes.SearchIndex, indexes.Indexable):
+class BlogPostIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
 	# journalist = indexes.CharField(model_attr='journalist')
 	# title = indexes.CharField(model_attr='title')
 	text = indexes.CharField(document=True, use_template=True)
@@ -25,7 +25,7 @@ class BlogPostIndex(indexes.SearchIndex, indexes.Indexable):
 		return self.get_model().objects.filter(published=True)
 
 
-class ProjectIndex(indexes.SearchIndex, indexes.Indexable):
+class ProjectIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
 	# title_value = indexes.CharField(model_attr='title')
 	text = indexes.CharField(document=True, use_template=True)
 
@@ -37,7 +37,7 @@ class ProjectIndex(indexes.SearchIndex, indexes.Indexable):
         #filter by published
 		return self.get_model().objects.filter(published=True)
 
-class StoryIndex(indexes.SearchIndex, indexes.Indexable):
+class StoryIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
 
 	def get_model(self):
@@ -47,7 +47,7 @@ class StoryIndex(indexes.SearchIndex, indexes.Indexable):
 		return self.get_model().objects.filter(published=True)
 
 
-class VideoIndex(indexes.SearchIndex, indexes.Indexable):
+class VideoIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
 
 	def get_model(self):
@@ -57,7 +57,7 @@ class VideoIndex(indexes.SearchIndex, indexes.Indexable):
 		return self.get_model().objects.filter(published=True)
 
 
-class PhotoIndex(indexes.SearchIndex, indexes.Indexable):
+class PhotoIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
 	journalist = indexes.CharField(model_attr='journalist');
 
@@ -67,7 +67,7 @@ class PhotoIndex(indexes.SearchIndex, indexes.Indexable):
 	def index_queryset(self):
 		return self.get_model().objects.filter(published=True)
 
-class UserProfileIndex(indexex.SearchIndex, indexes.Indexable):
+class UserProfileIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
 
 	def get_model(self):
