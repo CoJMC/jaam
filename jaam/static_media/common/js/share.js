@@ -1,35 +1,22 @@
 //var mouse_is_inside = false;
  
 $(document).ready(function() {
-    /*
-        $(".share_btn").click(function() {
-            var shareBox = $("#share_box_content");
-            if (shareBox.is(":visible"))
-                shareBox.fadeOut("fast");
-                // document.getElementById('share').style.display = 'visible';
-            else
-                shareBox.fadeIn("fast");
-            return false;
-        });
-     
-        $("#share_box_content").hover(function(){ 
-            mouse_is_inside=true; 
-        }, function(){ 
-            mouse_is_inside=false; 
-        });
-     
-        $("body").click(function(){
-            if(! mouse_is_inside) $("#share_box_content").fadeOut("fast");
-        });
-    */
-
+    var getUrl = function() {
+        return window.location
+    }
+    var getTitle = function() {
+        return document.title
+    }
     $("#share-facebook-btn").click(function() {
-        alert("open share to fb");
+        var link = "https://www.facebook.com/sharer.php?u=" + encodeURIComponent(getUrl()) + "&t=" + encodeURIComponent(getTitle());
+        window.open(link, _blank);
     });
     $("#share-twitter-btn").click(function() {
-        alert("open share to twitter");
+        var link = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(getUrl()) + "&text=" + encodeURIComponent(getTitle());
+        window.open(link, _blank);
     });
     $("#share-pinterest-btn").click(function() {
-        alert("open share to pinterest");
+        var link = "http://pinterest.com/pin/create/button/?url=" + encodeURIComponent(getUrl()) + "&text=" + encodeURIComponent(getTitle());
+        window.open(link, _blank);
     });
 });
