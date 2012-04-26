@@ -67,6 +67,12 @@ class PhotoIndex(indexes.SearchIndex, indexes.Indexable):
 	def index_queryset(self):
 		return self.get_model().objects.filter(published=True)
 
+class UserProfileIndex(indexes.SearchIndex, indexes.Indexable):
+	text = indexes.CharField(document=True, use_template=True)
+
+	def get_model(self):
+		return UserProfile
+
 
 
 

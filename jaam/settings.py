@@ -277,6 +277,8 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(GONDOR_DATA_DIR, "whoosh_index"),
         'STORAGE': 'file',
         'INCLUDE_SPELLING': True,
+        
     },
 }
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
 
