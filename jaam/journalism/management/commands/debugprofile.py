@@ -9,7 +9,7 @@ class Command(BaseCommand):
         users = User.objects.all()
         for u in users:
             try:
-                user.get_profile()
+                u.get_profile()
             except:
                 print u
                 print u.username
