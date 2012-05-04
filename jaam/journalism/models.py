@@ -82,7 +82,7 @@ class UserProfile(models.Model):
             'username': self.user.username
         })
 
-@receiver(social_auth.signals.post_save, sender=User)
+@receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
         if created==True:
             user_profile = UserProfile()
