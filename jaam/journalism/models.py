@@ -4,7 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 from easy_thumbnails.fields import ThumbnailerImageField
-import social_auth.signals
 from jaam.journalism.middleware import _show_unpublished
 #from jaam.photos.models import Photo
 from django.forms import ModelForm
@@ -82,7 +81,7 @@ class UserProfile(models.Model):
             'username': self.user.username
         })
 
-@receiver(post_save, sender=User)
+@receiver(social_auth.signals.post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
         if created==True:
             user_profile = UserProfile()
