@@ -7,7 +7,7 @@ from easy_thumbnails.fields import ThumbnailerImageField
 from jaam.journalism.middleware import _show_unpublished
 #from jaam.photos.models import Photo
 from django.forms import ModelForm
-
+import social_auth
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
 
