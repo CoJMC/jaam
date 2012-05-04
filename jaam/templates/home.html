@@ -65,7 +65,7 @@
                     var request = $.getJSON(proj.covergallery+"?format=jsonp&callback=?");
 
                     var project_li = $("<li>").addClass("project").appendTo("#projects");
-                    project_li.attr('id', project.slug)
+                    project_li.attr('id', proj.slug)
 
                     requests.push(request);
                 } else {
