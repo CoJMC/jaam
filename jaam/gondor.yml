@@ -7,9 +7,6 @@ vcs: git
 # Framework to use on Gondor.
 framework: django
 
-# Python version to run on Gondor.
-runtime: python-2.7.3
-
 # This path is relative to your project root (the directory gondor.yml lives in.)
 requirements_file: requirements.txt
 
@@ -48,5 +45,6 @@ django:
     # directory gondor.yml lives in.)
     managepy: manage.py
 
+# Adds extra environment variables to the instance environment.
 env:
     DJANGO_SETTINGS_MODULE: {{ project_name }}.settings_gondor
