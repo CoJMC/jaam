@@ -253,23 +253,9 @@ API_LIMIT_PER_PAGE = 0
 
 INLINE_DEBUG = True
 
-# for personal config - doccloud/aws/etc
-# TODO: Clean this up.
-try:
-    from jaamconfig import *
-except ImportError, exp:
-    print "error: please get 'jaamconfig.py' and place it in the same directory as settings.py"
-    os.exit(-1)
-
 # this is overridden by gondor
 GONDOR_DATA_DIR = 'GONDOR_DATA_DIR'
 GONDOR_DATA_DIR = os.environ['GONDOR_DATA_DIR']
-
-# for gondor.io
-#try:
-#    from local_settings import *
-#except ImportError, exp:
-#    pass
 
 # Whoosh Search Engine
 HAYSTACK_CONNECTIONS = {
@@ -283,3 +269,6 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
 
+from .settings_app import *
+
+# TODO: A lot of this should probably be moved to settings_gondor.py
