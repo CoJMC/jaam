@@ -47,4 +47,4 @@ django:
 
 # Adds extra environment variables to the instance environment.
 env:
-    DJANGO_SETTINGS_MODULE: {{ project_name }}.settings_gondor
+    DJANGO_SETTINGS_MODULE: jaam.settings_gondor
