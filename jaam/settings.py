@@ -262,7 +262,8 @@ except ImportError, exp:
     os.exit(-1)
 
 # this is overridden by gondor
-#GONDOR_DATA_DIR = 'GONDOR_DATA_DIR'
+GONDOR_DATA_DIR = 'GONDOR_DATA_DIR'
+GONDOR_DATA_DIR = os.environ['GONDOR_DATA_DIR']
 
 # for gondor.io
 #try:
