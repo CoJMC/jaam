@@ -22,5 +22,6 @@ eventlet==0.9.16
 django-celery==2.3.3
 dj-database-url==0.2.0
 beautifulsoup==3.2.1
+akismet==0.2.0
 
 -e git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud

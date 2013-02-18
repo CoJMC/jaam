@@ -11,3 +11,7 @@ jaam/static
 
 *.sublime-project
 *.sublime-workspace
+
+src
+tmp
+jaam/tmp
