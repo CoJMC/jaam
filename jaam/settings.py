@@ -262,13 +262,13 @@ except ImportError, exp:
     os.exit(-1)
 
 # this is overridden by gondor
-GONDOR_DATA_DIR = 'GONDOR_DATA_DIR'
+#GONDOR_DATA_DIR = 'GONDOR_DATA_DIR'
 
 # for gondor.io
-try:
-    from local_settings import *
-except ImportError, exp:
-    pass
+#try:
+#    from local_settings import *
+#except ImportError, exp:
+#    pass
 
 # Whoosh Search Engine
 HAYSTACK_CONNECTIONS = {
@@ -277,7 +277,7 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(GONDOR_DATA_DIR, "whoosh_index"),
         'STORAGE': 'file',
         'INCLUDE_SPELLING': True,
-        
+
     },
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5

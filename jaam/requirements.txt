@@ -1,5 +1,5 @@
 django==1.4
-gondor==1.0.2
+gondor==1.1
 South==0.7.4
 pil==1.1.7
 django-storages==1.1.4
@@ -16,5 +16,9 @@ Whoosh==2.3.2
 django_inlines==0.7.4
 raven==1.5.0
 slimit==0.6.2
+psycopg2==2.4.5
+gunicorn==0.14.3
+eventlet==0.9.16
+django-celery=2.3.3
 
 -e git+https://github.com/BayCitizen/django-doccloud.git#egg=django-doccloud
