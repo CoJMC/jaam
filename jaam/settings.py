@@ -1,6 +1,8 @@
 # Django settings for jaam project.
 import os, logging
 
+from settings_app import *
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -13,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'database.db', # Or path to database file if using sqlite3.
+        'NAME': 'tmp/database.db', # Or path to database file if using sqlite3.
         'USER': '', # Not used with sqlite3.
         'PASSWORD': '', # Not used with sqlite3.
         'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
@@ -253,22 +255,14 @@ API_LIMIT_PER_PAGE = 0
 
 INLINE_DEBUG = True
 
-# this is overridden by gondor
-GONDOR_DATA_DIR = 'GONDOR_DATA_DIR'
-GONDOR_DATA_DIR = os.environ['GONDOR_DATA_DIR']
-
-# Whoosh Search Engine
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(GONDOR_DATA_DIR, "whoosh_index"),
+        'PATH': os.path.join("tmp", "whoosh_index"),
         'STORAGE': 'file',
         'INCLUDE_SPELLING': True,
 
     },
 }
-HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
-
-from .settings_app import *
 
 # TODO: A lot of this should probably be moved to settings_gondor.py
