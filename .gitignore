@@ -13,5 +13,5 @@ jaam/static
 *.sublime-workspace
 
 src
-tmp
-jaam/tmp
+jaam/src
+tmp_local_jaam.db
