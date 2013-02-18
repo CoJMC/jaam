@@ -10,6 +10,13 @@ DATABASES = {
 # this is overridden by gondor
 GONDOR_DATA_DIR = os.environ['GONDOR_DATA_DIR']
 
+MEDIA_ROOT = os.path.join(os.environ["GONDOR_DATA_DIR"], "site_media", "media")
+STATIC_ROOT = os.path.join(os.environ["GONDOR_DATA_DIR"], "site_media", "static")
+
+MEDIA_URL = "/s/media/" # make sure this maps inside of site_media_url
+STATIC_URL = "/s/static/" # make sure this maps inside of site_media_url
+ADMIN_MEDIA_PREFIX = os.path.join(STATIC_URL, "admin" + os.path.sep)
+
 # Whoosh Search Engine
 HAYSTACK_CONNECTIONS = {
     'default': {
