@@ -17,7 +17,7 @@ django_inlines==0.7.4
 raven==1.5.0
 slimit==0.6.2
 psycopg2==2.4.5
-gunicorn==0.14.3
+gunicorn==0.14.6
 eventlet==0.9.16
 django-celery==2.3.3
 dj-database-url==0.2.0
